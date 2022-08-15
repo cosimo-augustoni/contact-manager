@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "contact-manager", "contact-manager\contact-manager.csproj", "{6223F6F9-85AA-48DB-B7E0-F8CE75190209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "contact-manager", "contact-manager\contact-manager.csproj", "{6223F6F9-85AA-48DB-B7E0-F8CE75190209}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{C2383151-71B5-4F45-9174-E3BCEABD13E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{6223F6F9-85AA-48DB-B7E0-F8CE75190209}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6223F6F9-85AA-48DB-B7E0-F8CE75190209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6223F6F9-85AA-48DB-B7E0-F8CE75190209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2383151-71B5-4F45-9174-E3BCEABD13E5}.Debug|Any CPU.ActiveCfg = Debug
+		{C2383151-71B5-4F45-9174-E3BCEABD13E5}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
