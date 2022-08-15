@@ -1,4 +1,4 @@
-﻿namespace contact_manager
+﻿namespace contact_manager.View
 {
     partial class Form1
     {
