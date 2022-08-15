@@ -1,3 +1,4 @@
+using contact_manager.Controller;
 using contact_manager.View;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,7 +20,9 @@ namespace contact_manager
             var host = CreateHostBuilder().Build();
             var serviceProvider = host.Services;
 
-            Application.Run(serviceProvider.GetRequiredService<Form1>());
+            Application.Run();
+            var dashboardController = serviceProvider.GetRequiredService<DashboardController>();
+            dashboardController.LoadView();
         }
 
         static IHostBuilder CreateHostBuilder()
@@ -28,6 +31,7 @@ namespace contact_manager
                 .ConfigureServices((context, services)=>
                 {
                     services.AddView();
+                    services.AddControllers();
                 });
         }
     }

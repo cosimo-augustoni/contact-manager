@@ -6,7 +6,7 @@ namespace contact_manager.View
     {
         public static IServiceCollection AddView(this IServiceCollection services)
         {
-            services.AddTransient<Form1>();
+            services.AddSingleton<IDashboardForm, DashboardForm>();
 
             return services;
         }
