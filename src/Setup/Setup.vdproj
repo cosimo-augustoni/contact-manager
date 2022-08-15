@@ -70,6 +70,16 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_BF1207AF90454BBD88B9DD21587244DC"
+                {
+                "Name" = "8:.NET Core"
+                "Message" = "8:[VSDNETCOREMSG]"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet-core/[NetCoreVerMajorDotMinor]"
+                "IsNETCore" = "11:TRUE"
+                "Architecture" = "2:0"
+                "Runtime" = "2:0"
+                }
             }
         }
         "File"
@@ -131,7 +141,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup"
         "ProductCode" = "8:{BFBB3F5C-44DB-4F98-BC05-B136C8C8655A}"
-        "PackageCode" = "8:{817AEB0C-ADA5-4165-9434-9EDBB9525ADA}"
+        "PackageCode" = "8:{4DC3368B-B18D-461F-B319-16461005A784}"
         "UpgradeCode" = "8:{C393D7AD-D581-4A41-85A6-32408F1A77CA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
