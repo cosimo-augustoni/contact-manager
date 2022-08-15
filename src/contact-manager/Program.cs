@@ -1,5 +1,7 @@
-using contact_manager.Controller;
-using contact_manager.View;
+using contact_manager.Models.Customers.Domain;
+using contact_manager.Models.Employees.Domain;
+using contact_manager.Presenters;
+using contact_manager.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -17,22 +19,14 @@ namespace contact_manager
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            var host = CreateHostBuilder().Build();
-            var serviceProvider = host.Services;
+            var dashboardView = new DashboardView();
+            //TODO Repository mitgeben sobald implementiert
+            var customerService = new CustomerService(null!);
+            //TODO Repository mitgeben sobald implementiert
+            var employeeService = new EmployeeService(null!);
+            var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService);
 
-            Application.Run();
-            var dashboardController = serviceProvider.GetRequiredService<DashboardController>();
-            dashboardController.LoadView();
-        }
-
-        static IHostBuilder CreateHostBuilder()
-        {
-            return Host.CreateDefaultBuilder()
-                .ConfigureServices((context, services)=>
-                {
-                    services.AddView();
-                    services.AddControllers();
-                });
+            Application.Run(dashboardView);
         }
     }
 }
