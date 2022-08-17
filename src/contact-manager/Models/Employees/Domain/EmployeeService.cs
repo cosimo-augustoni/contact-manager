@@ -1,12 +1,13 @@
-﻿using contact_manager.Models.Employees.Data;
+﻿using contact_manager.Models.Customers.Data;
+using contact_manager.Models.Employees.Data;
 
 namespace contact_manager.Models.Employees.Domain;
 
 internal class EmployeeService : IEmployeeService
 {
-    private readonly IEmployeeRepository employeeRepository;
+    private readonly IPersonRepository<Employee> employeeRepository;
 
-    public EmployeeService(IEmployeeRepository employeeRepository)
+    public EmployeeService(IPersonRepository<Employee> employeeRepository)
     {
         this.employeeRepository = employeeRepository;
     }
@@ -32,7 +33,6 @@ internal class EmployeeService : IEmployeeService
 
     public long GetNewId()
     {
-        //TODO Aufsteigende Nummernvergabe
-        return 0;
+        return this.employeeRepository.GetNewId();
     }
 }
