@@ -1,4 +1,4 @@
-﻿namespace contact_manager.Models.Customers.Data
+﻿namespace contact_manager.Models.Data.Customer
 {
     public class CustomerNote
     {

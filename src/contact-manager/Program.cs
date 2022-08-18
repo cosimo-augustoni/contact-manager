@@ -1,8 +1,9 @@
 using contact_manager.Models;
-using contact_manager.Models.Customers.Data;
-using contact_manager.Models.Customers.Domain;
-using contact_manager.Models.Employees.Data;
-using contact_manager.Models.Employees.Domain;
+using contact_manager.Models.Data;
+using contact_manager.Models.Data.Customer;
+using contact_manager.Models.Data.Employee;
+using contact_manager.Models.Domain.Customer;
+using contact_manager.Models.Domain.Employee;
 using contact_manager.Presenters;
 using contact_manager.Views;
 using Microsoft.Extensions.DependencyInjection;

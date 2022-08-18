@@ -1,5 +1,5 @@
-﻿using contact_manager.Models.Employees.Data;
-using contact_manager.Models.Employees.Domain;
+﻿using contact_manager.Models.Data.Employee;
+using contact_manager.Models.Domain.Employee;
 using contact_manager.Views.Employees;
 
 namespace contact_manager.Presenters.Employees
@@ -36,8 +36,30 @@ namespace contact_manager.Presenters.Employees
             var employee = new Employee
             {
                 Id = this.employeeId,
+                //Salutation = this.dialog.Salutation,
                 FirstName = this.dialog.FirstName,
-                //TODO Properties ergänzen
+                //LastName = this.dialog.LastName,
+                //DateOfBirth = this.dialog.DateOfBirth,
+                //Sex = this.dialog.Sex,
+                //Title = this.dialog.Title,
+                //State = this.dialog.State,
+                //AHV13 = this.dialog.AHV13,
+                //Nationality = this.dialog.Nationality,
+                //City = this.dialog.City,
+                //ZipCode = this.dialog.ZipCode,
+                //StreetName = this.dialog.StreetName,
+                //StreetNumber = this.dialog.StreetNumber,
+                //EMailAddress = this.dialog.EMailAddress,
+                //PhoneNumberPrivate = this.dialog.PhoneNumberPrivate,
+                //PhoneNumberMobile = this.dialog.PhoneNumberMobile,
+                //PhoneNumberBusiness = this.dialog.PhoneNumberBusiness,
+                //FaxNumber = this.dialog.FaxNumber,
+                //Department = this.dialog.Department,
+                //EntranceDate = this.dialog.EntranceDate,
+                //ExitDate = this.dialog.ExitDate,
+                //Workload = this.dialog.Workload,
+                //Role = this.dialog.Role,
+                //CadreLevel = this.dialog.CadreLevel,
             };
             this.employeeService.Save(employee);
         }

@@ -1,5 +1,5 @@
-using contact_manager.Models.Customers.Data;
-using contact_manager.Models.Employees.Data;
+using contact_manager.Models.Data.Customer;
+using contact_manager.Models.Data.Employee;
 using contact_manager.Presenters;
 
 namespace contact_manager.Views

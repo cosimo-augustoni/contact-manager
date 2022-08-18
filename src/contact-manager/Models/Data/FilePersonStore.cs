@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace contact_manager.Models;
+namespace contact_manager.Models.Data;
 
 internal class FilePersonStore<T> : IPersonStore<T> where T : Person
 {

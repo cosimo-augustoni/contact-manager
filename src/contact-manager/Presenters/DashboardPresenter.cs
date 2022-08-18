@@ -1,5 +1,5 @@
-﻿using contact_manager.Models.Customers.Domain;
-using contact_manager.Models.Employees.Domain;
+﻿using contact_manager.Models.Domain.Customer;
+using contact_manager.Models.Domain.Employee;
 using contact_manager.Presenters.Customers;
 using contact_manager.Presenters.Employees;
 using contact_manager.Views;
