@@ -4,9 +4,9 @@ namespace contact_manager.Models.Customers.Domain;
 
 internal class CustomerService : ICustomerService
 {
-    private readonly ICustomerRepository customerRepository;
+    private readonly IPersonRepository<Customer> customerRepository;
 
-    public CustomerService(ICustomerRepository customerRepository)
+    public CustomerService(IPersonRepository<Customer> customerRepository)
     {
         this.customerRepository = customerRepository;
     }
@@ -33,7 +33,6 @@ internal class CustomerService : ICustomerService
 
     public long GetNewId()
     {
-        //TODO Aufsteigende Nummernvergabe
-        return 0;
+        return this.customerRepository.GetNewId();
     }
 }
