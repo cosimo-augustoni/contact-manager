@@ -60,7 +60,8 @@
             this.Controls.Add(this.CmdCreateNewCustomer);
             this.Controls.Add(this.CmdCreateNewEmployee);
             this.Name = "DashboardView";
-            this.Text = "DashboardView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Dashboard";
             this.ResumeLayout(false);
 
         }
