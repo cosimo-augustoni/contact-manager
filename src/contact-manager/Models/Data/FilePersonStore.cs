@@ -15,7 +15,7 @@ internal class FilePersonStore<T> : IPersonStore<T> where T : Person
         if (!File.Exists(this.FilePath))
             return new List<T>();
 
-        var jsonString =  File.ReadAllText(this.FilePath);
+        var jsonString = File.ReadAllText(this.FilePath);
         return JsonSerializer.Deserialize<List<T>>(jsonString) ?? new List<T>();
     }
 
