@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+      this.components = new System.ComponentModel.Container();
       this.CmdSave = new System.Windows.Forms.Button();
       this.TxtFirstName = new System.Windows.Forms.TextBox();
       this.LblFirstName = new System.Windows.Forms.Label();
@@ -61,13 +62,20 @@
       this.TxtStreet = new System.Windows.Forms.TextBox();
       this.LblStreet = new System.Windows.Forms.Label();
       this.GbNotes = new System.Windows.Forms.GroupBox();
+      this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.customerNoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.GbPersonalData.SuspendLayout();
       this.GbAddress.SuspendLayout();
+      this.GbNotes.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.customerNoteBindingSource)).BeginInit();
       this.SuspendLayout();
       // 
       // CmdSave
       // 
-      this.CmdSave.Location = new System.Drawing.Point(554, 565);
+      this.CmdSave.Location = new System.Drawing.Point(1167, 690);
       this.CmdSave.Name = "CmdSave";
       this.CmdSave.Size = new System.Drawing.Size(75, 23);
       this.CmdSave.TabIndex = 0;
@@ -119,7 +127,7 @@
       // 
       // CmdClose
       // 
-      this.CmdClose.Location = new System.Drawing.Point(635, 565);
+      this.CmdClose.Location = new System.Drawing.Point(1248, 690);
       this.CmdClose.Name = "CmdClose";
       this.CmdClose.Size = new System.Drawing.Size(75, 23);
       this.CmdClose.TabIndex = 7;
@@ -302,9 +310,9 @@
       this.LblCity.AutoSize = true;
       this.LblCity.Location = new System.Drawing.Point(508, 48);
       this.LblCity.Name = "LblCity";
-      this.LblCity.Size = new System.Drawing.Size(56, 15);
+      this.LblCity.Size = new System.Drawing.Size(54, 15);
       this.LblCity.TabIndex = 28;
-      this.LblCity.Text = "Ortschaft";
+      this.LblCity.Text = "Wohnort";
       // 
       // TxtCity
       // 
@@ -365,12 +373,53 @@
       // 
       // GbNotes
       // 
-      this.GbNotes.Location = new System.Drawing.Point(948, 422);
+      this.GbNotes.Controls.Add(this.dataGridView1);
+      this.GbNotes.Location = new System.Drawing.Point(18, 497);
       this.GbNotes.Name = "GbNotes";
-      this.GbNotes.Size = new System.Drawing.Size(200, 100);
+      this.GbNotes.Size = new System.Drawing.Size(699, 202);
       this.GbNotes.TabIndex = 17;
       this.GbNotes.TabStop = false;
       this.GbNotes.Text = "Notizen";
+      // 
+      // dataGridView1
+      // 
+      this.dataGridView1.AllowUserToAddRows = false;
+      this.dataGridView1.AllowUserToDeleteRows = false;
+      this.dataGridView1.AutoGenerateColumns = false;
+      this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+      this.dataGridView1.DataSource = this.customerNoteBindingSource;
+      this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.dataGridView1.Location = new System.Drawing.Point(3, 19);
+      this.dataGridView1.Name = "dataGridView1";
+      this.dataGridView1.ReadOnly = true;
+      this.dataGridView1.RowTemplate.Height = 25;
+      this.dataGridView1.Size = new System.Drawing.Size(693, 180);
+      this.dataGridView1.TabIndex = 18;
+      // 
+      // dataGridViewTextBoxColumn1
+      // 
+      this.dataGridViewTextBoxColumn1.DataPropertyName = "Text";
+      this.dataGridViewTextBoxColumn1.HeaderText = "Text";
+      this.dataGridViewTextBoxColumn1.MinimumWidth = 200;
+      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+      this.dataGridViewTextBoxColumn1.ReadOnly = true;
+      this.dataGridViewTextBoxColumn1.Width = 500;
+      // 
+      // dataGridViewTextBoxColumn2
+      // 
+      this.dataGridViewTextBoxColumn2.DataPropertyName = "CreationTime";
+      this.dataGridViewTextBoxColumn2.HeaderText = "Erstellungsdatum";
+      this.dataGridViewTextBoxColumn2.MinimumWidth = 100;
+      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+      this.dataGridViewTextBoxColumn2.ReadOnly = true;
+      this.dataGridViewTextBoxColumn2.Width = 150;
+      // 
+      // customerNoteBindingSource
+      // 
+      this.customerNoteBindingSource.DataSource = typeof(contact_manager.Models.Data.Customer.CustomerNote);
       // 
       // CustomerDetailDialog
       // 
@@ -390,6 +439,9 @@
       this.GbPersonalData.PerformLayout();
       this.GbAddress.ResumeLayout(false);
       this.GbAddress.PerformLayout();
+      this.GbNotes.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.customerNoteBindingSource)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -430,5 +482,11 @@
     private GroupBox GbNotes;
     private Label LblCity;
     private TextBox TxtCity;
+    private DataGridView dataGridView1;
+    private DataGridViewTextBoxColumn textDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn creationTimeDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+    private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+    private BindingSource customerNoteBindingSource;
   }
 }

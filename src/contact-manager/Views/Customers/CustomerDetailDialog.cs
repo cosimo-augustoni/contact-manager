@@ -42,6 +42,11 @@ namespace contact_manager.Views.Customers
           this.Close();
         }
 
+    // ToDo: wie kann man neue Notizen hinzufügen?
+    // ToDo: evtl. mit tabs arbeiten?
+    // wird ansonsten evtl. etwas zu unübersichtlich
+    // dies evtl. für die notizen, dann könnten wir dort wie eine übersicht machen wie auf der Hauptmaske
+
     private void TxtPostalCode_KeyPress(object sender, KeyPressEventArgs e) {
       // ToDo: lassen wir nur zahlen zu?
       // also nur schweizer adressen?
