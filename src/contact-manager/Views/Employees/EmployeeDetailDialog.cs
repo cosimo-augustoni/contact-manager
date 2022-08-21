@@ -1,4 +1,5 @@
-﻿using contact_manager.Presenters.Employees;
+﻿using contact_manager.Models.Data;
+using contact_manager.Presenters.Employees;
 
 namespace contact_manager.Views.Employees
 {
@@ -12,6 +13,11 @@ namespace contact_manager.Views.Employees
         {
             get => this.TxtFirstName.Text;
             set => this.TxtFirstName.Text = value;
+        }
+
+        public Salutation Salutation
+        {
+            get; set;
         }
 
         //TODO Properties ergänzen
@@ -31,6 +37,11 @@ namespace contact_manager.Views.Employees
         private void CmdSave_Click(object sender, EventArgs e)
         {
             this.presenter?.Save();
+        }
+
+        private void EmployeeDetailDialog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
