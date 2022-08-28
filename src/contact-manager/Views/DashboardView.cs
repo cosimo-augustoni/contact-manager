@@ -1,4 +1,4 @@
-using contact_manager.Models.Data.Customer;
+﻿using contact_manager.Models.Data.Customer;
 using contact_manager.Models.Data.Employee;
 using contact_manager.Presenters;
 
@@ -11,6 +11,8 @@ namespace contact_manager.Views
         public DashboardView()
         {
             this.InitializeComponent();
+            // todo npa: wieder entfernen
+            SetCustomerList(null);
         }
 
         public void SetPresenter(DashboardPresenter dashboardPresenter)
@@ -20,12 +22,29 @@ namespace contact_manager.Views
 
         public void SetEmployeeList(List<Employee> employees)
         {
-            throw new NotImplementedException();
+            employees = new List<Employee>()
+            {
+                new Employee()
+                {
+                    LastName = "Nef",
+                    FirstName = "Patrick"
+                }
+            };
+            //throw new NotImplementedException();
         }
 
         public void SetCustomerList(List<Customer> customers)
         {
-            throw new NotImplementedException();
+            // todo so wieder entfernen
+            customers = new List<Customer>() {
+                new Customer() {
+                    LastName = "Nef",
+                    FirstName = "Patrick",
+                }
+            };
+
+            dataGridViewCustomer.DataSource = customers;
+            //throw new NotImplementedException();
         }
 
         private void CmdCreateNewEmployee_Click(object sender, EventArgs e)
@@ -36,6 +55,73 @@ namespace contact_manager.Views
         private void CmdCreateNewCustomer_Click(object sender, EventArgs e)
         {
             this.presenter?.OpenCreateNewCustomerDialog();
+        }
+
+
+
+        private void dataGridViewCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewCustomer.CurrentRow != null)
+            {
+                // todo: indexes als constanten festhalten
+                if (e.ColumnIndex == 11)
+                {
+                    OpenEditCustomerDialog();
+                }
+                if (e.ColumnIndex == 12)
+                {
+                    // todo: delete customer
+                }
+            }
+        }
+
+        private void dataGridViewCustomer_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+           if (dataGridViewCustomer.CurrentRow != null)
+            {
+                OpenEditCustomerDialog();
+            }
+        }
+
+        private void OpenEditCustomerDialog()
+        {
+            Customer? customer = dataGridViewCustomer.CurrentRow.DataBoundItem as Customer;
+            if (customer != null)
+            {
+                this.presenter?.OpenEditCustomerDialog(customer.Id);
+            }
+        }
+
+        private void OpenEditEmployeeDialog()
+        {
+            Employee? employee = dataGridViewEmployee.CurrentRow.DataBoundItem as Employee;
+            if (employee != null)
+            {
+                this.presenter?.OpenEditEmployeeDialog(employee.Id);
+            }
+        }
+
+        private void dataGridViewEmployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewEmployee.CurrentRow != null)
+            {
+                if (e.ColumnIndex == 10)
+                {
+                    OpenEditEmployeeDialog();
+                }
+                if (e.ColumnIndex == 11)
+                {
+                    // todo: delete employee
+                }
+            }
+        }
+
+        private void dataGridViewEmployee_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewEmployee.CurrentRow != null)
+            {
+                OpenEditEmployeeDialog();
+            }
         }
     }
 }

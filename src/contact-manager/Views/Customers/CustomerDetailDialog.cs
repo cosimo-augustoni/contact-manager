@@ -48,8 +48,13 @@ namespace contact_manager.Views.Customers
 
     private void TxtPostalCode_KeyPress(object sender, KeyPressEventArgs e) {
       // ToDo: lassen wir nur zahlen zu?
-      // also nur schweizer adressen?
+      // also nur schweizer adressen? => evt. masked-textbox verwenden?
       e.Handled = !Char.IsDigit(e.KeyChar);
     }
-  }
+
+        private void CustomerDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // todo: prüfen, ob änderungen vorhanden sind
+        }
+    }
 }

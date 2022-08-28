@@ -43,5 +43,22 @@ namespace contact_manager.Views.Employees
         {
 
         }
+
+        private void DateTimePickerBirthDate_ValueChanged(object sender, EventArgs e)
+        {
+            // Todo: klären, ob dies für alle so in ordnung ist
+            // wird verwendet, um das Datum leer zuzulassen
+            DateTimePickerBirthDate.CustomFormat = "dd-MM-yyyy";
+        }
+
+        private void DateTimePickerBirthDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete || e.KeyCode == Keys.Escape)
+            {
+                DateTimePickerBirthDate.CustomFormat = " ";
+            }
+        }
+
+        // todo: für Postalcode control auch masked textbox verwenden?
     }
 }
