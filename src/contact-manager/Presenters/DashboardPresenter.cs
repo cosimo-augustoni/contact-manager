@@ -23,7 +23,7 @@ namespace contact_manager.Presenters
             this.employeeService = employeeService;
         }
 
-        public void ShowAllEmployees()
+        public void LoadAllEmployees()
         {
             var employees = this.employeeService.GetAll();
             this.dashboardView.SetEmployeeList(employees);
@@ -34,6 +34,7 @@ namespace contact_manager.Presenters
             var dialog = new EmployeeDetailDialog();
             var dialogPresenter = new EmployeeDetailPresenter(dialog, this.employeeService);
             dialogPresenter.LoadNewEmployee();
+            dialog.Closed += (_, _) => this.LoadAllEmployees();
             dialog.ShowDialog();
         }
 
@@ -42,6 +43,7 @@ namespace contact_manager.Presenters
             var dialog = new EmployeeDetailDialog();
             var dialogPresenter = new EmployeeDetailPresenter(dialog, this.employeeService);
             dialogPresenter.LoadEmployee(employeeId);
+            dialog.Closed += (_, _) => this.LoadAllEmployees();
             dialog.ShowDialog();
         }
 
@@ -49,10 +51,10 @@ namespace contact_manager.Presenters
         {
             this.employeeService.Delete(employeeId);
             //TODO Evtl. Performance Problem alles wieder zu laden. Evtl eine art caching in der View
-            this.ShowAllEmployees();
+            this.LoadAllEmployees();
         }
 
-        public void ShowAllCustomers()
+        public void LoadAllCustomers()
         {
             var customers = this.customerService.GetAll();
             this.dashboardView.SetCustomerList(customers);
@@ -63,6 +65,7 @@ namespace contact_manager.Presenters
             var dialog = new CustomerDetailDialog();
             var dialogPresenter = new CustomerDetailPresenter(dialog, this.customerService);
             dialogPresenter.LoadNewCustomer();
+            dialog.Closed += (_, _) => this.LoadAllCustomers();
             dialog.ShowDialog();
         }
 
@@ -71,6 +74,7 @@ namespace contact_manager.Presenters
             var dialog = new CustomerDetailDialog();
             var dialogPresenter = new CustomerDetailPresenter(dialog, this.customerService);
             dialogPresenter.LoadCustomer(customerId);
+            dialog.Closed += (_, _) => this.LoadAllCustomers();
             dialog.ShowDialog();
         }
 
@@ -78,7 +82,15 @@ namespace contact_manager.Presenters
         {
             this.customerService.Delete(customerId);
             //TODO Evtl. Performance Problem alles wieder zu laden. Evtl eine art caching in der View
-            this.ShowAllCustomers();
+            this.LoadAllCustomers();
+        }
+
+        public void SelectedTabChanged(int selectedTabPage)
+        {
+            if(selectedTabPage == 0)
+                this.LoadAllCustomers();
+            else if(selectedTabPage == 1)
+                this.LoadAllEmployees();
         }
     }
 }

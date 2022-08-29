@@ -21,13 +21,12 @@ namespace contact_manager
             ApplicationConfiguration.Initialize();
 
             var dashboardView = new DashboardView();
-            //TODO Repository mitgeben sobald implementiert
             var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
             var customerService = new CustomerService(customerRepository);
-            //TODO Repository mitgeben sobald implementiert
             var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
             var employeeService = new EmployeeService(employeeRepository);
             var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService);
+            dashboardPresenter.LoadAllCustomers();
 
             Application.Run(dashboardView);
         }

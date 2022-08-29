@@ -11,8 +11,6 @@ namespace contact_manager.Views
         public DashboardView()
         {
             this.InitializeComponent();
-            // todo npa: wieder entfernen
-            SetCustomerList(null);
         }
 
         public void SetPresenter(DashboardPresenter dashboardPresenter)
@@ -22,29 +20,12 @@ namespace contact_manager.Views
 
         public void SetEmployeeList(List<Employee> employees)
         {
-            employees = new List<Employee>()
-            {
-                new Employee()
-                {
-                    LastName = "Nef",
-                    FirstName = "Patrick"
-                }
-            };
-            //throw new NotImplementedException();
+            this.dataGridViewEmployee.DataSource = employees;
         }
 
         public void SetCustomerList(List<Customer> customers)
         {
-            // todo so wieder entfernen
-            customers = new List<Customer>() {
-                new Customer() {
-                    LastName = "Nef",
-                    FirstName = "Patrick",
-                }
-            };
-
             dataGridViewCustomer.DataSource = customers;
-            //throw new NotImplementedException();
         }
 
         private void CmdCreateNewEmployee_Click(object sender, EventArgs e)
@@ -57,71 +38,66 @@ namespace contact_manager.Views
             this.presenter?.OpenCreateNewCustomerDialog();
         }
 
-
-
         private void dataGridViewCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewCustomer.CurrentRow != null)
+            if (this.dataGridViewCustomer.CurrentRow?.DataBoundItem is Customer customer)
             {
                 // todo: indexes als constanten festhalten
                 if (e.ColumnIndex == 11)
                 {
-                    OpenEditCustomerDialog();
+                    OpenEditCustomerDialog(customer.Id);
                 }
                 if (e.ColumnIndex == 12)
                 {
-                    // todo: delete customer
+                    this.presenter?.DeleteCustomer(customer.Id);
                 }
             }
         }
 
         private void dataGridViewCustomer_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-           if (dataGridViewCustomer.CurrentRow != null)
+            if (this.dataGridViewCustomer.CurrentRow?.DataBoundItem is Customer customer)
             {
-                OpenEditCustomerDialog();
+                OpenEditCustomerDialog(customer.Id);
             }
         }
 
-        private void OpenEditCustomerDialog()
+        private void OpenEditCustomerDialog(long customerId)
         {
-            Customer? customer = dataGridViewCustomer.CurrentRow.DataBoundItem as Customer;
-            if (customer != null)
-            {
-                this.presenter?.OpenEditCustomerDialog(customer.Id);
-            }
+                this.presenter?.OpenEditCustomerDialog(customerId);
         }
 
-        private void OpenEditEmployeeDialog()
+        private void OpenEditEmployeeDialog(long employeeId)
         {
-            Employee? employee = dataGridViewEmployee.CurrentRow.DataBoundItem as Employee;
-            if (employee != null)
-            {
-                this.presenter?.OpenEditEmployeeDialog(employee.Id);
-            }
+            this.presenter?.OpenEditEmployeeDialog(employeeId);
         }
 
         private void dataGridViewEmployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewEmployee.CurrentRow != null)
+            if (this.dataGridViewEmployee.CurrentRow?.DataBoundItem is Employee employee)
             {
                 if (e.ColumnIndex == 10)
                 {
-                    OpenEditEmployeeDialog();
+                    OpenEditEmployeeDialog(employee.Id);
                 }
                 if (e.ColumnIndex == 11)
                 {
-                    // todo: delete employee
+                    this.presenter?.DeleteEmployee(employee.Id);
                 }
             }
         }
 
         private void dataGridViewEmployee_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewEmployee.CurrentRow != null)
+            if (this.dataGridViewEmployee.CurrentRow?.DataBoundItem is Employee employee)
             {
-                OpenEditEmployeeDialog();
+                OpenEditEmployeeDialog(employee.Id);
             }
+        }
+
+        private void TcPerson_Selected(object sender, TabControlEventArgs e)
+        {
+            this.presenter?.SelectedTabChanged(e.TabPageIndex);
         }
     }
 }
