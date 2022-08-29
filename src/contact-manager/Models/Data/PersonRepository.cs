@@ -1,6 +1,6 @@
-﻿namespace contact_manager.Models.Customers.Data;
+﻿namespace contact_manager.Models.Data;
 
-internal class PersonRepository<T> : IPersonRepository<T> where T: Person
+internal class PersonRepository<T> : IPersonRepository<T> where T : Person
 {
     private readonly IPersonStore<T> store;
 

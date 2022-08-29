@@ -1,4 +1,4 @@
-﻿namespace contact_manager.Models
+﻿namespace contact_manager.Models.Data
 {
     internal interface IPersonStore<T> where T : Person
     {

@@ -1,27 +1,26 @@
-﻿using contact_manager.Models.Customers.Data;
-using contact_manager.Models.Employees.Data;
+﻿using contact_manager.Models.Data;
 
-namespace contact_manager.Models.Employees.Domain;
+namespace contact_manager.Models.Domain.Employee;
 
 internal class EmployeeService : IEmployeeService
 {
-    private readonly IPersonRepository<Employee> employeeRepository;
+    private readonly IPersonRepository<Data.Employee.Employee> employeeRepository;
 
-    public EmployeeService(IPersonRepository<Employee> employeeRepository)
+    public EmployeeService(IPersonRepository<Data.Employee.Employee> employeeRepository)
     {
         this.employeeRepository = employeeRepository;
     }
-    public List<Employee> GetAll()
+    public List<Data.Employee.Employee> GetAll()
     {
         return this.employeeRepository.GetAll();
     }
 
-    public Employee GetById(long employeeId)
+    public Data.Employee.Employee GetById(long employeeId)
     {
         return this.employeeRepository.GetById(employeeId);
     }
 
-    public void Save(Employee employee)
+    public void Save(Data.Employee.Employee employee)
     {
         this.employeeRepository.Save(employee);
     }
