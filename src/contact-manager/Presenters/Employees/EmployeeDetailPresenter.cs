@@ -1,4 +1,5 @@
-﻿using contact_manager.Models.Data.Employee;
+﻿using contact_manager.Models.Data;
+using contact_manager.Models.Data.Employee;
 using contact_manager.Models.Domain.Employee;
 using contact_manager.Views.Employees;
 
@@ -8,14 +9,21 @@ namespace contact_manager.Presenters.Employees
     {
         private readonly IEmployeeDetailDialog dialog;
         private readonly IEmployeeService employeeService;
+        private readonly User user;
 
         private long employeeId;
 
-        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService)
+        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user)
         {
             this.dialog = dialog;
             this.employeeService = employeeService;
+            this.user = user;
             this.dialog.SetPresenter(this);
+        }
+
+        public bool IsReadOnly
+        {
+            get { return !user.CanWrite; }
         }
 
         public void LoadEmployee(long id)

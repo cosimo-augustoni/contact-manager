@@ -19,16 +19,20 @@ namespace contact_manager
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            // todo: noch anpassen
+            IUserstore userStore = new IUserstore();
+            var loginForm = new LoginForm(userStore);
+            //var dashboardView = new DashboardView();
+            //var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
+            //var customerService = new CustomerService(customerRepository);
+            //var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
+            //var employeeService = new EmployeeService(employeeRepository);
+            //var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService, user);
+            //dashboardPresenter.LoadAllCustomers();
 
-            var dashboardView = new DashboardView();
-            var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
-            var customerService = new CustomerService(customerRepository);
-            var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
-            var employeeService = new EmployeeService(employeeRepository);
-            var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService);
-            dashboardPresenter.LoadAllCustomers();
+            
 
-            Application.Run(dashboardView);
+            Application.Run(loginForm);
         }
     }
 }
