@@ -1,4 +1,5 @@
-﻿using contact_manager.Models.Data;
+﻿using System.Diagnostics;
+using contact_manager.Models.Data;
 using contact_manager.Models.Data.Customer;
 using contact_manager.Models.Data.Employee;
 using contact_manager.Models.Domain.Customer;
@@ -21,18 +22,26 @@ namespace contact_manager
             ApplicationConfiguration.Initialize();
             // todo: noch anpassen
             IUserstore userStore = new IUserstore();
-            var loginForm = new LoginForm(userStore);
-            //var dashboardView = new DashboardView();
-            //var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
-            //var customerService = new CustomerService(customerRepository);
-            //var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
-            //var employeeService = new EmployeeService(employeeRepository);
-            //var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService, user);
-            //dashboardPresenter.LoadAllCustomers();
+            if (Debugger.IsAttached)
+            {
+                // todo: direct login nur für die Entwicklungsphase
+                var dashboardView = new DashboardView();
+                var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
+                var customerService = new CustomerService(customerRepository);
+                var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
+                var employeeService = new EmployeeService(employeeRepository);
 
-            
+                var user = userStore.GetUser("admin", "1234");
 
-            Application.Run(loginForm);
+                var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService, user);
+                dashboardPresenter.LoadAllCustomers();
+                Application.Run(dashboardView);
+            }
+            else
+            {
+                var loginForm = new LoginForm(userStore);
+                Application.Run(loginForm);
+            }
         }
     }
 }

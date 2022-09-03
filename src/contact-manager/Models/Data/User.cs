@@ -2,13 +2,16 @@
 {
     public class User
     {
-        public String UserName { get; init; }
-        public String Password { get; init; }
+        public int Id { get; set; }
 
-        public Boolean CanWrite { get; init; }
+        public string UserName { get; init; }
+        public string Password { get; init; }
 
-        public User(string userName, string password, bool canWrite)
+        public bool CanWrite { get; init; }
+
+        public User(int id, string userName, string password, bool canWrite)
         {
+            this.Id = id;
             this.UserName = userName;
             this.Password = password;
             this.CanWrite = canWrite;

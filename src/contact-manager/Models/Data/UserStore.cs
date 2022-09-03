@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace contact_manager.Models.Data
+﻿namespace contact_manager.Models.Data
 {
     internal class IUserstore : IUserStore
     {
@@ -12,8 +6,9 @@ namespace contact_manager.Models.Data
         private readonly static List<User> users = new List<User>()
         {
             // todo: passwort hashen
-            new User("admin", "1234", canWrite: true),
-            new User("read", "1234", canWrite: false)
+            // todo: benutzernamen noch überdenken
+            new User(1, "admin", "1234", canWrite: true),
+            new User(2, "read", "1234", canWrite: false)
         };
 
         public User? GetUser(string username, string password)

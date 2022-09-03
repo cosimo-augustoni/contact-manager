@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 using contact_manager.Models;
 using contact_manager.Models.Data;
 using contact_manager.Models.Data.Customer;
@@ -30,6 +22,7 @@ namespace contact_manager.Views
         private void CmdLogin_Click(object sender, EventArgs e)
         {
             // todo resx-datei erstellen und die texte hier darin ablegen
+            // Todo valiate überarbeiten
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
                 var user = _userStore.GetUser(TxtUserName.Text, TxtPassword.Text);
@@ -61,11 +54,11 @@ namespace contact_manager.Views
 
         private void TxtUserName_Validating(object sender, CancelEventArgs e)
         {
-            if (String.IsNullOrEmpty(TxtUserName.Text))
+            if (string.IsNullOrEmpty(TxtUserName.Text))
             {
                 e.Cancel = true;
                 TxtUserName.Focus();
-                LoginErrorProvider.SetError(TxtUserName, "Geben Sie einen Benutzernamen an");
+                LoginErrorProvider.SetError(TxtUserName, "geben sie einen benutzernamen an");
             }
             else
             {
