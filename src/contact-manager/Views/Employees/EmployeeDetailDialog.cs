@@ -196,6 +196,14 @@ namespace contact_manager.Views.Employees
         public void SetPresenter(EmployeeDetailPresenter employeeDetailPresenter)
         {
             this.presenter = employeeDetailPresenter;
+            // todo: noch auslagern
+            // todo: als Property erstellen?
+            var isEnabled = !this.presenter?.IsReadOnly ?? false;
+
+            this.GrpPersonalData.Enabled = isEnabled;
+            this.GrpAddress.Enabled = isEnabled;
+            this.GrpEmploymentData.Enabled = isEnabled;
+            this.GrpContactData.Enabled = isEnabled;
         }
 
         private void CmdSave_Click(object sender, EventArgs e)

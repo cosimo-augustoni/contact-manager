@@ -1,4 +1,5 @@
-﻿using contact_manager.Models.Data;
+﻿using System.Diagnostics;
+using contact_manager.Models.Data;
 using contact_manager.Models.Data.Customer;
 using contact_manager.Models.Data.Employee;
 using contact_manager.Models.Domain.Customer;
@@ -19,16 +20,28 @@ namespace contact_manager
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            // todo: noch anpassen
+            IUserstore userStore = new IUserstore();
+            if (Debugger.IsAttached)
+            {
+                // todo: direct login nur für die Entwicklungsphase
+                var dashboardView = new DashboardView();
+                var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
+                var customerService = new CustomerService(customerRepository);
+                var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
+                var employeeService = new EmployeeService(employeeRepository);
 
-            var dashboardView = new DashboardView();
-            var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
-            var customerService = new CustomerService(customerRepository);
-            var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
-            var employeeService = new EmployeeService(employeeRepository);
-            var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService);
-            dashboardPresenter.LoadAllCustomers();
+                var user = userStore.GetUser("admin", "1234");
 
-            Application.Run(dashboardView);
+                var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService, user);
+                dashboardPresenter.LoadAllCustomers();
+                Application.Run(dashboardView);
+            }
+            else
+            {
+                var loginForm = new LoginForm(userStore);
+                Application.Run(loginForm);
+            }
         }
     }
 }

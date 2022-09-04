@@ -1,4 +1,5 @@
-﻿using contact_manager.Models.Data.Customer;
+﻿using contact_manager.Models.Data;
+using contact_manager.Models.Data.Customer;
 using contact_manager.Models.Domain.Customer;
 using contact_manager.Views.Customers;
 
@@ -8,13 +9,14 @@ public class CustomerDetailPresenter
 {
     private readonly ICustomerDetailDialog dialog;
     private readonly ICustomerService customerService;
+    private readonly User user;
     private long customerId;
 
-    public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService)
+    public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService, User user)
     {
         this.dialog = dialog;
         this.dialog.SetPresenter(this);
-
+        this.user = user;
         this.customerService = customerService;
     }
 
