@@ -29,7 +29,7 @@ namespace contact_manager.Views
 
                 if (user == null)
                 {
-                    LoginErrorProvider.SetError(TxtUserName, "Benutzername und/oder Passwort ist falsch");
+                    LoginErrorProvider.SetError(TxtUserName, "Benutzername und/oder Passwort sind falsch");
                     return;
                 }
 
@@ -58,7 +58,7 @@ namespace contact_manager.Views
             {
                 e.Cancel = true;
                 TxtUserName.Focus();
-                LoginErrorProvider.SetError(TxtUserName, "geben sie einen benutzernamen an");
+                LoginErrorProvider.SetError(TxtUserName, "Geben Sie einen Benutzernamen an");
             }
             else
             {

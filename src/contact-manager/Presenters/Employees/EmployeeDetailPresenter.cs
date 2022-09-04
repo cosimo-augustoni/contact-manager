@@ -7,96 +7,96 @@ namespace contact_manager.Presenters.Employees
 {
     public class EmployeeDetailPresenter
     {
-        private readonly IEmployeeDetailDialog dialog;
-        private readonly IEmployeeService employeeService;
-        private readonly User user;
+        private readonly IEmployeeDetailDialog _dialog;
+        private readonly IEmployeeService _employeeService;
+        private readonly User _user;
 
-        private long employeeId;
+        private long _employeeId;
 
         public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user)
         {
-            this.dialog = dialog;
-            this.employeeService = employeeService;
-            this.user = user;
-            this.dialog.SetPresenter(this);
+            this._dialog = dialog;
+            this._employeeService = employeeService;
+            this._user = user;
+            this._dialog.SetPresenter(this);
         }
 
         public bool IsReadOnly
         {
-            get { return !user.CanWrite; }
+            get { return !_user.CanWrite; }
         }
 
         public void LoadEmployee(long id)
         {
-            this.employeeId = id;
-            var employee = this.employeeService.GetById(id);
+            this._employeeId = id;
+            var employee = this._employeeService.GetById(id);
 
-            this.dialog.EmployeeNumber = employee.EmployeeNumber;
-            this.dialog.Salutation = employee.Salutation;
-            this.dialog.FirstName = employee.FirstName;
-            this.dialog.LastName = employee.LastName;
-            this.dialog.Title = employee.Title;
-            this.dialog.State = employee.State;
-            this.dialog.Sex = employee.Sex;
-            this.dialog.AHV13 = employee.AHV13;
-            this.dialog.DateOfBirth = employee.DateOfBirth;
-            this.dialog.Nationality = employee.Nationality;
+            this._dialog.EmployeeNumber = employee.EmployeeNumber;
+            this._dialog.Salutation = employee.Salutation;
+            this._dialog.FirstName = employee.FirstName;
+            this._dialog.LastName = employee.LastName;
+            this._dialog.Title = employee.Title;
+            this._dialog.State = employee.State;
+            this._dialog.Sex = employee.Sex;
+            this._dialog.AHV13 = employee.AHV13;
+            this._dialog.DateOfBirth = employee.DateOfBirth;
+            this._dialog.Nationality = employee.Nationality;
 
-            this.dialog.StreetName = employee.StreetName;
-            this.dialog.StreetNumber = employee.StreetNumber;
-            this.dialog.ZipCode = employee.ZipCode;
-            this.dialog.City = employee.City;
+            this._dialog.StreetName = employee.StreetName;
+            this._dialog.StreetNumber = employee.StreetNumber;
+            this._dialog.ZipCode = employee.ZipCode;
+            this._dialog.City = employee.City;
 
-            this.dialog.EMailAddress = employee.EMailAddress;
-            this.dialog.PhoneNumberPrivate = employee.PhoneNumberPrivate;
-            this.dialog.PhoneNumberMobile = employee.PhoneNumberMobile;
-            this.dialog.PhoneNumberBusiness = employee.PhoneNumberBusiness;
-            this.dialog.FaxNumber = employee.FaxNumber;
+            this._dialog.EMailAddress = employee.EMailAddress;
+            this._dialog.PhoneNumberPrivate = employee.PhoneNumberPrivate;
+            this._dialog.PhoneNumberMobile = employee.PhoneNumberMobile;
+            this._dialog.PhoneNumberBusiness = employee.PhoneNumberBusiness;
+            this._dialog.FaxNumber = employee.FaxNumber;
 
-            this.dialog.Department = employee.Department;
-            this.dialog.EntranceDate = employee.EntranceDate;
-            this.dialog.ExitDate = employee.ExitDate;
-            this.dialog.Employment = employee.Employment;
-            this.dialog.Role = employee.Role;
-            this.dialog.CadreLevel = employee.CadreLevel;
+            this._dialog.Department = employee.Department;
+            this._dialog.EntranceDate = employee.EntranceDate;
+            this._dialog.ExitDate = employee.ExitDate;
+            this._dialog.Employment = employee.Employment;
+            this._dialog.Role = employee.Role;
+            this._dialog.CadreLevel = employee.CadreLevel;
         }
 
         public void LoadNewEmployee()
         {
-            this.employeeId = this.employeeService.GetNewId();
+            this._employeeId = this._employeeService.GetNewId();
         }
 
         public void Save()
         {
             var employee = new Employee
             {
-                Id = this.employeeId,
-                Salutation = this.dialog.Salutation,
-                FirstName = this.dialog.FirstName,
-                LastName = this.dialog.LastName,
-                DateOfBirth = this.dialog.DateOfBirth,
-                Sex = this.dialog.Sex,
-                Title = this.dialog.Title,
-                State = this.dialog.State,
-                AHV13 = this.dialog.AHV13,
-                Nationality = this.dialog.Nationality,
-                City = this.dialog.City,
-                ZipCode = this.dialog.ZipCode,
-                StreetName = this.dialog.StreetName,
-                StreetNumber = this.dialog.StreetNumber,
-                EMailAddress = this.dialog.EMailAddress,
-                PhoneNumberPrivate = this.dialog.PhoneNumberPrivate,
-                PhoneNumberMobile = this.dialog.PhoneNumberMobile,
-                PhoneNumberBusiness = this.dialog.PhoneNumberBusiness,
-                FaxNumber = this.dialog.FaxNumber,
-                Department = this.dialog.Department,
-                EntranceDate = this.dialog.EntranceDate,
-                ExitDate = this.dialog.ExitDate,
-                Employment = this.dialog.Employment,
-                Role = this.dialog.Role,
-                CadreLevel = this.dialog.CadreLevel,
+                Id = this._employeeId,
+                Salutation = this._dialog.Salutation,
+                FirstName = this._dialog.FirstName,
+                LastName = this._dialog.LastName,
+                DateOfBirth = this._dialog.DateOfBirth,
+                Sex = this._dialog.Sex,
+                Title = this._dialog.Title,
+                State = this._dialog.State,
+                AHV13 = this._dialog.AHV13,
+                Nationality = this._dialog.Nationality,
+                City = this._dialog.City,
+                ZipCode = this._dialog.ZipCode,
+                StreetName = this._dialog.StreetName,
+                StreetNumber = this._dialog.StreetNumber,
+                EMailAddress = this._dialog.EMailAddress,
+                PhoneNumberPrivate = this._dialog.PhoneNumberPrivate,
+                PhoneNumberMobile = this._dialog.PhoneNumberMobile,
+                PhoneNumberBusiness = this._dialog.PhoneNumberBusiness,
+                FaxNumber = this._dialog.FaxNumber,
+                Department = this._dialog.Department,
+                EntranceDate = this._dialog.EntranceDate,
+                ExitDate = this._dialog.ExitDate,
+                Employment = this._dialog.Employment,
+                Role = this._dialog.Role,
+                CadreLevel = this._dialog.CadreLevel,
             };
-            this.employeeService.Save(employee);
+            this._employeeService.Save(employee);
         }
     }
 }

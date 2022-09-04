@@ -3,7 +3,7 @@
     internal class IUserstore : IUserStore
     {
 
-        private readonly static List<User> users = new List<User>()
+        private readonly static List<User> _users = new List<User>()
         {
             // todo: passwort hashen
             // todo: benutzernamen noch überdenken
@@ -13,7 +13,7 @@
 
         public User? GetUser(string username, string password)
         {
-            return users.FirstOrDefault(u => u.UserName == username && u.Password == password);
+            return _users.FirstOrDefault(u => u.UserName == username && u.Password == password);
         }
     }
 }
