@@ -4,9 +4,9 @@ namespace contact_manager.Models.Domain.Customer;
 
 internal class CustomerService : ICustomerService
 {
-    private readonly IPersonRepository<Data.Customer.Customer> customerRepository;
+    private readonly IRepository<Data.Customer.Customer> customerRepository;
 
-    public CustomerService(IPersonRepository<Data.Customer.Customer> customerRepository)
+    public CustomerService(IRepository<Data.Customer.Customer> customerRepository)
     {
         this.customerRepository = customerRepository;
     }

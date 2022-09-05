@@ -4,9 +4,9 @@ namespace contact_manager.Models.Domain.Employee;
 
 internal class EmployeeService : IEmployeeService
 {
-    private readonly IPersonRepository<Data.Employee.Employee> employeeRepository;
+    private readonly IRepository<Data.Employee.Employee> employeeRepository;
 
-    public EmployeeService(IPersonRepository<Data.Employee.Employee> employeeRepository)
+    public EmployeeService(IRepository<Data.Employee.Employee> employeeRepository)
     {
         this.employeeRepository = employeeRepository;
     }

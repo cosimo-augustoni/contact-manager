@@ -4,7 +4,7 @@ using contact_manager.Views.Authentication;
 
 namespace contact_manager.Presenters.Authentication
 {
-    public class LoginPresenter
+    public class LoginPresenter : IPresenter
     {
         private readonly ILoginView _loginView;
         private readonly IUserService _userService;
@@ -13,10 +13,13 @@ namespace contact_manager.Presenters.Authentication
         public LoginPresenter(ILoginView loginView, IUserService userService, IFormFactory formFactory)
         {
             this._loginView = loginView;
-            this._loginView.SetPresenter(this);
-
             this._userService = userService;
             this._formFactory = formFactory;
+        }
+
+        public void Init()
+        {
+            this._loginView.SetPresenter(this);
         }
 
         public void Authenticate()

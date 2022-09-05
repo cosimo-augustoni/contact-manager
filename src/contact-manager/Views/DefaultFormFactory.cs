@@ -16,8 +16,8 @@ namespace contact_manager.Views
         {
             var loginView = new LoginView();
             var userService = new UserService();
-            // ToDo: keine verwendung
             var loginPresenter = new LoginPresenter(loginView, userService, this);
+            loginPresenter.Init();
 
             return loginView;
         }
@@ -25,11 +25,15 @@ namespace contact_manager.Views
         public OverviewView CreateOverview(User user)
         {
             var overviewView = new OverviewView();
-            var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
+            var customerRepository = new Repository<Customer>(new FileStore<Customer>());
             var customerService = new CustomerService(customerRepository);
-            var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
+            var employeeRepository = new Repository<Employee>(new FileStore<Employee>());
             var employeeService = new EmployeeService(employeeRepository);
-            var overviewPresenter = new OverviewPresenter(overviewView, customerService, employeeService, user);
+            var customerNoteRepository = new Repository<CustomerNote>(new FileStore<CustomerNote>());
+            var customerNotesService = new CustomerNoteService(customerNoteRepository);
+
+            var overviewPresenter = new OverviewPresenter(overviewView, customerService, customerNotesService, employeeService, user);
+            overviewPresenter.Init();
             overviewPresenter.LoadAllCustomers();
 
             return overviewView;
