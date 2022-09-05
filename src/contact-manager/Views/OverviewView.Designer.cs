@@ -1,6 +1,6 @@
 ﻿namespace contact_manager.Views
 {
-    partial class DashboardView
+    partial class OverviewView
     {
         /// <summary>
         ///  Required designer variable.
@@ -438,7 +438,7 @@
       // 
       this.employeeBindingSource.DataSource = typeof(contact_manager.Models.Data.Employee.Employee);
       // 
-      // DashboardView
+      // OverviewView
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -446,9 +446,9 @@
       this.Controls.Add(this.TcPerson);
       this.MaximizeBox = false;
       this.MinimizeBox = false;
-      this.Name = "DashboardView";
+      this.Name = "OverviewView";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-      this.Text = "DashboardView";
+      this.Text = "OverviewView";
       this.TcPerson.ResumeLayout(false);
       this.TpCustomer.ResumeLayout(false);
       this.PnlSearchCustomer.ResumeLayout(false);

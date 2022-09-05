@@ -4,18 +4,18 @@ using contact_manager.Presenters;
 
 namespace contact_manager.Views
 {
-    public partial class DashboardView : Form, IDashboardView
+    public partial class OverviewView : Form, IOverviewView
     {
-        private DashboardPresenter? presenter;
+        private OverviewPresenter? presenter;
 
-        public DashboardView()
+        public OverviewView()
         {
             this.InitializeComponent();
         }
 
-        public void SetPresenter(DashboardPresenter dashboardPresenter)
+        public void SetPresenter(OverviewPresenter overviewPresenter)
         {
-            this.presenter = dashboardPresenter;
+            this.presenter = overviewPresenter;
         }
 
         public void SetEmployeeList(List<Employee> employees)

@@ -1,4 +1,5 @@
 ﻿using contact_manager.Models.Data;
+using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.Customer;
 using contact_manager.Models.Domain.Employee;
 using contact_manager.Presenters.Customers;
@@ -9,17 +10,18 @@ using contact_manager.Views.Employees;
 
 namespace contact_manager.Presenters
 {
-    public class DashboardPresenter
+    public class OverviewPresenter
     {
-        private readonly IDashboardView dashboardView;
+        private readonly IOverviewView overviewView;
         private readonly ICustomerService customerService;
         private readonly IEmployeeService employeeService;
         private readonly User user;
 
-        public DashboardPresenter(IDashboardView dashboardView, ICustomerService customerService, IEmployeeService employeeService, User user)
+        public OverviewPresenter(IOverviewView overviewView, ICustomerService customerService,
+            IEmployeeService employeeService, User user)
         {
-            this.dashboardView = dashboardView;
-            this.dashboardView.SetPresenter(this);
+            this.overviewView = overviewView;
+            this.overviewView.SetPresenter(this);
 
             this.customerService = customerService;
             this.employeeService = employeeService;
@@ -29,7 +31,7 @@ namespace contact_manager.Presenters
         public void LoadAllEmployees()
         {
             var employees = this.employeeService.GetAll();
-            this.dashboardView.SetEmployeeList(employees);
+            this.overviewView.SetEmployeeList(employees);
         }
 
         public void OpenCreateNewEmployeeDialog()
@@ -60,7 +62,7 @@ namespace contact_manager.Presenters
         public void LoadAllCustomers()
         {
             var customers = this.customerService.GetAll();
-            this.dashboardView.SetCustomerList(customers);
+            this.overviewView.SetCustomerList(customers);
         }
 
         public void OpenCreateNewCustomerDialog()
