@@ -56,9 +56,9 @@
       this.TxtEMailAddress = new System.Windows.Forms.TextBox();
       this.LblMail = new System.Windows.Forms.Label();
       this.GrpAddress = new System.Windows.Forms.GroupBox();
+      this.TxtZipCode = new System.Windows.Forms.MaskedTextBox();
       this.LblCity = new System.Windows.Forms.Label();
       this.TxtCity = new System.Windows.Forms.TextBox();
-      this.TxtZipCode = new System.Windows.Forms.TextBox();
       this.LblPostalCode = new System.Windows.Forms.Label();
       this.TxtStreetNumber = new System.Windows.Forms.TextBox();
       this.LblStreetNumber = new System.Windows.Forms.Label();
@@ -90,6 +90,7 @@
       this.CmdSave = new System.Windows.Forms.Button();
       this.CmdProtocol = new System.Windows.Forms.Button();
       this.CmdShowCustomerNotes = new System.Windows.Forms.Button();
+      this.CustomerErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.GrpNotes.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.NotesDataGridView)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.customerNoteBindingSource)).BeginInit();
@@ -97,6 +98,7 @@
       this.GrpContactData.SuspendLayout();
       this.GrpAddress.SuspendLayout();
       this.GrpPersonalData.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.CustomerErrorProvider)).BeginInit();
       this.SuspendLayout();
       // 
       // GrpNotes
@@ -163,7 +165,7 @@
       this.GrpCustomerData.Controls.Add(this.LblCompanyName);
       this.GrpCustomerData.Location = new System.Drawing.Point(740, 56);
       this.GrpCustomerData.Name = "GrpCustomerData";
-      this.GrpCustomerData.Size = new System.Drawing.Size(349, 137);
+      this.GrpCustomerData.Size = new System.Drawing.Size(370, 137);
       this.GrpCustomerData.TabIndex = 16;
       this.GrpCustomerData.TabStop = false;
       this.GrpCustomerData.Text = "Kunde";
@@ -248,7 +250,7 @@
       this.GrpContactData.Controls.Add(this.LblMail);
       this.GrpContactData.Location = new System.Drawing.Point(740, 199);
       this.GrpContactData.Name = "GrpContactData";
-      this.GrpContactData.Size = new System.Drawing.Size(349, 163);
+      this.GrpContactData.Size = new System.Drawing.Size(370, 163);
       this.GrpContactData.TabIndex = 21;
       this.GrpContactData.TabStop = false;
       this.GrpContactData.Text = "Kontaktangaben";
@@ -335,9 +337,9 @@
       // 
       // GrpAddress
       // 
+      this.GrpAddress.Controls.Add(this.TxtZipCode);
       this.GrpAddress.Controls.Add(this.LblCity);
       this.GrpAddress.Controls.Add(this.TxtCity);
-      this.GrpAddress.Controls.Add(this.TxtZipCode);
       this.GrpAddress.Controls.Add(this.LblPostalCode);
       this.GrpAddress.Controls.Add(this.TxtStreetNumber);
       this.GrpAddress.Controls.Add(this.LblStreetNumber);
@@ -345,10 +347,18 @@
       this.GrpAddress.Controls.Add(this.LblStreet);
       this.GrpAddress.Location = new System.Drawing.Point(12, 226);
       this.GrpAddress.Name = "GrpAddress";
-      this.GrpAddress.Size = new System.Drawing.Size(689, 97);
+      this.GrpAddress.Size = new System.Drawing.Size(708, 97);
       this.GrpAddress.TabIndex = 11;
       this.GrpAddress.TabStop = false;
       this.GrpAddress.Text = "Adresse";
+      // 
+      // TxtZipCode
+      // 
+      this.TxtZipCode.Location = new System.Drawing.Point(163, 45);
+      this.TxtZipCode.Mask = "0000";
+      this.TxtZipCode.Name = "TxtZipCode";
+      this.TxtZipCode.Size = new System.Drawing.Size(181, 23);
+      this.TxtZipCode.TabIndex = 14;
       // 
       // LblCity
       // 
@@ -366,18 +376,10 @@
       this.TxtCity.Size = new System.Drawing.Size(183, 23);
       this.TxtCity.TabIndex = 15;
       // 
-      // TxtZipCode
-      // 
-      this.TxtZipCode.Location = new System.Drawing.Point(161, 45);
-      this.TxtZipCode.Name = "TxtZipCode";
-      this.TxtZipCode.Size = new System.Drawing.Size(183, 23);
-      this.TxtZipCode.TabIndex = 14;
-      this.TxtZipCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-      // 
       // LblPostalCode
       // 
       this.LblPostalCode.AutoSize = true;
-      this.LblPostalCode.Location = new System.Drawing.Point(6, 45);
+      this.LblPostalCode.Location = new System.Drawing.Point(8, 50);
       this.LblPostalCode.Name = "LblPostalCode";
       this.LblPostalCode.Size = new System.Drawing.Size(67, 15);
       this.LblPostalCode.TabIndex = 26;
@@ -440,7 +442,7 @@
       this.GrpPersonalData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
       this.GrpPersonalData.Location = new System.Drawing.Point(14, 56);
       this.GrpPersonalData.Name = "GrpPersonalData";
-      this.GrpPersonalData.Size = new System.Drawing.Size(687, 166);
+      this.GrpPersonalData.Size = new System.Drawing.Size(706, 166);
       this.GrpPersonalData.TabIndex = 0;
       this.GrpPersonalData.TabStop = false;
       this.GrpPersonalData.Text = "Person";
@@ -684,11 +686,15 @@
       this.CmdShowCustomerNotes.UseVisualStyleBackColor = true;
       this.CmdShowCustomerNotes.Click += new System.EventHandler(this.CmdShowCustomerNotes_Click);
       // 
+      // CustomerErrorProvider
+      // 
+      this.CustomerErrorProvider.ContainerControl = this;
+      // 
       // CustomerDetailDialog
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1100, 550);
+      this.ClientSize = new System.Drawing.Size(1127, 550);
       this.Controls.Add(this.CmdShowCustomerNotes);
       this.Controls.Add(this.CmdProtocol);
       this.Controls.Add(this.CmdChangeStatus);
@@ -717,6 +723,7 @@
       this.GrpAddress.PerformLayout();
       this.GrpPersonalData.ResumeLayout(false);
       this.GrpPersonalData.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.CustomerErrorProvider)).EndInit();
       this.ResumeLayout(false);
 
         }
@@ -746,7 +753,6 @@
         private GroupBox GrpAddress;
         private Label LblCity;
         private TextBox TxtCity;
-        private TextBox TxtZipCode;
         private Label LblPostalCode;
         private TextBox TxtStreetNumber;
         private Label LblStreetNumber;
@@ -784,5 +790,7 @@
         private Label LblCompanyAddress;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private ErrorProvider CustomerErrorProvider;
+        private MaskedTextBox TxtZipCode;
     }
 }
