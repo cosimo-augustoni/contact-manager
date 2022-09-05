@@ -7,72 +7,72 @@ namespace contact_manager.Presenters.Customers;
 
 public class CustomerDetailPresenter
 {
-    private readonly ICustomerDetailDialog dialog;
-    private readonly ICustomerService customerService;
-    private readonly User user;
-    private long customerId;
-    private readonly bool isNewMode;
+    private readonly ICustomerDetailDialog _dialog;
+    private readonly ICustomerService _customerService;
+    private readonly User _user;
+    private long _customerId;
+    private readonly bool _isNewMode;
 
     public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService, User user, bool isNewMode)
     {
-        this.dialog = dialog;
-        this.user = user;
-        this.isNewMode = isNewMode;
-        this.dialog.SetPresenter(this);
-        this.customerService = customerService;
+        this._dialog = dialog;
+        this._user = user;
+        this._isNewMode = isNewMode;
+        this._dialog.SetPresenter(this);
+        this._customerService = customerService;
     }
 
     public bool IsReadOnly
     {
-        get { return !this.user.CanWrite; }
+        get { return !this._user.CanWrite; }
     }
 
     public bool IsNewMode
     {
-        get { return this.isNewMode; }
+        get { return this._isNewMode; }
     }
 
     public void LoadCustomer(long id)
     {
-        this.customerId = id;
-        var customer = this.customerService.GetById(id);
-        this.dialog.FirstName = customer.FirstName;
-        this.dialog.CustomerNumber = customer.CustomerNumber;
-        this.dialog.Salutation = customer.Salutation;
-        this.dialog.FirstName = customer.FirstName;
-        this.dialog.LastName = customer.LastName;
-        this.dialog.Title = customer.Title;
-        this.dialog.State = customer.State;
-        this.dialog.Sex = customer.Sex;
-        this.dialog.AHV13 = customer.AHV13;
-        this.dialog.DateOfBirth = customer.DateOfBirth;
-        this.dialog.Nationality = customer.Nationality;
+        this._customerId = id;
+        var customer = this._customerService.GetById(id);
+        this._dialog.FirstName = customer.FirstName;
+        this._dialog.CustomerNumber = customer.CustomerNumber;
+        this._dialog.Salutation = customer.Salutation;
+        this._dialog.FirstName = customer.FirstName;
+        this._dialog.LastName = customer.LastName;
+        this._dialog.Title = customer.Title;
+        this._dialog.State = customer.State;
+        this._dialog.Sex = customer.Sex;
+        this._dialog.AHV13 = customer.AHV13;
+        this._dialog.DateOfBirth = customer.DateOfBirth;
+        this._dialog.Nationality = customer.Nationality;
 
-        this.dialog.StreetName = customer.StreetName;
-        this.dialog.StreetNumber = customer.StreetNumber;
-        this.dialog.ZipCode = customer.ZipCode;
-        this.dialog.City = customer.City;
+        this._dialog.StreetName = customer.StreetName;
+        this._dialog.StreetNumber = customer.StreetNumber;
+        this._dialog.ZipCode = customer.ZipCode;
+        this._dialog.City = customer.City;
 
-        this.dialog.EMailAddress = customer.EMailAddress;
-        this.dialog.PhoneNumberPrivate = customer.PhoneNumberPrivate;
-        this.dialog.PhoneNumberMobile = customer.PhoneNumberMobile;
-        this.dialog.PhoneNumberBusiness = customer.PhoneNumberBusiness;
-        this.dialog.FaxNumber = customer.FaxNumber;
+        this._dialog.EMailAddress = customer.EMailAddress;
+        this._dialog.PhoneNumberPrivate = customer.PhoneNumberPrivate;
+        this._dialog.PhoneNumberMobile = customer.PhoneNumberMobile;
+        this._dialog.PhoneNumberBusiness = customer.PhoneNumberBusiness;
+        this._dialog.FaxNumber = customer.FaxNumber;
 
-        this.dialog.CustomerType = customer.CustomerType;
-        this.dialog.CompanyName = customer.CompanyName;
-        this.dialog.CompanyContact = customer.CompanyContact;
-        this.dialog.CompanyAddress = customer.CompanyAddress;
+        this._dialog.CustomerType = customer.CustomerType;
+        this._dialog.CompanyName = customer.CompanyName;
+        this._dialog.CompanyContact = customer.CompanyContact;
+        this._dialog.CompanyAddress = customer.CompanyAddress;
     }
 
     public void LoadNewCustomer()
     {
-        this.customerId = this.customerService.GetNewId();
+        this._customerId = this._customerService.GetNewId();
     }
 
     public void ChangeStatus()
     {
-        this.dialog.State = this.dialog.State == Models.Data.State.Active
+        this._dialog.State = this._dialog.State == Models.Data.State.Active
             ? Models.Data.State.Passive
             : Models.Data.State.Active;
 
@@ -83,31 +83,31 @@ public class CustomerDetailPresenter
     {
         var customer = new Customer
         {
-            Id = this.customerId,
+            Id = this._customerId,
             // ToDo: customerNumber auch rein nehmen?
-            Salutation = this.dialog.Salutation,
-            FirstName = this.dialog.FirstName,
-            LastName = this.dialog.LastName,
-            DateOfBirth = this.dialog.DateOfBirth,
-            Sex = this.dialog.Sex,
-            Title = this.dialog.Title,
-            State = this.dialog.State,
-            AHV13 = this.dialog.AHV13,
-            Nationality = this.dialog.Nationality,
-            City = this.dialog.City,
-            ZipCode = this.dialog.ZipCode,
-            StreetName = this.dialog.StreetName,
-            StreetNumber = this.dialog.StreetNumber,
-            EMailAddress = this.dialog.EMailAddress,
-            PhoneNumberPrivate = this.dialog.PhoneNumberPrivate,
-            PhoneNumberMobile = this.dialog.PhoneNumberMobile,
-            PhoneNumberBusiness = this.dialog.PhoneNumberBusiness,
-            FaxNumber = this.dialog.FaxNumber,
-            CompanyAddress = this.dialog.CompanyAddress,
-            CompanyContact = this.dialog.CompanyContact,
-            CompanyName = this.dialog.CompanyName,
-            CustomerType = this.dialog.CustomerType
+            Salutation = this._dialog.Salutation,
+            FirstName = this._dialog.FirstName,
+            LastName = this._dialog.LastName,
+            DateOfBirth = this._dialog.DateOfBirth,
+            Sex = this._dialog.Sex,
+            Title = this._dialog.Title,
+            State = this._dialog.State,
+            AHV13 = this._dialog.AHV13,
+            Nationality = this._dialog.Nationality,
+            City = this._dialog.City,
+            ZipCode = this._dialog.ZipCode,
+            StreetName = this._dialog.StreetName,
+            StreetNumber = this._dialog.StreetNumber,
+            EMailAddress = this._dialog.EMailAddress,
+            PhoneNumberPrivate = this._dialog.PhoneNumberPrivate,
+            PhoneNumberMobile = this._dialog.PhoneNumberMobile,
+            PhoneNumberBusiness = this._dialog.PhoneNumberBusiness,
+            FaxNumber = this._dialog.FaxNumber,
+            CompanyAddress = this._dialog.CompanyAddress,
+            CompanyContact = this._dialog.CompanyContact,
+            CompanyName = this._dialog.CompanyName,
+            CustomerType = this._dialog.CustomerType
         };
-        this.customerService.Save(customer);
+        this._customerService.Save(customer);
     }
 }
