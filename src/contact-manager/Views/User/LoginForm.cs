@@ -80,5 +80,10 @@ namespace contact_manager.Views
                 LoginErrorProvider.SetError(TxtPassword, null);
             }
         }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = false;
+        }
     }
 }

@@ -24,15 +24,12 @@ namespace contact_manager
             IUserstore userStore = new IUserstore();
             if (Debugger.IsAttached)
             {
-                // todo: direct login nur für die Entwicklungsphase
+                var user = userStore.GetUser("admin", "1234");
                 var dashboardView = new DashboardView();
                 var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
                 var customerService = new CustomerService(customerRepository);
                 var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
                 var employeeService = new EmployeeService(employeeRepository);
-
-                var user = userStore.GetUser("admin", "1234");
-
                 var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService, user);
                 dashboardPresenter.LoadAllCustomers();
                 Application.Run(dashboardView);

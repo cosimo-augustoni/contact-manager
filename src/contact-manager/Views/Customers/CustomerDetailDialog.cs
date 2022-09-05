@@ -135,9 +135,25 @@ namespace contact_manager.Views.Customers
             get => this.TxtFaxNumber.Text;
             set => this.TxtFaxNumber.Text = value;
         }
+        public CustomerType CustomerType {
+            get => (CustomerType)this.CmbCustomerType.SelectedValue;
+            set => this.CmbCustomerType.SelectedValue = value;
+        }
 
-        //TODO Customer Properties ergänzen
+        public string? CompanyName
+        {
+            get => this.TxtCompanyName.Text;
+            set => this.TxtCompanyName.Text = value;
+        }
 
+        public string? CompanyContact {
+            get => this.TxtCompanyContact.Text;
+            set => this.TxtCompanyContact.Text = value;
+        }
+        public string? CompanyAddress {
+            get => this.TxtCompanyAddress.Text;
+            set => this.TxtCompanyAddress.Text = value; 
+        }
         #endregion
 
         public CustomerDetailDialog()
@@ -149,14 +165,38 @@ namespace contact_manager.Views.Customers
             this.CmbState.SetDataSource<State>();
         }
 
-        // ToDo npa: Unit-Tests? => Palmer fragen
         public void SetPresenter(CustomerDetailPresenter customerDetailPresenter)
         {
             this.presenter = customerDetailPresenter;
         }
 
+        public void InitializeMode()
+        {
+            var isEnabled = !this.presenter?.IsReadOnly ?? false;
+            var isNewMode = this.presenter?.IsNewMode ?? false;
+            CmdSave.Enabled = isEnabled;
+            CmdCancel.Enabled = isEnabled;
+            CmdChangeStatus.Enabled = isEnabled && !isNewMode;
+            CmdShowCustomerNotes.Enabled = !isNewMode;
+            CmdProtocol.Enabled = !isNewMode;
+
+            // ToDo: auslagern?
+            if (isNewMode)
+            {
+                State = State.Active;
+            }
+
+            GrpAddress.Enabled = isEnabled && State == State.Active;
+            GrpPersonalData.Enabled = isEnabled && State == State.Active;
+            GrpContactData.Enabled = isEnabled && State == State.Active;
+            GrpCustomerData.Enabled = isEnabled && State == State.Active;
+
+            CmdChangeStatus.Text = State == State.Active ? "Deaktivieren" : "Aktivieren";
+        }
+
         private void CmdSave_Click(object sender, EventArgs e)
         {
+            // ToDo npa: rückmeldung, dass das speichern erfolgreich war?
             this.presenter?.Save();
         }
 
@@ -180,6 +220,22 @@ namespace contact_manager.Views.Customers
         private void CustomerDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
             // todo: prüfen, ob änderungen vorhanden sind
+        }
+
+        private void CmdProtocol_Click(object sender, EventArgs e)
+        {
+            // ToDo: protokollierung customer
+        }
+
+        private void CmdShowCustomerNotes_Click(object sender, EventArgs e)
+        {
+            // todo: show customer notes
+        }
+
+        private void CmdChangeStatus_Click(object sender, EventArgs e)
+        {
+            this.presenter?.ChangeStatus();
+            InitializeMode();
         }
     }
 }

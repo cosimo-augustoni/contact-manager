@@ -1,4 +1,5 @@
 ﻿using contact_manager.Models.Data;
+using contact_manager.Models.Data.Customer;
 using contact_manager.Presenters.Customers;
 
 namespace contact_manager.Views.Customers;
@@ -25,4 +26,8 @@ public interface ICustomerDetailDialog
     string? PhoneNumberBusiness { get; set; }
     string? FaxNumber { get; set; }
     string? PhoneNumberMobile { get; set; }
+    CustomerType CustomerType { get; set; }
+    string? CompanyName { get; set; }
+    string? CompanyContact { get; set; }
+    string? CompanyAddress { get; set; }
 }

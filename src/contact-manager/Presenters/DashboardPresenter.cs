@@ -19,11 +19,16 @@ namespace contact_manager.Presenters
         public DashboardPresenter(IDashboardView dashboardView, ICustomerService customerService, IEmployeeService employeeService, User user)
         {
             this.dashboardView = dashboardView;
+            this.user = user;
             this.dashboardView.SetPresenter(this);
 
             this.customerService = customerService;
             this.employeeService = employeeService;
-            this.user = user;
+        }
+
+        public bool IsReadOnly
+        {
+            get { return !this.user.CanWrite; }
         }
 
         public void LoadAllEmployees()
@@ -35,8 +40,9 @@ namespace contact_manager.Presenters
         public void OpenCreateNewEmployeeDialog()
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this.employeeService, this.user);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this.employeeService, this.user, isNewMode: true);
             dialogPresenter.LoadNewEmployee();
+            dialog.InitializeMode();
             dialog.Closed += (_, _) => this.LoadAllEmployees();
             dialog.ShowDialog();
         }
@@ -44,8 +50,9 @@ namespace contact_manager.Presenters
         public void OpenEditEmployeeDialog(long employeeId)
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this.employeeService, this.user);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this.employeeService, this.user, isNewMode: false);
             dialogPresenter.LoadEmployee(employeeId);
+            dialog.InitializeMode();
             dialog.Closed += (_, _) => this.LoadAllEmployees();
             dialog.ShowDialog();
         }
@@ -66,8 +73,9 @@ namespace contact_manager.Presenters
         public void OpenCreateNewCustomerDialog()
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this.customerService, this.user);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this.customerService, this.user, isNewMode: true);
             dialogPresenter.LoadNewCustomer();
+            dialog.InitializeMode();
             dialog.Closed += (_, _) => this.LoadAllCustomers();
             dialog.ShowDialog();
         }
@@ -75,8 +83,10 @@ namespace contact_manager.Presenters
         public void OpenEditCustomerDialog(long customerId)
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this.customerService, this.user);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this.customerService, this.user, isNewMode: false);
             dialogPresenter.LoadCustomer(customerId);
+            dialog.InitializeMode();
+            // ToDo: nach dem laden der daten noch die Controls aktualisieren
             dialog.Closed += (_, _) => this.LoadAllCustomers();
             dialog.ShowDialog();
         }

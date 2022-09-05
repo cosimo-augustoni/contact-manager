@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
-      this.CmdCreateNewEmployee = new System.Windows.Forms.Button();
       this.CmdCreateNewCustomer = new System.Windows.Forms.Button();
       this.TcPerson = new System.Windows.Forms.TabControl();
       this.TpCustomer = new System.Windows.Forms.TabPage();
+      this.CmdImportCustomer = new System.Windows.Forms.Button();
+      this.CmdDeleteCustomer = new System.Windows.Forms.Button();
+      this.CmdEditCustomer = new System.Windows.Forms.Button();
       this.PnlSearchCustomer = new System.Windows.Forms.Panel();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.CmdResetSearchCustomer = new System.Windows.Forms.Button();
+      this.CmdSearchCustomer = new System.Windows.Forms.Button();
       this.TxtSearchCustomer = new System.Windows.Forms.TextBox();
       this.dataGridViewCustomer = new System.Windows.Forms.DataGridView();
       this.customerNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,14 +53,20 @@
       this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.TpEmployee = new System.Windows.Forms.TabPage();
+      this.CmdImportEmployee = new System.Windows.Forms.Button();
       this.panel1 = new System.Windows.Forms.Panel();
-      this.pictureBox2 = new System.Windows.Forms.PictureBox();
+      this.CmdResetSearchEmployee = new System.Windows.Forms.Button();
+      this.CmdSearchEmployee = new System.Windows.Forms.Button();
       this.TxtSearchEmployee = new System.Windows.Forms.TextBox();
+      this.CmdDeleteEmployee = new System.Windows.Forms.Button();
+      this.CmdEditEmployee = new System.Windows.Forms.Button();
+      this.CmdCreateNewEmployee = new System.Windows.Forms.Button();
       this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
       this.employeeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.lastNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.stateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.CadreLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dateOfBirthDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.sexDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.streetNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,34 +77,23 @@
       this.TcPerson.SuspendLayout();
       this.TpCustomer.SuspendLayout();
       this.PnlSearchCustomer.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomer)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
       this.TpEmployee.SuspendLayout();
       this.panel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
       this.SuspendLayout();
       // 
-      // CmdCreateNewEmployee
-      // 
-      this.CmdCreateNewEmployee.Location = new System.Drawing.Point(6, 6);
-      this.CmdCreateNewEmployee.Name = "CmdCreateNewEmployee";
-      this.CmdCreateNewEmployee.Size = new System.Drawing.Size(66, 23);
-      this.CmdCreateNewEmployee.TabIndex = 0;
-      this.CmdCreateNewEmployee.Text = "Neu";
-      this.CmdCreateNewEmployee.UseVisualStyleBackColor = true;
-      this.CmdCreateNewEmployee.Click += new System.EventHandler(this.CmdCreateNewEmployee_Click);
-      // 
       // CmdCreateNewCustomer
       // 
       this.CmdCreateNewCustomer.Image = global::contact_manager.Properties.Resources.NewItem;
-      this.CmdCreateNewCustomer.Location = new System.Drawing.Point(8, 5);
+      this.CmdCreateNewCustomer.Location = new System.Drawing.Point(8, 6);
       this.CmdCreateNewCustomer.Name = "CmdCreateNewCustomer";
-      this.CmdCreateNewCustomer.Size = new System.Drawing.Size(69, 23);
+      this.CmdCreateNewCustomer.Size = new System.Drawing.Size(100, 30);
       this.CmdCreateNewCustomer.TabIndex = 1;
       this.CmdCreateNewCustomer.Text = "Neu";
+      this.CmdCreateNewCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       this.CmdCreateNewCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       this.CmdCreateNewCustomer.UseVisualStyleBackColor = true;
       this.CmdCreateNewCustomer.Click += new System.EventHandler(this.CmdCreateNewCustomer_Click);
@@ -109,51 +107,107 @@
       this.TcPerson.Multiline = true;
       this.TcPerson.Name = "TcPerson";
       this.TcPerson.SelectedIndex = 0;
-      this.TcPerson.Size = new System.Drawing.Size(1360, 568);
+      this.TcPerson.Size = new System.Drawing.Size(1130, 543);
       this.TcPerson.TabIndex = 19;
       this.TcPerson.Selected += new System.Windows.Forms.TabControlEventHandler(this.TcPerson_Selected);
       // 
       // TpCustomer
       // 
+      this.TpCustomer.Controls.Add(this.CmdImportCustomer);
+      this.TpCustomer.Controls.Add(this.CmdDeleteCustomer);
+      this.TpCustomer.Controls.Add(this.CmdEditCustomer);
       this.TpCustomer.Controls.Add(this.PnlSearchCustomer);
       this.TpCustomer.Controls.Add(this.dataGridViewCustomer);
       this.TpCustomer.Controls.Add(this.CmdCreateNewCustomer);
       this.TpCustomer.Location = new System.Drawing.Point(4, 24);
       this.TpCustomer.Name = "TpCustomer";
       this.TpCustomer.Padding = new System.Windows.Forms.Padding(3);
-      this.TpCustomer.Size = new System.Drawing.Size(1345, 540);
+      this.TpCustomer.Size = new System.Drawing.Size(1122, 515);
       this.TpCustomer.TabIndex = 0;
       this.TpCustomer.Text = "Kunden";
       this.TpCustomer.UseVisualStyleBackColor = true;
       // 
+      // CmdImportCustomer
+      // 
+      this.CmdImportCustomer.Image = global::contact_manager.Properties.Resources.Import;
+      this.CmdImportCustomer.Location = new System.Drawing.Point(326, 6);
+      this.CmdImportCustomer.Name = "CmdImportCustomer";
+      this.CmdImportCustomer.Size = new System.Drawing.Size(100, 30);
+      this.CmdImportCustomer.TabIndex = 7;
+      this.CmdImportCustomer.Text = "Import";
+      this.CmdImportCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdImportCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdImportCustomer.UseVisualStyleBackColor = true;
+      this.CmdImportCustomer.Click += new System.EventHandler(this.CmdImportCustomer_Click);
+      // 
+      // CmdDeleteCustomer
+      // 
+      this.CmdDeleteCustomer.Image = global::contact_manager.Properties.Resources.Delete;
+      this.CmdDeleteCustomer.Location = new System.Drawing.Point(220, 6);
+      this.CmdDeleteCustomer.Name = "CmdDeleteCustomer";
+      this.CmdDeleteCustomer.Size = new System.Drawing.Size(100, 30);
+      this.CmdDeleteCustomer.TabIndex = 6;
+      this.CmdDeleteCustomer.Text = "Löschen";
+      this.CmdDeleteCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdDeleteCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdDeleteCustomer.UseVisualStyleBackColor = true;
+      this.CmdDeleteCustomer.Click += new System.EventHandler(this.CmdDeleteCustomer_Click);
+      // 
+      // CmdEditCustomer
+      // 
+      this.CmdEditCustomer.Image = global::contact_manager.Properties.Resources.Edit;
+      this.CmdEditCustomer.Location = new System.Drawing.Point(114, 6);
+      this.CmdEditCustomer.Name = "CmdEditCustomer";
+      this.CmdEditCustomer.Size = new System.Drawing.Size(100, 30);
+      this.CmdEditCustomer.TabIndex = 5;
+      this.CmdEditCustomer.Text = "Bearbeiten";
+      this.CmdEditCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdEditCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdEditCustomer.UseVisualStyleBackColor = true;
+      this.CmdEditCustomer.Click += new System.EventHandler(this.CmdEditCustomer_Click);
+      // 
       // PnlSearchCustomer
       // 
       this.PnlSearchCustomer.Anchor = System.Windows.Forms.AnchorStyles.None;
-      this.PnlSearchCustomer.Controls.Add(this.pictureBox1);
+      this.PnlSearchCustomer.Controls.Add(this.CmdResetSearchCustomer);
+      this.PnlSearchCustomer.Controls.Add(this.CmdSearchCustomer);
       this.PnlSearchCustomer.Controls.Add(this.TxtSearchCustomer);
-      this.PnlSearchCustomer.Location = new System.Drawing.Point(870, -38);
+      this.PnlSearchCustomer.Location = new System.Drawing.Point(811, 6);
       this.PnlSearchCustomer.Name = "PnlSearchCustomer";
-      this.PnlSearchCustomer.Size = new System.Drawing.Size(282, 30);
+      this.PnlSearchCustomer.Size = new System.Drawing.Size(303, 30);
       this.PnlSearchCustomer.TabIndex = 4;
       // 
-      // pictureBox1
+      // CmdResetSearchCustomer
       // 
-      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-      this.pictureBox1.Image = global::contact_manager.Properties.Resources.Search;
-      this.pictureBox1.Location = new System.Drawing.Point(255, 0);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(27, 30);
-      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-      this.pictureBox1.TabIndex = 3;
-      this.pictureBox1.TabStop = false;
+      this.CmdResetSearchCustomer.Image = global::contact_manager.Properties.Resources.Cancel;
+      this.CmdResetSearchCustomer.Location = new System.Drawing.Point(276, 5);
+      this.CmdResetSearchCustomer.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+      this.CmdResetSearchCustomer.Name = "CmdResetSearchCustomer";
+      this.CmdResetSearchCustomer.Size = new System.Drawing.Size(25, 23);
+      this.CmdResetSearchCustomer.TabIndex = 8;
+      this.CmdResetSearchCustomer.UseVisualStyleBackColor = true;
+      this.CmdResetSearchCustomer.Click += new System.EventHandler(this.CmdResetSearchCustomer_Click);
+      // 
+      // CmdSearchCustomer
+      // 
+      this.CmdSearchCustomer.Image = global::contact_manager.Properties.Resources.Search;
+      this.CmdSearchCustomer.Location = new System.Drawing.Point(251, 5);
+      this.CmdSearchCustomer.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+      this.CmdSearchCustomer.Name = "CmdSearchCustomer";
+      this.CmdSearchCustomer.Size = new System.Drawing.Size(25, 23);
+      this.CmdSearchCustomer.TabIndex = 7;
+      this.CmdSearchCustomer.UseVisualStyleBackColor = true;
+      this.CmdSearchCustomer.Click += new System.EventHandler(this.CmdSearchCustomer_Click);
       // 
       // TxtSearchCustomer
       // 
-      this.TxtSearchCustomer.Location = new System.Drawing.Point(3, 4);
+      this.TxtSearchCustomer.Location = new System.Drawing.Point(3, 5);
+      this.TxtSearchCustomer.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
       this.TxtSearchCustomer.Name = "TxtSearchCustomer";
-      this.TxtSearchCustomer.PlaceholderText = "Seach text";
+      this.TxtSearchCustomer.PlaceholderText = "Suchtext";
       this.TxtSearchCustomer.Size = new System.Drawing.Size(248, 23);
       this.TxtSearchCustomer.TabIndex = 2;
+      this.TxtSearchCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchCustomer_KeyDown);
       // 
       // dataGridViewCustomer
       // 
@@ -174,15 +228,15 @@
             this.zipCodeDataGridViewTextBoxColumn,
             this.cityDataGridViewTextBoxColumn});
       this.dataGridViewCustomer.DataSource = this.customerBindingSource;
-      this.dataGridViewCustomer.Location = new System.Drawing.Point(10, 42);
+      this.dataGridViewCustomer.Location = new System.Drawing.Point(8, 40);
       this.dataGridViewCustomer.Name = "dataGridViewCustomer";
       this.dataGridViewCustomer.ReadOnly = true;
       this.dataGridViewCustomer.RowHeadersWidth = 102;
       this.dataGridViewCustomer.RowTemplate.Height = 25;
-      this.dataGridViewCustomer.Size = new System.Drawing.Size(1147, 464);
+      this.dataGridViewCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+      this.dataGridViewCustomer.Size = new System.Drawing.Size(1106, 464);
       this.dataGridViewCustomer.TabIndex = 3;
-      this.dataGridViewCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomer_CellContentClick);
-      this.dataGridViewCustomer.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomer_CellContentDoubleClick);
+      this.dataGridViewCustomer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomer_CellDoubleClick);
       // 
       // customerNumberDataGridViewTextBoxColumn
       // 
@@ -215,6 +269,7 @@
       this.stateDataGridViewTextBoxColumn.MinimumWidth = 12;
       this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
       this.stateDataGridViewTextBoxColumn.ReadOnly = true;
+      this.stateDataGridViewTextBoxColumn.Width = 60;
       // 
       // customerTypeDataGridViewTextBoxColumn
       // 
@@ -247,6 +302,7 @@
       this.streetNameDataGridViewTextBoxColumn.MinimumWidth = 12;
       this.streetNameDataGridViewTextBoxColumn.Name = "streetNameDataGridViewTextBoxColumn";
       this.streetNameDataGridViewTextBoxColumn.ReadOnly = true;
+      this.streetNameDataGridViewTextBoxColumn.Width = 120;
       // 
       // streetNumberDataGridViewTextBoxColumn
       // 
@@ -264,6 +320,7 @@
       this.zipCodeDataGridViewTextBoxColumn.MinimumWidth = 12;
       this.zipCodeDataGridViewTextBoxColumn.Name = "zipCodeDataGridViewTextBoxColumn";
       this.zipCodeDataGridViewTextBoxColumn.ReadOnly = true;
+      this.zipCodeDataGridViewTextBoxColumn.Width = 60;
       // 
       // cityDataGridViewTextBoxColumn
       // 
@@ -272,6 +329,7 @@
       this.cityDataGridViewTextBoxColumn.MinimumWidth = 12;
       this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
       this.cityDataGridViewTextBoxColumn.ReadOnly = true;
+      this.cityDataGridViewTextBoxColumn.Width = 120;
       // 
       // customerBindingSource
       // 
@@ -279,45 +337,114 @@
       // 
       // TpEmployee
       // 
+      this.TpEmployee.Controls.Add(this.CmdImportEmployee);
       this.TpEmployee.Controls.Add(this.panel1);
-      this.TpEmployee.Controls.Add(this.dataGridViewEmployee);
+      this.TpEmployee.Controls.Add(this.CmdDeleteEmployee);
+      this.TpEmployee.Controls.Add(this.CmdEditEmployee);
       this.TpEmployee.Controls.Add(this.CmdCreateNewEmployee);
+      this.TpEmployee.Controls.Add(this.dataGridViewEmployee);
       this.TpEmployee.Location = new System.Drawing.Point(4, 24);
       this.TpEmployee.Name = "TpEmployee";
       this.TpEmployee.Padding = new System.Windows.Forms.Padding(3);
-      this.TpEmployee.Size = new System.Drawing.Size(1352, 540);
+      this.TpEmployee.Size = new System.Drawing.Size(1122, 515);
       this.TpEmployee.TabIndex = 1;
       this.TpEmployee.Text = "Mitarbeiter";
       this.TpEmployee.UseVisualStyleBackColor = true;
       // 
+      // CmdImportEmployee
+      // 
+      this.CmdImportEmployee.Image = global::contact_manager.Properties.Resources.Import;
+      this.CmdImportEmployee.Location = new System.Drawing.Point(326, 6);
+      this.CmdImportEmployee.Name = "CmdImportEmployee";
+      this.CmdImportEmployee.Size = new System.Drawing.Size(100, 30);
+      this.CmdImportEmployee.TabIndex = 11;
+      this.CmdImportEmployee.Text = "Import";
+      this.CmdImportEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdImportEmployee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdImportEmployee.UseVisualStyleBackColor = true;
+      this.CmdImportEmployee.Click += new System.EventHandler(this.CmdImportEmployee_Click);
+      // 
       // panel1
       // 
       this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-      this.panel1.Controls.Add(this.pictureBox2);
+      this.panel1.Controls.Add(this.CmdResetSearchEmployee);
+      this.panel1.Controls.Add(this.CmdSearchEmployee);
       this.panel1.Controls.Add(this.TxtSearchEmployee);
-      this.panel1.Location = new System.Drawing.Point(1052, 32);
+      this.panel1.Location = new System.Drawing.Point(811, 6);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(282, 30);
-      this.panel1.TabIndex = 6;
+      this.panel1.Size = new System.Drawing.Size(303, 30);
+      this.panel1.TabIndex = 10;
       // 
-      // pictureBox2
+      // CmdResetSearchEmployee
       // 
-      this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-      this.pictureBox2.Image = global::contact_manager.Properties.Resources.Search;
-      this.pictureBox2.Location = new System.Drawing.Point(255, 0);
-      this.pictureBox2.Name = "pictureBox2";
-      this.pictureBox2.Size = new System.Drawing.Size(27, 30);
-      this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-      this.pictureBox2.TabIndex = 3;
-      this.pictureBox2.TabStop = false;
+      this.CmdResetSearchEmployee.Image = global::contact_manager.Properties.Resources.Cancel;
+      this.CmdResetSearchEmployee.Location = new System.Drawing.Point(276, 5);
+      this.CmdResetSearchEmployee.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+      this.CmdResetSearchEmployee.Name = "CmdResetSearchEmployee";
+      this.CmdResetSearchEmployee.Size = new System.Drawing.Size(25, 23);
+      this.CmdResetSearchEmployee.TabIndex = 8;
+      this.CmdResetSearchEmployee.UseVisualStyleBackColor = true;
+      this.CmdResetSearchEmployee.Click += new System.EventHandler(this.CmdResetSearchEmployee_Click);
+      // 
+      // CmdSearchEmployee
+      // 
+      this.CmdSearchEmployee.Image = global::contact_manager.Properties.Resources.Search;
+      this.CmdSearchEmployee.Location = new System.Drawing.Point(251, 5);
+      this.CmdSearchEmployee.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+      this.CmdSearchEmployee.Name = "CmdSearchEmployee";
+      this.CmdSearchEmployee.Size = new System.Drawing.Size(25, 23);
+      this.CmdSearchEmployee.TabIndex = 7;
+      this.CmdSearchEmployee.UseVisualStyleBackColor = true;
+      this.CmdSearchEmployee.Click += new System.EventHandler(this.CmdSearchEmployee_Click);
       // 
       // TxtSearchEmployee
       // 
-      this.TxtSearchEmployee.Location = new System.Drawing.Point(3, 4);
+      this.TxtSearchEmployee.Location = new System.Drawing.Point(3, 5);
+      this.TxtSearchEmployee.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
       this.TxtSearchEmployee.Name = "TxtSearchEmployee";
-      this.TxtSearchEmployee.PlaceholderText = "Seach text";
+      this.TxtSearchEmployee.PlaceholderText = "Suchtext";
       this.TxtSearchEmployee.Size = new System.Drawing.Size(248, 23);
       this.TxtSearchEmployee.TabIndex = 2;
+      this.TxtSearchEmployee.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchEmployee_KeyDown);
+      // 
+      // CmdDeleteEmployee
+      // 
+      this.CmdDeleteEmployee.Image = global::contact_manager.Properties.Resources.Delete;
+      this.CmdDeleteEmployee.Location = new System.Drawing.Point(220, 6);
+      this.CmdDeleteEmployee.Name = "CmdDeleteEmployee";
+      this.CmdDeleteEmployee.Size = new System.Drawing.Size(100, 30);
+      this.CmdDeleteEmployee.TabIndex = 9;
+      this.CmdDeleteEmployee.Text = "Löschen";
+      this.CmdDeleteEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdDeleteEmployee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdDeleteEmployee.UseVisualStyleBackColor = true;
+      this.CmdDeleteEmployee.Click += new System.EventHandler(this.CmdDeleteEmployee_Click);
+      // 
+      // CmdEditEmployee
+      // 
+      this.CmdEditEmployee.Image = global::contact_manager.Properties.Resources.Edit;
+      this.CmdEditEmployee.Location = new System.Drawing.Point(114, 6);
+      this.CmdEditEmployee.Name = "CmdEditEmployee";
+      this.CmdEditEmployee.Size = new System.Drawing.Size(100, 30);
+      this.CmdEditEmployee.TabIndex = 8;
+      this.CmdEditEmployee.Text = "Bearbeiten";
+      this.CmdEditEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdEditEmployee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdEditEmployee.UseVisualStyleBackColor = true;
+      this.CmdEditEmployee.Click += new System.EventHandler(this.CmdEditEmployee_Click);
+      // 
+      // CmdCreateNewEmployee
+      // 
+      this.CmdCreateNewEmployee.Image = global::contact_manager.Properties.Resources.NewItem;
+      this.CmdCreateNewEmployee.Location = new System.Drawing.Point(8, 6);
+      this.CmdCreateNewEmployee.Name = "CmdCreateNewEmployee";
+      this.CmdCreateNewEmployee.Size = new System.Drawing.Size(100, 30);
+      this.CmdCreateNewEmployee.TabIndex = 7;
+      this.CmdCreateNewEmployee.Text = "Neu";
+      this.CmdCreateNewEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdCreateNewEmployee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdCreateNewEmployee.UseVisualStyleBackColor = true;
+      this.CmdCreateNewEmployee.Click += new System.EventHandler(this.CmdCreateNewEmployee_Click);
       // 
       // dataGridViewEmployee
       // 
@@ -330,6 +457,7 @@
             this.firstNameDataGridViewTextBoxColumn1,
             this.lastNameDataGridViewTextBoxColumn1,
             this.stateDataGridViewTextBoxColumn1,
+            this.CadreLevel,
             this.dateOfBirthDataGridViewTextBoxColumn1,
             this.sexDataGridViewTextBoxColumn1,
             this.streetNameDataGridViewTextBoxColumn1,
@@ -337,35 +465,30 @@
             this.zipCodeDataGridViewTextBoxColumn1,
             this.cityDataGridViewTextBoxColumn1});
       this.dataGridViewEmployee.DataSource = this.employeeBindingSource;
-      this.dataGridViewEmployee.Location = new System.Drawing.Point(10, 68);
+      this.dataGridViewEmployee.Location = new System.Drawing.Point(8, 40);
       this.dataGridViewEmployee.Name = "dataGridViewEmployee";
       this.dataGridViewEmployee.ReadOnly = true;
       this.dataGridViewEmployee.RowHeadersWidth = 102;
       this.dataGridViewEmployee.RowTemplate.Height = 25;
-      this.dataGridViewEmployee.Size = new System.Drawing.Size(1326, 464);
+      this.dataGridViewEmployee.Size = new System.Drawing.Size(1106, 464);
       this.dataGridViewEmployee.TabIndex = 5;
-      this.dataGridViewEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellContentClick);
-      this.dataGridViewEmployee.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellContentDoubleClick);
+      this.dataGridViewEmployee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellDoubleClick);
       // 
       // employeeNumberDataGridViewTextBoxColumn
       // 
-      this.employeeNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
       this.employeeNumberDataGridViewTextBoxColumn.DataPropertyName = "EmployeeNumber";
       this.employeeNumberDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter-Nr.";
       this.employeeNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
       this.employeeNumberDataGridViewTextBoxColumn.Name = "employeeNumberDataGridViewTextBoxColumn";
       this.employeeNumberDataGridViewTextBoxColumn.ReadOnly = true;
-      this.employeeNumberDataGridViewTextBoxColumn.Width = 111;
       // 
       // firstNameDataGridViewTextBoxColumn1
       // 
-      this.firstNameDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
       this.firstNameDataGridViewTextBoxColumn1.DataPropertyName = "FirstName";
       this.firstNameDataGridViewTextBoxColumn1.HeaderText = "Vorname";
       this.firstNameDataGridViewTextBoxColumn1.MinimumWidth = 12;
       this.firstNameDataGridViewTextBoxColumn1.Name = "firstNameDataGridViewTextBoxColumn1";
       this.firstNameDataGridViewTextBoxColumn1.ReadOnly = true;
-      this.firstNameDataGridViewTextBoxColumn1.Width = 79;
       // 
       // lastNameDataGridViewTextBoxColumn1
       // 
@@ -382,6 +505,14 @@
       this.stateDataGridViewTextBoxColumn1.MinimumWidth = 12;
       this.stateDataGridViewTextBoxColumn1.Name = "stateDataGridViewTextBoxColumn1";
       this.stateDataGridViewTextBoxColumn1.ReadOnly = true;
+      this.stateDataGridViewTextBoxColumn1.Width = 60;
+      // 
+      // CadreLevel
+      // 
+      this.CadreLevel.DataPropertyName = "CadreLevel";
+      this.CadreLevel.HeaderText = "Kaderstufe";
+      this.CadreLevel.Name = "CadreLevel";
+      this.CadreLevel.ReadOnly = true;
       // 
       // dateOfBirthDataGridViewTextBoxColumn1
       // 
@@ -406,7 +537,7 @@
       this.streetNameDataGridViewTextBoxColumn1.MinimumWidth = 12;
       this.streetNameDataGridViewTextBoxColumn1.Name = "streetNameDataGridViewTextBoxColumn1";
       this.streetNameDataGridViewTextBoxColumn1.ReadOnly = true;
-      this.streetNameDataGridViewTextBoxColumn1.Width = 400;
+      this.streetNameDataGridViewTextBoxColumn1.Width = 120;
       // 
       // streetNumberDataGridViewTextBoxColumn1
       // 
@@ -424,7 +555,7 @@
       this.zipCodeDataGridViewTextBoxColumn1.MinimumWidth = 12;
       this.zipCodeDataGridViewTextBoxColumn1.Name = "zipCodeDataGridViewTextBoxColumn1";
       this.zipCodeDataGridViewTextBoxColumn1.ReadOnly = true;
-      this.zipCodeDataGridViewTextBoxColumn1.Width = 80;
+      this.zipCodeDataGridViewTextBoxColumn1.Width = 60;
       // 
       // cityDataGridViewTextBoxColumn1
       // 
@@ -433,6 +564,7 @@
       this.cityDataGridViewTextBoxColumn1.MinimumWidth = 12;
       this.cityDataGridViewTextBoxColumn1.Name = "cityDataGridViewTextBoxColumn1";
       this.cityDataGridViewTextBoxColumn1.ReadOnly = true;
+      this.cityDataGridViewTextBoxColumn1.Width = 120;
       // 
       // employeeBindingSource
       // 
@@ -442,7 +574,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1360, 568);
+      this.ClientSize = new System.Drawing.Size(1130, 543);
       this.Controls.Add(this.TcPerson);
       this.MaximizeBox = false;
       this.MinimizeBox = false;
@@ -453,13 +585,11 @@
       this.TpCustomer.ResumeLayout(false);
       this.PnlSearchCustomer.ResumeLayout(false);
       this.PnlSearchCustomer.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomer)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
       this.TpEmployee.ResumeLayout(false);
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
       this.ResumeLayout(false);
@@ -467,8 +597,6 @@
         }
 
         #endregion
-
-        private Button CmdCreateNewEmployee;
         private Button CmdCreateNewCustomer;
     private TabControl TcPerson;
     private TabPage TpCustomer;
@@ -479,10 +607,10 @@
         private BindingSource customerBindingSource;
         private BindingSource employeeBindingSource;
         private Panel PnlSearchCustomer;
-        private PictureBox pictureBox1;
-        private Panel panel1;
-        private PictureBox pictureBox2;
-        private TextBox TxtSearchEmployee;
+        private Button CmdDeleteCustomer;
+        private Button CmdEditCustomer;
+        private Button CmdSearchCustomer;
+        private Button CmdResetSearchCustomer;
         private DataGridViewTextBoxColumn customerNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
@@ -494,15 +622,25 @@
         private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
+        private Panel panel1;
+        private Button CmdResetSearchEmployee;
+        private Button CmdSearchEmployee;
+        private TextBox TxtSearchEmployee;
+        private Button CmdDeleteEmployee;
+        private Button CmdEditEmployee;
+        private Button CmdCreateNewEmployee;
         private DataGridViewTextBoxColumn employeeNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn CadreLevel;
         private DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn streetNameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn1;
+        private Button CmdImportCustomer;
+        private Button CmdImportEmployee;
     }
 }

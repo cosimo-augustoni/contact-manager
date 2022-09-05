@@ -12,18 +12,25 @@ namespace contact_manager.Presenters.Employees
         private readonly User user;
 
         private long employeeId;
+        private readonly bool isNewMode;
 
-        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user)
+        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user, bool isNewMode)
         {
             this.dialog = dialog;
             this.employeeService = employeeService;
             this.user = user;
+            this.isNewMode = isNewMode;
             this.dialog.SetPresenter(this);
         }
 
         public bool IsReadOnly
         {
-            get { return !user.CanWrite; }
+            get { return !this.user.CanWrite; }
+        }
+
+        public bool IsNewMode
+        {
+            get { return this.isNewMode; }
         }
 
         public void LoadEmployee(long id)
@@ -97,6 +104,15 @@ namespace contact_manager.Presenters.Employees
                 CadreLevel = this.dialog.CadreLevel,
             };
             this.employeeService.Save(employee);
+        }
+
+        public void ChangeStatus()
+        {
+            this.dialog.State = this.dialog.State == State.Active
+                ? State.Passive
+                : State.Active;
+
+            Save();
         }
     }
 }
