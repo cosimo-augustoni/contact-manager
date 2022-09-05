@@ -1,10 +1,5 @@
 ﻿using System.Diagnostics;
-using contact_manager.Models.Data;
-using contact_manager.Models.Data.Customer;
-using contact_manager.Models.Data.Employee;
-using contact_manager.Models.Domain.Customer;
-using contact_manager.Models.Domain.Employee;
-using contact_manager.Presenters;
+using contact_manager.Models.Domain.Authentication;
 using contact_manager.Views;
 
 namespace contact_manager
@@ -21,22 +16,18 @@ namespace contact_manager
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             // todo: noch anpassen
-            IUserstore userStore = new IUserstore();
+
+            var formFactory = new DefaultFormFactory();
+
             if (Debugger.IsAttached)
             {
-                var user = userStore.GetUser("admin", "1234");
-                var dashboardView = new DashboardView();
-                var customerRepository = new PersonRepository<Customer>(new FilePersonStore<Customer>());
-                var customerService = new CustomerService(customerRepository);
-                var employeeRepository = new PersonRepository<Employee>(new FilePersonStore<Employee>());
-                var employeeService = new EmployeeService(employeeRepository);
-                var dashboardPresenter = new DashboardPresenter(dashboardView, customerService, employeeService, user);
-                dashboardPresenter.LoadAllCustomers();
-                Application.Run(dashboardView);
+                // todo: direct login nur für die Entwicklungsphase
+                var overviewView = formFactory.CreateOverview(Users.AdminUser);
+                Application.Run(overviewView);
             }
             else
             {
-                var loginForm = new LoginForm(userStore);
+                var loginForm = formFactory.CreateLoginDialog();
                 Application.Run(loginForm);
             }
         }

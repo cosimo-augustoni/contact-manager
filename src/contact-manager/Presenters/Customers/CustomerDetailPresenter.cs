@@ -1,5 +1,5 @@
-﻿using contact_manager.Models.Data;
-using contact_manager.Models.Data.Customer;
+﻿using contact_manager.Models.Data.Customer;
+using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.Customer;
 using contact_manager.Views.Customers;
 
@@ -72,9 +72,9 @@ public class CustomerDetailPresenter
 
     public void ChangeStatus()
     {
-        this.dialog.State = this.dialog.State == State.Active
-            ? State.Passive
-            : State.Active;
+        this.dialog.State = this.dialog.State == Models.Data.State.Active
+            ? Models.Data.State.Passive
+            : Models.Data.State.Active;
 
         Save();
     }

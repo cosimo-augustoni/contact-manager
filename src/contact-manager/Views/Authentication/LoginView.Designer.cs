@@ -1,6 +1,6 @@
-﻿namespace contact_manager.Views
+﻿namespace contact_manager.Views.Authentication
 {
-    partial class LoginForm
+    partial class LoginView
     {
         /// <summary>
         /// Required designer variable.
@@ -13,9 +13,9 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -87,7 +87,7 @@
       // 
       this.LoginErrorProvider.ContainerControl = this;
       // 
-      // LoginForm
+      // LoginView
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -99,10 +99,10 @@
       this.Controls.Add(this.TxtUserName);
       this.MaximizeBox = false;
       this.MinimizeBox = false;
-      this.Name = "LoginForm";
+      this.Name = "LoginView";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Login";
-      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginView_FormClosing);
       ((System.ComponentModel.ISupportInitialize)(this.LoginErrorProvider)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();

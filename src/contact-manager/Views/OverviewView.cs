@@ -4,19 +4,19 @@ using contact_manager.Presenters;
 
 namespace contact_manager.Views
 {
-    public partial class DashboardView : Form, IDashboardView
+    public partial class OverviewView : Form, IOverviewView
     {
-        private DashboardPresenter? presenter;
+        private OverviewPresenter? presenter;
 
-        public DashboardView()
+        public OverviewView()
         {
             this.InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
-        public void SetPresenter(DashboardPresenter dashboardPresenter)
+        public void SetPresenter(OverviewPresenter overviewPresenter)
         {
-            this.presenter = dashboardPresenter;
+            this.presenter = overviewPresenter;
             InitializeMode();
         }
 
@@ -36,18 +36,18 @@ namespace contact_manager.Views
 
             CmdCreateNewCustomer.Enabled = isEnabled;
             CmdCreateNewEmployee.Enabled = isEnabled;
-            CmdDeleteCustomer.Enabled = isEnabled;
-            CmdDeleteEmployee.Enabled = isEnabled;
+            //CmdDeleteCustomer.Enabled = isEnabled;
+            //CmdDeleteEmployee.Enabled = isEnabled;
 
             if (isEnabled)
             {
-                CmdEditCustomer.Text = CmdEditEmployee.Text = "Bearbeiten";
-                CmdEditCustomer.Image = CmdEditEmployee.Image = contact_manager.Properties.Resources.Edit;
+                //CmdEditCustomer.Text = CmdEditEmployee.Text = "Bearbeiten";
+                //CmdEditCustomer.Image = CmdEditEmployee.Image = contact_manager.Properties.Resources.Edit;
             }
             else
             {
-                CmdEditCustomer.Text = CmdEditEmployee.Text = "Anzeigen";
-                CmdEditCustomer.Image = CmdEditEmployee.Image = contact_manager.Properties.Resources.ShowDataPreview;
+                //CmdEditCustomer.Text = CmdEditEmployee.Text = "Anzeigen";
+                //CmdEditCustomer.Image = CmdEditEmployee.Image = contact_manager.Properties.Resources.ShowDataPreview;
 
             }
 
