@@ -6,31 +6,31 @@ namespace contact_manager.Presenters.Authentication
 {
     public class LoginPresenter
     {
-        private readonly ILoginView loginView;
-        private readonly IUserService userService;
-        private readonly IFormFactory formFactory;
+        private readonly ILoginView _loginView;
+        private readonly IUserService _userService;
+        private readonly IFormFactory _formFactory;
 
         public LoginPresenter(ILoginView loginView, IUserService userService, IFormFactory formFactory)
         {
-            this.loginView = loginView;
-            this.loginView.SetPresenter(this);
+            this._loginView = loginView;
+            this._loginView.SetPresenter(this);
 
-            this.userService = userService;
-            this.formFactory = formFactory;
+            this._userService = userService;
+            this._formFactory = formFactory;
         }
 
         public void Authenticate()
         {
-            if (this.userService.TryAuthenticate(this.loginView.Username, this.loginView.Password, out var user))
+            if (this._userService.TryAuthenticate(this._loginView.Username, this._loginView.Password, out var user))
             {
-                var dashboardView = this.formFactory.CreateOverview(user);
+                var dashboardView = this._formFactory.CreateOverview(user);
                 dashboardView.Show();
-                dashboardView.FormClosed += (_, _) => this.loginView.Close();
-                this.loginView.Hide();
+                dashboardView.FormClosed += (_, _) => this._loginView.Close();
+                this._loginView.Hide();
             }
             else
             {
-                this.loginView.ShowAuthenticationFailed();
+                this._loginView.ShowAuthenticationFailed();
             }
         }
     }

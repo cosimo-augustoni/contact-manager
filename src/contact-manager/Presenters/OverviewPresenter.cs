@@ -1,5 +1,4 @@
-﻿using contact_manager.Models.Data;
-using contact_manager.Models.Domain.Authentication;
+﻿using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.Customer;
 using contact_manager.Models.Domain.Employee;
 using contact_manager.Presenters.Customers;
@@ -12,33 +11,39 @@ namespace contact_manager.Presenters
 {
     public class OverviewPresenter
     {
-        private readonly IOverviewView overviewView;
-        private readonly ICustomerService customerService;
-        private readonly IEmployeeService employeeService;
-        private readonly User user;
+        private readonly IOverviewView _overviewView;
+        private readonly ICustomerService _customerService;
+        private readonly IEmployeeService _employeeService;
+        private readonly User _user;
 
         public OverviewPresenter(IOverviewView overviewView, ICustomerService customerService,
             IEmployeeService employeeService, User user)
         {
-            this.overviewView = overviewView;
-            this.overviewView.SetPresenter(this);
+            this._overviewView = overviewView;
+            this._user = user;
+            this._overviewView.SetPresenter(this);
 
-            this.customerService = customerService;
-            this.employeeService = employeeService;
-            this.user = user;
+            this._customerService = customerService;
+            this._employeeService = employeeService;
+        }
+
+        public bool IsReadOnly
+        {
+            get { return !this._user.CanWrite; }
         }
 
         public void LoadAllEmployees()
         {
-            var employees = this.employeeService.GetAll();
-            this.overviewView.SetEmployeeList(employees);
+            var employees = this._employeeService.GetAll();
+            this._overviewView.SetEmployeeList(employees);
         }
 
         public void OpenCreateNewEmployeeDialog()
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this.employeeService, this.user);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: true);
             dialogPresenter.LoadNewEmployee();
+            dialog.InitializeMode();
             dialog.Closed += (_, _) => this.LoadAllEmployees();
             dialog.ShowDialog();
         }
@@ -46,30 +51,32 @@ namespace contact_manager.Presenters
         public void OpenEditEmployeeDialog(long employeeId)
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this.employeeService, this.user);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: false);
             dialogPresenter.LoadEmployee(employeeId);
+            dialog.InitializeMode();
             dialog.Closed += (_, _) => this.LoadAllEmployees();
             dialog.ShowDialog();
         }
 
         public void DeleteEmployee(long employeeId)
         {
-            this.employeeService.Delete(employeeId);
+            this._employeeService.Delete(employeeId);
             //TODO Evtl. Performance Problem alles wieder zu laden. Evtl eine art caching in der View
             this.LoadAllEmployees();
         }
 
         public void LoadAllCustomers()
         {
-            var customers = this.customerService.GetAll();
-            this.overviewView.SetCustomerList(customers);
+            var customers = this._customerService.GetAll();
+            this._overviewView.SetCustomerList(customers);
         }
 
         public void OpenCreateNewCustomerDialog()
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this.customerService, this.user);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._user, isNewMode: true);
             dialogPresenter.LoadNewCustomer();
+            dialog.InitializeMode();
             dialog.Closed += (_, _) => this.LoadAllCustomers();
             dialog.ShowDialog();
         }
@@ -77,15 +84,17 @@ namespace contact_manager.Presenters
         public void OpenEditCustomerDialog(long customerId)
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this.customerService, this.user);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._user, isNewMode: false);
             dialogPresenter.LoadCustomer(customerId);
+            dialog.InitializeMode();
+            // ToDo: nach dem laden der daten noch die Controls aktualisieren
             dialog.Closed += (_, _) => this.LoadAllCustomers();
             dialog.ShowDialog();
         }
 
         public void DeleteCustomer(long customerId)
         {
-            this.customerService.Delete(customerId);
+            this._customerService.Delete(customerId);
             //TODO Evtl. Performance Problem alles wieder zu laden. Evtl eine art caching in der View
             this.LoadAllCustomers();
         }

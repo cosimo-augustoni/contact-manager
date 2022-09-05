@@ -16,6 +16,7 @@ namespace contact_manager.Views
         {
             var loginView = new LoginView();
             var userService = new UserService();
+            // ToDo: keine verwendung
             var loginPresenter = new LoginPresenter(loginView, userService, this);
 
             return loginView;

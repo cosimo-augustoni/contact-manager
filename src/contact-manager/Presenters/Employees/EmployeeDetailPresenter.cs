@@ -1,5 +1,4 @@
-﻿using contact_manager.Models.Data;
-using contact_manager.Models.Data.Employee;
+﻿using contact_manager.Models.Data.Employee;
 using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.Employee;
 using contact_manager.Views.Employees;
@@ -13,18 +12,25 @@ namespace contact_manager.Presenters.Employees
         private readonly User _user;
 
         private long _employeeId;
+        private readonly bool _isNewMode;
 
-        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user)
+        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user, bool isNewMode)
         {
             this._dialog = dialog;
             this._employeeService = employeeService;
             this._user = user;
+            this._isNewMode = isNewMode;
             this._dialog.SetPresenter(this);
         }
 
         public bool IsReadOnly
         {
             get { return !_user.CanWrite; }
+        }
+
+        public bool IsNewMode
+        {
+            get { return _isNewMode; }
         }
 
         public void LoadEmployee(long id)
@@ -98,6 +104,15 @@ namespace contact_manager.Presenters.Employees
                 CadreLevel = this._dialog.CadreLevel,
             };
             this._employeeService.Save(employee);
+        }
+
+        public void ChangeStatus()
+        {
+            this._dialog.State = this._dialog.State == Models.Data.State.Active
+                ? Models.Data.State.Passive
+                : Models.Data.State.Active;
+
+            Save();
         }
     }
 }

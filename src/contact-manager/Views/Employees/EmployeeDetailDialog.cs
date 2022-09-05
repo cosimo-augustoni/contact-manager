@@ -193,6 +193,29 @@ namespace contact_manager.Views.Employees
             this.CmbState.SetDataSource<State>();
         }
 
+        public void InitializeMode()
+        {
+            var isEnabled = !this.presenter?.IsReadOnly ?? false;
+            var isNewMode = this.presenter?.IsNewMode ?? false;
+            CmdSave.Enabled = isEnabled;
+            CmdCancel.Enabled = isEnabled;
+            CmdChangeStatus.Enabled = isEnabled && !isNewMode;
+            CmdProtocol.Enabled = !isNewMode;
+
+            // ToDo: auslagern?
+            if (isNewMode)
+            {
+                State = State.Active;
+            }
+
+            GrpAddress.Enabled = isEnabled && State == State.Active;
+            GrpPersonalData.Enabled = isEnabled && State == State.Active;
+            GrpContactData.Enabled = isEnabled && State == State.Active;
+            GrpEmploymentData.Enabled = isEnabled && State == State.Active;
+
+            CmdChangeStatus.Text = State == State.Active ? "Deaktivieren" : "Aktivieren";
+        }
+
         public void SetPresenter(EmployeeDetailPresenter employeeDetailPresenter)
         {
             this.presenter = employeeDetailPresenter;
@@ -209,6 +232,23 @@ namespace contact_manager.Views.Employees
         private void CmdSave_Click(object sender, EventArgs e)
         {
             this.presenter?.Save();
+        }
+
+        private void CmdProtocol_Click(object sender, EventArgs e)
+        {
+            // ToDo: protokollierung employee
+        }
+
+        private void CmdCancel_Click(object sender, EventArgs e)
+        {
+            // ToDo: cancel (wieder die daten von anfang an anzeigen?)
+            // wie soll es sich beim Abbrechen verhalten (auch für Customer noch einbauen)
+        }
+
+        private void CmdChangeStatus_Click(object sender, EventArgs e)
+        {
+            this.presenter?.ChangeStatus();
+            InitializeMode();
         }
     }
 }
