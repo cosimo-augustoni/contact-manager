@@ -1,5 +1,6 @@
 ﻿using contact_manager.Models.Data;
 using contact_manager.Models.Data.Customer;
+using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.Customer;
 using contact_manager.Views.Customers;
 
