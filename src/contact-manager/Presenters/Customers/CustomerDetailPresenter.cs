@@ -1,6 +1,10 @@
 ﻿using contact_manager.Models.Data.Customer;
+using contact_manager.Models.Data.History;
 using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.Customer;
+using contact_manager.Models.Domain.History;
+using contact_manager.Presenters.History;
+using contact_manager.Views;
 using contact_manager.Views.Customers;
 
 namespace contact_manager.Presenters.Customers;
@@ -9,17 +13,19 @@ public class CustomerDetailPresenter
 {
     private readonly ICustomerDetailDialog _dialog;
     private readonly ICustomerService _customerService;
+    private readonly IHistoryService _historyService;
     private readonly User _user;
     private long _customerId;
     private readonly bool _isNewMode;
 
-    public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService, User user, bool isNewMode)
+    public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService, User user, bool isNewMode, IHistoryService historyService)
     {
         this._dialog = dialog;
         this._user = user;
         this._isNewMode = isNewMode;
         this._dialog.SetPresenter(this);
         this._customerService = customerService;
+        this._historyService = historyService;
     }
 
     public bool IsReadOnly
@@ -109,5 +115,13 @@ public class CustomerDetailPresenter
             CustomerType = this._dialog.CustomerType
         };
         this._customerService.Save(customer);
+    }
+
+    public void OpenHistoryDialog()
+    {
+        var historyDialog = new HistoryDialog();
+        var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
+        historyPresenter.LoadPerson(this._customerId, PersonType.Customer);
+        historyDialog.ShowDialog();
     }
 }

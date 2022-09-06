@@ -10,7 +10,7 @@ namespace contact_manager.Views.Customers
 
         #region FormProperties
 
-        public string? CustomerNumber   
+        public string? CustomerNumber
         {
             get => this.TxtCustomerNumber.Text;
             set => this.TxtCustomerNumber.Text = value;
@@ -51,7 +51,7 @@ namespace contact_manager.Views.Customers
             get => (Sex)this.CmbSex.SelectedValue;
             set => this.CmbSex.SelectedValue = value;
         }
-        
+
         public string? AHV13
         {
             get => this.MTxtAHV13.Text;
@@ -135,7 +135,8 @@ namespace contact_manager.Views.Customers
             get => this.TxtFaxNumber.Text;
             set => this.TxtFaxNumber.Text = value;
         }
-        public CustomerType CustomerType {
+        public CustomerType CustomerType
+        {
             get => (CustomerType)this.CmbCustomerType.SelectedValue;
             set => this.CmbCustomerType.SelectedValue = value;
         }
@@ -146,13 +147,15 @@ namespace contact_manager.Views.Customers
             set => this.TxtCompanyName.Text = value;
         }
 
-        public string? CompanyContact {
+        public string? CompanyContact
+        {
             get => this.TxtCompanyContact.Text;
             set => this.TxtCompanyContact.Text = value;
         }
-        public string? CompanyAddress {
+        public string? CompanyAddress
+        {
             get => this.TxtCompanyAddress.Text;
-            set => this.TxtCompanyAddress.Text = value; 
+            set => this.TxtCompanyAddress.Text = value;
         }
         #endregion
 
@@ -206,16 +209,17 @@ namespace contact_manager.Views.Customers
             this.Close();
         }
 
-    // ToDo: wie kann man neue Notizen hinzufügen?
-    // ToDo: evtl. mit tabs arbeiten?
-    // wird ansonsten evtl. etwas zu unübersichtlich
-    // dies evtl. für die notizen, dann könnten wir dort wie eine übersicht machen wie auf der Hauptmaske
+        // ToDo: wie kann man neue Notizen hinzufügen?
+        // ToDo: evtl. mit tabs arbeiten?
+        // wird ansonsten evtl. etwas zu unübersichtlich
+        // dies evtl. für die notizen, dann könnten wir dort wie eine übersicht machen wie auf der Hauptmaske
 
-    private void TxtPostalCode_KeyPress(object sender, KeyPressEventArgs e) {
-      // ToDo: lassen wir nur zahlen zu?
-      // also nur schweizer adressen? => evt. masked-textbox verwenden?
-      e.Handled = !Char.IsDigit(e.KeyChar);
-    }
+        private void TxtPostalCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // ToDo: lassen wir nur zahlen zu?
+            // also nur schweizer adressen? => evt. masked-textbox verwenden?
+            e.Handled = !Char.IsDigit(e.KeyChar);
+        }
 
         private void CustomerDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -224,7 +228,7 @@ namespace contact_manager.Views.Customers
 
         private void CmdProtocol_Click(object sender, EventArgs e)
         {
-            // ToDo: protokollierung customer
+            presenter?.OpenHistoryDialog();
         }
 
         private void CmdShowCustomerNotes_Click(object sender, EventArgs e)

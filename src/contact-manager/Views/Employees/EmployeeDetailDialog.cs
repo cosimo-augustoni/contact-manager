@@ -236,7 +236,7 @@ namespace contact_manager.Views.Employees
 
         private void CmdProtocol_Click(object sender, EventArgs e)
         {
-            // ToDo: protokollierung employee
+            this.presenter?.OpenHistoryDialog();
         }
 
         private void CmdCancel_Click(object sender, EventArgs e)
