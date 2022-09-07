@@ -15,6 +15,7 @@
             this.LblNoteText.Text = noteText;
             Size sz = new Size(this.LblNoteText.Width, int.MaxValue);
             sz = TextRenderer.MeasureText(noteText, this.LblNoteText.Font, sz, TextFormatFlags.WordBreak);
+            this.PnlText.Height = sz.Height;
             this.LblNoteText.Height = sz.Height;
         }
     }

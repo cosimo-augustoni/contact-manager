@@ -27,6 +27,9 @@ namespace contact_manager.Presenters.Customers
 
         public void AddNewNoteFromText()
         {
+            if (string.IsNullOrEmpty(this._dialog.NewNoteText))
+                return;
+
             this._customerNoteService.CreateNewNote(this._customerId, this._dialog.NewNoteText, this._user.UserName);
             this._dialog.NewNoteText = string.Empty;
             this.LoadAllCustomerNotes();

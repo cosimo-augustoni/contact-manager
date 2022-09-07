@@ -35,26 +35,30 @@
             // 
             // PnlNotes
             // 
+            this.PnlNotes.AutoScroll = true;
             this.PnlNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PnlNotes.Location = new System.Drawing.Point(12, 157);
+            this.PnlNotes.Location = new System.Drawing.Point(5, 59);
+            this.PnlNotes.Margin = new System.Windows.Forms.Padding(1);
             this.PnlNotes.Name = "PnlNotes";
-            this.PnlNotes.Size = new System.Drawing.Size(1594, 743);
+            this.PnlNotes.Size = new System.Drawing.Size(658, 559);
             this.PnlNotes.TabIndex = 0;
             // 
             // TxtNewNote
             // 
-            this.TxtNewNote.Location = new System.Drawing.Point(12, 12);
+            this.TxtNewNote.Location = new System.Drawing.Point(5, 4);
+            this.TxtNewNote.Margin = new System.Windows.Forms.Padding(1);
             this.TxtNewNote.Multiline = true;
             this.TxtNewNote.Name = "TxtNewNote";
             this.TxtNewNote.PlaceholderText = "Neue Notiz erfassen";
-            this.TxtNewNote.Size = new System.Drawing.Size(1343, 139);
+            this.TxtNewNote.Size = new System.Drawing.Size(555, 53);
             this.TxtNewNote.TabIndex = 1;
             // 
             // CmdAddNote
             // 
-            this.CmdAddNote.Location = new System.Drawing.Point(1361, 93);
+            this.CmdAddNote.Location = new System.Drawing.Point(562, 36);
+            this.CmdAddNote.Margin = new System.Windows.Forms.Padding(1);
             this.CmdAddNote.Name = "CmdAddNote";
-            this.CmdAddNote.Size = new System.Drawing.Size(245, 58);
+            this.CmdAddNote.Size = new System.Drawing.Size(101, 21);
             this.CmdAddNote.TabIndex = 2;
             this.CmdAddNote.Text = "Erfassen";
             this.CmdAddNote.UseVisualStyleBackColor = true;
@@ -62,13 +66,17 @@
             // 
             // CustomerNotesDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1618, 912);
+            this.ClientSize = new System.Drawing.Size(667, 620);
             this.Controls.Add(this.CmdAddNote);
             this.Controls.Add(this.TxtNewNote);
             this.Controls.Add(this.PnlNotes);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(1);
+            this.MaximizeBox = false;
             this.Name = "CustomerNotesDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Notizen";
             this.ResumeLayout(false);
             this.PerformLayout();
