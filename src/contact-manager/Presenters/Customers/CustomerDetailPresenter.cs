@@ -2,24 +2,31 @@
 using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.Customer;
 using contact_manager.Views.Customers;
+using contact_manager.Views.Customers.CustomerNotes;
 
 namespace contact_manager.Presenters.Customers;
 
-public class CustomerDetailPresenter
+public class CustomerDetailPresenter : IPresenter
 {
     private readonly ICustomerDetailDialog _dialog;
     private readonly ICustomerService _customerService;
+    private readonly ICustomerNoteService _customerNotesService;
     private readonly User _user;
     private long _customerId;
-    private readonly bool _isNewMode;
 
-    public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService, User user, bool isNewMode)
+    public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService,
+        ICustomerNoteService customerNotesService, User user, bool isNewMode)
     {
         this._dialog = dialog;
         this._user = user;
-        this._isNewMode = isNewMode;
-        this._dialog.SetPresenter(this);
+        this.IsNewMode = isNewMode;
         this._customerService = customerService;
+        this._customerNotesService = customerNotesService;
+    }
+
+    public void Init()
+    {
+        this._dialog.SetPresenter(this);
     }
 
     public bool IsReadOnly
@@ -27,10 +34,7 @@ public class CustomerDetailPresenter
         get { return !this._user.CanWrite; }
     }
 
-    public bool IsNewMode
-    {
-        get { return this._isNewMode; }
-    }
+    public bool IsNewMode { get; }
 
     public void LoadCustomer(long id)
     {
@@ -109,5 +113,13 @@ public class CustomerDetailPresenter
             CustomerType = this._dialog.CustomerType
         };
         this._customerService.Save(customer);
+    }
+
+    public void OpenCustomerNotesDialog()
+    {
+        var dialog = new CustomerNotesDialog();
+        var presenter = new CustomerNotesPresenter(dialog, this._customerNotesService, this._customerId, this._user);
+        presenter.Init();
+        dialog.ShowDialog();
     }
 }

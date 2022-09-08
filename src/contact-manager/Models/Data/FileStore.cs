@@ -2,7 +2,7 @@
 
 namespace contact_manager.Models.Data;
 
-internal class FilePersonStore<T> : IPersonStore<T> where T : Person
+internal class FileStore<T> : IStore<T> where T : IObjectIdentifier
 {
     private readonly string dataDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}/Data";
 

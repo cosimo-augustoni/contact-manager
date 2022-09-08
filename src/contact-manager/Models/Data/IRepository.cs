@@ -1,6 +1,6 @@
 ﻿namespace contact_manager.Models.Data
 {
-    internal interface IPersonRepository<T> where T : Person
+    internal interface IRepository<T> where T : IObjectIdentifier
     {
         List<T> GetAll();
 

@@ -2,8 +2,8 @@
 
 namespace contact_manager.Models.Domain.Customer;
 
-internal interface ICustomerNoteService
+public interface ICustomerNoteService
 {
-    List<CustomerNote> GetAllNotesByCustomerId(long customerId);
-    void CreateNewNote(string text, long customerId);
+    List<CustomerNote> LoadAllNotesByCustomerId(long customerId);
+    void CreateNewNote(long customerId, string text, string createdBy);
 }
