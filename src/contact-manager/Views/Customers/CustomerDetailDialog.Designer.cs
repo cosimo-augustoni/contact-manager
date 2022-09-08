@@ -86,8 +86,6 @@
       this.CmdProtocol = new System.Windows.Forms.Button();
       this.CmdShowCustomerNotes = new System.Windows.Forms.Button();
       this.CustomerErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-      this.GrpNotes.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.NotesDataGridView)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.customerNoteBindingSource)).BeginInit();
       this.GrpCustomerData.SuspendLayout();
       this.GrpContactData.SuspendLayout();
