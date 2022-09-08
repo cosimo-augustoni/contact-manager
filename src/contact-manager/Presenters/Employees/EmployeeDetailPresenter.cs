@@ -5,7 +5,7 @@ using contact_manager.Views.Employees;
 
 namespace contact_manager.Presenters.Employees
 {
-    public class EmployeeDetailPresenter
+    public class EmployeeDetailPresenter : IPresenter
     {
         private readonly IEmployeeDetailDialog _dialog;
         private readonly IEmployeeService _employeeService;
@@ -20,6 +20,10 @@ namespace contact_manager.Presenters.Employees
             this._employeeService = employeeService;
             this._user = user;
             this._isNewMode = isNewMode;
+        }
+
+        public void Init()
+        {
             this._dialog.SetPresenter(this);
         }
 

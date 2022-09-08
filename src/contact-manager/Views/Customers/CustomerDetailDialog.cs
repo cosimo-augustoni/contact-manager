@@ -2,6 +2,7 @@
 using contact_manager.Models.Data;
 using contact_manager.Models.Data.Customer;
 using contact_manager.Presenters.Customers;
+using contact_manager.Views.Customers.CustomerNotes;
 
 namespace contact_manager.Views.Customers
 {
@@ -393,7 +394,7 @@ namespace contact_manager.Views.Customers
 
         private void CmdShowCustomerNotes_Click(object sender, EventArgs e)
         {
-            // todo: show customer notes
+            this.presenter?.OpenCustomerNotesDialog();
         }
 
         private void CmdChangeStatus_Click(object sender, EventArgs e)
