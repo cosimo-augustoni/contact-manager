@@ -1,7 +1,6 @@
 ﻿using contact_manager.Models.Data;
 using contact_manager.Models.Data.Customer;
 using contact_manager.Presenters.Customers;
-using contact_manager.Views.Customers.CustomerNotes;
 
 namespace contact_manager.Views.Customers
 {
@@ -202,6 +201,7 @@ namespace contact_manager.Views.Customers
         {
             // ToDo npa: rückmeldung, dass das speichern erfolgreich war?
             this.presenter?.Save();
+            CmdProtocol.Enabled = true;
         }
 
         private void CmdClose_Click(object sender, EventArgs e)

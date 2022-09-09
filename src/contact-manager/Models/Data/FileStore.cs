@@ -34,12 +34,11 @@ internal class FileStore<T> : IStore<T> where T : IObjectIdentifier
             var entityOld = entities[index];
 
             this._historyService.Add(entity, entityOld);
-            entities[index] = entity;
+            entityOld = entity;
         }
         else
         {
             this._historyService.Add(entity);
-
             entities.Add(entity);
         }
 

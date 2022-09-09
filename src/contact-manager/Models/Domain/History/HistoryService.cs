@@ -114,7 +114,7 @@ namespace contact_manager.Models.Domain.History
         }
         public void Add(IObjectIdentifier entityNew, IObjectIdentifier? entityOld = null)
         {
-            //CustomerNotes sollen nicht historisiert werden, deshalb die Abfrage auf -> is Person
+            //CustomerNotes müssen nicht historisiert werden, nur Personen
             if (entityNew is Person)
             {
                 var historyEntry = this.GetDifferences(entityNew, entityOld);
