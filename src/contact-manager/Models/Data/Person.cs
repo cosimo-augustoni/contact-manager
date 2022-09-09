@@ -1,6 +1,6 @@
 ﻿namespace contact_manager.Models.Data
 {
-    public class Person
+    public class Person : IObjectIdentifier
     {
         public long Id { get; init; }
         public Salutation Salutation { get; init; }

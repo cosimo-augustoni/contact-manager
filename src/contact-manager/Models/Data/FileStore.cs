@@ -3,7 +3,7 @@ using contact_manager.Models.Domain.History;
 
 namespace contact_manager.Models.Data;
 
-internal class FilePersonStore<T> : IPersonStore<T> where T : Person
+internal class FileStore<T> : IStore<T> where T : IObjectIdentifier
 {
     private readonly string dataDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}/Data";
 
@@ -12,7 +12,7 @@ internal class FilePersonStore<T> : IPersonStore<T> where T : Person
     private string FilePath => Path.Combine(this.dataDirectory, this.fileName);
 
     private readonly IHistoryService _historyService;
-    public FilePersonStore(IHistoryService historyService)
+    public FileStore(IHistoryService historyService)
     {
         this._historyService = historyService;
     }
@@ -25,35 +25,37 @@ internal class FilePersonStore<T> : IPersonStore<T> where T : Person
         return JsonSerializer.Deserialize<List<T>>(jsonString) ?? new List<T>();
     }
 
-    public void UpdateOrAdd(T person)
+    public void UpdateOrAdd(T entity)
     {
-        var persons = this.GetAll();
-        var index = persons.FindIndex(p => p.Id == person.Id);
+        var entities = this.GetAll();
+        var index = entities.FindIndex(p => p.Id == entity.Id);
         if (index != -1)
         {
-            var personOld = persons[index];
-            this._historyService.Add(person, personOld);
-            persons[index] = person;
+            var entityOld = entities[index];
+
+            this._historyService.Add(entity, entityOld);
+            entities[index] = entity;
         }
         else
         {
-            this._historyService.Add(person);
-            persons.Add(person);
+            this._historyService.Add(entity);
+
+            entities.Add(entity);
         }
 
-        this.Write(persons);
+        this.Write(entities);
     }
 
     public void Delete(long id)
     {
-        var persons = this.GetAll();
-        persons.RemoveAll(p => p.Id == id);
-        this.Write(persons);
+        var entities = this.GetAll();
+        entities.RemoveAll(p => p.Id == id);
+        this.Write(entities);
     }
 
-    private void Write(List<T> persons)
+    private void Write(List<T> entities)
     {
-        var jsonString = JsonSerializer.Serialize(persons);
+        var jsonString = JsonSerializer.Serialize(entities);
         Directory.CreateDirectory(this.dataDirectory);
         File.WriteAllText(this.FilePath, jsonString);
     }

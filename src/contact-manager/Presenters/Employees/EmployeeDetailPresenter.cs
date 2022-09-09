@@ -9,7 +9,7 @@ using contact_manager.Views.Employees;
 
 namespace contact_manager.Presenters.Employees
 {
-    public class EmployeeDetailPresenter
+    public class EmployeeDetailPresenter : IPresenter
     {
         private readonly IEmployeeDetailDialog _dialog;
         private readonly IEmployeeService _employeeService;
@@ -25,8 +25,12 @@ namespace contact_manager.Presenters.Employees
             this._employeeService = employeeService;
             this._user = user;
             this._isNewMode = isNewMode;
-            this._dialog.SetPresenter(this);
             this._historyService = historyService;
+        }
+
+        public void Init()
+        {
+            this._dialog.SetPresenter(this);
         }
 
         public bool IsReadOnly
@@ -125,7 +129,7 @@ namespace contact_manager.Presenters.Employees
         {
             var historyDialog = new HistoryDialog();
             var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
-            historyPresenter.LoadPerson(this._employeeId, PersonType.Employee);
+            historyPresenter.LoadPerson(this._employeeId, EntityType.Employee);
             historyDialog.ShowDialog();
         }
     }

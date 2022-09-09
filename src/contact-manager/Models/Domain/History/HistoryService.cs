@@ -112,36 +112,39 @@ namespace contact_manager.Models.Domain.History
         {
             _historyStore = historyStore;
         }
-        public void Add<T>(T personNew, T? personOld = null) where T : Person
+        public void Add(IObjectIdentifier entityNew, IObjectIdentifier? entityOld = null)
         {
-            var historyEntry = this.GetDifferences(personNew, personOld);
-            historyEntry.Diffs = historyEntry.Diffs.OrderBy(o => o.PropertyName).ToList();
-            historyEntry.personType = (personNew is Data.Customer.Customer) ? PersonType.Customer : PersonType.Employee;
-            this._historyStore.Add(historyEntry);
+            //CustomerNotes sollen nicht historisiert werden, deshalb die Abfrage auf -> is Person
+            if (entityNew is Person)
+            {
+                var historyEntry = this.GetDifferences(entityNew, entityOld);
+                historyEntry.Diffs = historyEntry.Diffs.OrderBy(o => o.PropertyName).ToList();
+                historyEntry.EntityType = (entityNew is Data.Customer.Customer) ? EntityType.Customer : EntityType.Employee;
+                this._historyStore.Add(historyEntry);
+            }
         }
 
-        public List<HistoryEntry> Get(long personId, PersonType personType)
+        public List<HistoryEntry> Get(long entityId, EntityType personType)
         {
-            return this._historyStore.Get(personId, personType).OrderByDescending(f => f.TimeStamp).ToList();
+            return this._historyStore.Get(entityId, personType).OrderByDescending(f => f.TimeStamp).ToList();
         }
 
-        private HistoryEntry GetDifferences<T>(T personNew, T? personOld = null) where T : Person
+        private HistoryEntry GetDifferences(IObjectIdentifier entityNew, IObjectIdentifier? entityOld)
         {
             var differences = new List<Difference>();
 
             var historyEntry = new HistoryEntry
             {
-                PersonId = personNew.Id,
+                EntityId = entityNew.Id,
                 TimeStamp = DateTime.Now,
                 Diffs = differences
             };
-
-            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var properties = entityNew.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             foreach (var property in properties)
             {
-                var valueNew = this.CleanAndFormatValue(property, personNew);
-                var valueOld = this.CleanAndFormatValue(property, personOld);
+                var valueNew = this.CleanAndFormatValue(property, entityNew);
+                var valueOld = this.CleanAndFormatValue(property, entityOld);
 
                 var hasDifference = this.HasDifference(valueNew, valueOld);
 
@@ -181,7 +184,7 @@ namespace contact_manager.Models.Domain.History
             return false;
         }
 
-        private object? CleanAndFormatValue(PropertyInfo property, Person? person = null)
+        private object? CleanAndFormatValue(PropertyInfo property, object? person = null)
         {
             object? propertyValue = null;
 

@@ -1,10 +1,10 @@
 ﻿namespace contact_manager.Models.Data
 {
-    internal interface IPersonStore<T> where T : Person
+    internal interface IStore<T> where T : IObjectIdentifier
     {
         List<T> GetAll();
 
-        void UpdateOrAdd(T person);
+        void UpdateOrAdd(T entity);
 
         void Delete(long id);
     }

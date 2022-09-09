@@ -2,8 +2,8 @@
 {
     public class HistoryEntry
     {
-        public long PersonId { get; set; }
-        public PersonType personType { get; set; }
+        public long EntityId { get; set; }
+        public EntityType EntityType { get; set; }
         public DateTime TimeStamp { get; set; }
         public List<Difference> Diffs { get; set; }
 

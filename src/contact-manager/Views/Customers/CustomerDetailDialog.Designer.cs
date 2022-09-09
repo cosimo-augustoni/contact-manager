@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-      this.GrpNotes = new System.Windows.Forms.GroupBox();
-      this.NotesDataGridView = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.customerNoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.GrpCustomerData = new System.Windows.Forms.GroupBox();
       this.TxtCompanyAddress = new System.Windows.Forms.TextBox();
@@ -90,62 +85,12 @@
       this.CmdSave = new System.Windows.Forms.Button();
       this.CmdProtocol = new System.Windows.Forms.Button();
       this.CmdShowCustomerNotes = new System.Windows.Forms.Button();
-      this.GrpNotes.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.NotesDataGridView)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.customerNoteBindingSource)).BeginInit();
       this.GrpCustomerData.SuspendLayout();
       this.GrpContactData.SuspendLayout();
       this.GrpAddress.SuspendLayout();
       this.GrpPersonalData.SuspendLayout();
       this.SuspendLayout();
-      // 
-      // GrpNotes
-      // 
-      this.GrpNotes.Controls.Add(this.NotesDataGridView);
-      this.GrpNotes.Location = new System.Drawing.Point(12, 331);
-      this.GrpNotes.Name = "GrpNotes";
-      this.GrpNotes.Size = new System.Drawing.Size(689, 202);
-      this.GrpNotes.TabIndex = 17;
-      this.GrpNotes.TabStop = false;
-      this.GrpNotes.Text = "Notizen";
-      // 
-      // NotesDataGridView
-      // 
-      this.NotesDataGridView.AllowUserToAddRows = false;
-      this.NotesDataGridView.AllowUserToDeleteRows = false;
-      this.NotesDataGridView.AutoGenerateColumns = false;
-      this.NotesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.NotesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-      this.NotesDataGridView.DataSource = this.customerNoteBindingSource;
-      this.NotesDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.NotesDataGridView.Location = new System.Drawing.Point(3, 19);
-      this.NotesDataGridView.Name = "NotesDataGridView";
-      this.NotesDataGridView.ReadOnly = true;
-      this.NotesDataGridView.RowHeadersWidth = 102;
-      this.NotesDataGridView.RowTemplate.Height = 25;
-      this.NotesDataGridView.Size = new System.Drawing.Size(683, 180);
-      this.NotesDataGridView.TabIndex = 18;
-      // 
-      // dataGridViewTextBoxColumn1
-      // 
-      this.dataGridViewTextBoxColumn1.DataPropertyName = "Text";
-      dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
-      this.dataGridViewTextBoxColumn1.HeaderText = "Text";
-      this.dataGridViewTextBoxColumn1.MinimumWidth = 200;
-      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-      this.dataGridViewTextBoxColumn1.ReadOnly = true;
-      this.dataGridViewTextBoxColumn1.Width = 475;
-      // 
-      // dataGridViewTextBoxColumn2
-      // 
-      this.dataGridViewTextBoxColumn2.DataPropertyName = "CreationTime";
-      this.dataGridViewTextBoxColumn2.HeaderText = "Erstellungsdatum";
-      this.dataGridViewTextBoxColumn2.MinimumWidth = 100;
-      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-      this.dataGridViewTextBoxColumn2.ReadOnly = true;
       // 
       // customerNoteBindingSource
       // 
@@ -688,14 +633,13 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1100, 550);
+      this.ClientSize = new System.Drawing.Size(1106, 388);
       this.Controls.Add(this.CmdShowCustomerNotes);
       this.Controls.Add(this.CmdProtocol);
       this.Controls.Add(this.CmdChangeStatus);
       this.Controls.Add(this.CmdCancel);
       this.Controls.Add(this.CmdSave);
       this.Controls.Add(this.GrpCustomerData);
-      this.Controls.Add(this.GrpNotes);
       this.Controls.Add(this.GrpContactData);
       this.Controls.Add(this.GrpAddress);
       this.Controls.Add(this.GrpPersonalData);
@@ -706,8 +650,6 @@
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Kunde";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustomerDetailDialog_FormClosing);
-      this.GrpNotes.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.NotesDataGridView)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.customerNoteBindingSource)).EndInit();
       this.GrpCustomerData.ResumeLayout(false);
       this.GrpCustomerData.PerformLayout();
@@ -722,8 +664,6 @@
         }
 
         #endregion
-    private GroupBox GrpNotes;
-    private DataGridView NotesDataGridView;
     private DataGridViewTextBoxColumn textDataGridViewTextBoxColumn;
     private DataGridViewTextBoxColumn creationTimeDataGridViewTextBoxColumn;
     private BindingSource customerNoteBindingSource;
@@ -782,7 +722,5 @@
         private Button CmdShowCustomerNotes;
         private TextBox TxtCompanyAddress;
         private Label LblCompanyAddress;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

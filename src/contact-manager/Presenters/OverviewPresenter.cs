@@ -10,24 +10,31 @@ using contact_manager.Views.Employees;
 
 namespace contact_manager.Presenters
 {
-    public class OverviewPresenter
+    public class OverviewPresenter : IPresenter
     {
         private readonly IOverviewView _overviewView;
         private readonly ICustomerService _customerService;
+        private readonly ICustomerNoteService _customerNotesService;
         private readonly IEmployeeService _employeeService;
         private readonly IHistoryService _historyService;
         private readonly User _user;
 
         public OverviewPresenter(IOverviewView overviewView, ICustomerService customerService,
+            ICustomerNoteService customerNotesService,
             IEmployeeService employeeService, User user, IHistoryService historyService)
         {
             this._overviewView = overviewView;
             this._user = user;
-            this._overviewView.SetPresenter(this);
 
             this._customerService = customerService;
+            this._customerNotesService = customerNotesService;
             this._employeeService = employeeService;
             this._historyService = historyService;
+        }
+
+        public void Init()
+        {
+            this._overviewView.SetPresenter(this);
         }
 
         public bool IsReadOnly
@@ -45,6 +52,7 @@ namespace contact_manager.Presenters
         {
             var dialog = new EmployeeDetailDialog();
             var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: true, _historyService);
+            dialogPresenter.Init();
             dialogPresenter.LoadNewEmployee();
             dialog.InitializeMode();
             dialog.Closed += (_, _) => this.LoadAllEmployees();
@@ -55,6 +63,7 @@ namespace contact_manager.Presenters
         {
             var dialog = new EmployeeDetailDialog();
             var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: false, _historyService);
+            dialogPresenter.Init();
             dialogPresenter.LoadEmployee(employeeId);
             dialog.InitializeMode();
             dialog.Closed += (_, _) => this.LoadAllEmployees();
@@ -77,7 +86,8 @@ namespace contact_manager.Presenters
         public void OpenCreateNewCustomerDialog()
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._user, isNewMode: true, _historyService);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: true, _historyService);
+            dialogPresenter.Init();
             dialogPresenter.LoadNewCustomer();
             dialog.InitializeMode();
             dialog.Closed += (_, _) => this.LoadAllCustomers();
@@ -87,7 +97,8 @@ namespace contact_manager.Presenters
         public void OpenEditCustomerDialog(long customerId)
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._user, isNewMode: false, _historyService);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: false, _historyService);
+            dialogPresenter.Init();
             dialogPresenter.LoadCustomer(customerId);
             dialog.InitializeMode();
             // ToDo: nach dem laden der daten noch die Controls aktualisieren

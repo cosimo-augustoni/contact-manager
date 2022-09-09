@@ -2,7 +2,7 @@
 
 namespace contact_manager.Models.Data.History
 {
-    public enum PersonType
+    public enum EntityType
     {
         [Display(Name = "Kunde")]
         Customer = 1,

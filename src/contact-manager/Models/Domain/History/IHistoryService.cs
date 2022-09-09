@@ -5,7 +5,7 @@ namespace contact_manager.Models.Domain.History
 {
     public interface IHistoryService
     {
-        void Add<T>(T personNew, T? personOld = null) where T : Person;
-        List<HistoryEntry> Get(long personId, PersonType personType);
+        void Add(IObjectIdentifier entityNew, IObjectIdentifier? entityOld = null);
+        List<HistoryEntry> Get(long entityId, EntityType personType);
     }
 }

@@ -1,11 +1,15 @@
 ﻿namespace contact_manager.Models.Data.Customer
 {
-    public class CustomerNote
+    public class CustomerNote : IObjectIdentifier
     {
-        public string Text { get; init; }
+        public long Id { get; init; }
 
-        public DateTime CreationTime { get; init; }
+        public string Text { get; init; } = string.Empty;
+
+        public DateTime CreatedAt { get; init; }
 
         public long CustomerId { get; init; }
+
+        public string CreatedBy { get; init; } = "unbekannt";
     }
 }

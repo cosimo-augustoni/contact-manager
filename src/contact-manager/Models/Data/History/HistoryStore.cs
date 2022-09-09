@@ -10,7 +10,7 @@ namespace contact_manager.Models.Data.History
 
         private string FilePath => Path.Combine(this._dataDirectory, this._fileName);
 
-        public List<HistoryEntry> Get(long personId, PersonType personType)
+        public List<HistoryEntry> Get(long personId, EntityType personType)
         {
             if (!File.Exists(this.FilePath))
                 return new List<HistoryEntry>();
@@ -20,7 +20,7 @@ namespace contact_manager.Models.Data.History
 
             if (historyEntries.Count > 0)
             {
-                return historyEntries.FindAll(f => f.PersonId == personId && f.personType == personType);
+                return historyEntries.FindAll(f => f.EntityId == personId && f.EntityType == personType);
             }
 
             return new List<HistoryEntry>();

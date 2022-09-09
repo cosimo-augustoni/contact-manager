@@ -90,7 +90,7 @@ namespace contact_manager.Views
             if (historyEntry != null)
             {
 
-                return $"Änderungshistorie {historyEntry.personType.GetDisplayName()} Nr: {(historyEntry.PersonId).ToString().PadLeft(5, '0')}";
+                return $"Änderungshistorie {historyEntry.EntityType.GetDisplayName()} Nr: {(historyEntry.EntityId).ToString().PadLeft(5, '0')}";
             }
 
             return "";

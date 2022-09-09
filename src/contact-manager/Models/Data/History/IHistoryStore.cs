@@ -2,7 +2,7 @@
 {
     internal interface IHistoryStore
     {
-        List<HistoryEntry> Get(long personId, PersonType personType);
+        List<HistoryEntry> Get(long personId, EntityType personType);
         void Add(HistoryEntry variance);
     }
 }

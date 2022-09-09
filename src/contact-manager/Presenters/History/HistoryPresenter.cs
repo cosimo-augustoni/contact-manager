@@ -17,7 +17,7 @@ namespace contact_manager.Presenters.History
             this._historyDialog.SetPresenter(this);
         }
 
-        public void LoadPerson(long id, PersonType personType)
+        public void LoadPerson(long id, EntityType personType)
         {
             var historyEntries = _historyService.Get(id, personType);
             this._historyDialog.SetHistoryList(historyEntries);
