@@ -53,17 +53,6 @@ namespace contact_manager.Views.Customers.CustomerNotes
             {
                 MessageBox.Show("Kontrollieren Sie die Angaben", "Erfassen", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            //CustomerNoteErrorProvider.Clear();
-            //if (string.IsNullOrWhiteSpace(TxtNewNote.Text))
-            //{
-            //    CustomerNoteErrorProvider.SetError(TxtNewNote, "Geben Sie eine Notiz ein.");
-                
-            //}
-            //else
-            //{
-            //    this.presenter?.AddNewNoteFromText();
-            //}
         }
 
         private void TxtNewNote_Validating(object sender, System.ComponentModel.CancelEventArgs e)
