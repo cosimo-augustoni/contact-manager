@@ -64,12 +64,13 @@ namespace contact_manager.Views.Employees
             {
                 if (value == null)
                 {
-                    this.DateTimePickerDateOfBirth.CustomFormat = "";
-                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime.Date;
+                    this.DateTimePickerDateOfBirth.CustomFormat = " ";
+                    this.DateTimePickerDateOfBirth.Format = DateTimePickerFormat.Custom;
+                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime;
                 }
                 else
                 {
-                    this.DateTimePickerDateOfBirth.CustomFormat = "dd.MM.yyyy";
+                    this.DateTimePickerDateOfBirth.Format = DateTimePickerFormat.Short;
                     this.DateTimePickerDateOfBirth.Value = value.Value.Date;
                 }
             }
@@ -154,12 +155,13 @@ namespace contact_manager.Views.Employees
             {
                 if (value == null)
                 {
-                    this.DatePickerExitDate.CustomFormat = "";
-                    this.DatePickerExitDate.Value = DateTimePicker.MinimumDateTime.Date;
+                    this.DatePickerExitDate.CustomFormat = " ";
+                    this.DatePickerExitDate.Format = DateTimePickerFormat.Custom;
+                    this.DatePickerExitDate.Value = DateTimePicker.MinimumDateTime;
                 }
                 else
                 {
-                    this.DatePickerExitDate.CustomFormat = "dd.MM.yyyy";
+                    this.DatePickerExitDate.Format = DateTimePickerFormat.Short;
                     this.DatePickerExitDate.Value = value.Value.Date;
                 }
             }
@@ -249,6 +251,30 @@ namespace contact_manager.Views.Employees
         {
             this.presenter?.ChangeStatus();
             InitializeMode();
+        }
+
+        private void DatePickerExitDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                this.ExitDate = null;
+        }
+
+        private void DatePickerExitDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.ExitDate != null)
+                this.DatePickerExitDate.Format = DateTimePickerFormat.Short;
+        }
+        
+        private void DatePickerDateOfBirth_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                this.DateOfBirth = null;
+        }
+        
+        private void DateTimePickerDateOfBirth_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.DateOfBirth != null)
+                this.DateTimePickerDateOfBirth.Format = DateTimePickerFormat.Short;
         }
     }
 }

@@ -72,6 +72,7 @@ public class CustomerDetailPresenter : IPresenter
     public void LoadNewCustomer()
     {
         this._customerId = this._customerService.GetNewId();
+        this._dialog.DateOfBirth = null;
     }
 
     public void ChangeStatus()
