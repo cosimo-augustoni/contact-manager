@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       this.CmdCreateNewCustomer = new System.Windows.Forms.Button();
       this.TcPerson = new System.Windows.Forms.TabControl();
       this.TpCustomer = new System.Windows.Forms.TabPage();
@@ -40,17 +42,6 @@
       this.CmdSearchCustomer = new System.Windows.Forms.Button();
       this.TxtSearchCustomer = new System.Windows.Forms.TextBox();
       this.dataGridViewCustomer = new System.Windows.Forms.DataGridView();
-      this.customerNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.customerTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.sexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.streetNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.streetNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.zipCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.TpEmployee = new System.Windows.Forms.TabPage();
       this.CmdImportEmployee = new System.Windows.Forms.Button();
@@ -74,6 +65,17 @@
       this.zipCodeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.cityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      this.customerNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.customerTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.sexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.streetNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.streetNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.zipCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.TcPerson.SuspendLayout();
       this.TpCustomer.SuspendLayout();
       this.PnlSearchCustomer.SuspendLayout();
@@ -237,99 +239,6 @@
       this.dataGridViewCustomer.Size = new System.Drawing.Size(1106, 464);
       this.dataGridViewCustomer.TabIndex = 3;
       this.dataGridViewCustomer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomer_CellDoubleClick);
-      // 
-      // customerNumberDataGridViewTextBoxColumn
-      // 
-      this.customerNumberDataGridViewTextBoxColumn.DataPropertyName = "CustomerNumber";
-      this.customerNumberDataGridViewTextBoxColumn.HeaderText = "Kunden-Nr.";
-      this.customerNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.customerNumberDataGridViewTextBoxColumn.Name = "customerNumberDataGridViewTextBoxColumn";
-      this.customerNumberDataGridViewTextBoxColumn.ReadOnly = true;
-      // 
-      // firstNameDataGridViewTextBoxColumn
-      // 
-      this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-      this.firstNameDataGridViewTextBoxColumn.HeaderText = "Vorname";
-      this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-      this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-      // 
-      // lastNameDataGridViewTextBoxColumn
-      // 
-      this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-      this.lastNameDataGridViewTextBoxColumn.HeaderText = "Nachname";
-      this.lastNameDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-      this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
-      // 
-      // stateDataGridViewTextBoxColumn
-      // 
-      this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
-      this.stateDataGridViewTextBoxColumn.HeaderText = "Status";
-      this.stateDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
-      this.stateDataGridViewTextBoxColumn.ReadOnly = true;
-      this.stateDataGridViewTextBoxColumn.Width = 60;
-      // 
-      // customerTypeDataGridViewTextBoxColumn
-      // 
-      this.customerTypeDataGridViewTextBoxColumn.DataPropertyName = "CustomerType";
-      this.customerTypeDataGridViewTextBoxColumn.HeaderText = "Kundentyp";
-      this.customerTypeDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.customerTypeDataGridViewTextBoxColumn.Name = "customerTypeDataGridViewTextBoxColumn";
-      this.customerTypeDataGridViewTextBoxColumn.ReadOnly = true;
-      // 
-      // dateOfBirthDataGridViewTextBoxColumn
-      // 
-      this.dateOfBirthDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirth";
-      this.dateOfBirthDataGridViewTextBoxColumn.HeaderText = "Geburtstag";
-      this.dateOfBirthDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.dateOfBirthDataGridViewTextBoxColumn.Name = "dateOfBirthDataGridViewTextBoxColumn";
-      this.dateOfBirthDataGridViewTextBoxColumn.ReadOnly = true;
-      // 
-      // sexDataGridViewTextBoxColumn
-      // 
-      this.sexDataGridViewTextBoxColumn.DataPropertyName = "Sex";
-      this.sexDataGridViewTextBoxColumn.HeaderText = "Geschlecht";
-      this.sexDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.sexDataGridViewTextBoxColumn.Name = "sexDataGridViewTextBoxColumn";
-      this.sexDataGridViewTextBoxColumn.ReadOnly = true;
-      // 
-      // streetNameDataGridViewTextBoxColumn
-      // 
-      this.streetNameDataGridViewTextBoxColumn.DataPropertyName = "StreetName";
-      this.streetNameDataGridViewTextBoxColumn.HeaderText = "Strasse";
-      this.streetNameDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.streetNameDataGridViewTextBoxColumn.Name = "streetNameDataGridViewTextBoxColumn";
-      this.streetNameDataGridViewTextBoxColumn.ReadOnly = true;
-      this.streetNameDataGridViewTextBoxColumn.Width = 120;
-      // 
-      // streetNumberDataGridViewTextBoxColumn
-      // 
-      this.streetNumberDataGridViewTextBoxColumn.DataPropertyName = "StreetNumber";
-      this.streetNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
-      this.streetNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.streetNumberDataGridViewTextBoxColumn.Name = "streetNumberDataGridViewTextBoxColumn";
-      this.streetNumberDataGridViewTextBoxColumn.ReadOnly = true;
-      this.streetNumberDataGridViewTextBoxColumn.Width = 40;
-      // 
-      // zipCodeDataGridViewTextBoxColumn
-      // 
-      this.zipCodeDataGridViewTextBoxColumn.DataPropertyName = "ZipCode";
-      this.zipCodeDataGridViewTextBoxColumn.HeaderText = "PLZ";
-      this.zipCodeDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.zipCodeDataGridViewTextBoxColumn.Name = "zipCodeDataGridViewTextBoxColumn";
-      this.zipCodeDataGridViewTextBoxColumn.ReadOnly = true;
-      this.zipCodeDataGridViewTextBoxColumn.Width = 60;
-      // 
-      // cityDataGridViewTextBoxColumn
-      // 
-      this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
-      this.cityDataGridViewTextBoxColumn.HeaderText = "Ort";
-      this.cityDataGridViewTextBoxColumn.MinimumWidth = 12;
-      this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
-      this.cityDataGridViewTextBoxColumn.ReadOnly = true;
-      this.cityDataGridViewTextBoxColumn.Width = 120;
       // 
       // customerBindingSource
       // 
@@ -518,6 +427,9 @@
       // dateOfBirthDataGridViewTextBoxColumn1
       // 
       this.dateOfBirthDataGridViewTextBoxColumn1.DataPropertyName = "DateOfBirth";
+      dataGridViewCellStyle2.Format = "d";
+      dataGridViewCellStyle2.NullValue = null;
+      this.dateOfBirthDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
       this.dateOfBirthDataGridViewTextBoxColumn1.HeaderText = "Geburtstag";
       this.dateOfBirthDataGridViewTextBoxColumn1.MinimumWidth = 12;
       this.dateOfBirthDataGridViewTextBoxColumn1.Name = "dateOfBirthDataGridViewTextBoxColumn1";
@@ -571,6 +483,102 @@
       // 
       this.employeeBindingSource.DataSource = typeof(contact_manager.Models.Data.Employee.Employee);
       // 
+      // customerNumberDataGridViewTextBoxColumn
+      // 
+      this.customerNumberDataGridViewTextBoxColumn.DataPropertyName = "CustomerNumber";
+      this.customerNumberDataGridViewTextBoxColumn.HeaderText = "Kunden-Nr.";
+      this.customerNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.customerNumberDataGridViewTextBoxColumn.Name = "customerNumberDataGridViewTextBoxColumn";
+      this.customerNumberDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // firstNameDataGridViewTextBoxColumn
+      // 
+      this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+      this.firstNameDataGridViewTextBoxColumn.HeaderText = "Vorname";
+      this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+      this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // lastNameDataGridViewTextBoxColumn
+      // 
+      this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+      this.lastNameDataGridViewTextBoxColumn.HeaderText = "Nachname";
+      this.lastNameDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+      this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // stateDataGridViewTextBoxColumn
+      // 
+      this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
+      this.stateDataGridViewTextBoxColumn.HeaderText = "Status";
+      this.stateDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
+      this.stateDataGridViewTextBoxColumn.ReadOnly = true;
+      this.stateDataGridViewTextBoxColumn.Width = 60;
+      // 
+      // customerTypeDataGridViewTextBoxColumn
+      // 
+      this.customerTypeDataGridViewTextBoxColumn.DataPropertyName = "CustomerType";
+      this.customerTypeDataGridViewTextBoxColumn.HeaderText = "Kundentyp";
+      this.customerTypeDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.customerTypeDataGridViewTextBoxColumn.Name = "customerTypeDataGridViewTextBoxColumn";
+      this.customerTypeDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // dateOfBirthDataGridViewTextBoxColumn
+      // 
+      this.dateOfBirthDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirth";
+      dataGridViewCellStyle1.Format = "d";
+      dataGridViewCellStyle1.NullValue = null;
+      this.dateOfBirthDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+      this.dateOfBirthDataGridViewTextBoxColumn.HeaderText = "Geburtstag";
+      this.dateOfBirthDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.dateOfBirthDataGridViewTextBoxColumn.Name = "dateOfBirthDataGridViewTextBoxColumn";
+      this.dateOfBirthDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // sexDataGridViewTextBoxColumn
+      // 
+      this.sexDataGridViewTextBoxColumn.DataPropertyName = "Sex";
+      this.sexDataGridViewTextBoxColumn.HeaderText = "Geschlecht";
+      this.sexDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.sexDataGridViewTextBoxColumn.Name = "sexDataGridViewTextBoxColumn";
+      this.sexDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // streetNameDataGridViewTextBoxColumn
+      // 
+      this.streetNameDataGridViewTextBoxColumn.DataPropertyName = "StreetName";
+      this.streetNameDataGridViewTextBoxColumn.HeaderText = "Strasse";
+      this.streetNameDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.streetNameDataGridViewTextBoxColumn.Name = "streetNameDataGridViewTextBoxColumn";
+      this.streetNameDataGridViewTextBoxColumn.ReadOnly = true;
+      this.streetNameDataGridViewTextBoxColumn.Width = 120;
+      // 
+      // streetNumberDataGridViewTextBoxColumn
+      // 
+      this.streetNumberDataGridViewTextBoxColumn.DataPropertyName = "StreetNumber";
+      this.streetNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
+      this.streetNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.streetNumberDataGridViewTextBoxColumn.Name = "streetNumberDataGridViewTextBoxColumn";
+      this.streetNumberDataGridViewTextBoxColumn.ReadOnly = true;
+      this.streetNumberDataGridViewTextBoxColumn.Width = 40;
+      // 
+      // zipCodeDataGridViewTextBoxColumn
+      // 
+      this.zipCodeDataGridViewTextBoxColumn.DataPropertyName = "ZipCode";
+      this.zipCodeDataGridViewTextBoxColumn.HeaderText = "PLZ";
+      this.zipCodeDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.zipCodeDataGridViewTextBoxColumn.Name = "zipCodeDataGridViewTextBoxColumn";
+      this.zipCodeDataGridViewTextBoxColumn.ReadOnly = true;
+      this.zipCodeDataGridViewTextBoxColumn.Width = 60;
+      // 
+      // cityDataGridViewTextBoxColumn
+      // 
+      this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
+      this.cityDataGridViewTextBoxColumn.HeaderText = "Ort";
+      this.cityDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
+      this.cityDataGridViewTextBoxColumn.ReadOnly = true;
+      this.cityDataGridViewTextBoxColumn.Width = 120;
+      // 
       // OverviewView
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -612,17 +620,6 @@
         private Button CmdEditCustomer;
         private Button CmdSearchCustomer;
         private Button CmdResetSearchCustomer;
-        private DataGridViewTextBoxColumn customerNumberDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn customerTypeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn streetNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private Panel panel1;
         private Button CmdResetSearchEmployee;
         private Button CmdSearchEmployee;
@@ -630,6 +627,8 @@
         private Button CmdDeleteEmployee;
         private Button CmdEditEmployee;
         private Button CmdCreateNewEmployee;
+        private Button CmdImportCustomer;
+        private Button CmdImportEmployee;
         private DataGridViewTextBoxColumn employeeNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn1;
@@ -641,7 +640,16 @@
         private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn1;
-        private Button CmdImportCustomer;
-        private Button CmdImportEmployee;
+        private DataGridViewTextBoxColumn customerNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn customerTypeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn streetNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
     }
 }

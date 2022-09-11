@@ -1,13 +1,14 @@
 ﻿using contact_manager.Models.Data;
 using contact_manager.Models.Data.Customer;
+using contact_manager.Models.Domain.Validation;
 using contact_manager.Presenters.Customers;
-using contact_manager.Views.Customers.CustomerNotes;
 
 namespace contact_manager.Views.Customers
 {
     public partial class CustomerDetailDialog : Form, ICustomerDetailDialog
     {
         private CustomerDetailPresenter? presenter;
+        private readonly CustomerValidator _customerValidator;
 
         #region FormProperties
 
@@ -21,6 +22,11 @@ namespace contact_manager.Views.Customers
         {
             get => (Salutation)this.CmbSalutation.SelectedValue;
             set => this.CmbSalutation.SelectedValue = value;
+        }
+
+        public string CustomerDisplayText
+        {
+            get { return CustomerNumber + " - " + LastName + " " + FirstName; }
         }
 
         public string? FirstName
@@ -61,18 +67,19 @@ namespace contact_manager.Views.Customers
 
         public DateTime? DateOfBirth
         {
+            // todo: muss nochmals angeschaut werden
             get => this.DateTimePickerDateOfBirth.Value != DateTimePicker.MinimumDateTime ? this.DateTimePickerDateOfBirth.Value : null;
             set
             {
                 if (value == null)
                 {
                     this.DateTimePickerDateOfBirth.CustomFormat = "";
-                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime;
+                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime.Date;
                 }
                 else
                 {
                     this.DateTimePickerDateOfBirth.CustomFormat = "dd.MM.yyyy";
-                    this.DateTimePickerDateOfBirth.Value = value.Value;
+                    this.DateTimePickerDateOfBirth.Value = value.Value.Date;
                 }
             }
         }
@@ -164,6 +171,7 @@ namespace contact_manager.Views.Customers
             this.CmbCustomerType.SetDataSource<CustomerType>();
             this.CmbSex.SetDataSource<Sex>();
             this.CmbState.SetDataSource<State>();
+            this._customerValidator = new CustomerValidator(CustomerErrorProvider, this);
         }
 
         public void SetPresenter(CustomerDetailPresenter customerDetailPresenter)
@@ -176,12 +184,11 @@ namespace contact_manager.Views.Customers
             var isEnabled = !this.presenter?.IsReadOnly ?? false;
             var isNewMode = this.presenter?.IsNewMode ?? false;
             CmdSave.Enabled = isEnabled;
-            CmdCancel.Enabled = isEnabled;
+            CmdCancel.Enabled = isEnabled && !isNewMode;
             CmdChangeStatus.Enabled = isEnabled && !isNewMode;
             CmdShowCustomerNotes.Enabled = !isNewMode;
             CmdProtocol.Enabled = !isNewMode;
 
-            // ToDo: auslagern?
             if (isNewMode)
             {
                 State = State.Active;
@@ -198,7 +205,16 @@ namespace contact_manager.Views.Customers
         private void CmdSave_Click(object sender, EventArgs e)
         {
             // ToDo npa: rückmeldung, dass das speichern erfolgreich war?
-            this.presenter?.Save();
+
+            if (_customerValidator.Validate())
+            {
+                this.presenter?.Save();
+            }
+            else
+            {
+                MessageBox.Show("Fehler beim Speichern" + Environment.NewLine
+                    + "Kontrollien Sie die Eingaben und versuchen Sie es erneut.", "Speichern", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CmdClose_Click(object sender, EventArgs e)
@@ -207,16 +223,10 @@ namespace contact_manager.Views.Customers
             this.Close();
         }
 
-    // ToDo: wie kann man neue Notizen hinzufügen?
-    // ToDo: evtl. mit tabs arbeiten?
-    // wird ansonsten evtl. etwas zu unübersichtlich
-    // dies evtl. für die notizen, dann könnten wir dort wie eine übersicht machen wie auf der Hauptmaske
-
-    private void TxtPostalCode_KeyPress(object sender, KeyPressEventArgs e) {
-      // ToDo: lassen wir nur zahlen zu?
-      // also nur schweizer adressen? => evt. masked-textbox verwenden?
-      e.Handled = !Char.IsDigit(e.KeyChar);
-    }
+        private void TxtZipCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Char.IsDigit(e.KeyChar);
+        }
 
         private void CustomerDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -226,17 +236,91 @@ namespace contact_manager.Views.Customers
         private void CmdProtocol_Click(object sender, EventArgs e)
         {
             // ToDo: protokollierung customer
+            // nur ermöglichen, wenn keine Änderungen in der Maske vorhanden sind
         }
 
         private void CmdShowCustomerNotes_Click(object sender, EventArgs e)
         {
-            this.presenter?.OpenCustomerNotesDialog();
+            this.presenter?.OpenCustomerNotesDialog(CustomerDisplayText);
         }
 
         private void CmdChangeStatus_Click(object sender, EventArgs e)
         {
             this.presenter?.ChangeStatus();
             InitializeMode();
+        }
+
+        private void CmdCancel_Click(object sender, EventArgs e)
+        {
+            // todo: daten in Maske auf default zurücksetzen bei neu
+            // und bei bearbeiten sollen die Werte vor der bearbeitung angezeigt werden (sofern noch nicht gespeichert)
+            // auch beim Mitarbeiter
+        }
+
+
+        private void CmbSalutation_SelectedValueChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(CmbSalutation, null);
+        }
+
+        private void TxtFirstName_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtFirstName, null);
+        }
+
+        private void TxtLastname_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtLastname, null);
+        }
+
+        private void TxtStreetName_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtStreetName, null);
+        }
+
+        private void TxtZipCode_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtZipCode, null);
+        }
+
+        private void MTxtAHV13_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(MTxtAHV13, null);
+        }
+
+        private void DateTimePickerDateOfBirth_ValueChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(DateTimePickerDateOfBirth, null);
+        }
+
+        private void TxtCity_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtCity, null);
+        }
+
+        private void TxtEMailAddress_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtEMailAddress, null);
+        }
+
+        private void TxtPhoneNumberPrivate_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtPhoneNumberPrivate, null);
+        }
+
+        private void TxtPhoneNumberMobile_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtPhoneNumberMobile, null);
+        }
+
+        private void TxtPhoneNumberBusiness_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtPhoneNumberBusiness, null);
+        }
+
+        private void TxtFaxNumber_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtFaxNumber, null);
         }
     }
 }

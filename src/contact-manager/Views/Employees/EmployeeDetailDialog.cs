@@ -65,12 +65,12 @@ namespace contact_manager.Views.Employees
                 if (value == null)
                 {
                     this.DateTimePickerDateOfBirth.CustomFormat = "";
-                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime;
+                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime.Date;
                 }
                 else
                 {
                     this.DateTimePickerDateOfBirth.CustomFormat = "dd.MM.yyyy";
-                    this.DateTimePickerDateOfBirth.Value = value.Value;
+                    this.DateTimePickerDateOfBirth.Value = value.Value.Date;
                 }
             }
         }
@@ -144,7 +144,7 @@ namespace contact_manager.Views.Employees
         public DateTime EntranceDate
         {
             get => this.DatePickerEntranceDate.Value;
-            set => this.DatePickerEntranceDate.Value = value;
+            set => this.DatePickerEntranceDate.Value = value.Date;
         }
 
         public DateTime? ExitDate
@@ -155,12 +155,12 @@ namespace contact_manager.Views.Employees
                 if (value == null)
                 {
                     this.DatePickerExitDate.CustomFormat = "";
-                    this.DatePickerExitDate.Value = DateTimePicker.MinimumDateTime;
+                    this.DatePickerExitDate.Value = DateTimePicker.MinimumDateTime.Date;
                 }
                 else
                 {
                     this.DatePickerExitDate.CustomFormat = "dd.MM.yyyy";
-                    this.DatePickerExitDate.Value = value.Value;
+                    this.DatePickerExitDate.Value = value.Value.Date;
                 }
             }
         }
@@ -198,7 +198,7 @@ namespace contact_manager.Views.Employees
             var isEnabled = !this.presenter?.IsReadOnly ?? false;
             var isNewMode = this.presenter?.IsNewMode ?? false;
             CmdSave.Enabled = isEnabled;
-            CmdCancel.Enabled = isEnabled;
+            CmdCancel.Enabled = isEnabled && !isNewMode;
             CmdChangeStatus.Enabled = isEnabled && !isNewMode;
             CmdProtocol.Enabled = !isNewMode;
 
