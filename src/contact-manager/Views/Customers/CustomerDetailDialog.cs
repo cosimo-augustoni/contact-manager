@@ -243,7 +243,6 @@ namespace contact_manager.Views.Customers
 
         private void CmdShowCustomerNotes_Click(object sender, EventArgs e)
         {
-            // ToDo npa: nur ermöglichen, wenn keine Änderungen vorhanden sind
             this.presenter?.OpenCustomerNotesDialog(CustomerDisplayText);
         }
 

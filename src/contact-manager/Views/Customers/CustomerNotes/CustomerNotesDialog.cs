@@ -9,14 +9,17 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         private readonly Label emptyLabel;
 
-        public CustomerNotesDialog(string customerDisplayText)
+        public CustomerNotesDialog()
         {
             InitializeComponent();
             this.emptyLabel = new Label();
             emptyLabel.Text = "Keine Notizen vorhanden.";
             this.emptyLabel.AutoSize = true;
             this.PnlNotes.Controls.Add(emptyLabel);
+        }
 
+        public void SetTitle(string customerDisplayText)
+        {
             this.Text = $"Notizen von Kunde: {customerDisplayText}";
         }
 

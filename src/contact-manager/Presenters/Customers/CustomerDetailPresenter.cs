@@ -117,9 +117,10 @@ public class CustomerDetailPresenter : IPresenter
 
     public void OpenCustomerNotesDialog(string customerDisplayText)
     {
-        var dialog = new CustomerNotesDialog(customerDisplayText);
+        var dialog = new CustomerNotesDialog();
         var presenter = new CustomerNotesPresenter(dialog, this._customerNotesService, this._customerId, this._user);
         presenter.Init();
+        presenter.SetTitle(customerDisplayText);
         dialog.ShowDialog();
     }
 }
