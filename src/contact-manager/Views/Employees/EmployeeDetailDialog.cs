@@ -198,7 +198,7 @@ namespace contact_manager.Views.Employees
             var isEnabled = !this.presenter?.IsReadOnly ?? false;
             var isNewMode = this.presenter?.IsNewMode ?? false;
             CmdSave.Enabled = isEnabled;
-            CmdCancel.Enabled = isEnabled;
+            CmdCancel.Enabled = isEnabled && !isNewMode;
             CmdChangeStatus.Enabled = isEnabled && !isNewMode;
             CmdProtocol.Enabled = !isNewMode;
 

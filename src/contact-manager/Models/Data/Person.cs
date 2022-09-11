@@ -6,6 +6,7 @@
         public Salutation Salutation { get; init; }
         public string? FirstName { get; init; }
         public string? LastName { get; init; }
+        // todo: DateOfBirth mit Uhrzeit 00:00 speichern
         public DateTime? DateOfBirth { get; init; }
         public Sex Sex { get; init; }
         public string? Title { get; init; }

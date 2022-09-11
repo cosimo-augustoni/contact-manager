@@ -9,13 +9,15 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         private readonly Label emptyLabel;
 
-        public CustomerNotesDialog()
+        public CustomerNotesDialog(string customerDisplayText)
         {
             InitializeComponent();
             this.emptyLabel = new Label();
             emptyLabel.Text = "Keine Notizen vorhanden.";
             this.emptyLabel.AutoSize = true;
             this.PnlNotes.Controls.Add(emptyLabel);
+
+            this.Text = $"Notizen von Kunde: {customerDisplayText}";
         }
 
         public void SetPresenter(CustomerNotesPresenter notesPresenter)
@@ -44,7 +46,38 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         private void CmdAddNote_Click(object sender, EventArgs e)
         {
-            this.presenter?.AddNewNoteFromText();
+            if (ValidateChildren(ValidationConstraints.Enabled)) {
+                this.presenter?.AddNewNoteFromText();
+            }
+            else
+            {
+                MessageBox.Show("Kontrollieren Sie die Angaben", "Erfassen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //CustomerNoteErrorProvider.Clear();
+            //if (string.IsNullOrWhiteSpace(TxtNewNote.Text))
+            //{
+            //    CustomerNoteErrorProvider.SetError(TxtNewNote, "Geben Sie eine Notiz ein.");
+                
+            //}
+            //else
+            //{
+            //    this.presenter?.AddNewNoteFromText();
+            //}
+        }
+
+        private void TxtNewNote_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(NewNoteText))
+            {
+                CustomerNoteErrorProvider.SetError(TxtNewNote, "Geben Sie eine Notiz ein.");
+                TxtNewNote.Focus();
+                e.Cancel = true;
+            }
+            else
+            {
+                CustomerNoteErrorProvider.SetError(TxtNewNote, null);
+            }
         }
     }
 }

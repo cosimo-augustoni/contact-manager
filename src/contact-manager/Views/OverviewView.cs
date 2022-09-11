@@ -105,7 +105,6 @@ namespace contact_manager.Views
 
         private void dataGridViewCustomer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // ToDo npa: testen
             EditCustomer();
         }
 

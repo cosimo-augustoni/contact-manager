@@ -51,7 +51,7 @@
       this.TxtEMailAddress = new System.Windows.Forms.TextBox();
       this.LblMail = new System.Windows.Forms.Label();
       this.GrpAddress = new System.Windows.Forms.GroupBox();
-      this.TxtZipCode = new System.Windows.Forms.MaskedTextBox();
+      this.TxtZipCode = new System.Windows.Forms.TextBox();
       this.LblCity = new System.Windows.Forms.Label();
       this.TxtCity = new System.Windows.Forms.TextBox();
       this.LblPostalCode = new System.Windows.Forms.Label();
@@ -204,8 +204,10 @@
       // 
       this.TxtPhoneNumberMobile.Location = new System.Drawing.Point(151, 74);
       this.TxtPhoneNumberMobile.Name = "TxtPhoneNumberMobile";
+      this.TxtPhoneNumberMobile.PlaceholderText = "+41 xx xxx xx xx";
       this.TxtPhoneNumberMobile.Size = new System.Drawing.Size(183, 23);
       this.TxtPhoneNumberMobile.TabIndex = 24;
+      this.TxtPhoneNumberMobile.TextChanged += new System.EventHandler(this.TxtPhoneNumberMobile_TextChanged);
       // 
       // LblPhoneNumberMobile
       // 
@@ -220,8 +222,10 @@
       // 
       this.TxtFaxNumber.Location = new System.Drawing.Point(151, 132);
       this.TxtFaxNumber.Name = "TxtFaxNumber";
+      this.TxtFaxNumber.PlaceholderText = "+41 xx xxx xx xx";
       this.TxtFaxNumber.Size = new System.Drawing.Size(183, 23);
       this.TxtFaxNumber.TabIndex = 26;
+      this.TxtFaxNumber.TextChanged += new System.EventHandler(this.TxtFaxNumber_TextChanged);
       // 
       // LblFaxBusiness
       // 
@@ -236,8 +240,10 @@
       // 
       this.TxtPhoneNumberBusiness.Location = new System.Drawing.Point(151, 103);
       this.TxtPhoneNumberBusiness.Name = "TxtPhoneNumberBusiness";
+      this.TxtPhoneNumberBusiness.PlaceholderText = "+41 xx xxx xx xx";
       this.TxtPhoneNumberBusiness.Size = new System.Drawing.Size(183, 23);
       this.TxtPhoneNumberBusiness.TabIndex = 25;
+      this.TxtPhoneNumberBusiness.TextChanged += new System.EventHandler(this.TxtPhoneNumberBusiness_TextChanged);
       // 
       // LblPhoneBusiness
       // 
@@ -252,8 +258,10 @@
       // 
       this.TxtPhoneNumberPrivate.Location = new System.Drawing.Point(151, 45);
       this.TxtPhoneNumberPrivate.Name = "TxtPhoneNumberPrivate";
+      this.TxtPhoneNumberPrivate.PlaceholderText = "+41 xx xxx xx xx";
       this.TxtPhoneNumberPrivate.Size = new System.Drawing.Size(183, 23);
       this.TxtPhoneNumberPrivate.TabIndex = 23;
+      this.TxtPhoneNumberPrivate.TextChanged += new System.EventHandler(this.TxtPhoneNumberPrivate_TextChanged);
       // 
       // LblPhonePrivate
       // 
@@ -270,6 +278,7 @@
       this.TxtEMailAddress.Name = "TxtEMailAddress";
       this.TxtEMailAddress.Size = new System.Drawing.Size(183, 23);
       this.TxtEMailAddress.TabIndex = 22;
+      this.TxtEMailAddress.TextChanged += new System.EventHandler(this.TxtEMailAddress_TextChanged);
       // 
       // LblMail
       // 
@@ -299,11 +308,12 @@
       // 
       // TxtZipCode
       // 
-      this.TxtZipCode.Location = new System.Drawing.Point(163, 45);
-      this.TxtZipCode.Mask = "0000";
+      this.TxtZipCode.Location = new System.Drawing.Point(161, 45);
       this.TxtZipCode.Name = "TxtZipCode";
-      this.TxtZipCode.Size = new System.Drawing.Size(181, 23);
+      this.TxtZipCode.Size = new System.Drawing.Size(183, 23);
       this.TxtZipCode.TabIndex = 14;
+      this.TxtZipCode.TextChanged += new System.EventHandler(this.TxtZipCode_TextChanged);
+      this.TxtZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtZipCode_KeyPress);
       // 
       // LblCity
       // 
@@ -320,11 +330,12 @@
       this.TxtCity.Name = "TxtCity";
       this.TxtCity.Size = new System.Drawing.Size(183, 23);
       this.TxtCity.TabIndex = 15;
+      this.TxtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
       // 
       // LblPostalCode
       // 
       this.LblPostalCode.AutoSize = true;
-      this.LblPostalCode.Location = new System.Drawing.Point(8, 50);
+      this.LblPostalCode.Location = new System.Drawing.Point(6, 50);
       this.LblPostalCode.Name = "LblPostalCode";
       this.LblPostalCode.Size = new System.Drawing.Size(67, 15);
       this.LblPostalCode.TabIndex = 26;
@@ -352,6 +363,7 @@
       this.TxtStreetName.Name = "TxtStreetName";
       this.TxtStreetName.Size = new System.Drawing.Size(183, 23);
       this.TxtStreetName.TabIndex = 12;
+      this.TxtStreetName.TextChanged += new System.EventHandler(this.TxtStreetName_TextChanged);
       // 
       // LblStreet
       // 
@@ -402,7 +414,7 @@
       // LblNationality
       // 
       this.LblNationality.AutoSize = true;
-      this.LblNationality.Location = new System.Drawing.Point(406, 137);
+      this.LblNationality.Location = new System.Drawing.Point(404, 135);
       this.LblNationality.Name = "LblNationality";
       this.LblNationality.Size = new System.Drawing.Size(69, 15);
       this.LblNationality.TabIndex = 25;
@@ -415,6 +427,7 @@
       this.MTxtAHV13.Name = "MTxtAHV13";
       this.MTxtAHV13.Size = new System.Drawing.Size(183, 23);
       this.MTxtAHV13.TabIndex = 8;
+      this.MTxtAHV13.TextChanged += new System.EventHandler(this.MTxtAHV13_TextChanged);
       // 
       // TxtTitle
       // 
@@ -454,7 +467,7 @@
       // LblSsn
       // 
       this.LblSsn.AutoSize = true;
-      this.LblSsn.Location = new System.Drawing.Point(406, 77);
+      this.LblSsn.Location = new System.Drawing.Point(404, 82);
       this.LblSsn.Name = "LblSsn";
       this.LblSsn.Size = new System.Drawing.Size(52, 15);
       this.LblSsn.TabIndex = 17;
@@ -463,7 +476,7 @@
       // LblGender
       // 
       this.LblGender.AutoSize = true;
-      this.LblGender.Location = new System.Drawing.Point(403, 48);
+      this.LblGender.Location = new System.Drawing.Point(404, 48);
       this.LblGender.Name = "LblGender";
       this.LblGender.Size = new System.Drawing.Size(65, 15);
       this.LblGender.TabIndex = 15;
@@ -492,11 +505,12 @@
       this.TxtFirstName.Name = "TxtFirstName";
       this.TxtFirstName.Size = new System.Drawing.Size(183, 23);
       this.TxtFirstName.TabIndex = 3;
+      this.TxtFirstName.TextChanged += new System.EventHandler(this.TxtFirstName_TextChanged);
       // 
       // LblStatus
       // 
       this.LblStatus.AutoSize = true;
-      this.LblStatus.Location = new System.Drawing.Point(406, 19);
+      this.LblStatus.Location = new System.Drawing.Point(404, 19);
       this.LblStatus.Name = "LblStatus";
       this.LblStatus.Size = new System.Drawing.Size(39, 15);
       this.LblStatus.TabIndex = 13;
@@ -526,6 +540,7 @@
       this.TxtLastname.Name = "TxtLastname";
       this.TxtLastname.Size = new System.Drawing.Size(183, 23);
       this.TxtLastname.TabIndex = 4;
+      this.TxtLastname.TextChanged += new System.EventHandler(this.TxtLastname_TextChanged);
       // 
       // LblBirthDate
       // 
@@ -553,6 +568,7 @@
       this.DateTimePickerDateOfBirth.Name = "DateTimePickerDateOfBirth";
       this.DateTimePickerDateOfBirth.Size = new System.Drawing.Size(183, 23);
       this.DateTimePickerDateOfBirth.TabIndex = 9;
+      this.DateTimePickerDateOfBirth.ValueChanged += new System.EventHandler(this.DateTimePickerDateOfBirth_ValueChanged);
       // 
       // CmbSalutation
       // 
@@ -561,6 +577,7 @@
       this.CmbSalutation.Name = "CmbSalutation";
       this.CmbSalutation.Size = new System.Drawing.Size(183, 23);
       this.CmbSalutation.TabIndex = 2;
+      this.CmbSalutation.SelectedValueChanged += new System.EventHandler(this.CmbSalutation_SelectedValueChanged);
       // 
       // CmdChangeStatus
       // 
@@ -588,6 +605,7 @@
       this.CmdCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       this.CmdCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       this.CmdCancel.UseVisualStyleBackColor = true;
+      this.CmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
       // 
       // CmdSave
       // 
@@ -639,6 +657,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
       this.ClientSize = new System.Drawing.Size(1106, 388);
       this.Controls.Add(this.CmdShowCustomerNotes);
       this.Controls.Add(this.CmdProtocol);
@@ -729,6 +748,6 @@
         private TextBox TxtCompanyAddress;
         private Label LblCompanyAddress;
         private ErrorProvider CustomerErrorProvider;
-        private MaskedTextBox TxtZipCode;
+        private TextBox TxtZipCode;
     }
 }

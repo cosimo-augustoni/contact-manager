@@ -1,4 +1,5 @@
 ﻿using System.Net.Mail;
+using System.Text.RegularExpressions;
 using contact_manager.Models.Data;
 using contact_manager.Models.Data.Customer;
 using contact_manager.Presenters.Customers;
@@ -9,6 +10,8 @@ namespace contact_manager.Views.Customers
     public partial class CustomerDetailDialog : Form, ICustomerDetailDialog
     {
         private CustomerDetailPresenter? presenter;
+        // todo: noch auslagern, dass es für den MA auch verwendet werden kann
+        string _pattern = @"^(\+?)(\d{2,4})(\s?)(\-?)((\(0\))?)(\s?)(\d{2})(\s?)(\-?)(\d{3})(\s?)(\-?)(\d{2})(\s?)(\-?)(\d{2})";
 
         #region FormProperties
 
@@ -22,6 +25,11 @@ namespace contact_manager.Views.Customers
         {
             get => (Salutation)this.CmbSalutation.SelectedValue;
             set => this.CmbSalutation.SelectedValue = value;
+        }
+
+        public string CustomerDisplayText
+        {
+            get { return CustomerNumber + " - " + LastName + " " + FirstName; }
         }
 
         public string? FirstName
@@ -178,16 +186,14 @@ namespace contact_manager.Views.Customers
             var isEnabled = !this.presenter?.IsReadOnly ?? false;
             var isNewMode = this.presenter?.IsNewMode ?? false;
             CmdSave.Enabled = isEnabled;
-            CmdCancel.Enabled = isEnabled;
+            CmdCancel.Enabled = isEnabled && !isNewMode;
             CmdChangeStatus.Enabled = isEnabled && !isNewMode;
             CmdShowCustomerNotes.Enabled = !isNewMode;
             CmdProtocol.Enabled = !isNewMode;
 
-            // ToDo: auslagern?
             if (isNewMode)
             {
                 State = State.Active;
-                DateOfBirth = null;
             }
 
             GrpAddress.Enabled = isEnabled && State == State.Active;
@@ -219,7 +225,49 @@ namespace contact_manager.Views.Customers
             this.Close();
         }
 
-        private bool Validate()
+        private void TxtZipCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Char.IsDigit(e.KeyChar);
+        }
+
+        private void CustomerDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // todo: prüfen, ob änderungen vorhanden sind
+        }
+
+        private void CmdProtocol_Click(object sender, EventArgs e)
+        {
+            // ToDo: protokollierung customer
+            // nur ermöglichen, wenn keine Änderungen in der Maske vorhanden sind
+        }
+
+        private void CmdShowCustomerNotes_Click(object sender, EventArgs e)
+        {
+            // ToDo npa: nur ermöglichen, wenn keine Änderungen vorhanden sind
+            this.presenter?.OpenCustomerNotesDialog(CustomerDisplayText);
+        }
+
+        private void CmdChangeStatus_Click(object sender, EventArgs e)
+        {
+            this.presenter?.ChangeStatus();
+            InitializeMode();
+        }
+
+        private void CmdCancel_Click(object sender, EventArgs e)
+        {
+            // todo: daten in Maske auf default zurücksetzen bei neu
+            // und bei bearbeiten sollen die Werte vor der bearbeitung angezeigt werden (sofern noch nicht gespeichert)
+            // auch beim Mitarbeiter
+        }
+
+
+        //----------------------------------------------------------------------------------------------------
+        #region Validation
+        //----------------------------------------------------------------------------------------------------
+
+        // todo: in separate klasse auslagern?
+
+        private new bool Validate()
         {
             List<Control> controlsWithError = new List<Control>();
             CustomerErrorProvider.Clear();
@@ -231,7 +279,13 @@ namespace contact_manager.Views.Customers
             ValidateStreetName(controlsWithError);
             ValidateZipCode(controlsWithError);
             ValidateCity(controlsWithError);
-            VaidateEMailAddress(controlsWithError);
+            ValidateAHV13(controlsWithError);
+            ValidateContactInformations(controlsWithError);
+            ValidateEMailAddress(controlsWithError);
+            ValidatePhoneNumberPrivate(controlsWithError);
+            ValidatePhoneNumberBusiness(controlsWithError);
+            ValidatePhoneNumberMobile(controlsWithError);
+            ValidateFaxNumber(controlsWithError);
 
             var firstControlWithError = controlsWithError.FirstOrDefault();
             if (firstControlWithError != null)
@@ -240,6 +294,23 @@ namespace contact_manager.Views.Customers
             }
 
             return !controlsWithError.Any();
+        }
+
+        private void ValidateContactInformations(List<Control> controlsWithError)
+        {
+            // ToDo: prüfen, dass mindestens eine Kontaktinformation angegeben wurde
+            var emailHasValue = !string.IsNullOrWhiteSpace(EMailAddress);
+            var phonePrivateHasValue = !string.IsNullOrWhiteSpace(PhoneNumberPrivate);
+            var mobilePhoneHasValue = !string.IsNullOrWhiteSpace(PhoneNumberMobile);
+            var phoneBusinessHasValue = !string.IsNullOrWhiteSpace(PhoneNumberBusiness);
+            var faxHasValue = !string.IsNullOrWhiteSpace(FaxNumber);
+
+            if (!emailHasValue && !phonePrivateHasValue && !mobilePhoneHasValue && !phoneBusinessHasValue && !faxHasValue)
+            {
+                String error = "Geben Sie mindestens eine Kontaktinformation an.";
+                CustomerErrorProvider.SetError(TxtEMailAddress, error);
+                controlsWithError.Add(TxtEMailAddress);
+            }
         }
 
         private void ValidateSalutation(List<Control> controlsWithError)
@@ -270,16 +341,23 @@ namespace contact_manager.Views.Customers
         }
         private void ValidateDateOfBirth(List<Control> controlsWithError)
         {
+            // ToDo npa: der Wert im Geburtsdatum ist immer der heutige tag bei neu
             if (!DateOfBirth.HasValue || DateOfBirth == DateTimePicker.MinimumDateTime)
             {
                 CustomerErrorProvider.SetError(DateTimePickerDateOfBirth, "Geben Sie das Geburtsdatum ein.");
                 controlsWithError.Add(DateTimePickerDateOfBirth);
             }
+            else if (DateOfBirth.Value.Date > DateTime.Today)
+            {
+                CustomerErrorProvider.SetError(DateTimePickerDateOfBirth, "Das Geburtsdatum darf nicht in der Zukunft liegen.");
+                controlsWithError.Add(DateTimePickerDateOfBirth);
+            }
         }
-            
+
         private void ValidateStreetName(List<Control> controlsWithError)
         {
-            if (string.IsNullOrWhiteSpace(StreetName)) {
+            if (string.IsNullOrWhiteSpace(StreetName))
+            {
                 CustomerErrorProvider.SetError(TxtStreetName, "Geben Sie die Strasse ein.");
                 controlsWithError.Add(TxtStreetName);
             }
@@ -287,9 +365,9 @@ namespace contact_manager.Views.Customers
 
         private void ValidateZipCode(List<Control> controlsWithError)
         {
-            if (string.IsNullOrWhiteSpace(ZipCode))
+            if (string.IsNullOrWhiteSpace(ZipCode) || ZipCode.Length < 4)
             {
-                CustomerErrorProvider.SetError(TxtZipCode, "Geben Sie die PLZ ein.");
+                CustomerErrorProvider.SetError(TxtZipCode, "Geben Sie eine gültige PLZ ein.");
                 controlsWithError.Add(TxtZipCode);
             }
         }
@@ -303,11 +381,10 @@ namespace contact_manager.Views.Customers
             }
         }
 
-        private void VaidateEMailAddress(List<Control> controlsWithError)
+        private void ValidateEMailAddress(List<Control> controlsWithError)
         {
             if (!String.IsNullOrEmpty(EMailAddress))
             {
-                // todo: email auf gültiges format prüfen
                 try
                 {
                     MailAddress mailAddress = new MailAddress(EMailAddress);
@@ -320,87 +397,183 @@ namespace contact_manager.Views.Customers
             }
         }
 
+        private void ValidatePhoneNumberPrivate(List<Control> controlsWithError)
+        {
+            if (String.IsNullOrEmpty(PhoneNumberPrivate) || Regex.IsMatch(PhoneNumberPrivate, _pattern))
+            {
+                CustomerErrorProvider.SetError(TxtPhoneNumberPrivate, null);
+            }
+            else
+            {
+                CustomerErrorProvider.SetError(TxtPhoneNumberPrivate, "Format der Telefonnummer ist ungültig.");
+                controlsWithError.Add(TxtPhoneNumberPrivate);
+            }
+        }
+
+        private void ValidatePhoneNumberMobile(List<Control> controlsWithError)
+        {
+            if (String.IsNullOrEmpty(PhoneNumberMobile) || Regex.IsMatch(PhoneNumberMobile, _pattern))
+            {
+                CustomerErrorProvider.SetError(TxtPhoneNumberMobile, null);
+            }
+            else
+            {
+                CustomerErrorProvider.SetError(TxtPhoneNumberMobile, "Format der Mobile-Nr. ist ungültig.");
+                controlsWithError.Add(TxtPhoneNumberMobile);
+            }
+        }
+
+        private void ValidatePhoneNumberBusiness(List<Control> controlsWithError)
+        {
+            if (String.IsNullOrEmpty(PhoneNumberBusiness) || Regex.IsMatch(PhoneNumberBusiness, _pattern))
+            {
+                CustomerErrorProvider.SetError(TxtPhoneNumberBusiness, null);
+            }
+            else
+            {
+                CustomerErrorProvider.SetError(TxtPhoneNumberBusiness, "Format der Telefonnummer ist ungültig.");
+                controlsWithError.Add(TxtPhoneNumberBusiness);
+            }
+        }
+
+        private void ValidateFaxNumber(List<Control> controlsWithError)
+        {
+            if (String.IsNullOrEmpty(FaxNumber) || Regex.IsMatch(FaxNumber, _pattern))
+            {
+                CustomerErrorProvider.SetError(TxtFaxNumber, null);
+            }
+            else
+            {
+                CustomerErrorProvider.SetError(TxtFaxNumber, "Format der Fax-Nummer ist ungültig.");
+                controlsWithError.Add(TxtPhoneNumberBusiness);
+            }
+        }
+
+        public static Boolean bIsEAN13Valid(String sValue)
+        {
+            sValue = sValue.Replace(".", "");
+            if (sValue.Length != 13)
+            {
+                return false;
+            }
+            Char checkdigit = GetEAN13Checkdigit(sValue.Substring(0, 12));
+            if (checkdigit == sValue[12])
+            {
+                return true;
+            }
+            return false;
+        }
+        //----------------------------------------------------------------------------------------------------
+        /// <summary>Returns the EAN 13 check digit or ' ' if string is not a valid EAN 13.</summary>
+        /// <param name="sValue">The EAN 13.</param>
+        /// <returns>Check digit if [EAN 13 is valid]; otherwise, ' '.</returns>
+        public static Char GetEAN13Checkdigit(String sValue)
+        {
+            sValue = sValue.Replace(".", "");
+            if (sValue.Length != 12)
+            {
+                return ' ';
+            }
+            return GetGS1CheckDigit(sValue);
+        }
+        //----------------------------------------------------------------------------------------------------
+        /// <summary>Returns the check digit for GS1 data structures or ' ' if string is not an entirely numeric.</summary>
+        /// <param name="value">The GS1 data structure.</param>
+        /// <returns>Check digit if string is valid, otherwise ' '.</returns>
+        public static Char GetGS1CheckDigit(String value)
+        {
+            if (value.Any(c => c - '0' < 0 || c - '0' > 9))
+            {
+                return ' ';
+            }
+            Int32 factor = 3;
+            Int32 sum = 0;
+            for (Int32 index = value.Length; index > 0; index--)
+            {
+                Int32 digit = value[index - 1] - '0';
+                sum += digit * factor;
+                factor = 4 - factor;
+            }
+            Int32 checkDigit = ((10 - (sum % 10)) % 10 + '0');
+            return (Char)checkDigit;
+        }
+
         private void ValidateAHV13(List<Control> controlsWithError)
         {
             if (!String.IsNullOrEmpty(AHV13))
             {
-                // ToDo npa: auf gültiges format prüfen
-
-                //public String validateSsn(String ssn)
-                //{
-                //    String error = null;
-                //    if (!StringT.isNullOrEmpty(ssn))
-                //    {
-                //        if (ssn.length() != SSN_VALID_LENGTH)
-                //        {
-                //            error = _resourceProvider.getString(R.string.ErrorInvalidSsn);
-                //        }
-                //        else
-                //        {
-                //            String newSsn = ssn.replace(".", "");
-                //            if (StringT.isNullOrWhiteSpace(newSsn) || !StringT.isEAN13Valid(newSsn))
-                //            {
-                //                error = _resourceProvider.getString(R.string.ErrorInvalidSsn);
-                //            }
-                //        }
-                //    }
-
-                //    return error;
-                //}
-
+                if (!bIsEAN13Valid(AHV13))
+                {
+                    CustomerErrorProvider.SetError(MTxtAHV13, "AHV-Nr. hat ungültiges Format.");
+                    controlsWithError.Add(MTxtAHV13);
+                }
             }
         }
 
-        public static Boolean isEAN13Valid(String value)
+        private void CmbSalutation_SelectedValueChanged(object sender, EventArgs e)
         {
-            value = value.Replace(".", "");
-            if (value.Length != 12)
-            {
-                return false;
-            }
-
-            return true;
-            //char givenCheckDigit = value.charAt(EAN_13_POSITION_CHECK_DIGIT);
-            //if (givenCheckDigit == EAN_13_INVALID_CHECK_DIGIT)
-            //{
-            //    return false;
-            //}
-            //Character calculatedCheckDigit = getEAN13CheckDigit(value.substring(0, EAN_13_LENGTH_DIGITS));
-            //return givenCheckDigit == calculatedCheckDigit;
+            CustomerErrorProvider.SetError(CmbSalutation, null);
         }
 
-
-
-        // ToDo: wie kann man neue Notizen hinzufügen?
-        // ToDo: evtl. mit tabs arbeiten?
-        // wird ansonsten evtl. etwas zu unübersichtlich
-        // dies evtl. für die notizen, dann könnten wir dort wie eine übersicht machen wie auf der Hauptmaske
-
-        private void TxtPostalCode_KeyPress(object sender, KeyPressEventArgs e) {
-      // ToDo: lassen wir nur zahlen zu?
-      // also nur schweizer adressen? => evt. masked-textbox verwenden?
-      e.Handled = !Char.IsDigit(e.KeyChar);
-    }
-
-        private void CustomerDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
+        private void TxtFirstName_TextChanged(object sender, EventArgs e)
         {
-            // todo: prüfen, ob änderungen vorhanden sind
+            CustomerErrorProvider.SetError(TxtFirstName, null);
         }
 
-        private void CmdProtocol_Click(object sender, EventArgs e)
+        private void TxtLastname_TextChanged(object sender, EventArgs e)
         {
-            // ToDo: protokollierung customer
+            CustomerErrorProvider.SetError(TxtLastname, null);
         }
 
-        private void CmdShowCustomerNotes_Click(object sender, EventArgs e)
+        private void TxtStreetName_TextChanged(object sender, EventArgs e)
         {
-            this.presenter?.OpenCustomerNotesDialog();
+            CustomerErrorProvider.SetError(TxtStreetName, null);
         }
 
-        private void CmdChangeStatus_Click(object sender, EventArgs e)
+        private void TxtZipCode_TextChanged(object sender, EventArgs e)
         {
-            this.presenter?.ChangeStatus();
-            InitializeMode();
+            CustomerErrorProvider.SetError(TxtZipCode, null);
         }
+
+        private void MTxtAHV13_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(MTxtAHV13, null);
+        }
+
+        private void DateTimePickerDateOfBirth_ValueChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(DateTimePickerDateOfBirth, null);
+        }
+
+        private void TxtCity_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtCity, null);
+        }
+
+        private void TxtEMailAddress_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtEMailAddress, null);
+        }
+
+        private void TxtPhoneNumberPrivate_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtPhoneNumberPrivate, null);
+        }
+
+        private void TxtPhoneNumberMobile_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtPhoneNumberMobile, null);
+        }
+
+        private void TxtPhoneNumberBusiness_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtPhoneNumberBusiness, null);
+        }
+
+        private void TxtFaxNumber_TextChanged(object sender, EventArgs e)
+        {
+            CustomerErrorProvider.SetError(TxtFaxNumber, null);
+        }
+        #endregion // Validation
     }
 }
