@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using contact_manager.Models.Domain.History;
 
 namespace contact_manager.Models.Data;
 
@@ -11,11 +10,6 @@ internal class FileStore<T> : IStore<T> where T : IObjectIdentifier
 
     private string FilePath => Path.Combine(this.dataDirectory, this.fileName);
 
-    private readonly IHistoryService _historyService;
-    public FileStore(IHistoryService historyService)
-    {
-        this._historyService = historyService;
-    }
     public List<T> GetAll()
     {
         if (!File.Exists(this.FilePath))
@@ -31,14 +25,10 @@ internal class FileStore<T> : IStore<T> where T : IObjectIdentifier
         var index = entities.FindIndex(p => p.Id == entity.Id);
         if (index != -1)
         {
-            var entityOld = entities[index];
-
-            this._historyService.Add(entity, entityOld);
-            entityOld = entity;
+            entities[index] = entity;
         }
         else
         {
-            this._historyService.Add(entity);
             entities.Add(entity);
         }
 

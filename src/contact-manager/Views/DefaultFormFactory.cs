@@ -26,17 +26,18 @@ namespace contact_manager.Views
 
         public OverviewView CreateOverview(User user)
         {
-
-            var overviewView = new OverviewView();
-            var historyStore = new HistoryStore();
-            var historyService = new HistoryService(historyStore);
-            var customerRepository = new Repository<Customer>(new FileStore<Customer>(historyService));
+            var customerRepository = new RepositoryWithHistorization<Customer>();
             var customerService = new CustomerService(customerRepository);
-            var employeeRepository = new Repository<Employee>(new FileStore<Employee>(historyService));
+
+            var employeeRepository = new RepositoryWithHistorization<Employee>();
             var employeeService = new EmployeeService(employeeRepository);
-            var customerNoteRepository = new Repository<CustomerNote>(new FileStore<CustomerNote>(historyService));
+
+            var customerNoteRepository = new Repository<CustomerNote>(new FileStore<CustomerNote>());
             var customerNotesService = new CustomerNoteService(customerNoteRepository);
 
+            var historyService = new HistoryService(new Repository<HistoryEntry>(new FileStore<HistoryEntry>()));
+
+            var overviewView = new OverviewView();
             var overviewPresenter = new OverviewPresenter(overviewView, customerService, customerNotesService, employeeService, user, historyService);
             overviewPresenter.Init();
             overviewPresenter.LoadAllCustomers();

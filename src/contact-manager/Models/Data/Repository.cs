@@ -19,9 +19,9 @@ internal class Repository<T> : IRepository<T> where T : IObjectIdentifier
         return this._store.GetAll().First(c => c.Id == id);
     }
 
-    public void Save(T person)
+    public void Save(T entity)
     {
-        this._store.UpdateOrAdd(person);
+        this._store.UpdateOrAdd(entity);
     }
 
     public void Delete(long id)
@@ -32,6 +32,6 @@ internal class Repository<T> : IRepository<T> where T : IObjectIdentifier
     public long GetNewId()
     {
         var persons = this._store.GetAll();
-        return persons.Count > 0 ? persons.Max(p => p.Id) + 1 : 0;
+        return persons.Count > 0 ? persons.Max(p => p.Id) + 1 : 1;
     }
 }
