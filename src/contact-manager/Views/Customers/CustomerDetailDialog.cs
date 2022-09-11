@@ -77,12 +77,12 @@ namespace contact_manager.Views.Customers
                 if (value == null)
                 {
                     this.DateTimePickerDateOfBirth.CustomFormat = "";
-                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime;
+                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime.Date;
                 }
                 else
                 {
                     this.DateTimePickerDateOfBirth.CustomFormat = "dd.MM.yyyy";
-                    this.DateTimePickerDateOfBirth.Value = value.Value;
+                    this.DateTimePickerDateOfBirth.Value = value.Value.Date;
                 }
             }
         }
