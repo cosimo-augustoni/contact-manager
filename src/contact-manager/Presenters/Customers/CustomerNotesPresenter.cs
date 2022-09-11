@@ -44,5 +44,10 @@ namespace contact_manager.Presenters.Customers
                 this._dialog.AddNewNoteToHistory(customerNote);
             }
         }
+
+        public void SetTitle(String customerDisplayText)
+        {
+            this._dialog.SetTitle(customerDisplayText);
+        }
     }
 }

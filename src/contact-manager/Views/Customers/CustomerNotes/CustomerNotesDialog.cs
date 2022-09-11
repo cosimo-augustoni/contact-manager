@@ -18,6 +18,11 @@ namespace contact_manager.Views.Customers.CustomerNotes
             this.PnlNotes.Controls.Add(emptyLabel);
         }
 
+        public void SetTitle(string customerDisplayText)
+        {
+            this.Text = $"Notizen von Kunde: {customerDisplayText}";
+        }
+
         public void SetPresenter(CustomerNotesPresenter notesPresenter)
         {
             this.presenter = notesPresenter;
@@ -44,7 +49,27 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         private void CmdAddNote_Click(object sender, EventArgs e)
         {
-            this.presenter?.AddNewNoteFromText();
+            if (ValidateChildren(ValidationConstraints.Enabled)) {
+                this.presenter?.AddNewNoteFromText();
+            }
+            else
+            {
+                MessageBox.Show("Kontrollieren Sie die Angaben", "Erfassen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TxtNewNote_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(NewNoteText))
+            {
+                CustomerNoteErrorProvider.SetError(TxtNewNote, "Geben Sie eine Notiz ein.");
+                TxtNewNote.Focus();
+                e.Cancel = true;
+            }
+            else
+            {
+                CustomerNoteErrorProvider.SetError(TxtNewNote, null);
+            }
         }
     }
 }
