@@ -1,11 +1,13 @@
 ﻿using contact_manager.Models.Data;
 using contact_manager.Presenters.Employees;
+using contact_manager.Views.Validation;
 
 namespace contact_manager.Views.Employees
 {
     public partial class EmployeeDetailDialog : Form, IEmployeeDetailDialog
     {
-        private EmployeeDetailPresenter? presenter;
+        private EmployeeDetailPresenter? _presenter;
+        private readonly EmployeeValidator _employeeValidator;
 
         #region FormProperties
 
@@ -191,12 +193,13 @@ namespace contact_manager.Views.Employees
             this.CmbSalutation.SetDataSource<Salutation>();
             this.CmbSex.SetDataSource<Sex>();
             this.CmbState.SetDataSource<State>();
+            this._employeeValidator = new EmployeeValidator(EmployeeErrorProvider, this);
         }
 
         public void InitializeMode()
         {
-            var isEnabled = !this.presenter?.IsReadOnly ?? false;
-            var isNewMode = this.presenter?.IsNewMode ?? false;
+            var isEnabled = !this._presenter?.IsReadOnly ?? false;
+            var isNewMode = this._presenter?.IsNewMode ?? false;
             CmdSave.Enabled = isEnabled;
             CmdCancel.Enabled = isEnabled && !isNewMode;
             CmdChangeStatus.Enabled = isEnabled && !isNewMode;
@@ -218,20 +221,20 @@ namespace contact_manager.Views.Employees
 
         public void SetPresenter(EmployeeDetailPresenter employeeDetailPresenter)
         {
-            this.presenter = employeeDetailPresenter;
-            // todo: noch auslagern
-            // todo: als Property erstellen?
-            var isEnabled = !this.presenter?.IsReadOnly ?? false;
-
-            this.GrpPersonalData.Enabled = isEnabled;
-            this.GrpAddress.Enabled = isEnabled;
-            this.GrpEmploymentData.Enabled = isEnabled;
-            this.GrpContactData.Enabled = isEnabled;
+            this._presenter = employeeDetailPresenter;
         }
 
         private void CmdSave_Click(object sender, EventArgs e)
         {
-            this.presenter?.Save();
+            if (_employeeValidator.Validate())
+            {
+                this._presenter?.Save();
+            }
+            else
+            {
+                MessageBox.Show("Fehler beim Speichern" + Environment.NewLine
+                    + "Kontrollien Sie die Eingaben und versuchen Sie es erneut.", "Speichern", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }    
         }
 
         private void CmdProtocol_Click(object sender, EventArgs e)
@@ -247,8 +250,88 @@ namespace contact_manager.Views.Employees
 
         private void CmdChangeStatus_Click(object sender, EventArgs e)
         {
-            this.presenter?.ChangeStatus();
+            this._presenter?.ChangeStatus();
             InitializeMode();
+        }
+
+        private void CmbSalutation_SelectedValueChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(CmbSalutation, null);
+        }
+
+        private void TxtFirstName_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtFirstName, null);
+        }
+
+        private void TxtLastname_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtLastname, null);
+        }
+
+        private void TxtStreetName_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtStreetName, null);
+        }
+
+        private void TxtZipCode_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtZipCode, null);
+        }
+
+        private void TxtCity_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtCity, null);
+        }
+
+        private void MTxtAHV13_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(MTxtAHV13, null);
+        }
+
+        private void DateTimePickerDateOfBirth_ValueChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(DateTimePickerDateOfBirth, null);
+        }
+
+        private void DatePickerExitDate_ValueChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(DatePickerExitDate, null);
+        }
+
+        private void DatePickerEntranceDate_ValueChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(DatePickerExitDate, null);
+        }
+
+        private void TxtEMailAddress_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
+        }
+
+        private void TxtPhoneNumberPrivate_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtPhoneNumberPrivate, null);
+        }
+
+        private void TxtPhoneNumberMobile_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtPhoneNumberMobile, null);
+        }
+
+        private void TxtPhoneNumberBusiness_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtPhoneNumberBusiness, null);
+        }
+
+        private void TxtFaxNumber_TextChanged(object sender, EventArgs e)
+        {
+            EmployeeErrorProvider.SetError(TxtFaxNumber, null);
+        }
+
+        private void TxtZipCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Char.IsDigit(e.KeyChar);
         }
     }
 }

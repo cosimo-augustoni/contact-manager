@@ -651,6 +651,7 @@
       // 
       // CustomerErrorProvider
       // 
+      this.CustomerErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
       this.CustomerErrorProvider.ContainerControl = this;
       // 
       // CustomerDetailDialog
