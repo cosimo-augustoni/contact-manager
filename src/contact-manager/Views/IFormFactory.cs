@@ -1,5 +1,4 @@
-﻿using contact_manager.Models.Domain.Employee;
-using contact_manager.Views.Authentication;
+﻿using contact_manager.Views.Authentication;
 using contact_manager.Views.Employees;
 
 namespace contact_manager.Views;

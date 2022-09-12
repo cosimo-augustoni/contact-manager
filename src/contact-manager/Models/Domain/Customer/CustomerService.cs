@@ -1,27 +1,28 @@
-﻿using contact_manager.Models.Data;
+﻿
+using contact_manager.Models.Data;
 
-namespace contact_manager.Models.Domain.Customer;
+namespace contact_manager.Models.Domain;
 
 internal class CustomerService : ICustomerService
 {
-    private readonly IRepository<Data.Customer.Customer> customerRepository;
+    private readonly IRepository<Customer> customerRepository;
 
-    public CustomerService(IRepository<Data.Customer.Customer> customerRepository)
+    public CustomerService(IRepository<Customer> customerRepository)
     {
         this.customerRepository = customerRepository;
     }
 
-    public List<Data.Customer.Customer> GetAll()
+    public List<Customer> GetAll()
     {
         return this.customerRepository.GetAll();
     }
 
-    public Data.Customer.Customer GetById(long customerId)
+    public Customer GetById(long customerId)
     {
         return this.customerRepository.GetById(customerId);
     }
 
-    public void Save(Data.Customer.Customer customer)
+    public void Save(Customer customer)
     {
         this.customerRepository.Save(customer);
     }

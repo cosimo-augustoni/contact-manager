@@ -1,26 +1,26 @@
 ﻿using contact_manager.Models.Data;
 
-namespace contact_manager.Models.Domain.Employee;
+namespace contact_manager.Models.Domain;
 
 internal class EmployeeService : IEmployeeService
 {
-    private readonly IRepository<Data.Employee.Employee> employeeRepository;
+    private readonly IRepository<Employee> employeeRepository;
 
-    public EmployeeService(IRepository<Data.Employee.Employee> employeeRepository)
+    public EmployeeService(IRepository<Employee> employeeRepository)
     {
         this.employeeRepository = employeeRepository;
     }
-    public List<Data.Employee.Employee> GetAll()
+    public List<Employee> GetAll()
     {
         return this.employeeRepository.GetAll();
     }
 
-    public Data.Employee.Employee GetById(long employeeId)
+    public Employee GetById(long employeeId)
     {
         return this.employeeRepository.GetById(employeeId);
     }
 
-    public void Save(Data.Employee.Employee employee)
+    public void Save(Employee employee)
     {
         this.employeeRepository.Save(employee);
     }

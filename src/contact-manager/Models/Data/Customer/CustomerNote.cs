@@ -1,4 +1,4 @@
-﻿namespace contact_manager.Models.Data.Customer
+﻿namespace contact_manager.Models.Data
 {
     public class CustomerNote : IObjectIdentifier
     {

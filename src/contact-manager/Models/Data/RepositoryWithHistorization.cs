@@ -47,7 +47,7 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
     private void Historize(T entityNew, T? entityOld)
     {
         var historyEntry = this.CreateHistoryEntry(entityNew, entityOld);
-        historyEntry.EntityType = (entityNew is Data.Customer.Customer) ? EntityType.Customer : EntityType.Employee;
+        historyEntry.EntityType = (entityNew is Customer) ? EntityType.Customer : EntityType.Employee;
         if (historyEntry.Diffs.Any())
         {
             this._historizedRepository.Save(historyEntry);

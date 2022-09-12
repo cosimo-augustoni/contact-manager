@@ -1,5 +1,4 @@
 ﻿using contact_manager.Models.Data;
-using contact_manager.Models.Data.Customer;
 using contact_manager.Presenters.Customers;
 
 namespace contact_manager.Views.Customers;

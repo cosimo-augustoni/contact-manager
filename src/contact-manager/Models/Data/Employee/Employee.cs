@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace contact_manager.Models.Data.Employee;
+namespace contact_manager.Models.Data;
 
 public class Employee : Person
 {

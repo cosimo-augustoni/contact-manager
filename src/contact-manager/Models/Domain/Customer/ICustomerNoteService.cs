@@ -1,6 +1,7 @@
-﻿using contact_manager.Models.Data.Customer;
+﻿
+using contact_manager.Models.Data;
 
-namespace contact_manager.Models.Domain.Customer;
+namespace contact_manager.Models.Domain;
 
 public interface ICustomerNoteService
 {

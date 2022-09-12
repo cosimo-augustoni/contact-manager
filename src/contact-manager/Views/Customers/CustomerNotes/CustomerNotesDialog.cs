@@ -1,4 +1,4 @@
-﻿using contact_manager.Models.Data.Customer;
+﻿using contact_manager.Models.Data;
 using contact_manager.Presenters.Customers;
 
 namespace contact_manager.Views.Customers.CustomerNotes
@@ -36,7 +36,7 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         public void AddNewNoteToHistory(CustomerNote note)
         {
-            if(this.PnlNotes.Controls.Contains(this.emptyLabel))
+            if (this.PnlNotes.Controls.Contains(this.emptyLabel))
                 this.PnlNotes.Controls.Remove(this.emptyLabel);
 
             this.PnlNotes.Controls.Add(new CustomerNoteControl(note.Text, note.CreatedBy, note.CreatedAt));
@@ -49,7 +49,8 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         private void CmdAddNote_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled)) {
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
                 this.presenter?.AddNewNoteFromText();
             }
             else
