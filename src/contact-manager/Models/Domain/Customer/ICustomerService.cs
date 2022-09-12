@@ -1,4 +1,6 @@
-﻿namespace contact_manager.Models.Domain.Customer
+﻿using contact_manager.Models.Domain.Search;
+
+namespace contact_manager.Models.Domain.Customer
 {
     public interface ICustomerService
     {
@@ -11,5 +13,7 @@
         void Delete(long customerId);
 
         long GetNewId();
+        List<Data.Customer.Customer> GetBySearchTerm(SearchScope searchScope, string searchTerm);
+        List<SearchScope> GetSearchScopes();
     }
 }

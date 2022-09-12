@@ -1,4 +1,6 @@
-﻿namespace contact_manager.Models.Domain.Employee
+﻿using contact_manager.Models.Domain.Search;
+
+namespace contact_manager.Models.Domain.Employee
 {
     public interface IEmployeeService
     {
@@ -11,5 +13,7 @@
         void Delete(long employeeId);
 
         long GetNewId();
+        List<Data.Employee.Employee> GetBySearchTerm(SearchScope searchScope, string searchTerm);
+        List<SearchScope> GetSearchScopes();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using contact_manager.Models.Data.Customer;
 using contact_manager.Models.Data.Employee;
+using contact_manager.Models.Domain.Search;
 using contact_manager.Presenters;
 
 namespace contact_manager.Views
@@ -161,17 +162,37 @@ namespace contact_manager.Views
         #region Search
         //----------------------------------------------------------------------------------------------------
 
+        public string SearchTermCustomer
+        {
+            get => this.TxtSearchCustomer.Text;
+            set => this.TxtSearchCustomer.Text = value;
+        }
+
+        public SearchScope SearchScopeCustomer
+        {
+            get => (SearchScope)this.CmbSearchScopeCustomer.SelectedItem;
+            set => this.CmbSearchScopeCustomer.SelectedItem = value;
+        }
+
+        public void SetSearchScopeCustomerSource(List<SearchScope> scopes)
+        {
+            this.CmbSearchScopeCustomer.DataSource = scopes;
+            this.CmbSearchScopeCustomer.DisplayMember = nameof(SearchScope.DisplayName);
+
+            this.CmbSearchScopeCustomer.SelectedItem = scopes.First(s => s.ScopeType == ScopeType.All);
+        }
+
         private void TxtSearchCustomer_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                // Todo: search
+                this.presenter?.SearchCustomers();
             }
         }
 
         private void CmdSearchCustomer_Click(object sender, EventArgs e)
         {
-            // ToDo: search customer
+            this.presenter?.SearchCustomers();
         }
 
         private void CmdResetSearchCustomer_Click(object sender, EventArgs e)
@@ -180,14 +201,37 @@ namespace contact_manager.Views
             this.presenter?.LoadAllCustomers();
         }
 
+        public string SearchTermEmployee
+        {
+            get => this.TxtSearchEmployee.Text;
+            set => this.TxtSearchEmployee.Text = value;
+        }
+
+        public SearchScope SearchScopeEmployee
+        {
+            get => (SearchScope)this.CmbSearchScopeEmployee.SelectedItem;
+            set => this.CmbSearchScopeEmployee.SelectedItem = value;
+        }
+
+        public void SetSearchScopeEmployeeSource(List<SearchScope> scopes)
+        {
+            this.CmbSearchScopeEmployee.DataSource = scopes;
+            this.CmbSearchScopeEmployee.DisplayMember = nameof(SearchScope.DisplayName);
+
+            this.CmbSearchScopeEmployee.SelectedItem = scopes.First(s => s.ScopeType == ScopeType.All);
+        }
+
         private void TxtSearchEmployee_KeyDown(object sender, KeyEventArgs e)
         {
-            // todo: search employee
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.presenter?.SearchEmployees();
+            }
         }
 
         private void CmdSearchEmployee_Click(object sender, EventArgs e)
         {
-            // todo: search employee
+            this.presenter?.SearchEmployees();
         }
 
         private void CmdResetSearchEmployee_Click(object sender, EventArgs e)
