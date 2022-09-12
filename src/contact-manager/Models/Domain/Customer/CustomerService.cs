@@ -1,25 +1,26 @@
-﻿using contact_manager.Models.Data;
+﻿
+using contact_manager.Models.Data;
 using contact_manager.Models.Domain.Search;
 
-namespace contact_manager.Models.Domain.Customer;
+namespace contact_manager.Models.Domain;
 
 internal class CustomerService : ICustomerService
 {
-    private readonly IRepository<Data.Customer.Customer> _customerRepository;
-    private readonly SearchService<Data.Customer.Customer> _searchService;
+    private readonly IRepository<Customer> _customerRepository;
+    private readonly SearchService<Customer> _searchService;
 
-    public CustomerService(IRepository<Data.Customer.Customer> customerRepository)
+    public CustomerService(IRepository<Customer> customerRepository)
     {
         this._customerRepository = customerRepository;
-        this._searchService = new SearchService<Data.Customer.Customer>(this._customerRepository);
+        this._searchService = new SearchService<Customer>(this._customerRepository);
     }
 
-    public List<Data.Customer.Customer> GetAll()
+    public List<Customer> GetAll()
     {
         return this._customerRepository.GetAll();
     }
 
-    public List<Data.Customer.Customer> GetBySearchTerm(SearchScope searchScope, string searchTerm)
+    public List<Customer> GetBySearchTerm(SearchScope searchScope, string searchTerm)
     {
         return this._searchService.SearchBySearchTerm(searchScope, searchTerm);
     }
@@ -29,12 +30,12 @@ internal class CustomerService : ICustomerService
         return this._searchService.GetSearchScopes();
     }
 
-    public Data.Customer.Customer GetById(long customerId)
+    public Customer GetById(long customerId)
     {
         return this._customerRepository.GetById(customerId);
     }
 
-    public void Save(Data.Customer.Customer customer)
+    public void Save(Customer customer)
     {
         this._customerRepository.Save(customer);
     }

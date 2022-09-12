@@ -1,24 +1,24 @@
 ﻿using contact_manager.Models.Data;
 using contact_manager.Models.Domain.Search;
 
-namespace contact_manager.Models.Domain.Employee;
+namespace contact_manager.Models.Domain;
 
 internal class EmployeeService : IEmployeeService
 {
-    private readonly IRepository<Data.Employee.Employee> _employeeRepository;
-    private readonly ISearchService<Data.Employee.Employee> _searchService;
+    private readonly IRepository<Employee> _employeeRepository;
+    private readonly ISearchService<Employee> _searchService;
 
-    public EmployeeService(IRepository<Data.Employee.Employee> employeeRepository)
+    public EmployeeService(IRepository<Employee> employeeRepository)
     {
         this._employeeRepository = employeeRepository;
-        this._searchService = new SearchService<Data.Employee.Employee>(this._employeeRepository);
+        this._searchService = new SearchService<Employee>(this._employeeRepository);
     }
-    public List<Data.Employee.Employee> GetAll()
+    public List<Employee> GetAll()
     {
         return this._employeeRepository.GetAll();
     }
 
-    public List<Data.Employee.Employee> GetBySearchTerm(SearchScope searchScope, string searchTerm)
+    public List<Employee> GetBySearchTerm(SearchScope searchScope, string searchTerm)
     {
         return this._searchService.SearchBySearchTerm(searchScope, searchTerm);
     }
@@ -28,12 +28,12 @@ internal class EmployeeService : IEmployeeService
         return this._searchService.GetSearchScopes();
     }
 
-    public Data.Employee.Employee GetById(long employeeId)
+    public Employee GetById(long employeeId)
     {
         return this._employeeRepository.GetById(employeeId);
     }
 
-    public void Save(Data.Employee.Employee employee)
+    public void Save(Employee employee)
     {
         this._employeeRepository.Save(employee);
     }

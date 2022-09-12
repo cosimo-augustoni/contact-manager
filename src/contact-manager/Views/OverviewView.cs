@@ -1,13 +1,12 @@
-﻿using contact_manager.Models.Data.Customer;
-using contact_manager.Models.Data.Employee;
-using contact_manager.Models.Domain.Search;
+﻿using contact_manager.Models.Domain.Search;
+using contact_manager.Models.Data;
 using contact_manager.Presenters;
 
 namespace contact_manager.Views
 {
     public partial class OverviewView : Form, IOverviewView
     {
-        private OverviewPresenter? presenter;
+        private OverviewPresenter? _presenter;
 
         public OverviewView()
         {
@@ -17,7 +16,7 @@ namespace contact_manager.Views
 
         public void SetPresenter(OverviewPresenter overviewPresenter)
         {
-            this.presenter = overviewPresenter;
+            this._presenter = overviewPresenter;
             InitializeMode();
         }
 
@@ -33,7 +32,7 @@ namespace contact_manager.Views
 
         private void InitializeMode()
         {
-            var isEnabled = !this.presenter?.IsReadOnly ?? false;
+            var isEnabled = !this._presenter?.IsReadOnly ?? false;
 
             CmdCreateNewCustomer.Enabled = isEnabled;
             CmdCreateNewEmployee.Enabled = isEnabled;
@@ -60,13 +59,13 @@ namespace contact_manager.Views
 
         private void CmdCreateNewCustomer_Click(object sender, EventArgs e)
         {
-            this.presenter?.OpenCreateNewCustomerDialog();
+            this._presenter?.OpenCreateNewCustomerDialog();
             // ToDo npa: nach dem neu, wenn gespeichert wurde dann den neuen eintrag gleich markieren im datagridview?
         }
 
         private void CmdCreateNewEmployee_Click(object sender, EventArgs e)
         {
-            this.presenter?.OpenCreateNewEmployeeDialog();
+            this._presenter?.OpenCreateNewEmployeeDialog();
         }
 
         #endregion // New
@@ -85,7 +84,7 @@ namespace contact_manager.Views
             var customer = GetCurrentSelectedCustomer();
             if (customer != null)
             {
-                this.presenter?.OpenEditCustomerDialog(customer.Id);
+                this._presenter?.OpenEditCustomerDialog(customer.Id);
             }
         }
 
@@ -99,7 +98,7 @@ namespace contact_manager.Views
             var employee = GetCurrentSelectedEmployee();
             if (employee != null)
             {
-                this.presenter?.OpenEditEmployeeDialog(employee.Id);
+                this._presenter?.OpenEditEmployeeDialog(employee.Id);
                 // todo: nach dem bearbeiten wieder denselben eintrag markieren wie vorher?
             }
         }
@@ -128,7 +127,7 @@ namespace contact_manager.Views
                 var dialogResult = MessageBox.Show("Möchten Sie diesen Kunden wirklich löschen", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    this.presenter?.DeleteCustomer(customer.Id);
+                    this._presenter?.DeleteCustomer(customer.Id);
                 }
             }
         }
@@ -141,7 +140,7 @@ namespace contact_manager.Views
                 var dialogResult = MessageBox.Show("Möchten Sie diesen Mitarbeiter wirklich löschen?", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    this.presenter?.DeleteEmployee(employee.Id);
+                    this._presenter?.DeleteEmployee(employee.Id);
                 }
             }
         }
@@ -186,19 +185,19 @@ namespace contact_manager.Views
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.presenter?.SearchCustomers();
+                this._presenter?.SearchCustomers();
             }
         }
 
         private void CmdSearchCustomer_Click(object sender, EventArgs e)
         {
-            this.presenter?.SearchCustomers();
+            this._presenter?.SearchCustomers();
         }
 
         private void CmdResetSearchCustomer_Click(object sender, EventArgs e)
         {
             TxtSearchCustomer.Clear();
-            this.presenter?.LoadAllCustomers();
+            this._presenter?.LoadAllCustomers();
         }
 
         public string SearchTermEmployee
@@ -225,19 +224,19 @@ namespace contact_manager.Views
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.presenter?.SearchEmployees();
+                this._presenter?.SearchEmployees();
             }
         }
 
         private void CmdSearchEmployee_Click(object sender, EventArgs e)
         {
-            this.presenter?.SearchEmployees();
+            this._presenter?.SearchEmployees();
         }
 
         private void CmdResetSearchEmployee_Click(object sender, EventArgs e)
         {
             TxtSearchEmployee.Clear();
-            this.presenter?.LoadAllEmployees();
+            this._presenter?.LoadAllEmployees();
         }
 
         #endregion // Search
@@ -248,7 +247,7 @@ namespace contact_manager.Views
 
         private void TcPerson_Selected(object sender, TabControlEventArgs e)
         {
-            this.presenter?.SelectedTabChanged(e.TabPageIndex);
+            this._presenter?.SelectedTabChanged(e.TabPageIndex);
         }
 
         #endregion // TabControl

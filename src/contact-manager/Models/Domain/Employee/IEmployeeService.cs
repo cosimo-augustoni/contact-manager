@@ -1,19 +1,21 @@
-﻿using contact_manager.Models.Domain.Search;
+﻿
+using contact_manager.Models.Data;
+using contact_manager.Models.Domain.Search;
 
-namespace contact_manager.Models.Domain.Employee
+namespace contact_manager.Models.Domain
 {
     public interface IEmployeeService
     {
-        List<Data.Employee.Employee> GetAll();
+        List<Employee> GetAll();
 
-        Data.Employee.Employee GetById(long employeeId);
+        Employee GetById(long employeeId);
 
-        void Save(Data.Employee.Employee employee);
+        void Save(Employee employee);
 
         void Delete(long employeeId);
 
         long GetNewId();
-        List<Data.Employee.Employee> GetBySearchTerm(SearchScope searchScope, string searchTerm);
+        List<Employee> GetBySearchTerm(SearchScope searchScope, string searchTerm);
         List<SearchScope> GetSearchScopes();
     }
 }

@@ -363,7 +363,7 @@
             // 
             // customerBindingSource
             // 
-            this.customerBindingSource.DataSource = typeof(contact_manager.Models.Data.Customer.Customer);
+            this.customerBindingSource.DataSource = typeof(contact_manager.Models.Data.Customer);
             // 
             // TpEmployee
             // 
@@ -625,7 +625,7 @@
             // 
             // employeeBindingSource
             // 
-            this.employeeBindingSource.DataSource = typeof(contact_manager.Models.Data.Employee.Employee);
+            this.employeeBindingSource.DataSource = typeof(contact_manager.Models.Data.Employee);
             // 
             // OverviewView
             // 

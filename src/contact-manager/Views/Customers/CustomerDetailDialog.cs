@@ -1,5 +1,4 @@
 ﻿using contact_manager.Models.Data;
-using contact_manager.Models.Data.Customer;
 using contact_manager.Presenters.Customers;
 using contact_manager.Views.Validation;
 
@@ -306,21 +305,25 @@ namespace contact_manager.Views.Customers
         private void TxtPhoneNumberPrivate_TextChanged(object sender, EventArgs e)
         {
             CustomerErrorProvider.SetError(TxtPhoneNumberPrivate, null);
+            CustomerErrorProvider.SetError(TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberMobile_TextChanged(object sender, EventArgs e)
         {
             CustomerErrorProvider.SetError(TxtPhoneNumberMobile, null);
+            CustomerErrorProvider.SetError(TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberBusiness_TextChanged(object sender, EventArgs e)
         {
             CustomerErrorProvider.SetError(TxtPhoneNumberBusiness, null);
+            CustomerErrorProvider.SetError(TxtEMailAddress, null);
         }
 
         private void TxtFaxNumber_TextChanged(object sender, EventArgs e)
         {
             CustomerErrorProvider.SetError(TxtFaxNumber, null);
+            CustomerErrorProvider.SetError(TxtEMailAddress, null);
         }
 
         private void DatePickerDateOfBirth_KeyDown(object sender, KeyEventArgs e)

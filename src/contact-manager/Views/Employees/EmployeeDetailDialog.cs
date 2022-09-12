@@ -315,21 +315,25 @@ namespace contact_manager.Views.Employees
         private void TxtPhoneNumberPrivate_TextChanged(object sender, EventArgs e)
         {
             EmployeeErrorProvider.SetError(TxtPhoneNumberPrivate, null);
+            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberMobile_TextChanged(object sender, EventArgs e)
         {
             EmployeeErrorProvider.SetError(TxtPhoneNumberMobile, null);
+            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberBusiness_TextChanged(object sender, EventArgs e)
         {
             EmployeeErrorProvider.SetError(TxtPhoneNumberBusiness, null);
+            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
         }
 
         private void TxtFaxNumber_TextChanged(object sender, EventArgs e)
         {
             EmployeeErrorProvider.SetError(TxtFaxNumber, null);
+            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
         }
 
         private void TxtZipCode_KeyPress(object sender, KeyPressEventArgs e)

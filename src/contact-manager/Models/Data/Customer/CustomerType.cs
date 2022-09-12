@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace contact_manager.Models.Data.Customer
+namespace contact_manager.Models.Data
 {
     public enum CustomerType
     {

@@ -1,19 +1,20 @@
-﻿using contact_manager.Models.Domain.Search;
+﻿using contact_manager.Models.Data;
+using contact_manager.Models.Domain.Search;
 
-namespace contact_manager.Models.Domain.Customer
+namespace contact_manager.Models.Domain
 {
     public interface ICustomerService
     {
-        List<Data.Customer.Customer> GetAll();
+        List<Customer> GetAll();
 
-        Data.Customer.Customer GetById(long customerId);
+        Customer GetById(long customerId);
 
-        void Save(Data.Customer.Customer customer);
+        void Save(Customer customer);
 
         void Delete(long customerId);
 
         long GetNewId();
-        List<Data.Customer.Customer> GetBySearchTerm(SearchScope searchScope, string searchTerm);
+        List<Customer> GetBySearchTerm(SearchScope searchScope, string searchTerm);
         List<SearchScope> GetSearchScopes();
     }
 }
