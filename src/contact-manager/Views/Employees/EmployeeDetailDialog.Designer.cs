@@ -85,7 +85,6 @@
       this.TxtEMailAddress = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.CmdChangeStatus = new System.Windows.Forms.Button();
-      this.CmdCancel = new System.Windows.Forms.Button();
       this.CmdSave = new System.Windows.Forms.Button();
       this.CmdProtocol = new System.Windows.Forms.Button();
       this.EmployeeErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
@@ -639,7 +638,7 @@
       // CmdChangeStatus
       // 
       this.CmdChangeStatus.Image = global::contact_manager.Properties.Resources.EditLabel;
-      this.CmdChangeStatus.Location = new System.Drawing.Point(224, 12);
+      this.CmdChangeStatus.Location = new System.Drawing.Point(118, 12);
       this.CmdChangeStatus.Name = "CmdChangeStatus";
       this.CmdChangeStatus.Size = new System.Drawing.Size(100, 30);
       this.CmdChangeStatus.TabIndex = 37;
@@ -649,20 +648,6 @@
       this.CmdChangeStatus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       this.CmdChangeStatus.UseVisualStyleBackColor = true;
       this.CmdChangeStatus.Click += new System.EventHandler(this.CmdChangeStatus_Click);
-      // 
-      // CmdCancel
-      // 
-      this.CmdCancel.Image = global::contact_manager.Properties.Resources.Cancel;
-      this.CmdCancel.Location = new System.Drawing.Point(118, 12);
-      this.CmdCancel.Name = "CmdCancel";
-      this.CmdCancel.Size = new System.Drawing.Size(100, 30);
-      this.CmdCancel.TabIndex = 36;
-      this.CmdCancel.TabStop = false;
-      this.CmdCancel.Text = "Abbrechen";
-      this.CmdCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      this.CmdCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.CmdCancel.UseVisualStyleBackColor = true;
-      this.CmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
       // 
       // CmdSave
       // 
@@ -681,7 +666,7 @@
       // CmdProtocol
       // 
       this.CmdProtocol.Image = global::contact_manager.Properties.Resources.History;
-      this.CmdProtocol.Location = new System.Drawing.Point(330, 12);
+      this.CmdProtocol.Location = new System.Drawing.Point(224, 12);
       this.CmdProtocol.Name = "CmdProtocol";
       this.CmdProtocol.Size = new System.Drawing.Size(100, 30);
       this.CmdProtocol.TabIndex = 38;
@@ -704,7 +689,6 @@
       this.ClientSize = new System.Drawing.Size(1136, 428);
       this.Controls.Add(this.CmdProtocol);
       this.Controls.Add(this.CmdChangeStatus);
-      this.Controls.Add(this.CmdCancel);
       this.Controls.Add(this.CmdSave);
       this.Controls.Add(this.GrpContactData);
       this.Controls.Add(this.GrpEmploymentData);
@@ -775,7 +759,6 @@
         private Label label3;
         private Label label4;
         private Button CmdChangeStatus;
-        private Button CmdCancel;
         private Button CmdSave;
         private Button CmdProtocol;
         internal TextBox TxtFirstName;
