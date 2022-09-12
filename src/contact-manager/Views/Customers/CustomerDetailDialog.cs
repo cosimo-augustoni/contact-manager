@@ -12,7 +12,7 @@ namespace contact_manager.Views.Customers
 
         #region FormProperties
 
-        public string? CustomerNumber   
+        public string? CustomerNumber
         {
             get => this.TxtCustomerNumber.Text;
             set => this.TxtCustomerNumber.Text = value;
@@ -58,7 +58,7 @@ namespace contact_manager.Views.Customers
             get => (Sex)this.CmbSex.SelectedValue;
             set => this.CmbSex.SelectedValue = value;
         }
-        
+
         public string? AHV13
         {
             get => this.MTxtAHV13.Text;
@@ -143,7 +143,8 @@ namespace contact_manager.Views.Customers
             get => this.TxtFaxNumber.Text;
             set => this.TxtFaxNumber.Text = value;
         }
-        public CustomerType CustomerType {
+        public CustomerType CustomerType
+        {
             get => (CustomerType)this.CmbCustomerType.SelectedValue;
             set => this.CmbCustomerType.SelectedValue = value;
         }
@@ -154,13 +155,15 @@ namespace contact_manager.Views.Customers
             set => this.TxtCompanyName.Text = value;
         }
 
-        public string? CompanyContact {
+        public string? CompanyContact
+        {
             get => this.TxtCompanyContact.Text;
             set => this.TxtCompanyContact.Text = value;
         }
-        public string? CompanyAddress {
+        public string? CompanyAddress
+        {
             get => this.TxtCompanyAddress.Text;
-            set => this.TxtCompanyAddress.Text = value; 
+            set => this.TxtCompanyAddress.Text = value;
         }
         #endregion
 
@@ -209,6 +212,7 @@ namespace contact_manager.Views.Customers
             if (_customerValidator.Validate())
             {
                 this.presenter?.Save();
+                CmdProtocol.Enabled = true;
             }
             else
             {
@@ -235,8 +239,7 @@ namespace contact_manager.Views.Customers
 
         private void CmdProtocol_Click(object sender, EventArgs e)
         {
-            // ToDo: protokollierung customer
-            // nur ermöglichen, wenn keine Änderungen in der Maske vorhanden sind
+            presenter?.OpenHistoryDialog();
         }
 
         private void CmdShowCustomerNotes_Click(object sender, EventArgs e)

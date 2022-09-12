@@ -1,6 +1,7 @@
 ﻿using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.Customer;
 using contact_manager.Models.Domain.Employee;
+using contact_manager.Models.Domain.History;
 using contact_manager.Presenters.Customers;
 using contact_manager.Presenters.Employees;
 using contact_manager.Views;
@@ -15,11 +16,12 @@ namespace contact_manager.Presenters
         private readonly ICustomerService _customerService;
         private readonly ICustomerNoteService _customerNotesService;
         private readonly IEmployeeService _employeeService;
+        private readonly IHistoryService _historyService;
         private readonly User _user;
 
         public OverviewPresenter(IOverviewView overviewView, ICustomerService customerService,
             ICustomerNoteService customerNotesService,
-            IEmployeeService employeeService, User user)
+            IEmployeeService employeeService, User user, IHistoryService historyService)
         {
             this._overviewView = overviewView;
             this._user = user;
@@ -27,6 +29,7 @@ namespace contact_manager.Presenters
             this._customerService = customerService;
             this._customerNotesService = customerNotesService;
             this._employeeService = employeeService;
+            this._historyService = historyService;
         }
 
         public void Init()
@@ -48,7 +51,7 @@ namespace contact_manager.Presenters
         public void OpenCreateNewEmployeeDialog()
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: true);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: true, _historyService);
             dialogPresenter.Init();
             dialogPresenter.LoadNewEmployee();
             dialog.InitializeMode();
@@ -59,7 +62,7 @@ namespace contact_manager.Presenters
         public void OpenEditEmployeeDialog(long employeeId)
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: false);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: false, _historyService);
             dialogPresenter.Init();
             dialogPresenter.LoadEmployee(employeeId);
             dialog.InitializeMode();
@@ -83,7 +86,7 @@ namespace contact_manager.Presenters
         public void OpenCreateNewCustomerDialog()
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: true);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: true, _historyService);
             dialogPresenter.Init();
             dialogPresenter.LoadNewCustomer();
             dialog.InitializeMode();
@@ -94,7 +97,7 @@ namespace contact_manager.Presenters
         public void OpenEditCustomerDialog(long customerId)
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: false);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: false, _historyService);
             dialogPresenter.Init();
             dialogPresenter.LoadCustomer(customerId);
             dialog.InitializeMode();
@@ -112,9 +115,9 @@ namespace contact_manager.Presenters
 
         public void SelectedTabChanged(int selectedTabPage)
         {
-            if(selectedTabPage == 0)
+            if (selectedTabPage == 0)
                 this.LoadAllCustomers();
-            else if(selectedTabPage == 1)
+            else if (selectedTabPage == 1)
                 this.LoadAllEmployees();
         }
     }

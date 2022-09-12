@@ -6,7 +6,7 @@
 
         T GetById(long id);
 
-        void Save(T person);
+        void Save(T entity);
 
         void Delete(long id);
 

@@ -1,6 +1,10 @@
 ﻿using contact_manager.Models.Data.Employee;
+using contact_manager.Models.Data.History;
 using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.Employee;
+using contact_manager.Models.Domain.History;
+using contact_manager.Presenters.History;
+using contact_manager.Views;
 using contact_manager.Views.Employees;
 
 namespace contact_manager.Presenters.Employees
@@ -9,17 +13,19 @@ namespace contact_manager.Presenters.Employees
     {
         private readonly IEmployeeDetailDialog _dialog;
         private readonly IEmployeeService _employeeService;
+        private readonly IHistoryService _historyService;
         private readonly User _user;
 
         private long _employeeId;
         private readonly bool _isNewMode;
 
-        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user, bool isNewMode)
+        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user, bool isNewMode, IHistoryService historyService)
         {
             this._dialog = dialog;
             this._employeeService = employeeService;
             this._user = user;
             this._isNewMode = isNewMode;
+            this._historyService = historyService;
         }
 
         public void Init()
@@ -119,6 +125,14 @@ namespace contact_manager.Presenters.Employees
                 : Models.Data.State.Active;
 
             Save();
+        }
+
+        public void OpenHistoryDialog()
+        {
+            var historyDialog = new HistoryDialog();
+            var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
+            historyPresenter.LoadPerson(this._employeeId, EntityType.Employee);
+            historyDialog.ShowDialog();
         }
     }
 }

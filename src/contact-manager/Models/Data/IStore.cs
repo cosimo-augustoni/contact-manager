@@ -4,7 +4,7 @@
     {
         List<T> GetAll();
 
-        void UpdateOrAdd(T person);
+        void UpdateOrAdd(T entity);
 
         void Delete(long id);
     }

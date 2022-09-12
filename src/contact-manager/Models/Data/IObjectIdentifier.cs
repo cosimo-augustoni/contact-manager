@@ -1,6 +1,6 @@
 ﻿namespace contact_manager.Models.Data;
 
-internal interface IObjectIdentifier
+public interface IObjectIdentifier
 {
     long Id { get; }
 }

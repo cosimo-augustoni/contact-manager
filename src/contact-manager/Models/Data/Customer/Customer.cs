@@ -1,10 +1,18 @@
-﻿namespace contact_manager.Models.Data.Customer;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class Customer : Person
+namespace contact_manager.Models.Data.Customer
 {
-    public string CustomerNumber => this.Id.ToString().PadLeft(5, '0');
-    public string? CompanyName { get; init; }
-    public CustomerType CustomerType { get; init; }
-    public string? CompanyContact { get; init; }
-    public string? CompanyAddress { get; init; }
+    public class Customer : Person
+    {
+        [Display(Name = "Kunden-Nr")]
+        public string CustomerNumber => this.Id.ToString().PadLeft(5, '0');
+        [Display(Name = "Firmenname")]
+        public string? CompanyName { get; init; }
+        [Display(Name = "Kundentyp")]
+        public CustomerType CustomerType { get; init; }
+        [Display(Name = "Firmenkontakt")]
+        public string? CompanyContact { get; init; }
+        [Display(Name = "Geschäftsadresse")]
+        public string? CompanyAddress { get; init; }
+    }
 }
