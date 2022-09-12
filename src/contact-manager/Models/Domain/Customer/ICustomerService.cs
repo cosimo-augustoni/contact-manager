@@ -1,12 +1,14 @@
-﻿namespace contact_manager.Models.Domain.Customer
+﻿using contact_manager.Models.Data;
+
+namespace contact_manager.Models.Domain
 {
     public interface ICustomerService
     {
-        List<Data.Customer.Customer> GetAll();
+        List<Customer> GetAll();
 
-        Data.Customer.Customer GetById(long customerId);
+        Customer GetById(long customerId);
 
-        void Save(Data.Customer.Customer customer);
+        void Save(Customer customer);
 
         void Delete(long customerId);
 

@@ -1,6 +1,5 @@
-﻿using contact_manager.Models.Domain.Authentication;
-using contact_manager.Models.Domain.Customer;
-using contact_manager.Models.Domain.Employee;
+﻿using contact_manager.Models.Domain;
+using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.History;
 using contact_manager.Presenters.Customers;
 using contact_manager.Presenters.Employees;
