@@ -41,18 +41,23 @@ namespace contact_manager.Models.Domain.Search
         private Expression<Func<T, bool>> GetSearchPredicateForAllProperties(string searchTerm)
         {
             Expression<Func<T, bool>> searchExpression = p => string.IsNullOrWhiteSpace(searchTerm);
+            // Expressions für alle einzelnen Properties mit OR verknüpfen
             return GetAllProperties().Select(property => this.GetSearchPredicateByProperty(property, searchTerm))
                 .Aggregate(searchExpression, ExpressionHelper.Or);
         }
 
         private Expression<Func<T, bool>> GetSearchPredicateByProperty(PropertyInfo propertyInfo, string searchTerm)
         {
+            //Expression um auf den Property Wert auf der Person zuzugreifen
             Expression<Func<T, object?>> accessFieldExpression = p => propertyInfo.GetValue(p);
+            //Expression um den SearchTerm dem Typ entsprechend mit dem Wert auf der Person zu vergleichen
             var match = GetMatchExpressionByPropertyType(propertyInfo, searchTerm);
 
             var parameter = Expression.Parameter(typeof(T));
 
+            //Input Parameter der Expression mit dem Wert zugriff auf den Korrekten Typ setzen
             var fieldExpression = ExpressionHelper.ReplaceParameter(accessFieldExpression, parameter);
+            //Input Parameter der Vergleichs-Expression mit dem Output der FieldAccessExpression ersetzen
             var matchExpression = ExpressionHelper.ReplaceParameter(match, fieldExpression);
 
             return Expression.Lambda<Func<T, bool>>(matchExpression, parameter);
@@ -60,7 +65,7 @@ namespace contact_manager.Models.Domain.Search
 
         private static Expression<Func<object?, bool>> GetMatchExpressionByPropertyType(PropertyInfo propertyInfo, string searchTerm)
         {
-            if(propertyInfo.PropertyType == typeof(string))
+            if (propertyInfo.PropertyType == typeof(string))
                 return GetStringPredicate(searchTerm);
             if (propertyInfo.PropertyType == typeof(int) || propertyInfo.PropertyType == typeof(int?))
                 return GetIntPredicate(searchTerm);
@@ -73,20 +78,22 @@ namespace contact_manager.Models.Domain.Search
 
         private static Expression<Func<object?, bool>> GetStringPredicate(string searchTerm)
         {
-            return f => ((string?)f) != null ? ((string)f).Contains(searchTerm) : string.IsNullOrWhiteSpace((string?)f) && string.IsNullOrWhiteSpace(searchTerm);
+            return f => ((string?)f) != null
+                ? ((string)f).Contains(searchTerm)
+                : string.IsNullOrWhiteSpace((string?)f) && string.IsNullOrWhiteSpace(searchTerm);
         }
 
         private static Expression<Func<object?, bool>> GetIntPredicate(string searchTerm)
         {
             if (int.TryParse(searchTerm, out var searchTermInt))
-                return f => ((int?) f) == searchTermInt;
+                return f => ((int?)f) == searchTermInt;
             return f => false;
         }
 
         private static Expression<Func<object?, bool>> GetDateTimePredicate(string searchTerm)
         {
             if (DateTime.TryParse(searchTerm, out var searchTermDate))
-                return f => ((DateTime?) f) == searchTermDate.Date;
+                return f => ((DateTime?)f) == searchTermDate.Date;
             return f => f == null && string.IsNullOrWhiteSpace(searchTerm);
         }
 
