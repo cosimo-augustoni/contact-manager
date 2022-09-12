@@ -1,7 +1,6 @@
 ﻿using contact_manager.Models.Data;
-using contact_manager.Models.Data.Customer;
 
-namespace contact_manager.Models.Domain.Customer
+namespace contact_manager.Models.Domain
 {
     internal class CustomerNoteService : ICustomerNoteService
     {

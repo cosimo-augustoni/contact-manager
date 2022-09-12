@@ -1,5 +1,5 @@
-﻿using contact_manager.Models.Domain.Authentication;
-using contact_manager.Models.Domain.Customer;
+﻿using contact_manager.Models.Domain;
+using contact_manager.Models.Domain.Authentication;
 using contact_manager.Views.Customers.CustomerNotes;
 
 namespace contact_manager.Presenters.Customers

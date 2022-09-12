@@ -96,7 +96,7 @@
       // 
       // customerNoteBindingSource
       // 
-      this.customerNoteBindingSource.DataSource = typeof(contact_manager.Models.Data.Customer.CustomerNote);
+      this.customerNoteBindingSource.DataSource = typeof(contact_manager.Models.Data.CustomerNote);
       // 
       // GrpCustomerData
       // 
