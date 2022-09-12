@@ -578,7 +578,6 @@
       this.CmbSalutation.Name = "CmbSalutation";
       this.CmbSalutation.Size = new System.Drawing.Size(183, 23);
       this.CmbSalutation.TabIndex = 2;
-      this.CmbSalutation.SelectedValueChanged += new System.EventHandler(this.CmbSalutation_SelectedValueChanged);
       // 
       // CmdChangeStatus
       // 

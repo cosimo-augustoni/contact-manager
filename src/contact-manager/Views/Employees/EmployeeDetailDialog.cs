@@ -256,11 +256,6 @@ namespace contact_manager.Views.Employees
             InitializeMode();
         }
 
-        private void CmbSalutation_SelectedValueChanged(object sender, EventArgs e)
-        {
-            EmployeeErrorProvider.SetError(CmbSalutation, null);
-        }
-
         private void TxtFirstName_TextChanged(object sender, EventArgs e)
         {
             EmployeeErrorProvider.SetError(TxtFirstName, null);

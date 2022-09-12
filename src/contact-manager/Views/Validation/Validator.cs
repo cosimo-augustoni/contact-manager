@@ -14,11 +14,6 @@ namespace contact_manager.Views.Validation
             return !string.IsNullOrWhiteSpace(zipCode) && zipCode.Length == 4;
         }
 
-        public static bool IsSaluationValid(Salutation salutation)
-        {
-            return salutation != Salutation.None;
-        }
-
         public static bool IsStreetNameValid(string? streetName)
         {
             return !string.IsNullOrWhiteSpace(streetName);

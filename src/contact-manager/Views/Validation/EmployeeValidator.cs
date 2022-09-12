@@ -20,7 +20,6 @@ namespace contact_manager.Views.Validation
             _controlsWithError.Clear();
             _errorProvider.Clear();
 
-            ValidateSalutation();
             ValidateFirstName();
             ValidateLastName();
             ValidateDateOfBirth();
@@ -43,16 +42,6 @@ namespace contact_manager.Views.Validation
             }
 
             return firstControlWithError == null;
-        }
-
-
-        private void ValidateSalutation()
-        {
-            if (!Validator.IsSaluationValid(_dialog.Salutation))
-            {
-                _errorProvider.SetError(_dialog.CmbSalutation, "Wählen Sie eine Anrede");
-                _controlsWithError.Add(_dialog.CmbSalutation);
-            }
         }
 
         private void ValidateContactInformations()

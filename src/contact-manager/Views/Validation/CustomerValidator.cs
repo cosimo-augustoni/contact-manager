@@ -20,7 +20,6 @@ internal class CustomerValidator
         _controlsWithError.Clear();
         _errorProvider.Clear();
 
-        ValidateSalutation();
         ValidateFirstName();
         ValidateLastName();
         ValidateDateOfBirth();
@@ -42,16 +41,6 @@ internal class CustomerValidator
         }
 
         return firstControlWithError == null;
-    }
-
-
-    private void ValidateSalutation()
-    {
-        if (!Validator.IsSaluationValid(_dialog.Salutation))
-        {
-            _errorProvider.SetError(_dialog.CmbSalutation, "Wählen Sie eine Anrede");
-            _controlsWithError.Add(_dialog.CmbSalutation);
-        }
     }
 
     private void ValidateContactInformations()

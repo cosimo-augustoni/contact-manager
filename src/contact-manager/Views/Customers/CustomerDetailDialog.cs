@@ -257,12 +257,6 @@ namespace contact_manager.Views.Customers
             // auch beim Mitarbeiter
         }
 
-
-        private void CmbSalutation_SelectedValueChanged(object sender, EventArgs e)
-        {
-            CustomerErrorProvider.SetError(CmbSalutation, null);
-        }
-
         private void TxtFirstName_TextChanged(object sender, EventArgs e)
         {
             CustomerErrorProvider.SetError(TxtFirstName, null);
