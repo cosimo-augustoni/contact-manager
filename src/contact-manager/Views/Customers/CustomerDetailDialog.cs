@@ -186,7 +186,6 @@ namespace contact_manager.Views.Customers
             var isEnabled = !this.presenter?.IsReadOnly ?? false;
             var isNewMode = this.presenter?.IsNewMode ?? false;
             CmdSave.Enabled = isEnabled;
-            CmdCancel.Enabled = isEnabled && !isNewMode;
             CmdChangeStatus.Enabled = isEnabled && !isNewMode;
             CmdShowCustomerNotes.Enabled = !isNewMode;
             CmdProtocol.Enabled = !isNewMode;
@@ -250,13 +249,6 @@ namespace contact_manager.Views.Customers
         {
             this.presenter?.ChangeStatus();
             InitializeMode();
-        }
-
-        private void CmdCancel_Click(object sender, EventArgs e)
-        {
-            // todo: daten in Maske auf default zurücksetzen bei neu
-            // und bei bearbeiten sollen die Werte vor der bearbeitung angezeigt werden (sofern noch nicht gespeichert)
-            // auch beim Mitarbeiter
         }
 
         private void TxtFirstName_TextChanged(object sender, EventArgs e)

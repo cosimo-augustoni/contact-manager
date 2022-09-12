@@ -81,7 +81,6 @@
       this.DateTimePickerDateOfBirth = new System.Windows.Forms.DateTimePicker();
       this.CmbSalutation = new System.Windows.Forms.ComboBox();
       this.CmdChangeStatus = new System.Windows.Forms.Button();
-      this.CmdCancel = new System.Windows.Forms.Button();
       this.CmdSave = new System.Windows.Forms.Button();
       this.CmdProtocol = new System.Windows.Forms.Button();
       this.CmdShowCustomerNotes = new System.Windows.Forms.Button();
@@ -93,10 +92,6 @@
       this.GrpPersonalData.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.CustomerErrorProvider)).BeginInit();
       this.SuspendLayout();
-      // 
-      // customerNoteBindingSource
-      // 
-      this.customerNoteBindingSource.DataSource = typeof(contact_manager.Models.Data.CustomerNote);
       // 
       // GrpCustomerData
       // 
@@ -582,7 +577,7 @@
       // CmdChangeStatus
       // 
       this.CmdChangeStatus.Image = global::contact_manager.Properties.Resources.EditLabel;
-      this.CmdChangeStatus.Location = new System.Drawing.Point(224, 12);
+      this.CmdChangeStatus.Location = new System.Drawing.Point(118, 12);
       this.CmdChangeStatus.Name = "CmdChangeStatus";
       this.CmdChangeStatus.Size = new System.Drawing.Size(100, 30);
       this.CmdChangeStatus.TabIndex = 34;
@@ -592,20 +587,6 @@
       this.CmdChangeStatus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       this.CmdChangeStatus.UseVisualStyleBackColor = true;
       this.CmdChangeStatus.Click += new System.EventHandler(this.CmdChangeStatus_Click);
-      // 
-      // CmdCancel
-      // 
-      this.CmdCancel.Image = global::contact_manager.Properties.Resources.Cancel;
-      this.CmdCancel.Location = new System.Drawing.Point(118, 12);
-      this.CmdCancel.Name = "CmdCancel";
-      this.CmdCancel.Size = new System.Drawing.Size(100, 30);
-      this.CmdCancel.TabIndex = 33;
-      this.CmdCancel.TabStop = false;
-      this.CmdCancel.Text = "Abbrechen";
-      this.CmdCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      this.CmdCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.CmdCancel.UseVisualStyleBackColor = true;
-      this.CmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
       // 
       // CmdSave
       // 
@@ -624,7 +605,7 @@
       // CmdProtocol
       // 
       this.CmdProtocol.Image = global::contact_manager.Properties.Resources.History;
-      this.CmdProtocol.Location = new System.Drawing.Point(436, 12);
+      this.CmdProtocol.Location = new System.Drawing.Point(330, 12);
       this.CmdProtocol.Name = "CmdProtocol";
       this.CmdProtocol.Size = new System.Drawing.Size(100, 30);
       this.CmdProtocol.TabIndex = 35;
@@ -638,7 +619,7 @@
       // CmdShowCustomerNotes
       // 
       this.CmdShowCustomerNotes.Image = global::contact_manager.Properties.Resources.Note;
-      this.CmdShowCustomerNotes.Location = new System.Drawing.Point(330, 12);
+      this.CmdShowCustomerNotes.Location = new System.Drawing.Point(224, 12);
       this.CmdShowCustomerNotes.Name = "CmdShowCustomerNotes";
       this.CmdShowCustomerNotes.Size = new System.Drawing.Size(100, 30);
       this.CmdShowCustomerNotes.TabIndex = 36;
@@ -663,7 +644,6 @@
       this.Controls.Add(this.CmdShowCustomerNotes);
       this.Controls.Add(this.CmdProtocol);
       this.Controls.Add(this.CmdChangeStatus);
-      this.Controls.Add(this.CmdCancel);
       this.Controls.Add(this.CmdSave);
       this.Controls.Add(this.GrpCustomerData);
       this.Controls.Add(this.GrpContactData);
@@ -730,7 +710,6 @@
         private Label LblLastname;
         private Label LblPhoneNumberMobile;
         private Button CmdChangeStatus;
-        private Button CmdCancel;
         private Button CmdSave;
         private Button CmdProtocol;
         private Button CmdShowCustomerNotes;
