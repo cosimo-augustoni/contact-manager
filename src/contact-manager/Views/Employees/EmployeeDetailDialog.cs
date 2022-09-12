@@ -236,12 +236,12 @@ namespace contact_manager.Views.Employees
             {
                 MessageBox.Show("Fehler beim Speichern" + Environment.NewLine
                     + "Kontrollien Sie die Eingaben und versuchen Sie es erneut.", "Speichern", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }    
+            }
         }
 
         private void CmdProtocol_Click(object sender, EventArgs e)
         {
-            this.presenter?.OpenHistoryDialog();
+            this._presenter?.OpenHistoryDialog();
         }
 
         private void CmdCancel_Click(object sender, EventArgs e)
@@ -342,7 +342,7 @@ namespace contact_manager.Views.Employees
             if (e.KeyCode == Keys.Delete)
                 this.ExitDate = null;
         }
-        
+
         private void DatePickerDateOfBirth_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
