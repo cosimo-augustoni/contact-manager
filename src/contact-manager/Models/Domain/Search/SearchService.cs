@@ -65,6 +65,8 @@ namespace contact_manager.Models.Domain.Search
 
         private static Expression<Func<object?, bool>> GetMatchExpressionByPropertyType(PropertyInfo propertyInfo, string searchTerm)
         {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+                return p => true;
             if (propertyInfo.PropertyType == typeof(string))
                 return GetStringPredicate(searchTerm);
             if (propertyInfo.PropertyType == typeof(int) || propertyInfo.PropertyType == typeof(int?))
@@ -79,7 +81,7 @@ namespace contact_manager.Models.Domain.Search
         private static Expression<Func<object?, bool>> GetStringPredicate(string searchTerm)
         {
             return f => ((string?)f) != null
-                ? ((string)f).Contains(searchTerm)
+                ? ((string)f).Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
                 : string.IsNullOrWhiteSpace((string?)f) && string.IsNullOrWhiteSpace(searchTerm);
         }
 
@@ -102,7 +104,7 @@ namespace contact_manager.Models.Domain.Search
             if (Enum.TryParse(propertyInfo.PropertyType, searchTerm, out var searchTermEnum))
                 return f => f == searchTermEnum;
 
-            var enumMember = propertyInfo.PropertyType.GetFields().FirstOrDefault(m => m.GetCustomAttribute<DisplayAttribute>()?.Name?.Contains(searchTerm) ?? false);
+            var enumMember = propertyInfo.PropertyType.GetFields().FirstOrDefault(m => m.GetCustomAttribute<DisplayAttribute>()?.Name?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false);
             if (enumMember != null)
                 return f => enumMember.GetValue(null)!.Equals(f);
 
