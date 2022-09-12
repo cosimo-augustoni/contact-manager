@@ -569,6 +569,7 @@
       this.DateTimePickerDateOfBirth.Size = new System.Drawing.Size(183, 23);
       this.DateTimePickerDateOfBirth.TabIndex = 9;
       this.DateTimePickerDateOfBirth.ValueChanged += new System.EventHandler(this.DateTimePickerDateOfBirth_ValueChanged);
+      this.DateTimePickerDateOfBirth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DatePickerDateOfBirth_KeyDown);
       // 
       // CmbSalutation
       // 
@@ -577,7 +578,6 @@
       this.CmbSalutation.Name = "CmbSalutation";
       this.CmbSalutation.Size = new System.Drawing.Size(183, 23);
       this.CmbSalutation.TabIndex = 2;
-      this.CmbSalutation.SelectedValueChanged += new System.EventHandler(this.CmbSalutation_SelectedValueChanged);
       // 
       // CmdChangeStatus
       // 
@@ -651,6 +651,7 @@
       // 
       // CustomerErrorProvider
       // 
+      this.CustomerErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
       this.CustomerErrorProvider.ContainerControl = this;
       // 
       // CustomerDetailDialog

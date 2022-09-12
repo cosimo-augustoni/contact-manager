@@ -81,6 +81,8 @@ namespace contact_manager.Presenters.Employees
         public void LoadNewEmployee()
         {
             this._employeeId = this._employeeService.GetNewId();
+            this._dialog.DateOfBirth = null;
+            this._dialog.ExitDate = null;
         }
 
         public void Save()

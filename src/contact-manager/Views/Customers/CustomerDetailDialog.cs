@@ -1,7 +1,7 @@
 ﻿using contact_manager.Models.Data;
 using contact_manager.Models.Data.Customer;
-using contact_manager.Models.Domain.Validation;
 using contact_manager.Presenters.Customers;
+using contact_manager.Views.Validation;
 
 namespace contact_manager.Views.Customers
 {
@@ -67,18 +67,18 @@ namespace contact_manager.Views.Customers
 
         public DateTime? DateOfBirth
         {
-            // todo: muss nochmals angeschaut werden
             get => this.DateTimePickerDateOfBirth.Value != DateTimePicker.MinimumDateTime ? this.DateTimePickerDateOfBirth.Value : null;
             set
             {
                 if (value == null)
                 {
-                    this.DateTimePickerDateOfBirth.CustomFormat = "";
-                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime.Date;
+                    this.DateTimePickerDateOfBirth.CustomFormat = " ";
+                    this.DateTimePickerDateOfBirth.Format = DateTimePickerFormat.Custom;
+                    this.DateTimePickerDateOfBirth.Value = DateTimePicker.MinimumDateTime;
                 }
                 else
                 {
-                    this.DateTimePickerDateOfBirth.CustomFormat = "dd.MM.yyyy";
+                    this.DateTimePickerDateOfBirth.Format = DateTimePickerFormat.Short;
                     this.DateTimePickerDateOfBirth.Value = value.Value.Date;
                 }
             }
@@ -260,12 +260,6 @@ namespace contact_manager.Views.Customers
             // auch beim Mitarbeiter
         }
 
-
-        private void CmbSalutation_SelectedValueChanged(object sender, EventArgs e)
-        {
-            CustomerErrorProvider.SetError(CmbSalutation, null);
-        }
-
         private void TxtFirstName_TextChanged(object sender, EventArgs e)
         {
             CustomerErrorProvider.SetError(TxtFirstName, null);
@@ -293,6 +287,9 @@ namespace contact_manager.Views.Customers
 
         private void DateTimePickerDateOfBirth_ValueChanged(object sender, EventArgs e)
         {
+            if (this.DateOfBirth != null)
+                this.DateTimePickerDateOfBirth.Format = DateTimePickerFormat.Short;
+
             CustomerErrorProvider.SetError(DateTimePickerDateOfBirth, null);
         }
 
@@ -324,6 +321,12 @@ namespace contact_manager.Views.Customers
         private void TxtFaxNumber_TextChanged(object sender, EventArgs e)
         {
             CustomerErrorProvider.SetError(TxtFaxNumber, null);
+        }
+
+        private void DatePickerDateOfBirth_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                this.DateOfBirth = null;
         }
     }
 }
