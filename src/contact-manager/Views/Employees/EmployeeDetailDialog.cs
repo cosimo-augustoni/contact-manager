@@ -203,11 +203,9 @@ namespace contact_manager.Views.Employees
             var isEnabled = !this._presenter?.IsReadOnly ?? false;
             var isNewMode = this._presenter?.IsNewMode ?? false;
             CmdSave.Enabled = isEnabled;
-            CmdCancel.Enabled = isEnabled && !isNewMode;
             CmdChangeStatus.Enabled = isEnabled && !isNewMode;
             CmdProtocol.Enabled = !isNewMode;
 
-            // ToDo: auslagern?
             if (isNewMode)
             {
                 State = State.Active;
@@ -242,12 +240,6 @@ namespace contact_manager.Views.Employees
         private void CmdProtocol_Click(object sender, EventArgs e)
         {
             this._presenter?.OpenHistoryDialog();
-        }
-
-        private void CmdCancel_Click(object sender, EventArgs e)
-        {
-            // ToDo: cancel (wieder die daten von anfang an anzeigen?)
-            // wie soll es sich beim Abbrechen verhalten (auch für Customer noch einbauen)
         }
 
         private void CmdChangeStatus_Click(object sender, EventArgs e)
