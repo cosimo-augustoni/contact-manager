@@ -2,6 +2,7 @@
 using contact_manager.Models.Data.History;
 using contact_manager.Models.Domain;
 using contact_manager.Models.Domain.Authentication;
+using contact_manager.Models.Domain.CsvImport;
 using contact_manager.Models.Domain.History;
 using contact_manager.Presenters;
 using contact_manager.Presenters.Authentication;
@@ -35,7 +36,8 @@ namespace contact_manager.Views
             var historyService = new HistoryService(new Repository<HistoryEntry>(new FileStore<HistoryEntry>()));
 
             var overviewView = new OverviewView();
-            var overviewPresenter = new OverviewPresenter(overviewView, customerService, customerNotesService, employeeService, user, historyService);
+            var csvImporter = new CsvImporter();
+            var overviewPresenter = new OverviewPresenter(overviewView, customerService, customerNotesService, employeeService, user, historyService, csvImporter);
             overviewPresenter.Init();
             overviewPresenter.LoadAllCustomers();
 

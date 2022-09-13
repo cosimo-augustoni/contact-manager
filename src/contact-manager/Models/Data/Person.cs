@@ -5,7 +5,7 @@ namespace contact_manager.Models.Data
     public class Person : IObjectIdentifier
     {
         [Display(Name = "Id")]
-        public long Id { get; init; }
+        public long Id { get; set; }
         [Display(Name = "Anrede")]
         public Salutation Salutation { get; init; }
         [Display(Name = "Vorname")]

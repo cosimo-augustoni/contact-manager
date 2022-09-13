@@ -10,6 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CA459441-CF73-4D16-ACB1-14C2B05EF42F}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		..\CsvImport_Testfiles\kunden_import.csv = ..\CsvImport_Testfiles\kunden_import.csv
+		..\CsvImport_Testfiles\mitarbeiter_import.csv = ..\CsvImport_Testfiles\mitarbeiter_import.csv
 	EndProjectSection
 EndProject
 Global

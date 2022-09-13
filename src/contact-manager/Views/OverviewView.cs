@@ -214,13 +214,14 @@ namespace contact_manager.Views
 
         private void CmdImportCustomer_Click(object sender, EventArgs e)
         {
-            // ToDo: import customer
+            this.presenter?.ImportCsv<Customer>(this.openFileDialog);
         }
 
         private void CmdImportEmployee_Click(object sender, EventArgs e)
         {
-            // ToDo: import employee
+            this.presenter?.ImportCsv<Employee>(this.openFileDialog);
         }
+
         #endregion // Import
     }
 }
