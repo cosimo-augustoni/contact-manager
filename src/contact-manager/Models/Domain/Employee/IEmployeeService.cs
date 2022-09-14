@@ -1,5 +1,6 @@
 ﻿
 using contact_manager.Models.Data;
+using contact_manager.Models.Domain.Search;
 
 namespace contact_manager.Models.Domain
 {
@@ -14,5 +15,7 @@ namespace contact_manager.Models.Domain
         void Delete(long employeeId);
 
         long GetNewId();
+        List<Employee> GetBySearchTerm(SearchScope searchScope, string searchTerm);
+        List<SearchScope> GetSearchScopes();
     }
 }

@@ -34,6 +34,8 @@ namespace contact_manager.Presenters
         public void Init()
         {
             this._overviewView.SetPresenter(this);
+            this._overviewView.SetSearchScopeEmployeeSource(this._employeeService.GetSearchScopes());
+            this._overviewView.SetSearchScopeCustomerSource(this._customerService.GetSearchScopes());
         }
 
         public bool IsReadOnly
@@ -44,6 +46,12 @@ namespace contact_manager.Presenters
         public void LoadAllEmployees()
         {
             var employees = this._employeeService.GetAll();
+            this._overviewView.SetEmployeeList(employees);
+        }
+
+        public void SearchEmployees()
+        {
+            var employees = this._employeeService.GetBySearchTerm(this._overviewView.SearchScopeEmployee, this._overviewView.SearchTermEmployee);
             this._overviewView.SetEmployeeList(employees);
         }
 
@@ -79,6 +87,12 @@ namespace contact_manager.Presenters
         public void LoadAllCustomers()
         {
             var customers = this._customerService.GetAll();
+            this._overviewView.SetCustomerList(customers);
+        }
+
+        public void SearchCustomers()
+        {
+            var customers = this._customerService.GetBySearchTerm(this._overviewView.SearchScopeCustomer, this._overviewView.SearchTermCustomer);
             this._overviewView.SetCustomerList(customers);
         }
 
