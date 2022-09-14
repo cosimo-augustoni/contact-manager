@@ -1,4 +1,4 @@
-﻿namespace contact_manager.Views
+﻿﻿namespace contact_manager.Views
 {
     partial class OverviewView
     {
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CmdCreateNewCustomer = new System.Windows.Forms.Button();
             this.TcPerson = new System.Windows.Forms.TabControl();
             this.TpCustomer = new System.Windows.Forms.TabPage();
@@ -56,10 +56,6 @@
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TpEmployee = new System.Windows.Forms.TabPage();
             this.CmdImportEmployee = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.CmdResetSearchEmployee = new System.Windows.Forms.Button();
-            this.CmdSearchEmployee = new System.Windows.Forms.Button();
-            this.TxtSearchEmployee = new System.Windows.Forms.TextBox();
             this.CmdDeleteEmployee = new System.Windows.Forms.Button();
             this.CmdEditEmployee = new System.Windows.Forms.Button();
             this.CmdCreateNewEmployee = new System.Windows.Forms.Button();
@@ -76,16 +72,21 @@
             this.zipCodeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.CmbSearchScopeCustomer = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.CmbSearchScopeEmployee = new System.Windows.Forms.ComboBox();
+            this.CmdResetSearchEmployee = new System.Windows.Forms.Button();
+            this.CmdSearchEmployee = new System.Windows.Forms.Button();
+            this.TxtSearchEmployee = new System.Windows.Forms.TextBox();
             this.TcPerson.SuspendLayout();
             this.TpCustomer.SuspendLayout();
             this.PnlSearchCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             this.TpEmployee.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // CmdCreateNewCustomer
@@ -172,18 +173,19 @@
             // PnlSearchCustomer
             // 
             this.PnlSearchCustomer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PnlSearchCustomer.Controls.Add(this.CmbSearchScopeCustomer);
             this.PnlSearchCustomer.Controls.Add(this.CmdResetSearchCustomer);
             this.PnlSearchCustomer.Controls.Add(this.CmdSearchCustomer);
             this.PnlSearchCustomer.Controls.Add(this.TxtSearchCustomer);
-            this.PnlSearchCustomer.Location = new System.Drawing.Point(811, 6);
+            this.PnlSearchCustomer.Location = new System.Drawing.Point(644, 6);
             this.PnlSearchCustomer.Name = "PnlSearchCustomer";
-            this.PnlSearchCustomer.Size = new System.Drawing.Size(303, 30);
+            this.PnlSearchCustomer.Size = new System.Drawing.Size(470, 30);
             this.PnlSearchCustomer.TabIndex = 4;
             // 
             // CmdResetSearchCustomer
             // 
             this.CmdResetSearchCustomer.Image = global::contact_manager.Properties.Resources.Cancel;
-            this.CmdResetSearchCustomer.Location = new System.Drawing.Point(276, 5);
+            this.CmdResetSearchCustomer.Location = new System.Drawing.Point(438, 4);
             this.CmdResetSearchCustomer.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.CmdResetSearchCustomer.Name = "CmdResetSearchCustomer";
             this.CmdResetSearchCustomer.Size = new System.Drawing.Size(25, 23);
@@ -194,7 +196,7 @@
             // CmdSearchCustomer
             // 
             this.CmdSearchCustomer.Image = global::contact_manager.Properties.Resources.Search;
-            this.CmdSearchCustomer.Location = new System.Drawing.Point(251, 5);
+            this.CmdSearchCustomer.Location = new System.Drawing.Point(413, 4);
             this.CmdSearchCustomer.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.CmdSearchCustomer.Name = "CmdSearchCustomer";
             this.CmdSearchCustomer.Size = new System.Drawing.Size(25, 23);
@@ -204,7 +206,7 @@
             // 
             // TxtSearchCustomer
             // 
-            this.TxtSearchCustomer.Location = new System.Drawing.Point(3, 5);
+            this.TxtSearchCustomer.Location = new System.Drawing.Point(165, 4);
             this.TxtSearchCustomer.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.TxtSearchCustomer.Name = "TxtSearchCustomer";
             this.TxtSearchCustomer.PlaceholderText = "Suchtext";
@@ -285,9 +287,9 @@
             // dateOfBirthDataGridViewTextBoxColumn
             // 
             this.dateOfBirthDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirth";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dateOfBirthDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dateOfBirthDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.dateOfBirthDataGridViewTextBoxColumn.HeaderText = "Geburtstag";
             this.dateOfBirthDataGridViewTextBoxColumn.MinimumWidth = 12;
             this.dateOfBirthDataGridViewTextBoxColumn.Name = "dateOfBirthDataGridViewTextBoxColumn";
@@ -343,8 +345,8 @@
             // 
             // TpEmployee
             // 
+            this.TpEmployee.Controls.Add(this.panel2);
             this.TpEmployee.Controls.Add(this.CmdImportEmployee);
-            this.TpEmployee.Controls.Add(this.panel1);
             this.TpEmployee.Controls.Add(this.CmdDeleteEmployee);
             this.TpEmployee.Controls.Add(this.CmdEditEmployee);
             this.TpEmployee.Controls.Add(this.CmdCreateNewEmployee);
@@ -369,49 +371,6 @@
             this.CmdImportEmployee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CmdImportEmployee.UseVisualStyleBackColor = true;
             this.CmdImportEmployee.Click += new System.EventHandler(this.CmdImportEmployee_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.Controls.Add(this.CmdResetSearchEmployee);
-            this.panel1.Controls.Add(this.CmdSearchEmployee);
-            this.panel1.Controls.Add(this.TxtSearchEmployee);
-            this.panel1.Location = new System.Drawing.Point(811, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(303, 30);
-            this.panel1.TabIndex = 10;
-            // 
-            // CmdResetSearchEmployee
-            // 
-            this.CmdResetSearchEmployee.Image = global::contact_manager.Properties.Resources.Cancel;
-            this.CmdResetSearchEmployee.Location = new System.Drawing.Point(276, 5);
-            this.CmdResetSearchEmployee.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.CmdResetSearchEmployee.Name = "CmdResetSearchEmployee";
-            this.CmdResetSearchEmployee.Size = new System.Drawing.Size(25, 23);
-            this.CmdResetSearchEmployee.TabIndex = 8;
-            this.CmdResetSearchEmployee.UseVisualStyleBackColor = true;
-            this.CmdResetSearchEmployee.Click += new System.EventHandler(this.CmdResetSearchEmployee_Click);
-            // 
-            // CmdSearchEmployee
-            // 
-            this.CmdSearchEmployee.Image = global::contact_manager.Properties.Resources.Search;
-            this.CmdSearchEmployee.Location = new System.Drawing.Point(251, 5);
-            this.CmdSearchEmployee.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.CmdSearchEmployee.Name = "CmdSearchEmployee";
-            this.CmdSearchEmployee.Size = new System.Drawing.Size(25, 23);
-            this.CmdSearchEmployee.TabIndex = 7;
-            this.CmdSearchEmployee.UseVisualStyleBackColor = true;
-            this.CmdSearchEmployee.Click += new System.EventHandler(this.CmdSearchEmployee_Click);
-            // 
-            // TxtSearchEmployee
-            // 
-            this.TxtSearchEmployee.Location = new System.Drawing.Point(3, 5);
-            this.TxtSearchEmployee.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.TxtSearchEmployee.Name = "TxtSearchEmployee";
-            this.TxtSearchEmployee.PlaceholderText = "Suchtext";
-            this.TxtSearchEmployee.Size = new System.Drawing.Size(248, 23);
-            this.TxtSearchEmployee.TabIndex = 2;
-            this.TxtSearchEmployee.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchEmployee_KeyDown);
             // 
             // CmdDeleteEmployee
             // 
@@ -524,9 +483,9 @@
             // dateOfBirthDataGridViewTextBoxColumn1
             // 
             this.dateOfBirthDataGridViewTextBoxColumn1.DataPropertyName = "DateOfBirth";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dateOfBirthDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dateOfBirthDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dateOfBirthDataGridViewTextBoxColumn1.HeaderText = "Geburtstag";
             this.dateOfBirthDataGridViewTextBoxColumn1.MinimumWidth = 12;
             this.dateOfBirthDataGridViewTextBoxColumn1.Name = "dateOfBirthDataGridViewTextBoxColumn1";
@@ -580,11 +539,65 @@
             // 
             this.employeeBindingSource.DataSource = typeof(contact_manager.Models.Data.Employee);
             // 
-            // openFileDialog
+            // CmbSearchScopeCustomer
             // 
-            this.openFileDialog.ReadOnlyChecked = true;
-            this.openFileDialog.RestoreDirectory = true;
-            this.openFileDialog.Title = "Personen importieren";
+            this.CmbSearchScopeCustomer.FormattingEnabled = true;
+            this.CmbSearchScopeCustomer.Location = new System.Drawing.Point(9, 4);
+            this.CmbSearchScopeCustomer.Name = "CmbSearchScopeCustomer";
+            this.CmbSearchScopeCustomer.Size = new System.Drawing.Size(150, 23);
+            this.CmbSearchScopeCustomer.TabIndex = 8;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel2.Controls.Add(this.CmbSearchScopeEmployee);
+            this.panel2.Controls.Add(this.CmdResetSearchEmployee);
+            this.panel2.Controls.Add(this.CmdSearchEmployee);
+            this.panel2.Controls.Add(this.TxtSearchEmployee);
+            this.panel2.Location = new System.Drawing.Point(644, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(470, 30);
+            this.panel2.TabIndex = 12;
+            // 
+            // CmbSearchScopeEmployee
+            // 
+            this.CmbSearchScopeEmployee.FormattingEnabled = true;
+            this.CmbSearchScopeEmployee.Location = new System.Drawing.Point(9, 4);
+            this.CmbSearchScopeEmployee.Name = "CmbSearchScopeEmployee";
+            this.CmbSearchScopeEmployee.Size = new System.Drawing.Size(150, 23);
+            this.CmbSearchScopeEmployee.TabIndex = 8;
+            // 
+            // CmdResetSearchEmployee
+            // 
+            this.CmdResetSearchEmployee.Image = global::contact_manager.Properties.Resources.Cancel;
+            this.CmdResetSearchEmployee.Location = new System.Drawing.Point(438, 4);
+            this.CmdResetSearchEmployee.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.CmdResetSearchEmployee.Name = "CmdResetSearchEmployee";
+            this.CmdResetSearchEmployee.Size = new System.Drawing.Size(25, 23);
+            this.CmdResetSearchEmployee.TabIndex = 8;
+            this.CmdResetSearchEmployee.UseVisualStyleBackColor = true;
+            this.CmdResetSearchEmployee.Click += new System.EventHandler(this.CmdResetSearchEmployee_Click);
+            // 
+            // CmdSearchEmployee
+            // 
+            this.CmdSearchEmployee.Image = global::contact_manager.Properties.Resources.Search;
+            this.CmdSearchEmployee.Location = new System.Drawing.Point(413, 4);
+            this.CmdSearchEmployee.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.CmdSearchEmployee.Name = "CmdSearchEmployee";
+            this.CmdSearchEmployee.Size = new System.Drawing.Size(25, 23);
+            this.CmdSearchEmployee.TabIndex = 7;
+            this.CmdSearchEmployee.UseVisualStyleBackColor = true;
+            this.CmdSearchEmployee.Click += new System.EventHandler(this.CmdSearchEmployee_Click);
+            // 
+            // TxtSearchEmployee
+            // 
+            this.TxtSearchEmployee.Location = new System.Drawing.Point(165, 4);
+            this.TxtSearchEmployee.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.TxtSearchEmployee.Name = "TxtSearchEmployee";
+            this.TxtSearchEmployee.PlaceholderText = "Suchtext";
+            this.TxtSearchEmployee.Size = new System.Drawing.Size(248, 23);
+            this.TxtSearchEmployee.TabIndex = 2;
+            this.TxtSearchEmployee.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchEmployee_KeyDown);
             // 
             // OverviewView
             // 
@@ -604,10 +617,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
             this.TpEmployee.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -627,10 +640,6 @@
         private Button CmdEditCustomer;
         private Button CmdSearchCustomer;
         private Button CmdResetSearchCustomer;
-        private Panel panel1;
-        private Button CmdResetSearchEmployee;
-        private Button CmdSearchEmployee;
-        private TextBox TxtSearchEmployee;
         private Button CmdDeleteEmployee;
         private Button CmdEditEmployee;
         private Button CmdCreateNewEmployee;
@@ -658,6 +667,11 @@
         private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
-        private OpenFileDialog openFileDialog;
+        private ComboBox CmbSearchScopeCustomer;
+        private Panel panel2;
+        private ComboBox CmbSearchScopeEmployee;
+        private Button CmdResetSearchEmployee;
+        private Button CmdSearchEmployee;
+        private TextBox TxtSearchEmployee;
     }
 }
