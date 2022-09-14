@@ -1,0 +1,5 @@
+﻿Anrede;Vorname;Nachname;Geschlecht;Nationalität;Ort;PLZ;Strasse;Strassennr;Email;Mobilnummer;Geburtsdatum;Firmenname;Kundentyp;Geschäftsadresse
+Herr;Max;Mustermann;M;Schweiz;Niederuzwil;9244;Ziegelgasse;3;max.musti@gmail.com;41763162859;11.09.1978;Musterfirma;A;Musterweg 1
+Herr;Peter;Schnider;M;Italien;Trachselwald;3456;Meisterweg;12;peter.schnider@bluewin.ch;41781235678;11.02.1967;Meisel GmbH;C;Hinterhof 12
+Frau;Daniela;Kaiser;F;Deutschland;Wildegg;5103;Bahnhofstrasse;44;daniela99@hotmail.com;41769032258;08.02.1999;Bühler AG;B;Flawilerstrasse 12
+Frau;Tanja;Ochsner;F;Frankreich;Menzingen;6313;Rohrbruchweg;1;tanja.ochsner@gmail.com;41793337843;01.01.1992;NetSafe;D;Breite 2

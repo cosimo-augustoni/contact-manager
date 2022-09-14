@@ -55,7 +55,7 @@ namespace contact_manager.Views.Employees
 
         public string? AHV13
         {
-            get => this.MTxtAHV13.Text;
+            get { return this.MTxtAHV13.MaskFull ? this.MTxtAHV13.Text : ""; }
             set => this.MTxtAHV13.Text = value;
         }
 

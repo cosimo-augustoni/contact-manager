@@ -1,5 +1,7 @@
-﻿using contact_manager.Models.Domain;
+﻿using contact_manager.Models.Data;
+using contact_manager.Models.Domain;
 using contact_manager.Models.Domain.Authentication;
+using contact_manager.Models.Domain.CsvImport;
 using contact_manager.Models.Domain.History;
 using contact_manager.Presenters.Customers;
 using contact_manager.Presenters.Employees;
@@ -16,11 +18,12 @@ namespace contact_manager.Presenters
         private readonly ICustomerNoteService _customerNotesService;
         private readonly IEmployeeService _employeeService;
         private readonly IHistoryService _historyService;
+        private readonly ICsvImporter _csvImporter;
         private readonly User _user;
 
         public OverviewPresenter(IOverviewView overviewView, ICustomerService customerService,
             ICustomerNoteService customerNotesService,
-            IEmployeeService employeeService, User user, IHistoryService historyService)
+            IEmployeeService employeeService, User user, IHistoryService historyService, ICsvImporter csvImporter)
         {
             this._overviewView = overviewView;
             this._user = user;
@@ -29,6 +32,7 @@ namespace contact_manager.Presenters
             this._customerNotesService = customerNotesService;
             this._employeeService = employeeService;
             this._historyService = historyService;
+            this._csvImporter = csvImporter;
         }
 
         public void Init()
@@ -124,6 +128,57 @@ namespace contact_manager.Presenters
             this._customerService.Delete(customerId);
             //TODO Evtl. Performance Problem alles wieder zu laden. Evtl eine art caching in der View
             this.LoadAllCustomers();
+        }
+
+        public void ImportCsv<T>(OpenFileDialog openFileDialog) where T : Person
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+
+                    var importedPersons = this._csvImporter.ParseCsv<T>(openFileDialog.FileName);
+                    var importType = "";
+                    foreach (var person in importedPersons)
+                    {
+                        if (typeof(T) == typeof(Employee))
+                        {
+                            person.Id = this._employeeService.GetNewId();
+                            this._employeeService.Save(person as Employee);
+                            importType = "Mitarbeiter";
+                        }
+                        else
+                        {
+                            person.Id = this._customerService.GetNewId();
+                            this._customerService.Save(person as Customer);
+                            importType = "Kunden";
+                        }
+                    }
+
+                    this.LoadAllCustomers();
+                    this.LoadAllEmployees();
+                    MessageBox.Show($"{importedPersons.Count()} {importType} erfolgreich importiert!");
+                }
+                catch (CsvHelper.FieldValidationException e)
+                {
+                    var context = e.Context;
+                    var header = context.Reader.HeaderRecord[context.Reader.CurrentIndex];
+                    MessageBox.Show(
+                        $"Validierungsfehler beim Import:\r\n\r\n" +
+                        $"Ungültiger Wert: {e.Field}\r\n" +
+                        $"Spalte: {header}\r\n" +
+                        $"Zeile: {context.Parser.Row - 1}",
+                        "Validierungsfehler", MessageBoxButtons.OK, MessageBoxIcon.Warning
+                        );
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+
+                }
+
+            }
         }
 
         public void SelectedTabChanged(int selectedTabPage)

@@ -1,6 +1,5 @@
 ﻿using System.Net.Mail;
 using System.Text.RegularExpressions;
-using contact_manager.Models.Data;
 
 namespace contact_manager.Views.Validation
 {
@@ -51,6 +50,11 @@ namespace contact_manager.Views.Validation
             return dateOfBirth.HasValue && dateOfBirth.Value > DateTimePicker.MinimumDateTime;
         }
 
+        public static bool IsValidDate(string? dateOfBirth)
+        {
+            return DateTime.TryParse(dateOfBirth, out _);
+        }
+
         public static bool IsDateOfBirthIsInFuture(DateTime? dateOfBirth)
         {
             return dateOfBirth.HasValue && dateOfBirth > DateTime.Today;
@@ -67,7 +71,7 @@ namespace contact_manager.Views.Validation
             {
                 try
                 {
-                    MailAddress mailAddress = new MailAddress(emailAddress);
+                    var mailAddress = new MailAddress(emailAddress);
                 }
                 catch (FormatException)
                 {
@@ -90,7 +94,7 @@ namespace contact_manager.Views.Validation
             {
                 return false;
             }
-            Char checkdigit = GetEAN13Checkdigit(value.Substring(0, 12));
+            var checkdigit = GetEAN13Checkdigit(value.Substring(0, 12));
             if (checkdigit == value[12])
             {
                 return true;
@@ -122,15 +126,15 @@ namespace contact_manager.Views.Validation
             {
                 return ' ';
             }
-            Int32 factor = 3;
-            Int32 sum = 0;
-            for (Int32 index = value.Length; index > 0; index--)
+            var factor = 3;
+            var sum = 0;
+            for (var index = value.Length; index > 0; index--)
             {
-                Int32 digit = value[index - 1] - '0';
+                var digit = value[index - 1] - '0';
                 sum += digit * factor;
                 factor = 4 - factor;
             }
-            Int32 checkDigit = ((10 - (sum % 10)) % 10 + '0');
+            var checkDigit = ((10 - (sum % 10)) % 10 + '0');
             return (Char)checkDigit;
         }
     }
