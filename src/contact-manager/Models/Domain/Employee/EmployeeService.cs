@@ -3,22 +3,22 @@ using contact_manager.Models.Domain.Search;
 
 namespace contact_manager.Models.Domain;
 
-internal class EmployeeService : IEmployeeService
+internal class EmployeeService<T> : IEmployeeService<T> where T : Employee
 {
-    private readonly IRepository<Employee> _employeeRepository;
-    private readonly ISearchService<Employee> _searchService;
+    private readonly IRepository<T> _employeeRepository;
+    private readonly ISearchService<T> _searchService;
 
-    public EmployeeService(IRepository<Employee> employeeRepository)
+    public EmployeeService(IRepository<T> employeeRepository)
     {
         this._employeeRepository = employeeRepository;
-        this._searchService = new SearchService<Employee>(this._employeeRepository);
+        this._searchService = new SearchService<T>(this._employeeRepository);
     }
-    public List<Employee> GetAll()
+    public List<T> GetAll()
     {
         return this._employeeRepository.GetAll();
     }
 
-    public List<Employee> GetBySearchTerm(SearchScope searchScope, string searchTerm)
+    public List<T> GetBySearchTerm(SearchScope searchScope, string searchTerm)
     {
         return this._searchService.SearchBySearchTerm(searchScope, searchTerm);
     }
@@ -28,12 +28,12 @@ internal class EmployeeService : IEmployeeService
         return this._searchService.GetSearchScopes();
     }
 
-    public Employee GetById(long employeeId)
+    public T GetById(long employeeId)
     {
         return this._employeeRepository.GetById(employeeId);
     }
 
-    public void Save(Employee employee)
+    public void Save(T employee)
     {
         this._employeeRepository.Save(employee);
     }

@@ -219,9 +219,9 @@ namespace contact_manager.Views.Employees
             CmdChangeStatus.Text = State == State.Active ? "Deaktivieren" : "Aktivieren";
         }
 
-        public void SetPresenter(EmployeeDetailPresenter employeeDetailPresenter)
+        public void SetPresenter(object detailPresenter)
         {
-            this._presenter = employeeDetailPresenter;
+            this._presenter = (EmployeeDetailPresenter)detailPresenter;
         }
 
         private void CmdSave_Click(object sender, EventArgs e)

@@ -16,14 +16,20 @@ namespace contact_manager.Presenters
         private readonly IOverviewView _overviewView;
         private readonly ICustomerService _customerService;
         private readonly ICustomerNoteService _customerNotesService;
-        private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeService<Employee> _employeeService;
+        private readonly IEmployeeService<Trainee> _traineeService;
         private readonly IHistoryService _historyService;
         private readonly ICsvImporter _csvImporter;
         private readonly User _user;
 
-        public OverviewPresenter(IOverviewView overviewView, ICustomerService customerService,
+        public OverviewPresenter(IOverviewView overviewView,
+            ICustomerService customerService,
             ICustomerNoteService customerNotesService,
-            IEmployeeService employeeService, User user, IHistoryService historyService, ICsvImporter csvImporter)
+            IEmployeeService<Employee> employeeService,
+            IEmployeeService<Trainee> traineeService,
+            User user,
+            IHistoryService historyService,
+            ICsvImporter csvImporter)
         {
             this._overviewView = overviewView;
             this._user = user;
@@ -31,6 +37,7 @@ namespace contact_manager.Presenters
             this._customerService = customerService;
             this._customerNotesService = customerNotesService;
             this._employeeService = employeeService;
+            this._traineeService = traineeService;
             this._historyService = historyService;
             this._csvImporter = csvImporter;
         }

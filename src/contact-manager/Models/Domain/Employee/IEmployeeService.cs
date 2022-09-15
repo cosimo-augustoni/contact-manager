@@ -4,18 +4,18 @@ using contact_manager.Models.Domain.Search;
 
 namespace contact_manager.Models.Domain
 {
-    public interface IEmployeeService
+    public interface IEmployeeService<T> where T: Employee
     {
-        List<Employee> GetAll();
+        List<T> GetAll();
 
-        Employee GetById(long employeeId);
+        T GetById(long employeeId);
 
-        void Save(Employee employee);
+        void Save(T employee);
 
         void Delete(long employeeId);
 
         long GetNewId();
-        List<Employee> GetBySearchTerm(SearchScope searchScope, string searchTerm);
+        List<T> GetBySearchTerm(SearchScope searchScope, string searchTerm);
         List<SearchScope> GetSearchScopes();
     }
 }
