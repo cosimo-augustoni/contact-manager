@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using contact_manager.Models.Data.History;
+using contact_manager.Models.Domain.Authentication;
 using contact_manager.Views;
 
 namespace contact_manager.Models.Data;
@@ -11,10 +12,13 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
 
     private readonly IRepository<HistoryEntry> _historizedRepository;
 
-    public RepositoryWithHistorization()
+    private readonly User _currentUser;
+
+    public RepositoryWithHistorization(User currentUser)
     {
         this._repository = new Repository<T>(new FileStore<T>());
         this._historizedRepository = new Repository<HistoryEntry>(new FileStore<HistoryEntry>());
+        this._currentUser = currentUser;
     }
 
     public List<T> GetAll()
@@ -47,7 +51,6 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
     private void Historize(T entityNew, T? entityOld)
     {
         var historyEntry = this.CreateHistoryEntry(entityNew, entityOld);
-        historyEntry.EntityType = (entityNew is Customer) ? EntityType.Customer : EntityType.Employee;
         if (historyEntry.Diffs.Any())
         {
             this._historizedRepository.Save(historyEntry);
@@ -61,7 +64,9 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
             Id = this._historizedRepository.GetNewId(),
             EntityId = entityNew.Id,
             TimeStamp = DateTime.Now,
-            Diffs = this.GetDifferences(entityNew, entityOld).ToList()
+            EntityType = (entityNew is Customer) ? EntityType.Customer : EntityType.Employee,
+            UserId = _currentUser.Id,
+            Diffs = this.GetDifferences(entityNew, entityOld).ToList(),
         };
     }
 

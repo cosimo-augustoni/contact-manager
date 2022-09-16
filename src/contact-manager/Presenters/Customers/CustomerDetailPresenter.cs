@@ -16,11 +16,12 @@ public class CustomerDetailPresenter : IPresenter
     private readonly ICustomerService _customerService;
     private readonly ICustomerNoteService _customerNotesService;
     private readonly IHistoryService _historyService;
+    private readonly IUserService _userService;
     private readonly User _user;
     private long _customerId;
 
     public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService,
-        ICustomerNoteService customerNotesService, User user, bool isNewMode, IHistoryService historyService)
+        ICustomerNoteService customerNotesService, User user, bool isNewMode, IHistoryService historyService, IUserService userService)
     {
         this._dialog = dialog;
         this._user = user;
@@ -28,6 +29,7 @@ public class CustomerDetailPresenter : IPresenter
         this._customerService = customerService;
         this._customerNotesService = customerNotesService;
         this._historyService = historyService;
+        this._userService = userService;
     }
 
     public void Init()
@@ -134,7 +136,7 @@ public class CustomerDetailPresenter : IPresenter
     public void OpenHistoryDialog()
     {
         var historyDialog = new HistoryDialog();
-        var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
+        var historyPresenter = new HistoryPresenter(historyDialog, _historyService,_userService);
         historyPresenter.LoadPerson(this._customerId, EntityType.Customer);
         historyDialog.ShowDialog();
     }
