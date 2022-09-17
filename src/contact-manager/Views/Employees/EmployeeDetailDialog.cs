@@ -344,5 +344,30 @@ namespace contact_manager.Views.Employees
             if (e.KeyCode == Keys.Delete)
                 this.DateOfBirth = null;
         }
+
+        private void EmployeeDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this._presenter.HasUnsavedChanges())
+            {
+                var closeDialogResult = MessageBox.Show(
+                    "Es gibt ungespeicherte Änderungen, wollen sie diese speichern?",
+                    "Ungespeicherte Änderungen",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning
+                    );
+
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    if (_employeeValidator.Validate())
+                        this._presenter?.Save();
+                    else
+                        e.Cancel = true;
+                }
+                if (closeDialogResult == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

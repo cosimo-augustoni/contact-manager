@@ -7,6 +7,7 @@ using contact_manager.Presenters.History;
 using contact_manager.Views;
 using contact_manager.Views.Customers;
 using contact_manager.Views.Customers.CustomerNotes;
+using DeepEqual.Syntax;
 
 namespace contact_manager.Presenters.Customers;
 
@@ -18,6 +19,7 @@ public class CustomerDetailPresenter : IPresenter
     private readonly IHistoryService _historyService;
     private readonly User _user;
     private long _customerId;
+    private Customer? _customerOnInit;
 
     public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService,
         ICustomerNoteService customerNotesService, User user, bool isNewMode, IHistoryService historyService)
@@ -46,6 +48,8 @@ public class CustomerDetailPresenter : IPresenter
     {
         this._customerId = id;
         var customer = this._customerService.GetById(id);
+        this._customerOnInit = customer;
+
         this._dialog.FirstName = customer.FirstName;
         this._dialog.CustomerNumber = customer.CustomerNumber;
         this._dialog.Salutation = customer.Salutation;
@@ -92,6 +96,37 @@ public class CustomerDetailPresenter : IPresenter
 
     public void Save()
     {
+        var customer = MapDialogFieldsToCustomer();
+        this._customerService.Save(customer);
+        this._customerOnInit = customer;
+    }
+
+    public void OpenCustomerNotesDialog(string customerDisplayText)
+    {
+        var dialog = new CustomerNotesDialog();
+        var presenter = new CustomerNotesPresenter(dialog, this._customerNotesService, this._customerId, this._user);
+        presenter.Init();
+        presenter.SetTitle(customerDisplayText);
+        dialog.ShowDialog();
+    }
+
+    public void OpenHistoryDialog()
+    {
+        var historyDialog = new HistoryDialog();
+        var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
+        historyPresenter.LoadPerson(this._customerId, EntityType.Customer);
+        historyDialog.ShowDialog();
+    }
+
+    public bool HasUnsavedChanges()
+    {
+        var customerAfter = MapDialogFieldsToCustomer();
+
+        return !this._customerOnInit.IsDeepEqual(customerAfter);
+    }
+
+    private Customer MapDialogFieldsToCustomer()
+    {
         var customer = new Customer
         {
             Id = this._customerId,
@@ -119,23 +154,7 @@ public class CustomerDetailPresenter : IPresenter
             CompanyName = this._dialog.CompanyName,
             CustomerType = this._dialog.CustomerType
         };
-        this._customerService.Save(customer);
-    }
 
-    public void OpenCustomerNotesDialog(string customerDisplayText)
-    {
-        var dialog = new CustomerNotesDialog();
-        var presenter = new CustomerNotesPresenter(dialog, this._customerNotesService, this._customerId, this._user);
-        presenter.Init();
-        presenter.SetTitle(customerDisplayText);
-        dialog.ShowDialog();
-    }
-
-    public void OpenHistoryDialog()
-    {
-        var historyDialog = new HistoryDialog();
-        var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
-        historyPresenter.LoadPerson(this._customerId, EntityType.Customer);
-        historyDialog.ShowDialog();
+        return customer;
     }
 }

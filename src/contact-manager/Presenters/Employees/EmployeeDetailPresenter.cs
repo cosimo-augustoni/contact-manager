@@ -6,6 +6,7 @@ using contact_manager.Models.Domain.History;
 using contact_manager.Presenters.History;
 using contact_manager.Views;
 using contact_manager.Views.Employees;
+using DeepEqual.Syntax;
 
 namespace contact_manager.Presenters.Employees
 {
@@ -18,6 +19,7 @@ namespace contact_manager.Presenters.Employees
 
         private long _employeeId;
         private readonly bool _isNewMode;
+        private Employee? _employeeOnInit;
 
         public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user, bool isNewMode, IHistoryService historyService)
         {
@@ -47,6 +49,7 @@ namespace contact_manager.Presenters.Employees
         {
             this._employeeId = id;
             var employee = this._employeeService.GetById(id);
+            this._employeeOnInit = employee;
 
             this._dialog.EmployeeNumber = employee.EmployeeNumber;
             this._dialog.Salutation = employee.Salutation;
@@ -87,6 +90,37 @@ namespace contact_manager.Presenters.Employees
 
         public void Save()
         {
+            var employee = MapDialogFieldsToEmployee();
+            this._employeeService.Save(employee);
+            this._employeeOnInit = employee;
+        }
+
+        public void ChangeStatus()
+        {
+            this._dialog.State = this._dialog.State == Models.Data.State.Active
+                ? Models.Data.State.Passive
+                : Models.Data.State.Active;
+
+            Save();
+        }
+
+        public void OpenHistoryDialog()
+        {
+            var historyDialog = new HistoryDialog();
+            var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
+            historyPresenter.LoadPerson(this._employeeId, EntityType.Employee);
+            historyDialog.ShowDialog();
+        }
+
+        public bool HasUnsavedChanges()
+        {
+            var employeeAfter = MapDialogFieldsToEmployee();
+
+            return !this._employeeOnInit.IsDeepEqual(employeeAfter);
+        }
+
+        private Employee MapDialogFieldsToEmployee()
+        {
             var employee = new Employee
             {
                 Id = this._employeeId,
@@ -115,24 +149,8 @@ namespace contact_manager.Presenters.Employees
                 Role = this._dialog.Role,
                 CadreLevel = this._dialog.CadreLevel,
             };
-            this._employeeService.Save(employee);
-        }
 
-        public void ChangeStatus()
-        {
-            this._dialog.State = this._dialog.State == Models.Data.State.Active
-                ? Models.Data.State.Passive
-                : Models.Data.State.Active;
-
-            Save();
-        }
-
-        public void OpenHistoryDialog()
-        {
-            var historyDialog = new HistoryDialog();
-            var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
-            historyPresenter.LoadPerson(this._employeeId, EntityType.Employee);
-            historyDialog.ShowDialog();
+            return employee;
         }
     }
 }
