@@ -115,7 +115,7 @@ public class CustomerDetailPresenter : IPresenter
     public void OpenHistoryDialog()
     {
         var historyDialog = new HistoryDialog();
-        var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
+        var historyPresenter = new HistoryPresenter(historyDialog, _historyService, _userService);
         historyPresenter.LoadPerson(this._customerId, EntityType.Customer);
         historyDialog.ShowDialog();
     }
