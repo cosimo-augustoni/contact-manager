@@ -6,6 +6,7 @@
         public long EntityId { get; set; }
         public EntityType EntityType { get; set; }
         public DateTime TimeStamp { get; set; }
+        public int UserId { get; set; }
         public List<Difference> Diffs { get; set; }
     }
 }

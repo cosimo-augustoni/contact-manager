@@ -14,18 +14,20 @@ namespace contact_manager.Presenters.Employees
         private readonly IEmployeeDetailDialog _dialog;
         private readonly IEmployeeService _employeeService;
         private readonly IHistoryService _historyService;
+        private readonly IUserService _userService;
         private readonly User _user;
 
         private long _employeeId;
         private readonly bool _isNewMode;
 
-        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user, bool isNewMode, IHistoryService historyService)
+        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService employeeService, User user, bool isNewMode, IHistoryService historyService, IUserService userService)
         {
             this._dialog = dialog;
             this._employeeService = employeeService;
             this._user = user;
             this._isNewMode = isNewMode;
             this._historyService = historyService;
+            this._userService = userService;
         }
 
         public void Init()
@@ -130,7 +132,7 @@ namespace contact_manager.Presenters.Employees
         public void OpenHistoryDialog()
         {
             var historyDialog = new HistoryDialog();
-            var historyPresenter = new HistoryPresenter(historyDialog, _historyService);
+            var historyPresenter = new HistoryPresenter(historyDialog, _historyService,_userService);
             historyPresenter.LoadPerson(this._employeeId, EntityType.Employee);
             historyDialog.ShowDialog();
         }
