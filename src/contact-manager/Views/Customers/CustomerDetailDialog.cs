@@ -6,7 +6,7 @@ namespace contact_manager.Views.Customers
 {
     public partial class CustomerDetailDialog : Form, ICustomerDetailDialog
     {
-        private CustomerDetailPresenter? presenter;
+        private CustomerDetailPresenter? _presenter;
         private readonly CustomerValidator _customerValidator;
 
         #region FormProperties
@@ -178,13 +178,13 @@ namespace contact_manager.Views.Customers
 
         public void SetPresenter(CustomerDetailPresenter customerDetailPresenter)
         {
-            this.presenter = customerDetailPresenter;
+            this._presenter = customerDetailPresenter;
         }
 
         public void InitializeMode()
         {
-            var isEnabled = !this.presenter?.IsReadOnly ?? false;
-            var isNewMode = this.presenter?.IsNewMode ?? false;
+            var isEnabled = !this._presenter?.IsReadOnly ?? false;
+            var isNewMode = this._presenter?.IsNewMode ?? false;
             CmdSave.Enabled = isEnabled;
             CmdChangeStatus.Enabled = isEnabled && !isNewMode;
             CmdShowCustomerNotes.Enabled = !isNewMode;
@@ -209,7 +209,7 @@ namespace contact_manager.Views.Customers
 
             if (_customerValidator.Validate())
             {
-                this.presenter?.Save();
+                this._presenter?.Save();
                 CmdProtocol.Enabled = true;
             }
             else
@@ -232,22 +232,42 @@ namespace contact_manager.Views.Customers
 
         private void CustomerDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // todo: prüfen, ob änderungen vorhanden sind
+            if (this._presenter.HasUnsavedChanges())
+            {
+                var closeDialogResult = MessageBox.Show(
+                    "Es gibt ungespeicherte Änderungen, wollen sie diese speichern?",
+                    "Ungespeicherte Änderungen",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning
+                    );
+
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    if (_customerValidator.Validate())
+                        this._presenter?.Save();
+                    else
+                        e.Cancel = true;
+                }
+                if (closeDialogResult == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
 
         private void CmdProtocol_Click(object sender, EventArgs e)
         {
-            presenter?.OpenHistoryDialog();
+            _presenter?.OpenHistoryDialog();
         }
 
         private void CmdShowCustomerNotes_Click(object sender, EventArgs e)
         {
-            this.presenter?.OpenCustomerNotesDialog(CustomerDisplayText);
+            this._presenter?.OpenCustomerNotesDialog(CustomerDisplayText);
         }
 
         private void CmdChangeStatus_Click(object sender, EventArgs e)
         {
-            this.presenter?.ChangeStatus();
+            this._presenter?.ChangeStatus();
             InitializeMode();
         }
 
