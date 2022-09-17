@@ -189,6 +189,60 @@ namespace contact_manager.Presenters
                 this.LoadAllCustomers();
             else if (selectedTabPage == 1)
                 this.LoadAllEmployees();
+            else if (selectedTabPage == 2)
+                this.LoadDashbaordData();
+        }
+
+        public void LoadDashbaordData()
+        {
+            var customers = this._customerService.GetAll();
+            var activeCustomerCount = customers.Where(a => a.State == Models.Data.State.Active).Count();
+            var passiveCustomerCount = customers.Where(a => a.State == Models.Data.State.Passive).Count();
+            var cityNames = new List<string?>();
+            var cityCounts = new List<double>();
+            var customerTypes = new List<string>();
+            var customerTypeCounts = new List<double>();
+
+            var cityData = customers
+                .Where(c => !String.IsNullOrEmpty(c.City))
+                .GroupBy(c => c.City)
+                .Select(c => new
+                {
+                    CityName = $"{c.Key} ({c.Count()})",
+                    Count = c.Count()
+                });
+
+            if (cityData.Count() > 3)
+            {
+                var threeCitiesWithHighestCountData = cityData.OrderByDescending(c => c.Count).Take(3);
+                var othersCount = cityData.OrderBy(c => c.Count).Take(cityData.Count() - 3).Sum(c => (double) c.Count);
+                cityNames.AddRange(threeCitiesWithHighestCountData.Select(c => c.CityName).ToList());
+                cityNames.Add("Andere");
+
+                cityCounts.AddRange(threeCitiesWithHighestCountData.Select(c => (double) c.Count).ToList());
+                cityCounts.Add(othersCount);
+            }
+            else
+            {
+                cityNames.AddRange(cityData.Select(c => c.CityName).ToList());
+                cityCounts.AddRange(cityData.Select(c => (double)c.Count).ToList());
+            }
+
+            var customerTypeData = customers
+                .GroupBy(c => c.CustomerType)
+                .Select(c => new
+                {
+                    CustomerType = $"{c.Key} ({c.Count()})",
+                    Count = c.Count()
+                });
+
+            customerTypes.AddRange(customerTypeData.Select(c => c.CustomerType).ToList());
+            customerTypeCounts.AddRange(customerTypeData.Select(c => (double)c.Count).ToList());
+ 
+            var dashboardData = new DashboardData(activeCustomerCount, passiveCustomerCount, cityNames.ToArray(), cityCounts.ToArray(),
+                customerTypes.ToArray(), customerTypeCounts.ToArray());
+
+            this._overviewView.SetDashboardData(dashboardData);
         }
     }
 }
