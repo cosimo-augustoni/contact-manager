@@ -41,7 +41,7 @@
             this.FlowLayoutPnlHistory.BackColor = System.Drawing.SystemColors.Control;
             this.FlowLayoutPnlHistory.Location = new System.Drawing.Point(29, 52);
             this.FlowLayoutPnlHistory.Name = "FlowLayoutPnlHistory";
-            this.FlowLayoutPnlHistory.Size = new System.Drawing.Size(536, 578);
+            this.FlowLayoutPnlHistory.Size = new System.Drawing.Size(434, 484);
             this.FlowLayoutPnlHistory.TabIndex = 1;
             // 
             // LblTitel
@@ -58,8 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(593, 654);
+            this.ClientSize = new System.Drawing.Size(475, 561);
             this.Controls.Add(this.LblTitel);
             this.Controls.Add(this.FlowLayoutPnlHistory);
             this.Name = "HistoryDialog";
