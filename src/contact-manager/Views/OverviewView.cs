@@ -269,5 +269,74 @@ namespace contact_manager.Views
         }
 
         #endregion // Import
+
+        //----------------------------------------------------------------------------------------------------
+        #region Dashboard
+        //----------------------------------------------------------------------------------------------------
+
+        public void SetDashboardData(DashboardData dashboardData)
+        {
+            CreateCustomerCountFormsPlot(dashboardData);
+            CreateCustomerCityFormsPlot(dashboardData);
+            CreateCustomerTypeFormsPlot(dashboardData);
+        }
+
+        private void CreateCustomerCountFormsPlot(DashboardData dashboardData)
+        {
+            CustomerCountFormsPlot.Plot.Clear();
+            var activeCustomerCount = dashboardData.ActiveCustomerCount;
+            var passiveCustomerCount = dashboardData.PassiveCustomerCount;
+
+            var max = activeCustomerCount >= passiveCustomerCount ? activeCustomerCount : passiveCustomerCount;
+
+            List<ScottPlot.Plottable.Bar> bars = new List<ScottPlot.Plottable.Bar>();
+            ScottPlot.Plottable.Bar activeBar = new ScottPlot.Plottable.Bar()
+            {
+                Position = 0,
+                Value = activeCustomerCount,
+                Label = $"aktiv ({activeCustomerCount})",
+                FillColor = Color.Blue
+
+            };
+            ScottPlot.Plottable.Bar passiveBar = new ScottPlot.Plottable.Bar()
+            {
+                Position = 2,
+                Value = passiveCustomerCount,
+                Label = $"passiv ({passiveCustomerCount})",
+                FillColor = Color.Tomato
+            };
+            bars.Add(activeBar);
+            bars.Add(passiveBar);
+            CustomerCountFormsPlot.Plot.XAxis.Ticks(false);
+            CustomerCountFormsPlot.Plot.YAxis.Label("Anzahl");
+            CustomerCountFormsPlot.Plot.XAxis.Label("Status");
+            CustomerCountFormsPlot.Plot.AddBarSeries(bars);
+            CustomerCountFormsPlot.Plot.SetAxisLimits(yMin: 0, yMax: max + 10);
+            CustomerCountFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            CustomerCountFormsPlot.Refresh();
+        }
+
+        private void CreateCustomerCityFormsPlot(DashboardData dashboardData)
+        {
+            CustomerCityFormsPlot.Plot.Clear();
+            var pie = CustomerCityFormsPlot.Plot.AddPie(dashboardData.CustomerCityCounts);
+
+            pie.SliceLabels = dashboardData.CustomerCityNames;
+            pie.Explode = true;
+
+            CustomerCityFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            CustomerCityFormsPlot.Refresh();
+        }
+
+        private void CreateCustomerTypeFormsPlot(DashboardData dashboardData)
+        {
+            CustomerTypeFormsPlot.Plot.Clear();
+            var pie = CustomerTypeFormsPlot.Plot.AddPie(dashboardData.CustomerTypeCounts);
+            pie.SliceLabels = dashboardData.CustomerTypes;
+            pie.Explode = true;
+            CustomerTypeFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            CustomerTypeFormsPlot.Refresh();
+        }
+        #endregion // Dashboard
     }
 }

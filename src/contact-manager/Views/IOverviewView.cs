@@ -17,4 +17,6 @@ public interface IOverviewView
     SearchScope SearchScopeEmployee { get; set; }
     void SetSearchScopeCustomerSource(List<SearchScope> scopes);
     void SetSearchScopeEmployeeSource(List<SearchScope> scopes);
+
+    void SetDashboardData(DashboardData dashboardData);
 }
