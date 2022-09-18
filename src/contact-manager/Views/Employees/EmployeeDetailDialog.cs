@@ -330,7 +330,10 @@ namespace contact_manager.Views.Employees
 
         private void TxtZipCode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !Char.IsDigit(e.KeyChar);
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void DatePickerExitDate_KeyDown(object sender, KeyEventArgs e)
@@ -343,6 +346,31 @@ namespace contact_manager.Views.Employees
         {
             if (e.KeyCode == Keys.Delete)
                 this.DateOfBirth = null;
+        }
+
+        private void EmployeeDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this._presenter.HasUnsavedChanges())
+            {
+                var closeDialogResult = MessageBox.Show(
+                    "Es gibt ungespeicherte Änderungen, wollen sie diese speichern?",
+                    "Ungespeicherte Änderungen",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning
+                    );
+
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    if (_employeeValidator.Validate())
+                        this._presenter?.Save();
+                    else
+                        e.Cancel = true;
+                }
+                if (closeDialogResult == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

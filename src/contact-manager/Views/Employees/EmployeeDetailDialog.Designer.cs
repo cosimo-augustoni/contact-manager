@@ -342,7 +342,6 @@
       this.TxtZipCode.Name = "TxtZipCode";
       this.TxtZipCode.Size = new System.Drawing.Size(183, 23);
       this.TxtZipCode.TabIndex = 14;
-      this.TxtZipCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
       this.TxtZipCode.TextChanged += new System.EventHandler(this.TxtZipCode_TextChanged);
       this.TxtZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtZipCode_KeyPress);
       // 
@@ -420,7 +419,8 @@
       // 
       // DatePickerExitDate
       // 
-      this.DatePickerExitDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+      this.DatePickerExitDate.CustomFormat = " ";
+      this.DatePickerExitDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
       this.DatePickerExitDate.Location = new System.Drawing.Point(151, 161);
       this.DatePickerExitDate.Name = "DatePickerExitDate";
       this.DatePickerExitDate.Size = new System.Drawing.Size(183, 23);
@@ -445,41 +445,42 @@
             0,
             0,
             0});
-            this.NumCadreLevel.Name = "NumCadreLevel";
-            this.NumCadreLevel.Size = new System.Drawing.Size(183, 23);
-            this.NumCadreLevel.TabIndex = 20;
-            // 
-            // DatePickerEntranceDate
-            // 
-            this.DatePickerEntranceDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePickerEntranceDate.Location = new System.Drawing.Point(151, 132);
-            this.DatePickerEntranceDate.Name = "DatePickerEntranceDate";
-            this.DatePickerEntranceDate.Size = new System.Drawing.Size(183, 23);
-            this.DatePickerEntranceDate.TabIndex = 21;
-            this.DatePickerEntranceDate.Value = new System.DateTime(2022, 8, 21, 11, 47, 15, 0);
-            this.DatePickerEntranceDate.ValueChanged += new System.EventHandler(this.DatePickerEntranceDate_ValueChanged);
-            // 
-            // LblCadreLevel
-            // 
-            this.LblCadreLevel.AutoSize = true;
-            this.LblCadreLevel.Location = new System.Drawing.Point(6, 105);
-            this.LblCadreLevel.Name = "LblCadreLevel";
-            this.LblCadreLevel.Size = new System.Drawing.Size(63, 15);
-            this.LblCadreLevel.TabIndex = 28;
-            this.LblCadreLevel.Text = "Kaderstufe";
-            // 
-            // NumEmployment
-            // 
-            this.NumEmployment.Increment = new decimal(new int[] {
+      this.NumCadreLevel.Name = "NumCadreLevel";
+      this.NumCadreLevel.Size = new System.Drawing.Size(183, 23);
+      this.NumCadreLevel.TabIndex = 20;
+      // 
+      // DatePickerEntranceDate
+      // 
+      this.DatePickerEntranceDate.CustomFormat = " ";
+      this.DatePickerEntranceDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+      this.DatePickerEntranceDate.Location = new System.Drawing.Point(151, 132);
+      this.DatePickerEntranceDate.Name = "DatePickerEntranceDate";
+      this.DatePickerEntranceDate.Size = new System.Drawing.Size(183, 23);
+      this.DatePickerEntranceDate.TabIndex = 21;
+      this.DatePickerEntranceDate.Value = new System.DateTime(2022, 8, 21, 0, 0, 0, 0);
+      this.DatePickerEntranceDate.ValueChanged += new System.EventHandler(this.DatePickerEntranceDate_ValueChanged);
+      // 
+      // LblCadreLevel
+      // 
+      this.LblCadreLevel.AutoSize = true;
+      this.LblCadreLevel.Location = new System.Drawing.Point(6, 105);
+      this.LblCadreLevel.Name = "LblCadreLevel";
+      this.LblCadreLevel.Size = new System.Drawing.Size(63, 15);
+      this.LblCadreLevel.TabIndex = 28;
+      this.LblCadreLevel.Text = "Kaderstufe";
+      // 
+      // NumEmployment
+      // 
+      this.NumEmployment.Increment = new decimal(new int[] {
             20,
             0,
             0,
             0});
-            this.NumEmployment.Location = new System.Drawing.Point(151, 75);
-            this.NumEmployment.Name = "NumEmployment";
-            this.NumEmployment.Size = new System.Drawing.Size(183, 23);
-            this.NumEmployment.TabIndex = 19;
-            this.NumEmployment.Value = new decimal(new int[] {
+      this.NumEmployment.Location = new System.Drawing.Point(151, 75);
+      this.NumEmployment.Name = "NumEmployment";
+      this.NumEmployment.Size = new System.Drawing.Size(183, 23);
+      this.NumEmployment.TabIndex = 19;
+      this.NumEmployment.Value = new decimal(new int[] {
             100,
             0,
             0,
@@ -701,6 +702,7 @@
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Mitarbeiter";
       this.TopMost = true;
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeDetailDialog_FormClosing);
       this.GrpPersonalData.ResumeLayout(false);
       this.GrpPersonalData.PerformLayout();
       this.GrpAddress.ResumeLayout(false);

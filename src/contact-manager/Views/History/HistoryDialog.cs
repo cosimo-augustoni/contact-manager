@@ -36,8 +36,7 @@ namespace contact_manager.Views
             {
                 View = View.Details,
                 GridLines = true,
-                Width = this.FlowLayoutPnlHistory.Width - 40,
-                Height = (int)(this.FlowLayoutPnlHistory.Height / 2),
+                Width = this.FlowLayoutPnlHistory.Width - 20,
                 Margin = new Padding
                 {
                     Bottom = 25
@@ -56,16 +55,20 @@ namespace contact_manager.Views
 
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
+            this.SetListViewHeight(listView);
+
             return listView;
         }
 
         private Label CreateLabel(HistoryEntry historyEntry)
         {
+            var mutationDate = historyEntry.TimeStamp.ToString("ddd dd.MM.yyyy HH:mm");
             var label = new Label
             {
-                Text = $"Datum der Änderung: {historyEntry.TimeStamp.ToString("F")}",
+                Text = $"Änderungsdatum: {mutationDate}\r\n" +
+                $"Mutiert durch: {_presenter.GetUser(historyEntry.UserId).DisplayName}",
                 AutoSize = true,
-                Font = new Font(Label.DefaultFont, FontStyle.Bold),
+                Font = new Font(Label.DefaultFont, FontStyle.Regular),
                 Margin = new Padding() { Bottom = 10 }
             };
             return label;
@@ -94,6 +97,17 @@ namespace contact_manager.Views
             }
 
             return "";
+        }
+
+        private void SetListViewHeight(ListView listView)
+        {
+            var listViewItemsCount = listView.Items.Count;
+
+            if (listViewItemsCount > 0)
+            {
+                var subItemHeight = listView.GetItemRect(0).Height;
+                listView.Height = (subItemHeight * listViewItemsCount) + 45;
+            }
         }
     }
 }
