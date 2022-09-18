@@ -227,7 +227,10 @@ namespace contact_manager.Views.Customers
 
         private void TxtZipCode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !Char.IsDigit(e.KeyChar);
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void CustomerDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
