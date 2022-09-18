@@ -6,6 +6,7 @@ using contact_manager.Models.Domain.History;
 using contact_manager.Presenters.History;
 using contact_manager.Views;
 using contact_manager.Views.Employees;
+using DeepEqual.Syntax;
 
 namespace contact_manager.Presenters.Employees;
 
@@ -16,18 +17,21 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
     protected readonly TDialog Dialog;
     protected readonly IEmployeeService<TEmployee> EmployeeService;
     protected readonly IHistoryService HistoryService;
+    private readonly IUserService _userService;
     protected readonly User User;
 
     private long _employeeId;
+    private TEmployee? _savedEmployee;
     protected abstract EntityType PersonType { get; }
 
-    protected EmployeeDetailPresenterBase(TDialog dialog, IEmployeeService<TEmployee> employeeService, User user, bool isNewMode, IHistoryService historyService)
+    protected EmployeeDetailPresenterBase(TDialog dialog, IEmployeeService<TEmployee> employeeService, User user, bool isNewMode, IHistoryService historyService, IUserService userService)
     {
         this.Dialog = dialog;
         this.EmployeeService = employeeService;
         this.User = user;
         this.IsNewMode = isNewMode;
         this.HistoryService = historyService;
+        this._userService = userService;
     }
 
     public abstract void Init();
@@ -40,6 +44,7 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
     {
         this._employeeId = id;
         var employee = this.EmployeeService.GetById(id);
+        this._savedEmployee = employee;
         this.WriteToDialog(employee);
     }
 
@@ -133,8 +138,13 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
     public void OpenHistoryDialog()
     {
         var historyDialog = new HistoryDialog();
-        var historyPresenter = new HistoryPresenter(historyDialog, this.HistoryService);
+        var historyPresenter = new HistoryPresenter(historyDialog, this.HistoryService, this._userService);
         historyPresenter.LoadPerson(this._employeeId, this.PersonType);
         historyDialog.ShowDialog();
+    }
+
+    public bool HasUnsavedChanges()
+    {
+        return !this._savedEmployee.IsDeepEqual(this.ReadFromDialog());
     }
 }

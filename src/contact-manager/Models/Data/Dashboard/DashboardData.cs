@@ -9,25 +9,18 @@ namespace contact_manager.Models.Data
 
         public int PassiveCustomerCount { get; init; }
 
-        public string?[] CustomerCityNames { get; init; }
+        public Dictionary<string, int> CityStatistics { get; init; }
 
-        public double[] CustomerCityCounts { get; init; }
-
-        public string[] CustomerTypes { get; init; }
-
-        public double[] CustomerTypeCounts { get; init; }
-
+        public Dictionary<string, int> CustomerTypeStatistics { get; set; }
 
         public DashboardData(int activeCustomerCount, int passiveCustomerCount,
-            string?[] customerCityNames, double[] customerCityCounts,
-            string[] customerTypes, double[] customerTypeCounts)
+            Dictionary<string, int> cityStatistics,
+            Dictionary<string, int> customerTypeStatistics)
         {
             this.ActiveCustomerCount = activeCustomerCount;
             this.PassiveCustomerCount = passiveCustomerCount;
-            this.CustomerCityNames = customerCityNames;
-            this.CustomerCityCounts = customerCityCounts;
-            this.CustomerTypes = customerTypes;
-            this.CustomerTypeCounts = customerTypeCounts;
+            this.CityStatistics = cityStatistics;
+            this.CustomerTypeStatistics = customerTypeStatistics;
         }
     }
 }

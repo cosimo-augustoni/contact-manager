@@ -66,7 +66,7 @@ namespace contact_manager.Views
             var label = new Label
             {
                 Text = $"Änderungsdatum: {mutationDate}\r\n" +
-                $"Mutiert durch: {_presenter.GetUser(historyEntry.UserId).DisplayName}",
+                $"Mutiert durch: {this._presenter?.GetUser(historyEntry.UserId)?.DisplayName}",
                 AutoSize = true,
                 Font = new Font(Label.DefaultFont, FontStyle.Regular),
                 Margin = new Padding() { Bottom = 10 }

@@ -9,28 +9,27 @@ namespace contact_manager.Models.Domain.CsvImport
     {
         public IEnumerable<T> ParseCsv<T>(string filePath) where T : Person
         {
-            if (File.Exists(filePath))
+            if (!File.Exists(filePath))
+                return Enumerable.Empty<T>();
+
+            var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
-                var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
-                {
-                    Delimiter = ";",
-                    MissingFieldFound = null,
-                    HeaderValidated = null,
-                    TrimOptions = TrimOptions.Trim,
-                };
+                Delimiter = ";",
+                MissingFieldFound = null,
+                HeaderValidated = null,
+                TrimOptions = TrimOptions.Trim,
+            };
 
 
-                using (var streamReader = new StreamReader(filePath))
-                using (var csvReader = new CsvReader(streamReader, csvConfig))
-                {
-                    csvReader.Context.RegisterClassMap<PersonMap<Person>>();
+            using (var streamReader = new StreamReader(filePath))
+            using (var csvReader = new CsvReader(streamReader, csvConfig))
+            {
+                csvReader.Context.RegisterClassMap<PersonMap<Person>>();
 
-                    csvReader.Context.RegisterClassMap<EmployeeMap<Employee>>();
-                    csvReader.Context.RegisterClassMap<CustomerMap<Customer>>();
-                    return csvReader.GetRecords<T>().ToList();
-                }
+                csvReader.Context.RegisterClassMap<EmployeeMap<Employee>>();
+                csvReader.Context.RegisterClassMap<CustomerMap<Customer>>();
+                return csvReader.GetRecords<T>();
             }
-            return Array.Empty<T>();
         }
     }
 

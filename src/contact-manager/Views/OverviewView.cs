@@ -319,9 +319,9 @@ namespace contact_manager.Views
         private void CreateCustomerCityFormsPlot(DashboardData dashboardData)
         {
             CustomerCityFormsPlot.Plot.Clear();
-            var pie = CustomerCityFormsPlot.Plot.AddPie(dashboardData.CustomerCityCounts);
+            var pie = CustomerCityFormsPlot.Plot.AddPie(dashboardData.CityStatistics.Values.Select(v => (double)v).ToArray());
 
-            pie.SliceLabels = dashboardData.CustomerCityNames;
+            pie.SliceLabels = dashboardData.CityStatistics.Keys.ToArray();
             pie.Explode = true;
 
             CustomerCityFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
@@ -331,8 +331,8 @@ namespace contact_manager.Views
         private void CreateCustomerTypeFormsPlot(DashboardData dashboardData)
         {
             CustomerTypeFormsPlot.Plot.Clear();
-            var pie = CustomerTypeFormsPlot.Plot.AddPie(dashboardData.CustomerTypeCounts);
-            pie.SliceLabels = dashboardData.CustomerTypes;
+            var pie = CustomerTypeFormsPlot.Plot.AddPie(dashboardData.CustomerTypeStatistics.Values.Select(v => (double)v).ToArray());
+            pie.SliceLabels = dashboardData.CustomerTypeStatistics.Keys.ToArray();
             pie.Explode = true;
             CustomerTypeFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
             CustomerTypeFormsPlot.Refresh();
