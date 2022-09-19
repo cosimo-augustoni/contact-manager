@@ -34,7 +34,6 @@ namespace contact_manager.Models.Domain.Authentication
 
     internal static class Users
     {
-        //TODO Evtl. Passwort hashen
         public static User AdminUser = new User(1, "admin", "1234", canWrite: true, "Administrator");
         public static User ReadOnlyUser = new User(2, "readonly", "1234", canWrite: false, "Lese-User");
     }

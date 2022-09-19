@@ -66,7 +66,6 @@ namespace contact_manager.Views
         private void CmdCreateNewCustomer_Click(object sender, EventArgs e)
         {
             this._presenter?.OpenCreateNewCustomerDialog();
-            // ToDo npa: nach dem neu, wenn gespeichert wurde dann den neuen eintrag gleich markieren im datagridview?
         }
 
         private void CmdCreateNewEmployee_Click(object sender, EventArgs e)
@@ -110,7 +109,6 @@ namespace contact_manager.Views
             if (employee != null)
             {
                 this._presenter?.OpenEditEmployeeDialog(employee.Id);
-                // todo: nach dem bearbeiten wieder denselben eintrag markieren wie vorher?
             }
         }
 

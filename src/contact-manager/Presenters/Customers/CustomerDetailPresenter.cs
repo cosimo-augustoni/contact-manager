@@ -132,7 +132,6 @@ public class CustomerDetailPresenter : IPresenter
         var customer = new Customer
         {
             Id = this._customerId,
-            // ToDo: customerNumber auch rein nehmen?
             Salutation = this._dialog.Salutation,
             FirstName = this._dialog.FirstName,
             LastName = this._dialog.LastName,

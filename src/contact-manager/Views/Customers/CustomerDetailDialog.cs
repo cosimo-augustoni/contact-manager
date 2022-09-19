@@ -205,8 +205,6 @@ namespace contact_manager.Views.Customers
 
         private void CmdSave_Click(object sender, EventArgs e)
         {
-            // ToDo npa: rückmeldung, dass das speichern erfolgreich war?
-
             if (_customerValidator.Validate())
             {
                 this._presenter?.Save();
@@ -217,12 +215,6 @@ namespace contact_manager.Views.Customers
                 MessageBox.Show("Fehler beim Speichern" + Environment.NewLine
                     + "Kontrollien Sie die Eingaben und versuchen Sie es erneut.", "Speichern", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void CmdClose_Click(object sender, EventArgs e)
-        {
-            // ToDo: falls noch nicht gespeichert fragen, ob die Änderungen verworfen werden sollen
-            this.Close();
         }
 
         private void TxtZipCode_KeyPress(object sender, KeyPressEventArgs e)
