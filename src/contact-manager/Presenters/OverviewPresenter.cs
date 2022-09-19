@@ -249,7 +249,8 @@ Zeile: {context.Parser.Row - 1}",
             var cityStatistics = cityData.Take(3).ToDictionary(c => c.CityName, c => c.Count);
             if (cityData.Count > 3)
             {
-                cityStatistics.Add("Andere", cityData.Skip(3).Sum(c => c.Count));
+                var otherCount = cityData.Skip(3).Sum(c => c.Count);
+                cityStatistics.Add($"Andere ({otherCount})", otherCount);
             }
 
             return cityStatistics;
