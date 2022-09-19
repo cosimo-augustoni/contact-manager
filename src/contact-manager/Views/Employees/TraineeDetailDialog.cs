@@ -227,7 +227,7 @@ namespace contact_manager.Views.Employees
             GrpPersonalData.Enabled = isEnabled && State == State.Active;
             GrpContactData.Enabled = isEnabled && State == State.Active;
             GrpEmploymentData.Enabled = isEnabled && State == State.Active;
-            this.groupBox1.Enabled = isEnabled && State == State.Active;
+            this.GrpTrainee.Enabled = isEnabled && State == State.Active;
 
             CmdChangeStatus.Text = State == State.Active ? "Deaktivieren" : "Aktivieren";
         }

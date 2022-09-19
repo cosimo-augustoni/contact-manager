@@ -17,7 +17,6 @@ namespace contact_manager
             ApplicationConfiguration.Initialize();
             var formFactory = new DefaultFormFactory();
 
-            //TODO TraineeDetailDialog: GroupBox für Lernende renamen und verschieben (Cosimo)
             //TODO Enums in Grid Feldern auf Deutsch (Cosimo)
             //TODO Mitarbeiternummer evtl. schlauer vergeben (Cosimo)
             //TODO Dialoge schliessen beim speichern -> Eintrag in Grid auswählen nach schliessen (Cosimo)

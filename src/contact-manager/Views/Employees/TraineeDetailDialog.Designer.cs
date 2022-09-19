@@ -88,7 +88,7 @@
             this.CmdSave = new System.Windows.Forms.Button();
             this.CmdProtocol = new System.Windows.Forms.Button();
             this.EmployeeErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GrpTrainee = new System.Windows.Forms.GroupBox();
             this.NumYearsOfApprenticeship = new System.Windows.Forms.NumericUpDown();
             this.NumCurrentYearOfApprenticeship = new System.Windows.Forms.NumericUpDown();
             this.LblCurrentYearOfApprenticeship = new System.Windows.Forms.Label();
@@ -100,7 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NumEmployment)).BeginInit();
             this.GrpContactData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeErrorProvider)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.GrpTrainee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumYearsOfApprenticeship)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumCurrentYearOfApprenticeship)).BeginInit();
             this.SuspendLayout();
@@ -690,18 +690,18 @@
             this.EmployeeErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.EmployeeErrorProvider.ContainerControl = this;
             // 
-            // groupBox1
+            // GrpTrainee
             // 
-            this.groupBox1.Controls.Add(this.NumYearsOfApprenticeship);
-            this.groupBox1.Controls.Add(this.NumCurrentYearOfApprenticeship);
-            this.groupBox1.Controls.Add(this.LblCurrentYearOfApprenticeship);
-            this.groupBox1.Controls.Add(this.LblYearsOfApprenticeship);
-            this.groupBox1.Location = new System.Drawing.Point(12, 320);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(700, 52);
-            this.groupBox1.TabIndex = 29;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lernender";
+            this.GrpTrainee.Controls.Add(this.NumYearsOfApprenticeship);
+            this.GrpTrainee.Controls.Add(this.NumCurrentYearOfApprenticeship);
+            this.GrpTrainee.Controls.Add(this.LblCurrentYearOfApprenticeship);
+            this.GrpTrainee.Controls.Add(this.LblYearsOfApprenticeship);
+            this.GrpTrainee.Location = new System.Drawing.Point(12, 311);
+            this.GrpTrainee.Name = "GrpTrainee";
+            this.GrpTrainee.Size = new System.Drawing.Size(700, 52);
+            this.GrpTrainee.TabIndex = 29;
+            this.GrpTrainee.TabStop = false;
+            this.GrpTrainee.Text = "Lernender";
             // 
             // NumYearsOfApprenticeship
             // 
@@ -740,7 +740,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1136, 428);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.GrpTrainee);
             this.Controls.Add(this.CmdProtocol);
             this.Controls.Add(this.CmdChangeStatus);
             this.Controls.Add(this.CmdSave);
@@ -768,8 +768,8 @@
             this.GrpContactData.ResumeLayout(false);
             this.GrpContactData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeErrorProvider)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GrpTrainee.ResumeLayout(false);
+            this.GrpTrainee.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumYearsOfApprenticeship)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumCurrentYearOfApprenticeship)).EndInit();
             this.ResumeLayout(false);
@@ -836,7 +836,7 @@
         internal TextBox TxtPhoneNumberPrivate;
         internal TextBox TxtEMailAddress;
         private ErrorProvider EmployeeErrorProvider;
-        private GroupBox groupBox1;
+        private GroupBox GrpTrainee;
         private Label LblCurrentYearOfApprenticeship;
         private Label LblYearsOfApprenticeship;
         private NumericUpDown NumYearsOfApprenticeship;
