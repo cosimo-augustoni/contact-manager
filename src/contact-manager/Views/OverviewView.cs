@@ -30,6 +30,12 @@ namespace contact_manager.Views
             dataGridViewCustomer.DataSource = customers;
         }
 
+        public void SetTraineeList(List<Trainee> trainees)
+        {
+            this.dataGridView1.DataSource = trainees;
+        }
+        
+
         private void InitializeMode()
         {
             var isEnabled = !this._presenter?.IsReadOnly ?? false;
@@ -68,6 +74,11 @@ namespace contact_manager.Views
             this._presenter?.OpenCreateNewEmployeeDialog();
         }
 
+        private void CmdCreateNewTrainee_Click(object sender, EventArgs e)
+        {
+            this._presenter?.OpenCreateNewTraineeDialog();
+        }
+
         #endregion // New
 
         //----------------------------------------------------------------------------------------------------
@@ -103,14 +114,34 @@ namespace contact_manager.Views
             }
         }
 
+        private void CmdEditTrainee_Click(object sender, EventArgs e)
+        {
+            this.EditTrainee();
+        }
+
+        private void EditTrainee()
+        {
+            var trainee = this.GetCurrentSelectedTrainee();
+            if (trainee != null)
+            {
+                this._presenter?.OpenEditTraineeDialog(trainee.Id);
+            }
+        }
+
         private void dataGridViewCustomer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            EditCustomer();
+            this.EditCustomer();
         }
 
         private void dataGridViewEmployee_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            EditEmployee();
+            this.EditEmployee();
+        }
+
+        //TODO Event mit Control verknüpfen
+        private void dataGridViewTrainee_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.EditTrainee();
         }
 
         #endregion // Edit
@@ -145,14 +176,17 @@ namespace contact_manager.Views
             }
         }
 
-        private Customer? GetCurrentSelectedCustomer()
+        private void CmdDeleteTrainee_Click(object sender, EventArgs e)
         {
-            return this.dataGridViewCustomer.CurrentRow?.DataBoundItem as Customer;
-        }
-
-        private Employee? GetCurrentSelectedEmployee()
-        {
-            return this.dataGridViewEmployee.CurrentRow?.DataBoundItem as Employee;
+            var trainee = this.GetCurrentSelectedTrainee();
+            if (trainee != null)
+            {
+                var dialogResult = MessageBox.Show("Möchten Sie diesen Lernenden wirklich löschen?", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this._presenter?.DeleteTrainee(trainee.Id);
+                }
+            }
         }
 
         #endregion // Delete
@@ -239,6 +273,46 @@ namespace contact_manager.Views
             this._presenter?.LoadAllEmployees();
         }
 
+        public string SearchTermTrainee
+        {
+            get => this.TxtSearchTrainee.Text;
+            set => this.TxtSearchTrainee.Text = value;
+        }
+
+        public SearchScope SearchScopeTrainee
+        {
+            get => (SearchScope)this.CmbSearchScopeTrainee.SelectedItem;
+            set => this.CmbSearchScopeTrainee.SelectedItem = value;
+        }
+
+        public void SetSearchScopeTraineeSource(List<SearchScope> scopes)
+        {
+            this.CmbSearchScopeTrainee.DataSource = scopes;
+            this.CmbSearchScopeTrainee.DisplayMember = nameof(SearchScope.DisplayName);
+
+            this.CmbSearchScopeTrainee.SelectedItem = scopes.First(s => s.ScopeType == ScopeType.All);
+        }
+
+        //TODO Event verknüpfen mit Control
+        private void TxtSearchTrainee_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this._presenter?.SearchTrainees();
+            }
+        }
+
+        private void CmdSearchTrainee_Click(object sender, EventArgs e)
+        {
+            this._presenter?.SearchTrainees();
+        }
+
+        private void CmdResetSearchTrainee_Click(object sender, EventArgs e)
+        {
+            this.TxtSearchTrainee.Clear();
+            this._presenter?.LoadAllTrainees();
+        }
+
         #endregion // Search
 
         //----------------------------------------------------------------------------------------------------
@@ -266,6 +340,12 @@ namespace contact_manager.Views
         {
             this.openFileDialog.Title = "Mitarbeiter importieren";
             this._presenter?.ImportCsv<Employee>(this.openFileDialog);
+        }
+
+        private void CmdImportTrainee_Click(object sender, EventArgs e)
+        {
+            this.openFileDialog.Title = "Lernende importieren";
+            this._presenter?.ImportCsv<Trainee>(this.openFileDialog);
         }
 
         #endregion // Import
@@ -339,34 +419,19 @@ namespace contact_manager.Views
         }
         #endregion // Dashboard
 
-        private void CmdCreateNewTrainee_Click(object sender, EventArgs e)
+        private Customer? GetCurrentSelectedCustomer()
         {
-
+            return this.dataGridViewCustomer.CurrentRow?.DataBoundItem as Customer;
         }
 
-        private void CmdEditTrainee_Click(object sender, EventArgs e)
+        private Employee? GetCurrentSelectedEmployee()
         {
-
+            return this.dataGridViewEmployee.CurrentRow?.DataBoundItem as Employee;
         }
 
-        private void CmdDeleteTrainee_Click(object sender, EventArgs e)
+        private Trainee? GetCurrentSelectedTrainee()
         {
-
-        }
-
-        private void CmdImportTrainee_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmdSearchTrainee_Click(object sender, EventArgs e)
-        {
-            // events bitte analog dem mitarbeiter ergänzen, allenfalls fehlen noch welche
-        }
-
-        private void CmdResetSearchTrainee_Click(object sender, EventArgs e)
-        {
-
+            return this.dataGridView1.CurrentRow?.DataBoundItem as Trainee;
         }
     }
 }

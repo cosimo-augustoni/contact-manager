@@ -49,6 +49,7 @@ namespace contact_manager.Presenters
             this._overviewView.SetPresenter(this);
             this._overviewView.SetSearchScopeEmployeeSource(this._employeeService.GetSearchScopes());
             this._overviewView.SetSearchScopeCustomerSource(this._customerService.GetSearchScopes());
+            this._overviewView.SetSearchScopeTraineeSource(this._traineeService.GetSearchScopes());
         }
 
         public bool IsReadOnly
@@ -137,6 +138,46 @@ namespace contact_manager.Presenters
             this.LoadAllCustomers();
         }
 
+        public void LoadAllTrainees()
+        {
+            var trainees = this._traineeService.GetAll();
+            this._overviewView.SetTraineeList(trainees);
+        }
+
+        public void SearchTrainees()
+        {
+            var employees = this._traineeService.GetBySearchTerm(this._overviewView.SearchScopeTrainee, this._overviewView.SearchTermTrainee);
+            this._overviewView.SetTraineeList(employees);
+        }
+
+        public void OpenCreateNewTraineeDialog()
+        {
+            var dialog = new TraineeDetailDialog();
+            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: true, _historyService, _userService);
+            dialogPresenter.Init();
+            dialogPresenter.LoadNewEmployee();
+            dialog.InitializeMode();
+            dialog.Closed += (_, _) => this.LoadAllTrainees();
+            dialog.ShowDialog();
+        }
+
+        public void OpenEditTraineeDialog(long traineeId)
+        {
+            var dialog = new TraineeDetailDialog();
+            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: false, _historyService, _userService);
+            dialogPresenter.Init();
+            dialogPresenter.LoadEmployee(traineeId);
+            dialog.InitializeMode();
+            dialog.Closed += (_, _) => this.LoadAllTrainees();
+            dialog.ShowDialog();
+        }
+
+        public void DeleteTrainee(long traineeId)
+        {
+            this._traineeService.Delete(traineeId);
+            this.LoadAllTrainees();
+        }
+
         public void ImportCsv<T>(OpenFileDialog openFileDialog) where T : Person
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -208,8 +249,7 @@ Zeile: {context.Parser.Row - 1}",
             else if (selectedTabPage == 1)
                 this.LoadAllEmployees();
             else if (selectedTabPage == 2)
-                // ToDo npa. anpassen auf trainee
-                this.LoadAllEmployees();
+                this.LoadAllTrainees();
             else if (selectedTabPage == 3)
                 this.LoadDashboardData();
         }
@@ -258,5 +298,7 @@ Zeile: {context.Parser.Row - 1}",
 
             return cityStatistics;
         }
+
+        
     }
 }
