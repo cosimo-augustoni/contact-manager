@@ -22,8 +22,8 @@ namespace contact_manager
             //TODO Enums in Grid Feldern auf Deutsch (Cosimo)
             //TODO Mitarbeiternummer evtl. schlauer vergeben (Cosimo)
             //TODO Dialoge schliessen beim speichern -> Eintrag in Grid auswählen nach schliessen (Cosimo)
-            //TODO Enable/Diable in Dialogen evtl. refactoren (Cosimo)
-            //TODO try catch mit MessageBox um Applikation um abstütze zu verhindern (Cosimo)
+            //TODO Enable/Disable in Dialogen evtl. refactoren (Cosimo)
+            //TODO try catch mit MessageBox um Applikation um abstürtze zu verhindern (Cosimo)
             //TODO Unklarheiten Dokumentieren und Kommentieren in Search-Domäne (Päddy)
             //TODO Entfernen Debugging Login(Cosimo)
 
