@@ -217,7 +217,7 @@ namespace contact_manager.Presenters
                 var threeCitiesWithHighestCountData = cityData.OrderByDescending(c => c.Count).Take(3);
                 var othersCount = cityData.OrderBy(c => c.Count).Take(cityData.Count() - 3).Sum(c => (double) c.Count);
                 cityNames.AddRange(threeCitiesWithHighestCountData.Select(c => c.CityName).ToList());
-                cityNames.Add("Andere");
+                cityNames.Add($"Andere ({othersCount})");
 
                 cityCounts.AddRange(threeCitiesWithHighestCountData.Select(c => (double) c.Count).ToList());
                 cityCounts.Add(othersCount);
