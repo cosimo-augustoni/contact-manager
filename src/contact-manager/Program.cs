@@ -19,17 +19,20 @@ namespace contact_manager
 
             //TODO TraineeDetailDialog: GroupBox für Lernende renamen und verschieben (Cosimo)
             //TODO CSV File für Lernende erstellen (Cosimo)
-            //TODO Klassendiagram (Cosimo)
             //TODO Enums in Grid Feldern auf Deutsch (Cosimo)
             //TODO Mitarbeiternummer evtl. schlauer vergeben (Cosimo)
             //TODO Dialoge schliessen beim speichern -> Eintrag in Grid auswählen nach schliessen (Cosimo)
             //TODO Enable/Diable in Dialogen evtl. refactoren (Cosimo)
             //TODO try catch mit MessageBox um Applikation um abstütze zu verhindern (Cosimo)
             //TODO Unklarheiten Dokumentieren und Kommentieren in Search-Domäne (Päddy)
+            //TODO Entfernen Debugging Login(Cosimo)
 
             //TODO Code Cleanup (Cosimo)
+            //TODO Ausführliches Testing mit Fixes (Cosimo)
+            //TODO Klassendiagram (Cosimo)
+            //TODO Stundenprotokoll vervollstädigen
+            //TODO Text-Datei mit Applikationsbeschreib (Vorschlag: Cosimo, Review/Ergänzungen: Päddy/Luca)
 
-            // todo: Entfernen (Cosimo)
             if (Debugger.IsAttached)
             {
                 var overviewView = formFactory.CreateOverview(Users.AdminUser);
