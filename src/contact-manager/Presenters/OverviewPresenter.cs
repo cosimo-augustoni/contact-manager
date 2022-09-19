@@ -208,6 +208,9 @@ Zeile: {context.Parser.Row - 1}",
             else if (selectedTabPage == 1)
                 this.LoadAllEmployees();
             else if (selectedTabPage == 2)
+                // ToDo npa. anpassen auf trainee
+                this.LoadAllEmployees();
+            else if (selectedTabPage == 3)
                 this.LoadDashboardData();
         }
 

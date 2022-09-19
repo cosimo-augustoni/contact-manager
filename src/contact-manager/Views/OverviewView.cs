@@ -338,5 +338,35 @@ namespace contact_manager.Views
             CustomerTypeFormsPlot.Refresh();
         }
         #endregion // Dashboard
+
+        private void CmdCreateNewTrainee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmdEditTrainee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmdDeleteTrainee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmdImportTrainee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmdSearchTrainee_Click(object sender, EventArgs e)
+        {
+            // events bitte analog dem mitarbeiter ergänzen, allenfalls fehlen noch welche
+        }
+
+        private void CmdResetSearchTrainee_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
