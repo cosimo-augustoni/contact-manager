@@ -32,7 +32,7 @@ namespace contact_manager.Views
 
         public void SetTraineeList(List<Trainee> trainees)
         {
-            this.dataGridView1.DataSource = trainees;
+            this.dataGridViewTrainee.DataSource = trainees;
         }
         
 
@@ -138,7 +138,6 @@ namespace contact_manager.Views
             this.EditEmployee();
         }
 
-        //TODO Event mit Control verknüpfen
         private void dataGridViewTrainee_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             this.EditTrainee();
@@ -293,7 +292,6 @@ namespace contact_manager.Views
             this.CmbSearchScopeTrainee.SelectedItem = scopes.First(s => s.ScopeType == ScopeType.All);
         }
 
-        //TODO Event verknüpfen mit Control
         private void TxtSearchTrainee_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -359,6 +357,56 @@ namespace contact_manager.Views
             CreateCustomerCountFormsPlot(dashboardData);
             CreateCustomerCityFormsPlot(dashboardData);
             CreateCustomerTypeFormsPlot(dashboardData);
+            CreatePersonsCountFormsPlot(dashboardData);
+        }
+
+        private void CreatePersonsCountFormsPlot(DashboardData dashboardData)
+        {
+            PersonsCountFormsPlot.Plot.Clear();
+            var customerCount = dashboardData.ActiveCustomerCount + dashboardData.PassiveCustomerCount;
+            var employeeCount = dashboardData.EmployeeCount;
+            var traineeCount = dashboardData.TraineeCount;
+
+            int[] counts = new int[3];
+            counts[0] = customerCount;
+            counts[1] = employeeCount;
+            counts[2] = traineeCount;
+            int maxCounts = counts.Max();
+
+            List<ScottPlot.Plottable.Bar> bars = new List<ScottPlot.Plottable.Bar>();
+
+            ScottPlot.Plottable.Bar customerBar = new ScottPlot.Plottable.Bar()
+            {
+                Position = 0,
+                Value = customerCount,
+                Label = $"Kunden ({customerCount})",
+                FillColor = Color.Blue
+
+            };
+            ScottPlot.Plottable.Bar employeeBar = new ScottPlot.Plottable.Bar()
+            {
+                Position = 2,
+                Value = employeeCount,
+                Label = $"Mitarbeiter ohne Lernende ({employeeCount})",
+                FillColor = Color.Tomato
+            };
+            ScottPlot.Plottable.Bar traineeBar = new ScottPlot.Plottable.Bar()
+            {
+                Position = 4,
+                Value = traineeCount,
+                Label = $"Lernende ({traineeCount})",
+                FillColor = Color.Yellow
+            };
+            bars.Add(customerBar);
+            bars.Add(employeeBar);
+            bars.Add(traineeBar);
+            PersonsCountFormsPlot.Plot.XAxis.Ticks(false);
+            PersonsCountFormsPlot.Plot.YAxis.Label("Anzahl");
+            PersonsCountFormsPlot.Plot.XAxis.Label("Personen");
+            PersonsCountFormsPlot.Plot.AddBarSeries(bars);
+            PersonsCountFormsPlot.Plot.SetAxisLimits(yMin: 0, yMax: maxCounts + 10);
+            PersonsCountFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            PersonsCountFormsPlot.Refresh();
         }
 
         private void CreateCustomerCountFormsPlot(DashboardData dashboardData)
@@ -431,7 +479,7 @@ namespace contact_manager.Views
 
         private Trainee? GetCurrentSelectedTrainee()
         {
-            return this.dataGridView1.CurrentRow?.DataBoundItem as Trainee;
+            return this.dataGridViewTrainee.CurrentRow?.DataBoundItem as Trainee;
         }
     }
 }

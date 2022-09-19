@@ -257,13 +257,15 @@ Zeile: {context.Parser.Row - 1}",
         public void LoadDashboardData()
         {
             var customers = this._customerService.GetAll();
-
+            var employeeCount = this._employeeService.GetAll().Count;
+            var traineeCount = this._traineeService.GetAll().Count;
             var activeCustomerCount = customers.Count(a => a.State == State.Active);
             var passiveCustomerCount = customers.Count(a => a.State == State.Passive);
             var cityStatistics = this.GetCityStatistics(customers);
             var customerTypeStatistics = this.GetCustomerTypeStatistics(customers);
-
-            var dashboardData = new DashboardData(activeCustomerCount, passiveCustomerCount, cityStatistics, customerTypeStatistics);
+            var dashboardData = new DashboardData(activeCustomerCount, passiveCustomerCount,
+                cityStatistics, customerTypeStatistics,
+                employeeCount, traineeCount);
 
             this._overviewView.SetDashboardData(dashboardData);
         }
