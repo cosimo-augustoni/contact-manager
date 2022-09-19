@@ -350,26 +350,25 @@ namespace contact_manager.Views.Employees
 
         private void EmployeeDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this._presenter.HasUnsavedChanges())
-            {
-                var closeDialogResult = MessageBox.Show(
-                    "Es gibt ungespeicherte Änderungen, wollen sie diese speichern?",
-                    "Ungespeicherte Änderungen",
-                    MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Warning
-                    );
+            if (!(this._presenter?.HasUnsavedChanges() ?? false)) return;
 
-                if (closeDialogResult == DialogResult.Yes)
-                {
-                    if (_employeeValidator.Validate())
-                        this._presenter?.Save();
-                    else
-                        e.Cancel = true;
-                }
-                if (closeDialogResult == DialogResult.Cancel)
-                {
+            var closeDialogResult = MessageBox.Show(
+                "Es gibt ungespeicherte Änderungen, wollen sie diese speichern?",
+                "Ungespeicherte Änderungen",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Warning
+            );
+
+            if (closeDialogResult == DialogResult.Yes)
+            {
+                if (this._employeeValidator.Validate())
+                    this._presenter?.Save();
+                else
                     e.Cancel = true;
-                }
+            }
+            if (closeDialogResult == DialogResult.Cancel)
+            {
+                e.Cancel = true;
             }
         }
     }
