@@ -27,6 +27,7 @@ namespace contact_manager.Models.Domain.CsvImport
                 csvReader.Context.RegisterClassMap<PersonMap<Person>>();
 
                 csvReader.Context.RegisterClassMap<EmployeeMap<Employee>>();
+                csvReader.Context.RegisterClassMap<TraineeMap<Trainee>>();
                 csvReader.Context.RegisterClassMap<CustomerMap<Customer>>();
                 return csvReader.GetRecords<T>();
             }
