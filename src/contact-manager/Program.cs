@@ -21,7 +21,6 @@ namespace contact_manager
             //TODO Mitarbeiternummer evtl. schlauer vergeben (Cosimo)
             //TODO Dialoge schliessen beim speichern -> Eintrag in Grid auswählen nach schliessen (Cosimo)
             //TODO Enable/Disable in Dialogen evtl. refactoren (Cosimo)
-            //TODO try catch mit MessageBox um Applikation um abstürtze zu verhindern (Cosimo)
             //TODO Unklarheiten Dokumentieren und Kommentieren in Search-Domäne (Päddy)
             //TODO Entfernen Debugging Login(Cosimo)
 
@@ -31,16 +30,24 @@ namespace contact_manager
             //TODO Stundenprotokoll vervollstädigen
             //TODO Text-Datei mit Applikationsbeschreib (Vorschlag: Cosimo, Review/Ergänzungen: Päddy/Luca)
 
-            if (Debugger.IsAttached)
+            try
             {
-                var overviewView = formFactory.CreateOverview(Users.AdminUser);
-                Application.Run(overviewView);
+                if (Debugger.IsAttached)
+                {
+                    var overviewView = formFactory.CreateOverview(Users.AdminUser);
+                    Application.Run(overviewView);
+                }
+                else
+                {
+                    var loginForm = formFactory.CreateLoginDialog();
+                    Application.Run(loginForm);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var loginForm = formFactory.CreateLoginDialog();
-                Application.Run(loginForm);
+                MessageBox.Show(ex.Message, @"Unerwarteter Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
     }
 }
