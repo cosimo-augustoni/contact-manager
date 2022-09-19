@@ -180,65 +180,66 @@ namespace contact_manager.Presenters
 
         public void ImportCsv<T>(OpenFileDialog openFileDialog) where T : Person
         {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            try
             {
-                try
+                var importedPersons = this._csvImporter.ParseCsv<T>(openFileDialog.FileName);
+                var importType = "";
+
+                if (typeof(T) == typeof(Employee))
                 {
-                    var importedPersons = this._csvImporter.ParseCsv<T>(openFileDialog.FileName).ToList();
-                    var importType = "";
-
-                    if (typeof(T) == typeof(Employee))
+                    foreach (var person in importedPersons.Cast<Employee>())
                     {
-                        foreach (var person in importedPersons.Cast<Employee>())
-                        {
-                            person.Id = this._employeeService.GetNewId();
-                            this._employeeService.Save(person);
-                            importType = "Mitarbeiter";
-                        }
+                        person.Id = this._employeeService.GetNewId();
+                        this._employeeService.Save(person);
+                        importType = "Mitarbeiter";
                     }
-                    else if (typeof(T) == typeof(Trainee))
-                    {
-                        foreach (var person in importedPersons.Cast<Trainee>())
-                        {
-                            person.Id = this._traineeService.GetNewId();
-                            this._traineeService.Save(person);
-                            importType = "Lernende";
-                        }
-                    }
-                    else if (typeof(T) == typeof(Customer))
-                    {
-                        foreach (var person in importedPersons.Cast<Customer>())
-                        {
-                            person.Id = this._customerService.GetNewId();
-                            this._customerService.Save(person as Customer);
-                            importType = "Kunden";
-                        }
-                    }
-
-                    this.LoadAllCustomers();
                     this.LoadAllEmployees();
-                    MessageBox.Show($"{importedPersons.Count} {importType} erfolgreich importiert!");
                 }
-                catch (CsvHelper.FieldValidationException e)
+                else if (typeof(T) == typeof(Trainee))
                 {
-                    var context = e.Context;
-                    var header = context.Reader.HeaderRecord?[context.Reader.CurrentIndex];
-                    MessageBox.Show(
-                        $@"Validierungsfehler beim Import:
+                    foreach (var person in importedPersons.Cast<Trainee>())
+                    {
+                        person.Id = this._traineeService.GetNewId();
+                        this._traineeService.Save(person);
+                        importType = "Lernende";
+                    }
+                    this.LoadAllTrainees();
+                }
+                else if (typeof(T) == typeof(Customer))
+                {
+                    foreach (var person in importedPersons.Cast<Customer>())
+                    {
+                        person.Id = this._customerService.GetNewId();
+                        this._customerService.Save(person as Customer);
+                        importType = "Kunden";
+                    }
+                    this.LoadAllCustomers();
+                }
+                else
+                {
+                    MessageBox.Show($"Personentyp ist nicht bekannt. Der Import ist fehlgeschlagen!", "Import fehlgeschlagen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show($"{importedPersons.Count} {importType} erfolgreich importiert!");
+            }
+            catch (CsvHelper.FieldValidationException e)
+            {
+                var context = e.Context;
+                var header = context.Reader.HeaderRecord?[context.Reader.CurrentIndex];
+                MessageBox.Show(
+                    $@"Validierungsfehler beim Import:
 
 Ungültiger Wert: {e.Field}
 Spalte: {header}
 Zeile: {context.Parser.Row - 1}",
-                        "Validierungsfehler", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                        );
-                }
-                catch (Exception e)
-                {
-
-                    MessageBox.Show(e.Message);
-
-                }
-
+                    "Validierungsfehler", MessageBoxButtons.OK, MessageBoxIcon.Warning
+                );
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -264,8 +265,7 @@ Zeile: {context.Parser.Row - 1}",
             var cityStatistics = this.GetCityStatistics(customers);
             var customerTypeStatistics = this.GetCustomerTypeStatistics(customers);
             var dashboardData = new DashboardData(activeCustomerCount, passiveCustomerCount,
-                cityStatistics, customerTypeStatistics,
-                employeeCount, traineeCount);
+                employeeCount, traineeCount, cityStatistics, customerTypeStatistics);
 
             this._overviewView.SetDashboardData(dashboardData);
         }

@@ -18,9 +18,9 @@ namespace contact_manager.Models.Data
         public Dictionary<string, int> CustomerTypeStatistics { get; set; }
 
         public DashboardData(int activeCustomerCount, int passiveCustomerCount,
+            int employeeCount, int traineeCount,
             Dictionary<string, int> cityStatistics,
-            Dictionary<string, int> customerTypeStatistics,
-            int employeeCount, int traineeCount)
+            Dictionary<string, int> customerTypeStatistics)
         {
             this.ActiveCustomerCount = activeCustomerCount;
             this.PassiveCustomerCount = passiveCustomerCount;
