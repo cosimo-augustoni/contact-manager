@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-      this.CmdCreateNewCustomer = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.CmdCreateNewCustomer = new System.Windows.Forms.Button();
       this.TcOverview = new System.Windows.Forms.TabControl();
       this.TpCustomer = new System.Windows.Forms.TabPage();
       this.CmdImportCustomer = new System.Windows.Forms.Button();
@@ -80,7 +80,7 @@
       this.cityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.TpTrainee = new System.Windows.Forms.TabPage();
-      this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTrainee = new System.Windows.Forms.DataGridView();
       this.traineeEmployeeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.traineeFirstNameDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.traineeLastnameNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,6 +111,8 @@
       this.CustomerCountFormsPlot = new ScottPlot.FormsPlot();
       this.CustomerCityFormsPlot = new ScottPlot.FormsPlot();
       this.CustomerTypeFormsPlot = new ScottPlot.FormsPlot();
+      this.LblDashboardPersonsCount = new System.Windows.Forms.Label();
+      this.PersonsCountFormsPlot = new ScottPlot.FormsPlot();
       this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
       this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -128,7 +130,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
       this.TpTrainee.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrainee)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.traineeBindingSource)).BeginInit();
       this.panel1.SuspendLayout();
       this.TpDashboard.SuspendLayout();
@@ -649,7 +651,7 @@
       // 
       // TpTrainee
       // 
-      this.TpTrainee.Controls.Add(this.dataGridView1);
+      this.TpTrainee.Controls.Add(this.dataGridViewTrainee);
       this.TpTrainee.Controls.Add(this.panel1);
       this.TpTrainee.Controls.Add(this.CmdImportTrainee);
       this.TpTrainee.Controls.Add(this.CmdDeleteTrainee);
@@ -663,13 +665,13 @@
       this.TpTrainee.Text = "Lernende";
       this.TpTrainee.UseVisualStyleBackColor = true;
       // 
-      // dataGridView1
+      // dataGridViewTrainee
       // 
-      this.dataGridView1.AllowUserToAddRows = false;
-      this.dataGridView1.AllowUserToDeleteRows = false;
-      this.dataGridView1.AutoGenerateColumns = false;
-      this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+      this.dataGridViewTrainee.AllowUserToAddRows = false;
+      this.dataGridViewTrainee.AllowUserToDeleteRows = false;
+      this.dataGridViewTrainee.AutoGenerateColumns = false;
+      this.dataGridViewTrainee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.dataGridViewTrainee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.traineeEmployeeNumberDataGridViewTextBoxColumn,
             this.traineeFirstNameDataGridViewTextBoxColumn7,
             this.traineeLastnameNumberDataGridViewTextBoxColumn,
@@ -682,15 +684,16 @@
             this.traineeStreetNumberDataGridViewTextBoxColumn,
             this.traineeZipCodeDataGridViewTextBoxColumn,
             this.traineeCityDataGridViewTextBoxColumn});
-      this.dataGridView1.DataSource = this.traineeBindingSource;
-      this.dataGridView1.Location = new System.Drawing.Point(8, 41);
-      this.dataGridView1.Name = "dataGridView1";
-      this.dataGridView1.ReadOnly = true;
-      this.dataGridView1.RowHeadersWidth = 102;
-      this.dataGridView1.RowTemplate.Height = 25;
-      this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-      this.dataGridView1.Size = new System.Drawing.Size(1106, 464);
-      this.dataGridView1.TabIndex = 19;
+      this.dataGridViewTrainee.DataSource = this.traineeBindingSource;
+      this.dataGridViewTrainee.Location = new System.Drawing.Point(8, 41);
+      this.dataGridViewTrainee.Name = "dataGridViewTrainee";
+      this.dataGridViewTrainee.ReadOnly = true;
+      this.dataGridViewTrainee.RowHeadersWidth = 102;
+      this.dataGridViewTrainee.RowTemplate.Height = 25;
+      this.dataGridViewTrainee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+      this.dataGridViewTrainee.Size = new System.Drawing.Size(1106, 464);
+      this.dataGridViewTrainee.TabIndex = 19;
+      this.dataGridViewTrainee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTrainee_CellDoubleClick);
       // 
       // traineeEmployeeNumberDataGridViewTextBoxColumn
       // 
@@ -851,6 +854,7 @@
       this.TxtSearchTrainee.PlaceholderText = "Suchtext";
       this.TxtSearchTrainee.Size = new System.Drawing.Size(248, 23);
       this.TxtSearchTrainee.TabIndex = 2;
+      this.TxtSearchTrainee.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchTrainee_KeyDown);
       // 
       // CmdImportTrainee
       // 
@@ -926,6 +930,8 @@
       this.TlpDashboard.Controls.Add(this.CustomerCountFormsPlot, 0, 1);
       this.TlpDashboard.Controls.Add(this.CustomerCityFormsPlot, 1, 1);
       this.TlpDashboard.Controls.Add(this.CustomerTypeFormsPlot, 0, 3);
+      this.TlpDashboard.Controls.Add(this.LblDashboardPersonsCount, 1, 2);
+      this.TlpDashboard.Controls.Add(this.PersonsCountFormsPlot, 1, 3);
       this.TlpDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TlpDashboard.Location = new System.Drawing.Point(3, 3);
       this.TlpDashboard.Name = "TlpDashboard";
@@ -1004,6 +1010,28 @@
       this.CustomerTypeFormsPlot.Size = new System.Drawing.Size(550, 229);
       this.CustomerTypeFormsPlot.TabIndex = 4;
       // 
+      // LblDashboardPersonsCount
+      // 
+      this.LblDashboardPersonsCount.AutoSize = true;
+      this.LblDashboardPersonsCount.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.LblDashboardPersonsCount.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+      this.LblDashboardPersonsCount.Location = new System.Drawing.Point(561, 254);
+      this.LblDashboardPersonsCount.Name = "LblDashboardPersonsCount";
+      this.LblDashboardPersonsCount.Size = new System.Drawing.Size(552, 20);
+      this.LblDashboardPersonsCount.TabIndex = 6;
+      this.LblDashboardPersonsCount.Text = "Anzahl Personen pro Typ";
+      this.LblDashboardPersonsCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      // 
+      // PersonsCountFormsPlot
+      // 
+      this.PersonsCountFormsPlot.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.PersonsCountFormsPlot.Enabled = false;
+      this.PersonsCountFormsPlot.Location = new System.Drawing.Point(562, 277);
+      this.PersonsCountFormsPlot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      this.PersonsCountFormsPlot.Name = "PersonsCountFormsPlot";
+      this.PersonsCountFormsPlot.Size = new System.Drawing.Size(550, 229);
+      this.PersonsCountFormsPlot.TabIndex = 7;
+      // 
       // openFileDialog
       // 
       this.openFileDialog.DefaultExt = "csv";
@@ -1075,7 +1103,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
       this.TpTrainee.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrainee)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.traineeBindingSource)).EndInit();
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
@@ -1160,7 +1188,7 @@
         private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn1;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewTrainee;
         private DataGridViewTextBoxColumn traineeEmployeeNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeFirstNameDataGridViewTextBoxColumn7;
         private DataGridViewTextBoxColumn traineeLastnameNumberDataGridViewTextBoxColumn;
@@ -1173,5 +1201,7 @@
         private DataGridViewTextBoxColumn traineeStreetNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeZipCodeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeCityDataGridViewTextBoxColumn;
+        private Label LblDashboardPersonsCount;
+        private ScottPlot.FormsPlot PersonsCountFormsPlot;
     }
 }
