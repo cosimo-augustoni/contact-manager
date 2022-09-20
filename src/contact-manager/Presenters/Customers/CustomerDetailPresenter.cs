@@ -50,7 +50,6 @@ public class CustomerDetailPresenter : IPresenter
     {
         this._customerId = id;
         var customer = this._customerService.GetById(id);
-        this._savedCustomer = customer;
 
         this._dialog.FirstName = customer.FirstName;
         this._dialog.CustomerNumber = customer.CustomerNumber;
@@ -79,6 +78,7 @@ public class CustomerDetailPresenter : IPresenter
         this._dialog.CompanyName = customer.CompanyName;
         this._dialog.CompanyContact = customer.CompanyContact;
         this._dialog.CompanyAddress = customer.CompanyAddress;
+        this._savedCustomer = this.ReadFromDialog();
     }
 
     public void LoadNewCustomer()
@@ -98,7 +98,7 @@ public class CustomerDetailPresenter : IPresenter
 
     public void Save()
     {
-        var customer = MapDialogFieldsToCustomer();
+        var customer = this.ReadFromDialog();
         this._customerService.Save(customer);
         this._savedCustomer = customer;
     }
@@ -122,10 +122,10 @@ public class CustomerDetailPresenter : IPresenter
 
     public bool HasUnsavedChanges()
     {
-        return !this._savedCustomer.IsDeepEqual(this.MapDialogFieldsToCustomer());
+        return !this._savedCustomer.IsDeepEqual(this.ReadFromDialog());
     }
 
-    private Customer MapDialogFieldsToCustomer()
+    private Customer ReadFromDialog()
     {
         var customer = new Customer
         {

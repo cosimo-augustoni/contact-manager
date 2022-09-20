@@ -47,10 +47,10 @@
             this.customerNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customerTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewTextBoxColumn = new contact_manager.Views.DataGridViewEnumColumn();
+            this.customerTypeDataGridViewTextBoxColumn = new contact_manager.Views.DataGridViewEnumColumn();
             this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sexDataGridViewTextBoxColumn = new contact_manager.Views.DataGridViewEnumColumn();
             this.streetNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.streetNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zipCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,10 +70,10 @@
             this.employeeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewTextBoxColumn1 = new contact_manager.Views.DataGridViewEnumColumn();
             this.CadreLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfBirthDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sexDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sexDataGridViewTextBoxColumn1 = new contact_manager.Views.DataGridViewEnumColumn();
             this.streetNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.streetNumberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zipCodeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,11 +84,11 @@
             this.traineeEmployeeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traineeFirstNameDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traineeLastnameNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeStatusDataGridViewTextBoxColumn = new contact_manager.Views.DataGridViewEnumColumn();
             this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traineeDateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeSexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeSexDataGridViewTextBoxColumn = new contact_manager.Views.DataGridViewEnumColumn();
             this.traineeStreetNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traineeStreetNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traineeZipCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -291,6 +291,7 @@
             this.cityDataGridViewTextBoxColumn});
             this.dataGridViewCustomer.DataSource = this.customerBindingSource;
             this.dataGridViewCustomer.Location = new System.Drawing.Point(8, 37);
+            this.dataGridViewCustomer.MultiSelect = false;
             this.dataGridViewCustomer.Name = "dataGridViewCustomer";
             this.dataGridViewCustomer.ReadOnly = true;
             this.dataGridViewCustomer.RowHeadersWidth = 102;
@@ -331,6 +332,7 @@
             this.stateDataGridViewTextBoxColumn.MinimumWidth = 12;
             this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
             this.stateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stateDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.stateDataGridViewTextBoxColumn.Width = 60;
             // 
             // customerTypeDataGridViewTextBoxColumn
@@ -340,6 +342,7 @@
             this.customerTypeDataGridViewTextBoxColumn.MinimumWidth = 12;
             this.customerTypeDataGridViewTextBoxColumn.Name = "customerTypeDataGridViewTextBoxColumn";
             this.customerTypeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.customerTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // dateOfBirthDataGridViewTextBoxColumn
             // 
@@ -359,6 +362,7 @@
             this.sexDataGridViewTextBoxColumn.MinimumWidth = 12;
             this.sexDataGridViewTextBoxColumn.Name = "sexDataGridViewTextBoxColumn";
             this.sexDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sexDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // streetNameDataGridViewTextBoxColumn
             // 
@@ -539,6 +543,7 @@
             this.cityDataGridViewTextBoxColumn1});
             this.dataGridViewEmployee.DataSource = this.employeeBindingSource;
             this.dataGridViewEmployee.Location = new System.Drawing.Point(8, 40);
+            this.dataGridViewEmployee.MultiSelect = false;
             this.dataGridViewEmployee.Name = "dataGridViewEmployee";
             this.dataGridViewEmployee.ReadOnly = true;
             this.dataGridViewEmployee.RowHeadersWidth = 102;
@@ -579,6 +584,7 @@
             this.stateDataGridViewTextBoxColumn1.MinimumWidth = 12;
             this.stateDataGridViewTextBoxColumn1.Name = "stateDataGridViewTextBoxColumn1";
             this.stateDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.stateDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.stateDataGridViewTextBoxColumn1.Width = 60;
             // 
             // CadreLevel
@@ -606,6 +612,7 @@
             this.sexDataGridViewTextBoxColumn1.MinimumWidth = 12;
             this.sexDataGridViewTextBoxColumn1.Name = "sexDataGridViewTextBoxColumn1";
             this.sexDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.sexDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // streetNameDataGridViewTextBoxColumn1
             // 
@@ -683,6 +690,7 @@
             this.traineeCityDataGridViewTextBoxColumn});
             this.dataGridViewTrainee.DataSource = this.traineeBindingSource;
             this.dataGridViewTrainee.Location = new System.Drawing.Point(8, 41);
+            this.dataGridViewTrainee.MultiSelect = false;
             this.dataGridViewTrainee.Name = "dataGridViewTrainee";
             this.dataGridViewTrainee.ReadOnly = true;
             this.dataGridViewTrainee.RowHeadersWidth = 102;
@@ -723,6 +731,7 @@
             this.traineeStatusDataGridViewTextBoxColumn.MinimumWidth = 12;
             this.traineeStatusDataGridViewTextBoxColumn.Name = "traineeStatusDataGridViewTextBoxColumn";
             this.traineeStatusDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeStatusDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.traineeStatusDataGridViewTextBoxColumn.Width = 60;
             // 
             // traineeYearsOfApprenticeshipDataGridViewTextBoxColumn
@@ -759,6 +768,7 @@
             this.traineeSexDataGridViewTextBoxColumn.MinimumWidth = 12;
             this.traineeSexDataGridViewTextBoxColumn.Name = "traineeSexDataGridViewTextBoxColumn";
             this.traineeSexDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeSexDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.traineeSexDataGridViewTextBoxColumn.Width = 80;
             // 
             // traineeStreetNameDataGridViewTextBoxColumn
@@ -1130,17 +1140,6 @@
         private Button CmdCreateNewEmployee;
         private Button CmdImportCustomer;
         private Button CmdImportEmployee;
-        private DataGridViewTextBoxColumn customerNumberDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn customerTypeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn streetNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private ComboBox CmbSearchScopeCustomer;
         private Panel panel2;
         private ComboBox CmbSearchScopeEmployee;
@@ -1174,31 +1173,42 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn YearsOfApprenticeship;
         private DataGridView dataGridViewEmployee;
+        private DataGridView dataGridViewTrainee;
+        private Label LblDashboardPersonsCount;
+        private ScottPlot.FormsPlot PersonsCountFormsPlot;
+        private DataGridViewTextBoxColumn customerNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private DataGridViewEnumColumn stateDataGridViewTextBoxColumn;
+        private DataGridViewEnumColumn customerTypeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn;
+        private DataGridViewEnumColumn sexDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn streetNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn employeeNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn1;
+        private DataGridViewEnumColumn stateDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn CadreLevel;
         private DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn1;
+        private DataGridViewEnumColumn sexDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn streetNameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn1;
-        private DataGridView dataGridViewTrainee;
         private DataGridViewTextBoxColumn traineeEmployeeNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeFirstNameDataGridViewTextBoxColumn7;
         private DataGridViewTextBoxColumn traineeLastnameNumberDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn traineeStatusDataGridViewTextBoxColumn;
+        private DataGridViewEnumColumn traineeStatusDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeYearsOfApprenticeshipDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeDateOfBirthDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn traineeSexDataGridViewTextBoxColumn;
+        private DataGridViewEnumColumn traineeSexDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeStreetNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeStreetNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeZipCodeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn traineeCityDataGridViewTextBoxColumn;
-        private Label LblDashboardPersonsCount;
-        private ScottPlot.FormsPlot PersonsCountFormsPlot;
     }
 }

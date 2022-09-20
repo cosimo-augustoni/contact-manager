@@ -44,8 +44,8 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
     {
         this._employeeId = id;
         var employee = this.EmployeeService.GetById(id);
-        this._savedEmployee = employee;
         this.WriteToDialog(employee);
+        this._savedEmployee = this.ReadFromDialog();
     }
 
     protected virtual void WriteToDialog(TEmployee employee)

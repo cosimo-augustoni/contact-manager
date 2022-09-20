@@ -17,7 +17,6 @@ namespace contact_manager
             ApplicationConfiguration.Initialize();
             var formFactory = new DefaultFormFactory();
 
-            //TODO Enums in Grid Feldern auf Deutsch (Cosimo)
             //TODO Unklarheiten Dokumentieren und Kommentieren in Search-Domäne (Päddy)
             //TODO Entfernen Debugging Login(Cosimo)
 
