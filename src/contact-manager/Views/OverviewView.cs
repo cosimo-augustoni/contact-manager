@@ -444,6 +444,8 @@ namespace contact_manager.Views
 
         private void CreateCustomerCityFormsPlot(DashboardData dashboardData)
         {
+            if (dashboardData.CityStatistics.Count == 0) return;
+
             CustomerCityFormsPlot.Plot.Clear();
             var pie = CustomerCityFormsPlot.Plot.AddPie(dashboardData.CityStatistics.Values.Select(v => (double)v).ToArray());
 
@@ -456,6 +458,8 @@ namespace contact_manager.Views
 
         private void CreateCustomerTypeFormsPlot(DashboardData dashboardData)
         {
+            if (dashboardData.CustomerTypeStatistics.Count == 0) return;
+
             CustomerTypeFormsPlot.Plot.Clear();
             var pie = CustomerTypeFormsPlot.Plot.AddPie(dashboardData.CustomerTypeStatistics.Values.Select(v => (double)v).ToArray());
             pie.SliceLabels = dashboardData.CustomerTypeStatistics.Keys.ToArray();
