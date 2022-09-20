@@ -229,6 +229,7 @@ namespace contact_manager.Views.Employees
             if (_employeeValidator.Validate())
             {
                 this._presenter?.Save();
+                this.Close();
             }
             else
             {

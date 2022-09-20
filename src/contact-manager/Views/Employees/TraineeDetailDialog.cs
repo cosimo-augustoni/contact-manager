@@ -242,6 +242,7 @@ namespace contact_manager.Views.Employees
             if (this._traineeValidator.Validate())
             {
                 this._presenter?.Save();
+                this.Close();
             }
             else
             {

@@ -20,7 +20,7 @@ public class CustomerDetailPresenter : IPresenter
     private readonly IUserService _userService;
     private readonly User _user;
     private long _customerId;
-    private Customer? _customerOnInit;
+    private Customer? _savedCustomer;
 
     public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService,
         ICustomerNoteService customerNotesService, User user, bool isNewMode, IHistoryService historyService, IUserService userService)
@@ -50,7 +50,7 @@ public class CustomerDetailPresenter : IPresenter
     {
         this._customerId = id;
         var customer = this._customerService.GetById(id);
-        this._customerOnInit = customer;
+        this._savedCustomer = customer;
 
         this._dialog.FirstName = customer.FirstName;
         this._dialog.CustomerNumber = customer.CustomerNumber;
@@ -89,9 +89,9 @@ public class CustomerDetailPresenter : IPresenter
 
     public void ChangeStatus()
     {
-        this._dialog.State = this._dialog.State == Models.Data.State.Active
-            ? Models.Data.State.Passive
-            : Models.Data.State.Active;
+        this._dialog.State = this._dialog.State == State.Active
+            ? State.Passive
+            : State.Active;
 
         Save();
     }
@@ -100,7 +100,7 @@ public class CustomerDetailPresenter : IPresenter
     {
         var customer = MapDialogFieldsToCustomer();
         this._customerService.Save(customer);
-        this._customerOnInit = customer;
+        this._savedCustomer = customer;
     }
 
     public void OpenCustomerNotesDialog(string customerDisplayText)
@@ -122,9 +122,7 @@ public class CustomerDetailPresenter : IPresenter
 
     public bool HasUnsavedChanges()
     {
-        var customerAfter = MapDialogFieldsToCustomer();
-
-        return !this._customerOnInit.IsDeepEqual(customerAfter);
+        return !this._savedCustomer.IsDeepEqual(this.MapDialogFieldsToCustomer());
     }
 
     private Customer MapDialogFieldsToCustomer()

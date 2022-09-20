@@ -208,7 +208,7 @@ namespace contact_manager.Views.Customers
             if (_customerValidator.Validate())
             {
                 this._presenter?.Save();
-                CmdProtocol.Enabled = true;
+                this.Close();
             }
             else
             {

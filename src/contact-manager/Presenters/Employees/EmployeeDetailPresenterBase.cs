@@ -91,6 +91,7 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
     {
         var employee = this.ReadFromDialog();
         this.EmployeeService.Save(employee);
+        this._savedEmployee = employee;
     }
 
     protected virtual TEmployee ReadFromDialog()
