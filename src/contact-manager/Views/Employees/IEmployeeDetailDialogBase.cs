@@ -1,11 +1,11 @@
 ﻿using contact_manager.Models.Data;
-using contact_manager.Presenters.Employees;
 
 namespace contact_manager.Views.Employees;
 
+
 public interface IEmployeeDetailDialog
 {
-    void SetPresenter(EmployeeDetailPresenter employeeDetailPresenter);
+    void SetPresenter(object detailPresenter);
     string? FirstName { get; set; }
     string? EmployeeNumber { get; set; }
     Salutation Salutation { get; set; }

@@ -205,8 +205,6 @@ namespace contact_manager.Views.Customers
 
         private void CmdSave_Click(object sender, EventArgs e)
         {
-            // ToDo npa: rückmeldung, dass das speichern erfolgreich war?
-
             if (_customerValidator.Validate())
             {
                 this._presenter?.Save();
@@ -219,12 +217,6 @@ namespace contact_manager.Views.Customers
             }
         }
 
-        private void CmdClose_Click(object sender, EventArgs e)
-        {
-            // ToDo: falls noch nicht gespeichert fragen, ob die Änderungen verworfen werden sollen
-            this.Close();
-        }
-
         private void TxtZipCode_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -235,26 +227,25 @@ namespace contact_manager.Views.Customers
 
         private void CustomerDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this._presenter.HasUnsavedChanges())
-            {
-                var closeDialogResult = MessageBox.Show(
-                    "Es gibt ungespeicherte Änderungen, wollen sie diese speichern?",
-                    "Ungespeicherte Änderungen",
-                    MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Warning
-                    );
+            if (!(this._presenter?.HasUnsavedChanges() ?? false)) return;
 
-                if (closeDialogResult == DialogResult.Yes)
-                {
-                    if (_customerValidator.Validate())
-                        this._presenter?.Save();
-                    else
-                        e.Cancel = true;
-                }
-                if (closeDialogResult == DialogResult.Cancel)
-                {
+            var closeDialogResult = MessageBox.Show(
+                "Es gibt ungespeicherte Änderungen, wollen sie diese speichern?",
+                "Ungespeicherte Änderungen",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Warning
+            );
+
+            if (closeDialogResult == DialogResult.Yes)
+            {
+                if (this._customerValidator.Validate())
+                    this._presenter?.Save();
+                else
                     e.Cancel = true;
-                }
+            }
+            if (closeDialogResult == DialogResult.Cancel)
+            {
+                e.Cancel = true;
             }
         }
 

@@ -4,10 +4,10 @@ using contact_manager.Views.Validation;
 
 namespace contact_manager.Views.Employees
 {
-    public partial class EmployeeDetailDialog : Form, IEmployeeDetailDialog
+    public partial class TraineeDetailDialog : Form, ITraineeDetailDialog
     {
-        private EmployeeDetailPresenter? _presenter;
-        private readonly EmployeeValidator _employeeValidator;
+        private TraineeDetailPresenter? _presenter;
+        private readonly TraineeValidator _traineeValidator;
 
         #region FormProperties
 
@@ -187,15 +187,27 @@ namespace contact_manager.Views.Employees
             set => this.NumCadreLevel.Value = value;
         }
 
+        public int YearsOfApprenticeship
+        {
+            get => (int)this.NumYearsOfApprenticeship.Value;
+            set => this.NumYearsOfApprenticeship.Value = value;
+        }
+
+        public int CurrentYearOfApprenticeship
+        {
+            get => (int)this.NumCurrentYearOfApprenticeship.Value;
+            set => this.NumCurrentYearOfApprenticeship.Value = value;
+        }
+
         #endregion
 
-        public EmployeeDetailDialog()
+        public TraineeDetailDialog()
         {
             this.InitializeComponent();
             this.CmbSalutation.SetDataSource<Salutation>();
             this.CmbSex.SetDataSource<Sex>();
             this.CmbState.SetDataSource<State>();
-            this._employeeValidator = new EmployeeValidator(EmployeeErrorProvider, this);
+            this._traineeValidator = new TraineeValidator(EmployeeErrorProvider, this);
         }
 
         public void InitializeMode()
@@ -215,18 +227,19 @@ namespace contact_manager.Views.Employees
             GrpPersonalData.Enabled = isEnabled && State == State.Active;
             GrpContactData.Enabled = isEnabled && State == State.Active;
             GrpEmploymentData.Enabled = isEnabled && State == State.Active;
+            this.groupBox1.Enabled = isEnabled && State == State.Active;
 
             CmdChangeStatus.Text = State == State.Active ? "Deaktivieren" : "Aktivieren";
         }
 
         public void SetPresenter(object detailPresenter)
         {
-            this._presenter = (EmployeeDetailPresenter)detailPresenter;
+            this._presenter = (TraineeDetailPresenter)detailPresenter;
         }
 
         private void CmdSave_Click(object sender, EventArgs e)
         {
-            if (_employeeValidator.Validate())
+            if (this._traineeValidator.Validate())
             {
                 this._presenter?.Save();
             }
@@ -348,27 +361,28 @@ namespace contact_manager.Views.Employees
                 this.DateOfBirth = null;
         }
 
-        private void EmployeeDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
+        private void TraineeDetailDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!(this._presenter?.HasUnsavedChanges() ?? false)) return;
-
-            var closeDialogResult = MessageBox.Show(
-                "Es gibt ungespeicherte Änderungen, wollen sie diese speichern?",
-                "Ungespeicherte Änderungen",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Warning
-            );
-
-            if (closeDialogResult == DialogResult.Yes)
+            if (this._presenter?.HasUnsavedChanges() ?? false)
             {
-                if (this._employeeValidator.Validate())
-                    this._presenter?.Save();
-                else
+                var closeDialogResult = MessageBox.Show(
+                    "Es gibt ungespeicherte Änderungen, wollen sie diese speichern?",
+                    "Ungespeicherte Änderungen",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning
+                    );
+
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    if (this._traineeValidator.Validate())
+                        this._presenter?.Save();
+                    else
+                        e.Cancel = true;
+                }
+                if (closeDialogResult == DialogResult.Cancel)
+                {
                     e.Cancel = true;
-            }
-            if (closeDialogResult == DialogResult.Cancel)
-            {
-                e.Cancel = true;
+                }
             }
         }
     }

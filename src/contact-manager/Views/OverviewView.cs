@@ -30,6 +30,12 @@ namespace contact_manager.Views
             dataGridViewCustomer.DataSource = customers;
         }
 
+        public void SetTraineeList(List<Trainee> trainees)
+        {
+            this.dataGridViewTrainee.DataSource = trainees;
+        }
+        
+
         private void InitializeMode()
         {
             var isEnabled = !this._presenter?.IsReadOnly ?? false;
@@ -60,12 +66,16 @@ namespace contact_manager.Views
         private void CmdCreateNewCustomer_Click(object sender, EventArgs e)
         {
             this._presenter?.OpenCreateNewCustomerDialog();
-            // ToDo npa: nach dem neu, wenn gespeichert wurde dann den neuen eintrag gleich markieren im datagridview?
         }
 
         private void CmdCreateNewEmployee_Click(object sender, EventArgs e)
         {
             this._presenter?.OpenCreateNewEmployeeDialog();
+        }
+
+        private void CmdCreateNewTrainee_Click(object sender, EventArgs e)
+        {
+            this._presenter?.OpenCreateNewTraineeDialog();
         }
 
         #endregion // New
@@ -99,18 +109,36 @@ namespace contact_manager.Views
             if (employee != null)
             {
                 this._presenter?.OpenEditEmployeeDialog(employee.Id);
-                // todo: nach dem bearbeiten wieder denselben eintrag markieren wie vorher?
+            }
+        }
+
+        private void CmdEditTrainee_Click(object sender, EventArgs e)
+        {
+            this.EditTrainee();
+        }
+
+        private void EditTrainee()
+        {
+            var trainee = this.GetCurrentSelectedTrainee();
+            if (trainee != null)
+            {
+                this._presenter?.OpenEditTraineeDialog(trainee.Id);
             }
         }
 
         private void dataGridViewCustomer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            EditCustomer();
+            this.EditCustomer();
         }
 
         private void dataGridViewEmployee_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            EditEmployee();
+            this.EditEmployee();
+        }
+
+        private void dataGridViewTrainee_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.EditTrainee();
         }
 
         #endregion // Edit
@@ -145,14 +173,17 @@ namespace contact_manager.Views
             }
         }
 
-        private Customer? GetCurrentSelectedCustomer()
+        private void CmdDeleteTrainee_Click(object sender, EventArgs e)
         {
-            return this.dataGridViewCustomer.CurrentRow?.DataBoundItem as Customer;
-        }
-
-        private Employee? GetCurrentSelectedEmployee()
-        {
-            return this.dataGridViewEmployee.CurrentRow?.DataBoundItem as Employee;
+            var trainee = this.GetCurrentSelectedTrainee();
+            if (trainee != null)
+            {
+                var dialogResult = MessageBox.Show("Möchten Sie diesen Lernenden wirklich löschen?", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this._presenter?.DeleteTrainee(trainee.Id);
+                }
+            }
         }
 
         #endregion // Delete
@@ -239,6 +270,45 @@ namespace contact_manager.Views
             this._presenter?.LoadAllEmployees();
         }
 
+        public string SearchTermTrainee
+        {
+            get => this.TxtSearchTrainee.Text;
+            set => this.TxtSearchTrainee.Text = value;
+        }
+
+        public SearchScope SearchScopeTrainee
+        {
+            get => (SearchScope)this.CmbSearchScopeTrainee.SelectedItem;
+            set => this.CmbSearchScopeTrainee.SelectedItem = value;
+        }
+
+        public void SetSearchScopeTraineeSource(List<SearchScope> scopes)
+        {
+            this.CmbSearchScopeTrainee.DataSource = scopes;
+            this.CmbSearchScopeTrainee.DisplayMember = nameof(SearchScope.DisplayName);
+
+            this.CmbSearchScopeTrainee.SelectedItem = scopes.First(s => s.ScopeType == ScopeType.All);
+        }
+
+        private void TxtSearchTrainee_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this._presenter?.SearchTrainees();
+            }
+        }
+
+        private void CmdSearchTrainee_Click(object sender, EventArgs e)
+        {
+            this._presenter?.SearchTrainees();
+        }
+
+        private void CmdResetSearchTrainee_Click(object sender, EventArgs e)
+        {
+            this.TxtSearchTrainee.Clear();
+            this._presenter?.LoadAllTrainees();
+        }
+
         #endregion // Search
 
         //----------------------------------------------------------------------------------------------------
@@ -268,6 +338,12 @@ namespace contact_manager.Views
             this._presenter?.ImportCsv<Employee>(this.openFileDialog);
         }
 
+        private void CmdImportTrainee_Click(object sender, EventArgs e)
+        {
+            this.openFileDialog.Title = "Lernende importieren";
+            this._presenter?.ImportCsv<Trainee>(this.openFileDialog);
+        }
+
         #endregion // Import
 
         //----------------------------------------------------------------------------------------------------
@@ -279,6 +355,56 @@ namespace contact_manager.Views
             CreateCustomerCountFormsPlot(dashboardData);
             CreateCustomerCityFormsPlot(dashboardData);
             CreateCustomerTypeFormsPlot(dashboardData);
+            CreatePersonsCountFormsPlot(dashboardData);
+        }
+
+        private void CreatePersonsCountFormsPlot(DashboardData dashboardData)
+        {
+            PersonsCountFormsPlot.Plot.Clear();
+            var customerCount = dashboardData.ActiveCustomerCount + dashboardData.PassiveCustomerCount;
+            var employeeCount = dashboardData.EmployeeCount;
+            var traineeCount = dashboardData.TraineeCount;
+
+            int[] counts = new int[3];
+            counts[0] = customerCount;
+            counts[1] = employeeCount;
+            counts[2] = traineeCount;
+            int maxCounts = counts.Max();
+
+            List<ScottPlot.Plottable.Bar> bars = new List<ScottPlot.Plottable.Bar>();
+
+            ScottPlot.Plottable.Bar customerBar = new ScottPlot.Plottable.Bar()
+            {
+                Position = 0,
+                Value = customerCount,
+                Label = $"Kunden ({customerCount})",
+                FillColor = Color.Blue
+
+            };
+            ScottPlot.Plottable.Bar employeeBar = new ScottPlot.Plottable.Bar()
+            {
+                Position = 2,
+                Value = employeeCount,
+                Label = $"Mitarbeiter ohne Lernende ({employeeCount})",
+                FillColor = Color.Tomato
+            };
+            ScottPlot.Plottable.Bar traineeBar = new ScottPlot.Plottable.Bar()
+            {
+                Position = 4,
+                Value = traineeCount,
+                Label = $"Lernende ({traineeCount})",
+                FillColor = Color.Yellow
+            };
+            bars.Add(customerBar);
+            bars.Add(employeeBar);
+            bars.Add(traineeBar);
+            PersonsCountFormsPlot.Plot.XAxis.Ticks(false);
+            PersonsCountFormsPlot.Plot.YAxis.Label("Anzahl");
+            PersonsCountFormsPlot.Plot.XAxis.Label("Personen");
+            PersonsCountFormsPlot.Plot.AddBarSeries(bars);
+            PersonsCountFormsPlot.Plot.SetAxisLimits(yMin: 0, yMax: maxCounts + 10);
+            PersonsCountFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            PersonsCountFormsPlot.Refresh();
         }
 
         private void CreateCustomerCountFormsPlot(DashboardData dashboardData)
@@ -319,9 +445,9 @@ namespace contact_manager.Views
         private void CreateCustomerCityFormsPlot(DashboardData dashboardData)
         {
             CustomerCityFormsPlot.Plot.Clear();
-            var pie = CustomerCityFormsPlot.Plot.AddPie(dashboardData.CustomerCityCounts);
+            var pie = CustomerCityFormsPlot.Plot.AddPie(dashboardData.CityStatistics.Values.Select(v => (double)v).ToArray());
 
-            pie.SliceLabels = dashboardData.CustomerCityNames;
+            pie.SliceLabels = dashboardData.CityStatistics.Keys.ToArray();
             pie.Explode = true;
 
             CustomerCityFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
@@ -331,12 +457,27 @@ namespace contact_manager.Views
         private void CreateCustomerTypeFormsPlot(DashboardData dashboardData)
         {
             CustomerTypeFormsPlot.Plot.Clear();
-            var pie = CustomerTypeFormsPlot.Plot.AddPie(dashboardData.CustomerTypeCounts);
-            pie.SliceLabels = dashboardData.CustomerTypes;
+            var pie = CustomerTypeFormsPlot.Plot.AddPie(dashboardData.CustomerTypeStatistics.Values.Select(v => (double)v).ToArray());
+            pie.SliceLabels = dashboardData.CustomerTypeStatistics.Keys.ToArray();
             pie.Explode = true;
             CustomerTypeFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
             CustomerTypeFormsPlot.Refresh();
         }
         #endregion // Dashboard
+
+        private Customer? GetCurrentSelectedCustomer()
+        {
+            return this.dataGridViewCustomer.CurrentRow?.DataBoundItem as Customer;
+        }
+
+        private Employee? GetCurrentSelectedEmployee()
+        {
+            return this.dataGridViewEmployee.CurrentRow?.DataBoundItem as Employee;
+        }
+
+        private Trainee? GetCurrentSelectedTrainee()
+        {
+            return this.dataGridViewTrainee.CurrentRow?.DataBoundItem as Trainee;
+        }
     }
 }

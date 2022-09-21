@@ -28,7 +28,10 @@ namespace contact_manager.Views
             var customerService = new CustomerService(customerRepository);
 
             var employeeRepository = new RepositoryWithHistorization<Employee>(user);
-            var employeeService = new EmployeeService(employeeRepository);
+            var employeeService = new EmployeeService<Employee>(employeeRepository);
+
+            var traineeRepository = new RepositoryWithHistorization<Trainee>(user);
+            var traineeService = new EmployeeService<Trainee>(traineeRepository);
 
             var customerNoteRepository = new Repository<CustomerNote>(new FileStore<CustomerNote>());
             var customerNotesService = new CustomerNoteService(customerNoteRepository);
@@ -38,17 +41,16 @@ namespace contact_manager.Views
             var overviewView = new OverviewView();
             var csvImporter = new CsvImporter();
             var userService = new UserService();
-            var overviewPresenter =
-                new OverviewPresenter(
+            var overviewPresenter = new OverviewPresenter(
                     overviewView,
                     customerService,
                     customerNotesService,
                     employeeService,
+                    traineeService,
                     user,
                     historyService,
                     csvImporter,
-                    userService
-                    );
+                    userService);
 
             overviewPresenter.Init();
             overviewPresenter.LoadAllCustomers();

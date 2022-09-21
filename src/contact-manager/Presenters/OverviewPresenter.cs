@@ -16,15 +16,21 @@ namespace contact_manager.Presenters
         private readonly IOverviewView _overviewView;
         private readonly ICustomerService _customerService;
         private readonly ICustomerNoteService _customerNotesService;
-        private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeService<Employee> _employeeService;
+        private readonly IEmployeeService<Trainee> _traineeService;
         private readonly IHistoryService _historyService;
         private readonly ICsvImporter _csvImporter;
         private readonly IUserService _userService;
         private readonly User _user;
 
-        public OverviewPresenter(IOverviewView overviewView, ICustomerService customerService,
+        public OverviewPresenter(IOverviewView overviewView,
+            ICustomerService customerService,
             ICustomerNoteService customerNotesService,
-            IEmployeeService employeeService, User user, IHistoryService historyService, ICsvImporter csvImporter, IUserService userService)
+            IEmployeeService<Employee> employeeService,
+            IEmployeeService<Trainee> traineeService,
+            User user,
+            IHistoryService historyService,
+            ICsvImporter csvImporter, IUserService userService)
         {
             this._overviewView = overviewView;
             this._user = user;
@@ -32,6 +38,7 @@ namespace contact_manager.Presenters
             this._customerService = customerService;
             this._customerNotesService = customerNotesService;
             this._employeeService = employeeService;
+            this._traineeService = traineeService;
             this._historyService = historyService;
             this._csvImporter = csvImporter;
             this._userService = userService;
@@ -42,6 +49,7 @@ namespace contact_manager.Presenters
             this._overviewView.SetPresenter(this);
             this._overviewView.SetSearchScopeEmployeeSource(this._employeeService.GetSearchScopes());
             this._overviewView.SetSearchScopeCustomerSource(this._customerService.GetSearchScopes());
+            this._overviewView.SetSearchScopeTraineeSource(this._traineeService.GetSearchScopes());
         }
 
         public bool IsReadOnly
@@ -75,7 +83,7 @@ namespace contact_manager.Presenters
         public void OpenEditEmployeeDialog(long employeeId)
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: false, _historyService,_userService);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: false, _historyService, _userService);
             dialogPresenter.Init();
             dialogPresenter.LoadEmployee(employeeId);
             dialog.InitializeMode();
@@ -86,7 +94,6 @@ namespace contact_manager.Presenters
         public void DeleteEmployee(long employeeId)
         {
             this._employeeService.Delete(employeeId);
-            //TODO Evtl. Performance Problem alles wieder zu laden. Evtl eine art caching in der View
             this.LoadAllEmployees();
         }
 
@@ -105,7 +112,7 @@ namespace contact_manager.Presenters
         public void OpenCreateNewCustomerDialog()
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: true, _historyService,_userService);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: true, _historyService, _userService);
             dialogPresenter.Init();
             dialogPresenter.LoadNewCustomer();
             dialog.InitializeMode();
@@ -116,7 +123,7 @@ namespace contact_manager.Presenters
         public void OpenEditCustomerDialog(long customerId)
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: false, _historyService,_userService);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: false, _historyService, _userService);
             dialogPresenter.Init();
             dialogPresenter.LoadCustomer(customerId);
             dialog.InitializeMode();
@@ -128,58 +135,111 @@ namespace contact_manager.Presenters
         public void DeleteCustomer(long customerId)
         {
             this._customerService.Delete(customerId);
-            //TODO Evtl. Performance Problem alles wieder zu laden. Evtl eine art caching in der View
             this.LoadAllCustomers();
+        }
+
+        public void LoadAllTrainees()
+        {
+            var trainees = this._traineeService.GetAll();
+            this._overviewView.SetTraineeList(trainees);
+        }
+
+        public void SearchTrainees()
+        {
+            var employees = this._traineeService.GetBySearchTerm(this._overviewView.SearchScopeTrainee, this._overviewView.SearchTermTrainee);
+            this._overviewView.SetTraineeList(employees);
+        }
+
+        public void OpenCreateNewTraineeDialog()
+        {
+            var dialog = new TraineeDetailDialog();
+            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: true, _historyService, _userService);
+            dialogPresenter.Init();
+            dialogPresenter.LoadNewEmployee();
+            dialog.InitializeMode();
+            dialog.Closed += (_, _) => this.LoadAllTrainees();
+            dialog.ShowDialog();
+        }
+
+        public void OpenEditTraineeDialog(long traineeId)
+        {
+            var dialog = new TraineeDetailDialog();
+            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: false, _historyService, _userService);
+            dialogPresenter.Init();
+            dialogPresenter.LoadEmployee(traineeId);
+            dialog.InitializeMode();
+            dialog.Closed += (_, _) => this.LoadAllTrainees();
+            dialog.ShowDialog();
+        }
+
+        public void DeleteTrainee(long traineeId)
+        {
+            this._traineeService.Delete(traineeId);
+            this.LoadAllTrainees();
         }
 
         public void ImportCsv<T>(OpenFileDialog openFileDialog) where T : Person
         {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            try
             {
-                try
-                {
+                var importedPersons = this._csvImporter.ParseCsv<T>(openFileDialog.FileName);
+                var importType = "";
 
-                    var importedPersons = this._csvImporter.ParseCsv<T>(openFileDialog.FileName);
-                    var importType = "";
-                    foreach (var person in importedPersons)
+                if (typeof(T) == typeof(Employee))
+                {
+                    foreach (var person in importedPersons.Cast<Employee>())
                     {
-                        if (typeof(T) == typeof(Employee))
-                        {
-                            person.Id = this._employeeService.GetNewId();
-                            this._employeeService.Save(person as Employee);
-                            importType = "Mitarbeiter";
-                        }
-                        else
-                        {
-                            person.Id = this._customerService.GetNewId();
-                            this._customerService.Save(person as Customer);
-                            importType = "Kunden";
-                        }
+                        person.Id = this._employeeService.GetNewId();
+                        this._employeeService.Save(person);
+                        importType = "Mitarbeiter";
                     }
-
-                    this.LoadAllCustomers();
                     this.LoadAllEmployees();
-                    MessageBox.Show($"{importedPersons.Count()} {importType} erfolgreich importiert!");
                 }
-                catch (CsvHelper.FieldValidationException e)
+                else if (typeof(T) == typeof(Trainee))
                 {
-                    var context = e.Context;
-                    var header = context.Reader.HeaderRecord[context.Reader.CurrentIndex];
-                    MessageBox.Show(
-                        $"Validierungsfehler beim Import:\r\n\r\n" +
-                        $"Ungültiger Wert: {e.Field}\r\n" +
-                        $"Spalte: {header}\r\n" +
-                        $"Zeile: {context.Parser.Row - 1}",
-                        "Validierungsfehler", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                        );
+                    foreach (var person in importedPersons.Cast<Trainee>())
+                    {
+                        person.Id = this._traineeService.GetNewId();
+                        this._traineeService.Save(person);
+                        importType = "Lernende";
+                    }
+                    this.LoadAllTrainees();
                 }
-                catch (Exception e)
+                else if (typeof(T) == typeof(Customer))
                 {
-
-                    MessageBox.Show(e.Message);
-
+                    foreach (var person in importedPersons.Cast<Customer>())
+                    {
+                        person.Id = this._customerService.GetNewId();
+                        this._customerService.Save(person as Customer);
+                        importType = "Kunden";
+                    }
+                    this.LoadAllCustomers();
                 }
+                else
+                {
+                    MessageBox.Show($"Personentyp ist nicht bekannt. Der Import ist fehlgeschlagen!", "Import fehlgeschlagen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show($"{importedPersons.Count} {importType} erfolgreich importiert!");
+            }
+            catch (CsvHelper.FieldValidationException e)
+            {
+                var context = e.Context;
+                var header = context.Reader.HeaderRecord?[context.Reader.CurrentIndex];
+                MessageBox.Show(
+                    $@"Validierungsfehler beim Import:
 
+Ungültiger Wert: {e.Field}
+Spalte: {header}
+Zeile: {context.Parser.Row - 1}",
+                    "Validierungsfehler", MessageBoxButtons.OK, MessageBoxIcon.Warning
+                );
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -190,59 +250,57 @@ namespace contact_manager.Presenters
             else if (selectedTabPage == 1)
                 this.LoadAllEmployees();
             else if (selectedTabPage == 2)
-                this.LoadDashbaordData();
+                this.LoadAllTrainees();
+            else if (selectedTabPage == 3)
+                this.LoadDashboardData();
         }
 
-        public void LoadDashbaordData()
+        public void LoadDashboardData()
         {
             var customers = this._customerService.GetAll();
-            var activeCustomerCount = customers.Where(a => a.State == Models.Data.State.Active).Count();
-            var passiveCustomerCount = customers.Where(a => a.State == Models.Data.State.Passive).Count();
-            var cityNames = new List<string?>();
-            var cityCounts = new List<double>();
-            var customerTypes = new List<string>();
-            var customerTypeCounts = new List<double>();
+            var employeeCount = this._employeeService.GetAll().Count;
+            var traineeCount = this._traineeService.GetAll().Count;
+            var activeCustomerCount = customers.Count(a => a.State == State.Active);
+            var passiveCustomerCount = customers.Count(a => a.State == State.Passive);
+            var cityStatistics = this.GetCityStatistics(customers);
+            var customerTypeStatistics = this.GetCustomerTypeStatistics(customers);
+            var dashboardData = new DashboardData(activeCustomerCount, passiveCustomerCount,
+                employeeCount, traineeCount, cityStatistics, customerTypeStatistics);
 
+            this._overviewView.SetDashboardData(dashboardData);
+        }
+
+        private Dictionary<string, int> GetCustomerTypeStatistics(List<Customer> customers)
+        {
+            var customerTypeStatistics = customers
+                .GroupBy(c => c.CustomerType)
+                .ToDictionary(g => $"{g.Key} ({g.Count()})", g => g.Count());
+            return customerTypeStatistics;
+        }
+
+        private Dictionary<string, int> GetCityStatistics(List<Customer> customers)
+        {
             var cityData = customers
-                .Where(c => !String.IsNullOrEmpty(c.City))
+                .Where(c => !string.IsNullOrEmpty(c.City))
                 .GroupBy(c => c.City)
                 .Select(c => new
                 {
                     CityName = $"{c.Key} ({c.Count()})",
                     Count = c.Count()
-                });
+                })
+                .OrderByDescending(c => c.Count)
+                .ToList();
 
-            if (cityData.Count() > 3)
+            var cityStatistics = cityData.Take(3).ToDictionary(c => c.CityName, c => c.Count);
+            if (cityData.Count > 3)
             {
-                var threeCitiesWithHighestCountData = cityData.OrderByDescending(c => c.Count).Take(3);
-                var othersCount = cityData.OrderBy(c => c.Count).Take(cityData.Count() - 3).Sum(c => (double) c.Count);
-                cityNames.AddRange(threeCitiesWithHighestCountData.Select(c => c.CityName).ToList());
-                cityNames.Add($"Andere ({othersCount})");
-
-                cityCounts.AddRange(threeCitiesWithHighestCountData.Select(c => (double) c.Count).ToList());
-                cityCounts.Add(othersCount);
-            }
-            else
-            {
-                cityNames.AddRange(cityData.Select(c => c.CityName).ToList());
-                cityCounts.AddRange(cityData.Select(c => (double)c.Count).ToList());
+                var otherCount = cityData.Skip(3).Sum(c => c.Count);
+                cityStatistics.Add($"Andere ({otherCount})", otherCount);
             }
 
-            var customerTypeData = customers
-                .GroupBy(c => c.CustomerType)
-                .Select(c => new
-                {
-                    CustomerType = $"{c.Key} ({c.Count()})",
-                    Count = c.Count()
-                });
-
-            customerTypes.AddRange(customerTypeData.Select(c => c.CustomerType).ToList());
-            customerTypeCounts.AddRange(customerTypeData.Select(c => (double)c.Count).ToList());
- 
-            var dashboardData = new DashboardData(activeCustomerCount, passiveCustomerCount, cityNames.ToArray(), cityCounts.ToArray(),
-                customerTypes.ToArray(), customerTypeCounts.ToArray());
-
-            this._overviewView.SetDashboardData(dashboardData);
+            return cityStatistics;
         }
+
+        
     }
 }

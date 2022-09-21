@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-      this.CmdCreateNewCustomer = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.CmdCreateNewCustomer = new System.Windows.Forms.Button();
       this.TcOverview = new System.Windows.Forms.TabControl();
       this.TpCustomer = new System.Windows.Forms.TabPage();
       this.CmdImportCustomer = new System.Windows.Forms.Button();
@@ -78,6 +79,30 @@
       this.zipCodeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.cityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      this.TpTrainee = new System.Windows.Forms.TabPage();
+      this.dataGridViewTrainee = new System.Windows.Forms.DataGridView();
+      this.traineeEmployeeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeFirstNameDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeLastnameNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeDateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeSexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeStreetNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeStreetNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeZipCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeCityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.traineeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      this.panel1 = new System.Windows.Forms.Panel();
+      this.CmbSearchScopeTrainee = new System.Windows.Forms.ComboBox();
+      this.CmdResetSearchTrainee = new System.Windows.Forms.Button();
+      this.CmdSearchTrainee = new System.Windows.Forms.Button();
+      this.TxtSearchTrainee = new System.Windows.Forms.TextBox();
+      this.CmdImportTrainee = new System.Windows.Forms.Button();
+      this.CmdDeleteTrainee = new System.Windows.Forms.Button();
+      this.CmdEditTrainee = new System.Windows.Forms.Button();
+      this.CmdCreateNewTrainee = new System.Windows.Forms.Button();
       this.TpDashboard = new System.Windows.Forms.TabPage();
       this.TlpDashboard = new System.Windows.Forms.TableLayoutPanel();
       this.LblDashboardCustomerType = new System.Windows.Forms.Label();
@@ -86,7 +111,15 @@
       this.CustomerCountFormsPlot = new ScottPlot.FormsPlot();
       this.CustomerCityFormsPlot = new ScottPlot.FormsPlot();
       this.CustomerTypeFormsPlot = new ScottPlot.FormsPlot();
+      this.LblDashboardPersonsCount = new System.Windows.Forms.Label();
+      this.PersonsCountFormsPlot = new ScottPlot.FormsPlot();
       this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.YearsOfApprenticeship = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.TcOverview.SuspendLayout();
       this.TpCustomer.SuspendLayout();
       this.PnlSearchCustomer.SuspendLayout();
@@ -96,6 +129,10 @@
       this.panel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
+      this.TpTrainee.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrainee)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.traineeBindingSource)).BeginInit();
+      this.panel1.SuspendLayout();
       this.TpDashboard.SuspendLayout();
       this.TlpDashboard.SuspendLayout();
       this.SuspendLayout();
@@ -117,6 +154,7 @@
       // 
       this.TcOverview.Controls.Add(this.TpCustomer);
       this.TcOverview.Controls.Add(this.TpEmployee);
+      this.TcOverview.Controls.Add(this.TpTrainee);
       this.TcOverview.Controls.Add(this.TpDashboard);
       this.TcOverview.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TcOverview.Location = new System.Drawing.Point(0, 0);
@@ -307,9 +345,9 @@
       // dateOfBirthDataGridViewTextBoxColumn
       // 
       this.dateOfBirthDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirth";
-      dataGridViewCellStyle3.Format = "d";
-      dataGridViewCellStyle3.NullValue = null;
-      this.dateOfBirthDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+      dataGridViewCellStyle1.Format = "d";
+      dataGridViewCellStyle1.NullValue = null;
+      this.dateOfBirthDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
       this.dateOfBirthDataGridViewTextBoxColumn.HeaderText = "Geburtstag";
       this.dateOfBirthDataGridViewTextBoxColumn.MinimumWidth = 12;
       this.dateOfBirthDataGridViewTextBoxColumn.Name = "dateOfBirthDataGridViewTextBoxColumn";
@@ -555,9 +593,9 @@
       // dateOfBirthDataGridViewTextBoxColumn1
       // 
       this.dateOfBirthDataGridViewTextBoxColumn1.DataPropertyName = "DateOfBirth";
-      dataGridViewCellStyle4.Format = "d";
-      dataGridViewCellStyle4.NullValue = null;
-      this.dateOfBirthDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
+      dataGridViewCellStyle2.Format = "d";
+      dataGridViewCellStyle2.NullValue = null;
+      this.dateOfBirthDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
       this.dateOfBirthDataGridViewTextBoxColumn1.HeaderText = "Geburtstag";
       this.dateOfBirthDataGridViewTextBoxColumn1.MinimumWidth = 12;
       this.dateOfBirthDataGridViewTextBoxColumn1.Name = "dateOfBirthDataGridViewTextBoxColumn1";
@@ -611,6 +649,265 @@
       // 
       this.employeeBindingSource.DataSource = typeof(contact_manager.Models.Data.Employee);
       // 
+      // TpTrainee
+      // 
+      this.TpTrainee.Controls.Add(this.dataGridViewTrainee);
+      this.TpTrainee.Controls.Add(this.panel1);
+      this.TpTrainee.Controls.Add(this.CmdImportTrainee);
+      this.TpTrainee.Controls.Add(this.CmdDeleteTrainee);
+      this.TpTrainee.Controls.Add(this.CmdEditTrainee);
+      this.TpTrainee.Controls.Add(this.CmdCreateNewTrainee);
+      this.TpTrainee.Location = new System.Drawing.Point(4, 24);
+      this.TpTrainee.Name = "TpTrainee";
+      this.TpTrainee.Padding = new System.Windows.Forms.Padding(3);
+      this.TpTrainee.Size = new System.Drawing.Size(1122, 515);
+      this.TpTrainee.TabIndex = 3;
+      this.TpTrainee.Text = "Lernende";
+      this.TpTrainee.UseVisualStyleBackColor = true;
+      // 
+      // dataGridViewTrainee
+      // 
+      this.dataGridViewTrainee.AllowUserToAddRows = false;
+      this.dataGridViewTrainee.AllowUserToDeleteRows = false;
+      this.dataGridViewTrainee.AutoGenerateColumns = false;
+      this.dataGridViewTrainee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.dataGridViewTrainee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.traineeEmployeeNumberDataGridViewTextBoxColumn,
+            this.traineeFirstNameDataGridViewTextBoxColumn7,
+            this.traineeLastnameNumberDataGridViewTextBoxColumn,
+            this.traineeStatusDataGridViewTextBoxColumn,
+            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn,
+            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn,
+            this.traineeDateOfBirthDataGridViewTextBoxColumn,
+            this.traineeSexDataGridViewTextBoxColumn,
+            this.traineeStreetNameDataGridViewTextBoxColumn,
+            this.traineeStreetNumberDataGridViewTextBoxColumn,
+            this.traineeZipCodeDataGridViewTextBoxColumn,
+            this.traineeCityDataGridViewTextBoxColumn});
+      this.dataGridViewTrainee.DataSource = this.traineeBindingSource;
+      this.dataGridViewTrainee.Location = new System.Drawing.Point(8, 41);
+      this.dataGridViewTrainee.Name = "dataGridViewTrainee";
+      this.dataGridViewTrainee.ReadOnly = true;
+      this.dataGridViewTrainee.RowHeadersWidth = 102;
+      this.dataGridViewTrainee.RowTemplate.Height = 25;
+      this.dataGridViewTrainee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+      this.dataGridViewTrainee.Size = new System.Drawing.Size(1106, 464);
+      this.dataGridViewTrainee.TabIndex = 19;
+      this.dataGridViewTrainee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTrainee_CellDoubleClick);
+      // 
+      // traineeEmployeeNumberDataGridViewTextBoxColumn
+      // 
+      this.traineeEmployeeNumberDataGridViewTextBoxColumn.DataPropertyName = "EmployeeNumber";
+      this.traineeEmployeeNumberDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter-Nr.";
+      this.traineeEmployeeNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.traineeEmployeeNumberDataGridViewTextBoxColumn.Name = "traineeEmployeeNumberDataGridViewTextBoxColumn";
+      this.traineeEmployeeNumberDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // traineeFirstNameDataGridViewTextBoxColumn7
+      // 
+      this.traineeFirstNameDataGridViewTextBoxColumn7.DataPropertyName = "FirstName";
+      this.traineeFirstNameDataGridViewTextBoxColumn7.HeaderText = "Vorname";
+      this.traineeFirstNameDataGridViewTextBoxColumn7.MinimumWidth = 12;
+      this.traineeFirstNameDataGridViewTextBoxColumn7.Name = "traineeFirstNameDataGridViewTextBoxColumn7";
+      this.traineeFirstNameDataGridViewTextBoxColumn7.ReadOnly = true;
+      // 
+      // traineeLastnameNumberDataGridViewTextBoxColumn
+      // 
+      this.traineeLastnameNumberDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+      this.traineeLastnameNumberDataGridViewTextBoxColumn.HeaderText = "Nachname";
+      this.traineeLastnameNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.traineeLastnameNumberDataGridViewTextBoxColumn.Name = "traineeLastnameNumberDataGridViewTextBoxColumn";
+      this.traineeLastnameNumberDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // traineeStatusDataGridViewTextBoxColumn
+      // 
+      this.traineeStatusDataGridViewTextBoxColumn.DataPropertyName = "State";
+      this.traineeStatusDataGridViewTextBoxColumn.HeaderText = "Status";
+      this.traineeStatusDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.traineeStatusDataGridViewTextBoxColumn.Name = "traineeStatusDataGridViewTextBoxColumn";
+      this.traineeStatusDataGridViewTextBoxColumn.ReadOnly = true;
+      this.traineeStatusDataGridViewTextBoxColumn.Width = 60;
+      // 
+      // traineeYearsOfApprenticeshipDataGridViewTextBoxColumn
+      // 
+      this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.DataPropertyName = "YearsOfApprenticeship";
+      this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.HeaderText = "Anzahl Lehrjahre";
+      this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.Name = "traineeYearsOfApprenticeshipDataGridViewTextBoxColumn";
+      this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.ReadOnly = true;
+      this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.Width = 60;
+      // 
+      // traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn
+      // 
+      this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.DataPropertyName = "CurrentYearOfApprenticeship";
+      this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.HeaderText = "Aktuelles Lehrjahr";
+      this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.Name = "traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn";
+      this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.ReadOnly = true;
+      this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.Width = 60;
+      // 
+      // traineeDateOfBirthDataGridViewTextBoxColumn
+      // 
+      this.traineeDateOfBirthDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirth";
+      dataGridViewCellStyle3.Format = "d";
+      dataGridViewCellStyle3.NullValue = null;
+      this.traineeDateOfBirthDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+      this.traineeDateOfBirthDataGridViewTextBoxColumn.HeaderText = "Geburtstag";
+      this.traineeDateOfBirthDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.traineeDateOfBirthDataGridViewTextBoxColumn.Name = "traineeDateOfBirthDataGridViewTextBoxColumn";
+      this.traineeDateOfBirthDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // traineeSexDataGridViewTextBoxColumn
+      // 
+      this.traineeSexDataGridViewTextBoxColumn.DataPropertyName = "Sex";
+      this.traineeSexDataGridViewTextBoxColumn.HeaderText = "Geschlecht";
+      this.traineeSexDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.traineeSexDataGridViewTextBoxColumn.Name = "traineeSexDataGridViewTextBoxColumn";
+      this.traineeSexDataGridViewTextBoxColumn.ReadOnly = true;
+      this.traineeSexDataGridViewTextBoxColumn.Width = 80;
+      // 
+      // traineeStreetNameDataGridViewTextBoxColumn
+      // 
+      this.traineeStreetNameDataGridViewTextBoxColumn.DataPropertyName = "StreetName";
+      this.traineeStreetNameDataGridViewTextBoxColumn.HeaderText = "Strasse";
+      this.traineeStreetNameDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.traineeStreetNameDataGridViewTextBoxColumn.Name = "traineeStreetNameDataGridViewTextBoxColumn";
+      this.traineeStreetNameDataGridViewTextBoxColumn.ReadOnly = true;
+      this.traineeStreetNameDataGridViewTextBoxColumn.Width = 120;
+      // 
+      // traineeStreetNumberDataGridViewTextBoxColumn
+      // 
+      this.traineeStreetNumberDataGridViewTextBoxColumn.DataPropertyName = "StreetNumber";
+      this.traineeStreetNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
+      this.traineeStreetNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.traineeStreetNumberDataGridViewTextBoxColumn.Name = "traineeStreetNumberDataGridViewTextBoxColumn";
+      this.traineeStreetNumberDataGridViewTextBoxColumn.ReadOnly = true;
+      this.traineeStreetNumberDataGridViewTextBoxColumn.Width = 40;
+      // 
+      // traineeZipCodeDataGridViewTextBoxColumn
+      // 
+      this.traineeZipCodeDataGridViewTextBoxColumn.DataPropertyName = "ZipCode";
+      this.traineeZipCodeDataGridViewTextBoxColumn.HeaderText = "PLZ";
+      this.traineeZipCodeDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.traineeZipCodeDataGridViewTextBoxColumn.Name = "traineeZipCodeDataGridViewTextBoxColumn";
+      this.traineeZipCodeDataGridViewTextBoxColumn.ReadOnly = true;
+      this.traineeZipCodeDataGridViewTextBoxColumn.Width = 60;
+      // 
+      // traineeCityDataGridViewTextBoxColumn
+      // 
+      this.traineeCityDataGridViewTextBoxColumn.DataPropertyName = "City";
+      this.traineeCityDataGridViewTextBoxColumn.HeaderText = "Ort";
+      this.traineeCityDataGridViewTextBoxColumn.MinimumWidth = 12;
+      this.traineeCityDataGridViewTextBoxColumn.Name = "traineeCityDataGridViewTextBoxColumn";
+      this.traineeCityDataGridViewTextBoxColumn.ReadOnly = true;
+      this.traineeCityDataGridViewTextBoxColumn.Width = 120;
+      // 
+      // traineeBindingSource
+      // 
+      this.traineeBindingSource.DataSource = typeof(contact_manager.Models.Data.Trainee);
+      // 
+      // panel1
+      // 
+      this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+      this.panel1.Controls.Add(this.CmbSearchScopeTrainee);
+      this.panel1.Controls.Add(this.CmdResetSearchTrainee);
+      this.panel1.Controls.Add(this.CmdSearchTrainee);
+      this.panel1.Controls.Add(this.TxtSearchTrainee);
+      this.panel1.Location = new System.Drawing.Point(644, 8);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(470, 30);
+      this.panel1.TabIndex = 18;
+      // 
+      // CmbSearchScopeTrainee
+      // 
+      this.CmbSearchScopeTrainee.FormattingEnabled = true;
+      this.CmbSearchScopeTrainee.Location = new System.Drawing.Point(9, 4);
+      this.CmbSearchScopeTrainee.Name = "CmbSearchScopeTrainee";
+      this.CmbSearchScopeTrainee.Size = new System.Drawing.Size(150, 23);
+      this.CmbSearchScopeTrainee.TabIndex = 8;
+      // 
+      // CmdResetSearchTrainee
+      // 
+      this.CmdResetSearchTrainee.Image = global::contact_manager.Properties.Resources.Cancel;
+      this.CmdResetSearchTrainee.Location = new System.Drawing.Point(438, 4);
+      this.CmdResetSearchTrainee.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+      this.CmdResetSearchTrainee.Name = "CmdResetSearchTrainee";
+      this.CmdResetSearchTrainee.Size = new System.Drawing.Size(25, 23);
+      this.CmdResetSearchTrainee.TabIndex = 8;
+      this.CmdResetSearchTrainee.UseVisualStyleBackColor = true;
+      this.CmdResetSearchTrainee.Click += new System.EventHandler(this.CmdResetSearchTrainee_Click);
+      // 
+      // CmdSearchTrainee
+      // 
+      this.CmdSearchTrainee.Image = global::contact_manager.Properties.Resources.Search;
+      this.CmdSearchTrainee.Location = new System.Drawing.Point(413, 4);
+      this.CmdSearchTrainee.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+      this.CmdSearchTrainee.Name = "CmdSearchTrainee";
+      this.CmdSearchTrainee.Size = new System.Drawing.Size(25, 23);
+      this.CmdSearchTrainee.TabIndex = 7;
+      this.CmdSearchTrainee.UseVisualStyleBackColor = true;
+      this.CmdSearchTrainee.Click += new System.EventHandler(this.CmdSearchTrainee_Click);
+      // 
+      // TxtSearchTrainee
+      // 
+      this.TxtSearchTrainee.Location = new System.Drawing.Point(165, 4);
+      this.TxtSearchTrainee.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+      this.TxtSearchTrainee.Name = "TxtSearchTrainee";
+      this.TxtSearchTrainee.PlaceholderText = "Suchtext";
+      this.TxtSearchTrainee.Size = new System.Drawing.Size(248, 23);
+      this.TxtSearchTrainee.TabIndex = 2;
+      this.TxtSearchTrainee.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchTrainee_KeyDown);
+      // 
+      // CmdImportTrainee
+      // 
+      this.CmdImportTrainee.Image = global::contact_manager.Properties.Resources.Import;
+      this.CmdImportTrainee.Location = new System.Drawing.Point(326, 8);
+      this.CmdImportTrainee.Name = "CmdImportTrainee";
+      this.CmdImportTrainee.Size = new System.Drawing.Size(100, 30);
+      this.CmdImportTrainee.TabIndex = 17;
+      this.CmdImportTrainee.Text = "Import";
+      this.CmdImportTrainee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdImportTrainee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdImportTrainee.UseVisualStyleBackColor = true;
+      this.CmdImportTrainee.Click += new System.EventHandler(this.CmdImportTrainee_Click);
+      // 
+      // CmdDeleteTrainee
+      // 
+      this.CmdDeleteTrainee.Image = global::contact_manager.Properties.Resources.Delete;
+      this.CmdDeleteTrainee.Location = new System.Drawing.Point(220, 8);
+      this.CmdDeleteTrainee.Name = "CmdDeleteTrainee";
+      this.CmdDeleteTrainee.Size = new System.Drawing.Size(100, 30);
+      this.CmdDeleteTrainee.TabIndex = 16;
+      this.CmdDeleteTrainee.Text = "Löschen";
+      this.CmdDeleteTrainee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdDeleteTrainee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdDeleteTrainee.UseVisualStyleBackColor = true;
+      this.CmdDeleteTrainee.Click += new System.EventHandler(this.CmdDeleteTrainee_Click);
+      // 
+      // CmdEditTrainee
+      // 
+      this.CmdEditTrainee.Image = global::contact_manager.Properties.Resources.Edit;
+      this.CmdEditTrainee.Location = new System.Drawing.Point(114, 8);
+      this.CmdEditTrainee.Name = "CmdEditTrainee";
+      this.CmdEditTrainee.Size = new System.Drawing.Size(100, 30);
+      this.CmdEditTrainee.TabIndex = 15;
+      this.CmdEditTrainee.Text = "Bearbeiten";
+      this.CmdEditTrainee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdEditTrainee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdEditTrainee.UseVisualStyleBackColor = true;
+      this.CmdEditTrainee.Click += new System.EventHandler(this.CmdEditTrainee_Click);
+      // 
+      // CmdCreateNewTrainee
+      // 
+      this.CmdCreateNewTrainee.Image = global::contact_manager.Properties.Resources.NewItem;
+      this.CmdCreateNewTrainee.Location = new System.Drawing.Point(8, 8);
+      this.CmdCreateNewTrainee.Name = "CmdCreateNewTrainee";
+      this.CmdCreateNewTrainee.Size = new System.Drawing.Size(100, 30);
+      this.CmdCreateNewTrainee.TabIndex = 14;
+      this.CmdCreateNewTrainee.Text = "Neu";
+      this.CmdCreateNewTrainee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.CmdCreateNewTrainee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.CmdCreateNewTrainee.UseVisualStyleBackColor = true;
+      this.CmdCreateNewTrainee.Click += new System.EventHandler(this.CmdCreateNewTrainee_Click);
+      // 
       // TpDashboard
       // 
       this.TpDashboard.Controls.Add(this.TlpDashboard);
@@ -633,6 +930,8 @@
       this.TlpDashboard.Controls.Add(this.CustomerCountFormsPlot, 0, 1);
       this.TlpDashboard.Controls.Add(this.CustomerCityFormsPlot, 1, 1);
       this.TlpDashboard.Controls.Add(this.CustomerTypeFormsPlot, 0, 3);
+      this.TlpDashboard.Controls.Add(this.LblDashboardPersonsCount, 1, 2);
+      this.TlpDashboard.Controls.Add(this.PersonsCountFormsPlot, 1, 3);
       this.TlpDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
       this.TlpDashboard.Location = new System.Drawing.Point(3, 3);
       this.TlpDashboard.Name = "TlpDashboard";
@@ -711,12 +1010,75 @@
       this.CustomerTypeFormsPlot.Size = new System.Drawing.Size(550, 229);
       this.CustomerTypeFormsPlot.TabIndex = 4;
       // 
+      // LblDashboardPersonsCount
+      // 
+      this.LblDashboardPersonsCount.AutoSize = true;
+      this.LblDashboardPersonsCount.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.LblDashboardPersonsCount.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+      this.LblDashboardPersonsCount.Location = new System.Drawing.Point(561, 254);
+      this.LblDashboardPersonsCount.Name = "LblDashboardPersonsCount";
+      this.LblDashboardPersonsCount.Size = new System.Drawing.Size(552, 20);
+      this.LblDashboardPersonsCount.TabIndex = 6;
+      this.LblDashboardPersonsCount.Text = "Anzahl Personen pro Typ";
+      this.LblDashboardPersonsCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      // 
+      // PersonsCountFormsPlot
+      // 
+      this.PersonsCountFormsPlot.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.PersonsCountFormsPlot.Enabled = false;
+      this.PersonsCountFormsPlot.Location = new System.Drawing.Point(562, 277);
+      this.PersonsCountFormsPlot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+      this.PersonsCountFormsPlot.Name = "PersonsCountFormsPlot";
+      this.PersonsCountFormsPlot.Size = new System.Drawing.Size(550, 229);
+      this.PersonsCountFormsPlot.TabIndex = 7;
+      // 
       // openFileDialog
       // 
       this.openFileDialog.DefaultExt = "csv";
       this.openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
       this.openFileDialog.RestoreDirectory = true;
       this.openFileDialog.Title = "CSV Importieren";
+      // 
+      // dataGridViewTextBoxColumn1
+      // 
+      this.dataGridViewTextBoxColumn1.DataPropertyName = "EmployeeNumber";
+      this.dataGridViewTextBoxColumn1.HeaderText = "Mitarbeiter-Nr.";
+      this.dataGridViewTextBoxColumn1.MinimumWidth = 12;
+      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+      // 
+      // dataGridViewTextBoxColumn2
+      // 
+      this.dataGridViewTextBoxColumn2.DataPropertyName = "FirstName";
+      this.dataGridViewTextBoxColumn2.HeaderText = "Vorname";
+      this.dataGridViewTextBoxColumn2.MinimumWidth = 12;
+      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+      // 
+      // dataGridViewTextBoxColumn3
+      // 
+      this.dataGridViewTextBoxColumn3.DataPropertyName = "LastName";
+      this.dataGridViewTextBoxColumn3.HeaderText = "Nachname";
+      this.dataGridViewTextBoxColumn3.MinimumWidth = 12;
+      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+      // 
+      // dataGridViewTextBoxColumn4
+      // 
+      this.dataGridViewTextBoxColumn4.DataPropertyName = "State";
+      this.dataGridViewTextBoxColumn4.HeaderText = "Status";
+      this.dataGridViewTextBoxColumn4.MinimumWidth = 12;
+      this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+      this.dataGridViewTextBoxColumn4.Width = 60;
+      // 
+      // dataGridViewTextBoxColumn5
+      // 
+      this.dataGridViewTextBoxColumn5.DataPropertyName = "CadreLevel";
+      this.dataGridViewTextBoxColumn5.HeaderText = "Kaderstufe";
+      this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+      // 
+      // YearsOfApprenticeship
+      // 
+      this.YearsOfApprenticeship.DataPropertyName = "YearsOfApprenticeship";
+      this.YearsOfApprenticeship.HeaderText = "Anzahl Lehrjahre";
+      this.YearsOfApprenticeship.Name = "YearsOfApprenticeship";
       // 
       // OverviewView
       // 
@@ -740,6 +1102,11 @@
       this.panel2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
+      this.TpTrainee.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrainee)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.traineeBindingSource)).EndInit();
+      this.panel1.ResumeLayout(false);
+      this.panel1.PerformLayout();
       this.TpDashboard.ResumeLayout(false);
       this.TlpDashboard.ResumeLayout(false);
       this.TlpDashboard.PerformLayout();
@@ -754,7 +1121,6 @@
         private TabPage TpEmployee;
         private DataGridView dataGridViewCustomer;
         private TextBox TxtSearchCustomer;
-        private DataGridView dataGridViewEmployee;
         private BindingSource customerBindingSource;
         private BindingSource employeeBindingSource;
         private Panel PnlSearchCustomer;
@@ -767,17 +1133,6 @@
         private Button CmdCreateNewEmployee;
         private Button CmdImportCustomer;
         private Button CmdImportEmployee;
-        private DataGridViewTextBoxColumn employeeNumberDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn CadreLevel;
-        private DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn streetNameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn customerNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
@@ -804,5 +1159,49 @@
         private ScottPlot.FormsPlot CustomerCityFormsPlot;
         private ScottPlot.FormsPlot CustomerTypeFormsPlot;
         private Label LblDashboardCustomerType;
+        private TabPage TpTrainee;
+        private Panel panel1;
+        private ComboBox CmbSearchScopeTrainee;
+        private Button CmdResetSearchTrainee;
+        private Button CmdSearchTrainee;
+        private TextBox TxtSearchTrainee;
+        private Button CmdImportTrainee;
+        private Button CmdDeleteTrainee;
+        private Button CmdEditTrainee;
+        private Button CmdCreateNewTrainee;
+        private BindingSource traineeBindingSource;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn YearsOfApprenticeship;
+        private DataGridView dataGridViewEmployee;
+        private DataGridViewTextBoxColumn employeeNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn CadreLevel;
+        private DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn streetNameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn streetNumberDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn zipCodeDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn1;
+        private DataGridView dataGridViewTrainee;
+        private DataGridViewTextBoxColumn traineeEmployeeNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeFirstNameDataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn traineeLastnameNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeStatusDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeYearsOfApprenticeshipDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeDateOfBirthDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeSexDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeStreetNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeStreetNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeZipCodeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn traineeCityDataGridViewTextBoxColumn;
+        private Label LblDashboardPersonsCount;
+        private ScottPlot.FormsPlot PersonsCountFormsPlot;
     }
 }

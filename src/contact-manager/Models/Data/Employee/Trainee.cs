@@ -5,8 +5,8 @@ namespace contact_manager.Models.Data;
 public class Trainee : Employee
 {
     [Display(Name = "Lehrdauer")]
-    public int YearsOfApprenticeship { get; init; }
+    public int YearsOfApprenticeship { get; set; }
 
     [Display(Name = "Lehrjahr")]
-    public int CurrentYearOfApprenticeship { get; init; }
+    public int CurrentYearOfApprenticeship { get; set; }
 }

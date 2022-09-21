@@ -12,5 +12,4 @@ namespace contact_manager.Models.Domain.CsvImport
             Map(m => (m).Role).Name("Rolle");
         }
     }
-
 }

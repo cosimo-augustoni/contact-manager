@@ -4,6 +4,6 @@ namespace contact_manager.Models.Domain.CsvImport
 {
     public interface ICsvImporter
     {
-        IEnumerable<T> ParseCsv<T>(string filePath) where T : Person;
+        List<T> ParseCsv<T>(string filePath) where T : Person;
     }
 }

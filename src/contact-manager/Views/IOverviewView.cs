@@ -15,8 +15,12 @@ public interface IOverviewView
     SearchScope SearchScopeCustomer { get; set; }
     string SearchTermEmployee { get; set; }
     SearchScope SearchScopeEmployee { get; set; }
+    string SearchTermTrainee { get; set; }
+    SearchScope SearchScopeTrainee { get; set; }
     void SetSearchScopeCustomerSource(List<SearchScope> scopes);
     void SetSearchScopeEmployeeSource(List<SearchScope> scopes);
 
     void SetDashboardData(DashboardData dashboardData);
+    void SetTraineeList(List<Trainee> trainees);
+    void SetSearchScopeTraineeSource(List<SearchScope> scopes);
 }

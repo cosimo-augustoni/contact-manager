@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="contact_manager.Views.Authentication.LoginView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACACAQAASAIAAARAwCAAAASAAAgGAACAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Authentication\LoginView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Views.Customers.CustomerNotes.CustomerNoteControl" Collapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAIAIAACBAEACAIABQAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Views\Customers\CustomerNotes\CustomerNoteControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Views.Customers.CustomerNotes.CustomerNotesDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAADgAMACkAAAAAAJCAAAACAAAgAAAAAAACgAgAAAA=</HashCode>
+      <FileName>Views\Customers\CustomerNotes\CustomerNotesDialog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Views.Customers.CustomerDetailDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DyaZy+AEEqxIR0yeJRObIYCWAqET4WAFyHwBFQkACFg=</HashCode>
+      <FileName>Views\Customers\CustomerDetailDialog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Views.Employees.EmployeeDetailDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DDaZishAUqhCB1yaNZOZoICOEqAT4WRFzCQBFUsACEo=</HashCode>
+      <FileName>Views\Employees\EmployeeDetailDialog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Views.Employees.TraineeDetailDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>LDaZishAUrhCD1yaNZOZoICOEqIT4WRFzCQJFUMACEo=</HashCode>
+      <FileName>Views\Employees\TraineeDetailDialog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Views.HistoryDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAACAAEAAAQADCAAgCAAAAgAAADAAAIAAQAAA=</HashCode>
+      <FileName>Views\History\HistoryDialog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Views.ComboboxExtensions" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="contact_manager.Views.ComboboxExtensions.EnumMember&lt;TEnum&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Views\ComboboxExtensions.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ComboboxExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Views.DefaultFormFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Views\DefaultFormFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Views.EnumDisplayExtension" Collapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\EnumDisplayExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Views.OverviewView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iQASCgACEAQADgBACAwAgYQAAQQQCAwAGIIAEAAJAAE=</HashCode>
+      <FileName>Views\OverviewView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Views.Validation.CustomerValidator" Collapsed="true">
+    <Position X="19.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABgAAACAAIAEoAAAAAgAAAAREAAAAAIAAEAUBAA=</HashCode>
+      <FileName>Views\Validation\CustomerValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Views.Validation.EmployeeValidator" Collapsed="true">
+    <Position X="17.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAARgAAACAAIAEoAAAAAgAAAAREAAAAAIAAEAUBAA=</HashCode>
+      <FileName>Views\Validation\EmployeeValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Views.Validation.TraineeValidator" Collapsed="true">
+    <Position X="22.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAARgAAACAAIAEoAAAAAgAAAAREAAAAAIAAEAUBAA=</HashCode>
+      <FileName>Views\Validation\TraineeValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Views.Validation.Validator" Collapsed="true">
+    <Position X="17.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAgAAAAhAgAAAAAAAAEAGEAAAAAAEAAgEAAAAAAAQEI=</HashCode>
+      <FileName>Views\Validation\Validator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.Customer">
+    <Position X="3.5" Y="14.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAQAAAAAAAAACAAAACAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Models\Data\Customer\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.CustomerNote" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAACAAAAAAAAAAABAAAAAACAAAAAE=</HashCode>
+      <FileName>Models\Data\Customer\CustomerNote.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Data.DashboardData" Collapsed="true">
+    <Position X="21" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACBAAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\Dashboard\DashboardData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.Employee">
+    <Position X="0.75" Y="14.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABABAAAAQAAAAAAAEACAAAAAEAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Models\Data\Employee\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.Trainee">
+    <Position X="0.5" Y="18" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\Employee\Trainee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.FileStore&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAoAAAAAAAAAAAEAAAAAAkBAAAEAAAA=</HashCode>
+      <FileName>Models\Data\FileStore.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Data.Person">
+    <Position X="2" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAABECIAAEIAIAEAAAQIGABAAAABQAACAg=</HashCode>
+      <FileName>Models\Data\Person.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="contact_manager.Models.Data.Repository&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAkAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Data\Repository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Data.RepositoryWithHistorization&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAARAAEAAAEAAAAAAAEEAICAAAgAAAAAAAYA=</HashCode>
+      <FileName>Models\Data\RepositoryWithHistorization.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Data.History.Difference" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAAAA=</HashCode>
+      <FileName>Models\Data\History\Difference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.History.HistoryEntry" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAAIAAAAAAAAAAAgAQAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\History\HistoryEntry.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Domain.Authentication.User" Collapsed="true">
+    <Position X="12.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAAAAAAAAAAEAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Authentication\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Domain.Authentication.UserService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAIAAgAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Authentication\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Domain.Authentication.Users" Collapsed="true">
+    <Position X="14" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Authentication\UserService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Domain.CsvImport.CsvImporter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\CsvImport\CsvImporter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Domain.CsvImport.CustomEnumConverter&lt;T&gt;" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\CsvImport\CustomEnumConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Domain.CsvImport.CustomerMap&lt;T&gt;">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\CsvImport\CustomerMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Domain.CsvImport.EmployeeMap&lt;T&gt;">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\CsvImport\EmployeeMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Domain.CsvImport.PersonMap&lt;T&gt;">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\CsvImport\PersonMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Domain.CustomerNoteService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAQAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Customer\CustomerNoteService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Domain.CustomerService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAACAAAAEAAAQAAAAAAAAEAAAAAAgAABAAAAIA=</HashCode>
+      <FileName>Models\Domain\Customer\CustomerService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Domain.EmployeeService&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAACAAAAEAAAQAAAAAAAAEAAAAAAiAAAAAAAIA=</HashCode>
+      <FileName>Models\Domain\Employee\EmployeeService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Domain.History.HistoryService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\History\HistoryService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Domain.Search.ExpressionHelper" Collapsed="true">
+    <Position X="21" Y="2.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="contact_manager.Models.Domain.Search.ExpressionHelper.ReplaceParameterExpressionVisitor" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Domain\Search\ExpressionHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Search\ExpressionHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Domain.Search.SearchScope" Collapsed="true">
+    <Position X="17.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\Domain\Search\SearchScope.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Domain.Search.SearchService&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQABAAAAAAQAACAAAAABAAAAABQBBAAgQAAA=</HashCode>
+      <FileName>Models\Domain\Search\SearchService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Presenters.Authentication.LoginPresenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAgAAAAACAAAAGAAAAAAA=</HashCode>
+      <FileName>Presenters\Authentication\LoginPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Presenters.Customers.CustomerDetailPresenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQgIgABgAAAAAQAAAgAAgYMAQAAIABAAAGCAAAAAA=</HashCode>
+      <FileName>Presenters\Customers\CustomerDetailPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Presenters.Customers.CustomerNotesPresenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAIAAAAAAAAAAgQAAAAIIAAAAACAAAAQAA=</HashCode>
+      <FileName>Presenters\Customers\CustomerNotesPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Presenters.Employees.EmployeeDetailPresenter">
+    <Position X="0.75" Y="6.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Presenters\Employees\EmployeeDetailPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Presenters.Employees.EmployeeDetailPresenterBase&lt;TEmployee, TDialog&gt;">
+    <Position X="3" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAABgIgAAgAggAAQIQAAAAQAAAwQAAAAMAAGEAAAAAA=</HashCode>
+      <FileName>Presenters\Employees\EmployeeDetailPresenterBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="contact_manager.Presenters.Employees.TraineeDetailPresenter">
+    <Position X="5.25" Y="6.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAIAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Presenters\Employees\TraineeDetailPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Presenters.History.HistoryPresenter" Collapsed="true">
+    <Position X="15.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAEAAAAAAAMAAEAAAAAAA=</HashCode>
+      <FileName>Presenters\History\HistoryPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Presenters.OverviewPresenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIIAAAAAAIsADAQBAQABAAIEoAAAIAAAAAOCDgAAAA=</HashCode>
+      <FileName>Presenters\OverviewPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="contact_manager.Views.Authentication.ILoginView">
+    <Position X="15.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAIAAAAEQAAAAAAAAAAAAACAAAAAACAAAA=</HashCode>
+      <FileName>Views\Authentication\ILoginView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Views.Customers.CustomerNotes.ICustomerNotesView">
+    <Position X="17.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAADAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAgAAAA=</HashCode>
+      <FileName>Views\Customers\CustomerNotes\ICustomerNotesView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Views.Customers.ICustomerDetailDialog">
+    <Position X="21" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAASEAAAAAABECIAAEKAIAEAAAQIGABAAQABQAACAg=</HashCode>
+      <FileName>Views\Customers\ICustomerDetailDialog.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Views.Employees.IEmployeeDetailDialog">
+    <Position X="6.5" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABABCEAAQAAABECIEAGIAIAEEAAQIGABAAAABQIACAg=</HashCode>
+      <FileName>Views\Employees\IEmployeeDetailDialogBase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Views.Employees.ITraineeDetailDialog">
+    <Position X="6.5" Y="16.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Employees\ITraineeDetailDialog.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Views.IFormFactory">
+    <Position X="21" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Views\IFormFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Views.IOverviewView">
+    <Position X="14" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQCgAAAAQABAAAAAAAAIAAAAAQCAQAAAIAAAAAAAA=</HashCode>
+      <FileName>Views\IOverviewView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Views.History.IHistoryDialog">
+    <Position X="12.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\History\IHistoryDialog.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Data.IObjectIdentifier">
+    <Position X="17.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\IObjectIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Data.IRepository&lt;T&gt;">
+    <Position X="17.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAEAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Data\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Data.IStore&lt;T&gt;">
+    <Position X="14" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\IStore.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Domain.Authentication.IUserService">
+    <Position X="15.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAIAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Authentication\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Domain.CsvImport.ICsvImporter">
+    <Position X="12.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\CsvImport\ICsvImporter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Domain.ICustomerNoteService">
+    <Position X="15.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Customer\ICustomerNoteService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Domain.ICustomerService">
+    <Position X="19.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAACAAAAEAAAQAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Domain\Customer\ICustomerService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Domain.IEmployeeService&lt;T&gt;">
+    <Position X="19.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAACAAAAEAAAQAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Domain\Employee\IEmployeeService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Domain.History.IHistoryService">
+    <Position X="14" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\History\IHistoryService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Models.Domain.Search.ISearchService&lt;T&gt;">
+    <Position X="12.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Search\ISearchService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="contact_manager.Presenters.IPresenter">
+    <Position X="19.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Presenters\IPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="contact_manager.Models.Data.CustomerType">
+    <Position X="12.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApgEAAAA=</HashCode>
+      <FileName>Models\Data\Customer\CustomerType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="contact_manager.Models.Data.Salutation">
+    <Position X="15.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAA=</HashCode>
+      <FileName>Models\Data\Salutation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="contact_manager.Models.Data.Sex">
+    <Position X="19.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAA=</HashCode>
+      <FileName>Models\Data\Sex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="contact_manager.Models.Data.State">
+    <Position X="21" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\State.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="contact_manager.Models.Data.History.EntityType">
+    <Position X="14" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAACAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\History\EntityType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="contact_manager.Models.Domain.Search.ScopeType">
+    <Position X="17.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAQAAAAA=</HashCode>
+      <FileName>Models\Domain\Search\ScopeType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
