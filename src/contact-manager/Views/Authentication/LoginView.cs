@@ -36,7 +36,6 @@ namespace contact_manager.Views.Authentication
 
         private void CmdLogin_Click(object sender, EventArgs e)
         {
-            // Todo valiate überarbeiten
             if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
                 this._presenter?.Authenticate();
@@ -64,7 +63,7 @@ namespace contact_manager.Views.Authentication
 
         private void TxtPassword_Validating(object sender, CancelEventArgs e)
         {
-            if (String.IsNullOrEmpty(this.TxtPassword.Text))
+            if (string.IsNullOrEmpty(this.TxtPassword.Text))
             {
                 e.Cancel = true;
                 this.TxtPassword.Focus();

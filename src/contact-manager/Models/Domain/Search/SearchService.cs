@@ -41,7 +41,7 @@ namespace contact_manager.Models.Domain.Search
         private Expression<Func<T, bool>> GetSearchPredicateForAllProperties(string searchTerm)
         {
             Expression<Func<T, bool>> searchExpression = p => string.IsNullOrWhiteSpace(searchTerm);
-            // Expressions für alle einzelnen Properties mit OR verknüpfen
+            // Expressions für alle einzelnen Properties mit "oder" verknüpfen
             return GetAllProperties().Select(property => this.GetSearchPredicateByProperty(property, searchTerm))
                 .Aggregate(searchExpression, ExpressionHelper.Or);
         }
