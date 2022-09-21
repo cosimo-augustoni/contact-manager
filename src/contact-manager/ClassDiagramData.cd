@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="contact_manager.Models.Data.History.Difference">
-    <Position X="7.25" Y="2.25" Width="1.5" />
+    <Position X="9" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAAAA=</HashCode>
       <FileName>Models\Data\History\Difference.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="contact_manager.Models.Data.History.HistoryEntry" BaseTypeListCollapsed="true">
-    <Position X="9" Y="2.25" Width="1.5" />
+    <Position X="9" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAACAAAIAAAAAAAAAAAgAQAAAAABAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Data\History\HistoryEntry.cs</FileName>
@@ -16,14 +16,14 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="contact_manager.Models.Data.Customer">
-    <Position X="3" Y="6.25" Width="1.75" />
+    <Position X="4.25" Y="6.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AgAAQAAAAAAAAACAAAACAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
       <FileName>Models\Data\Customer\Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="contact_manager.Models.Data.CustomerNote" BaseTypeListCollapsed="true">
-    <Position X="5.5" Y="2.25" Width="1.5" />
+    <Position X="4.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAACAAAAAAAAAAABAAAAAACAAAAAE=</HashCode>
       <FileName>Models\Data\Customer\CustomerNote.cs</FileName>
@@ -52,36 +52,29 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Enum Name="contact_manager.Models.Data.History.EntityType">
-    <Position X="7.25" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAACAAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Data\History\EntityType.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Enum Name="contact_manager.Models.Data.CustomerType">
-    <Position X="5.5" Y="4.5" Width="1.5" />
+    <Position X="6.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApgEAAAA=</HashCode>
       <FileName>Models\Data\Customer\CustomerType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="contact_manager.Models.Data.Salutation">
-    <Position X="9" Y="4.5" Width="1.5" />
+    <Position X="4.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAA=</HashCode>
       <FileName>Models\Data\Salutation.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="contact_manager.Models.Data.Sex">
-    <Position X="5.5" Y="6.25" Width="1.5" />
+    <Position X="4.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAA=</HashCode>
       <FileName>Models\Data\Sex.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="contact_manager.Models.Data.State">
-    <Position X="7.25" Y="6.25" Width="1.5" />
+    <Position X="4.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Models\Data\State.cs</FileName>
