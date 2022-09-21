@@ -57,6 +57,22 @@ namespace contact_manager.Presenters
             get { return !this._user.CanWrite; }
         }
 
+        public void SelectedTabChanged(int selectedTabPage)
+        {
+            if (selectedTabPage == 0)
+                this.LoadAllCustomers();
+            else if (selectedTabPage == 1)
+                this.LoadAllEmployees();
+            else if (selectedTabPage == 2)
+                this.LoadAllTrainees();
+            else if (selectedTabPage == 3)
+                this.LoadDashboardData();
+        }
+
+        //----------------------------------------------------------------------------------------------------
+        #region Employee
+        //----------------------------------------------------------------------------------------------------
+
         public void LoadAllEmployees()
         {
             var employees = this._employeeService.GetAll();
@@ -72,7 +88,7 @@ namespace contact_manager.Presenters
         public void OpenCreateNewEmployeeDialog()
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: true, _historyService, _userService);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._historyService, this._userService, this._user, isNewMode: true);
             dialogPresenter.Init();
             dialogPresenter.LoadNewEmployee();
             dialog.InitializeMode();
@@ -83,7 +99,7 @@ namespace contact_manager.Presenters
         public void OpenEditEmployeeDialog(long employeeId)
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: false, _historyService, _userService);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._historyService, this._userService, this._user, isNewMode: false);
             dialogPresenter.Init();
             dialogPresenter.LoadEmployee(employeeId);
             dialog.InitializeMode();
@@ -96,6 +112,12 @@ namespace contact_manager.Presenters
             this._employeeService.Delete(employeeId);
             this.LoadAllEmployees();
         }
+
+        #endregion // Employee
+
+        //----------------------------------------------------------------------------------------------------
+        #region Customer
+        //----------------------------------------------------------------------------------------------------
 
         public void LoadAllCustomers()
         {
@@ -112,7 +134,7 @@ namespace contact_manager.Presenters
         public void OpenCreateNewCustomerDialog()
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: true, _historyService, _userService);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._historyService, this._userService, this._user, isNewMode: true);
             dialogPresenter.Init();
             dialogPresenter.LoadNewCustomer();
             dialog.InitializeMode();
@@ -123,7 +145,7 @@ namespace contact_manager.Presenters
         public void OpenEditCustomerDialog(long customerId)
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: false, _historyService, _userService);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._historyService, this._userService, this._user, isNewMode: false);
             dialogPresenter.Init();
             dialogPresenter.LoadCustomer(customerId);
             dialog.InitializeMode();
@@ -137,6 +159,12 @@ namespace contact_manager.Presenters
             this._customerService.Delete(customerId);
             this.LoadAllCustomers();
         }
+
+        #endregion // Customer
+
+        //----------------------------------------------------------------------------------------------------
+        #region Trainee
+        //----------------------------------------------------------------------------------------------------
 
         public void LoadAllTrainees()
         {
@@ -153,7 +181,7 @@ namespace contact_manager.Presenters
         public void OpenCreateNewTraineeDialog()
         {
             var dialog = new TraineeDetailDialog();
-            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: true, _historyService, _userService);
+            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._historyService, this._userService, this._user, isNewMode: true);
             dialogPresenter.Init();
             dialogPresenter.LoadNewEmployee();
             dialog.InitializeMode();
@@ -164,7 +192,7 @@ namespace contact_manager.Presenters
         public void OpenEditTraineeDialog(long traineeId)
         {
             var dialog = new TraineeDetailDialog();
-            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: false, _historyService, _userService);
+            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._historyService, this._userService, this._user, isNewMode: false);
             dialogPresenter.Init();
             dialogPresenter.LoadEmployee(traineeId);
             dialog.InitializeMode();
@@ -177,6 +205,12 @@ namespace contact_manager.Presenters
             this._traineeService.Delete(traineeId);
             this.LoadAllTrainees();
         }
+
+        #endregion // Trainee
+
+        //----------------------------------------------------------------------------------------------------
+        #region Csv Import
+        //----------------------------------------------------------------------------------------------------
 
         public void ImportCsv<T>(OpenFileDialog openFileDialog) where T : Person
         {
@@ -243,17 +277,11 @@ Zeile: {context.Parser.Row - 1}",
             }
         }
 
-        public void SelectedTabChanged(int selectedTabPage)
-        {
-            if (selectedTabPage == 0)
-                this.LoadAllCustomers();
-            else if (selectedTabPage == 1)
-                this.LoadAllEmployees();
-            else if (selectedTabPage == 2)
-                this.LoadAllTrainees();
-            else if (selectedTabPage == 3)
-                this.LoadDashboardData();
-        }
+        #endregion // Csv Import
+
+        //----------------------------------------------------------------------------------------------------
+        #region Dashboard
+        //----------------------------------------------------------------------------------------------------
 
         public void LoadDashboardData()
         {
@@ -301,6 +329,6 @@ Zeile: {context.Parser.Row - 1}",
             return cityStatistics;
         }
 
-        
+        #endregion // Dashboard
     }
 }

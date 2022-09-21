@@ -11,8 +11,8 @@ public class TraineeDetailPresenter : EmployeeDetailPresenterBase<Trainee, ITrai
 {
     protected override EntityType PersonType => EntityType.Trainee;
 
-    public TraineeDetailPresenter(ITraineeDetailDialog dialog, IEmployeeService<Trainee> employeeService, User user, bool isNewMode, IHistoryService historyService, IUserService userService) 
-        : base(dialog, employeeService, user, isNewMode, historyService, userService)
+    public TraineeDetailPresenter(ITraineeDetailDialog dialog, IEmployeeService<Trainee> employeeService, IHistoryService historyService, IUserService userService, User user, bool isNewMode) 
+        : base(dialog, employeeService, historyService, userService, user, isNewMode)
     {
     }
 

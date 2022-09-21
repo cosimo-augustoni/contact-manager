@@ -7,7 +7,6 @@ using contact_manager.Presenters.History;
 using contact_manager.Views;
 using contact_manager.Views.Customers;
 using contact_manager.Views.Customers.CustomerNotes;
-using DeepEqual.Syntax;
 
 namespace contact_manager.Presenters.Customers;
 
@@ -20,10 +19,15 @@ public class CustomerDetailPresenter : IPresenter
     private readonly IUserService _userService;
     private readonly User _user;
     private long _customerId;
-    private Customer? _customerOnInit;
+    private Customer? _savedCustomer;
 
-    public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService,
-        ICustomerNoteService customerNotesService, User user, bool isNewMode, IHistoryService historyService, IUserService userService)
+    public CustomerDetailPresenter(ICustomerDetailDialog dialog,
+        ICustomerService customerService,
+        ICustomerNoteService customerNotesService,
+        IHistoryService historyService,
+        IUserService userService,
+        User user,
+        bool isNewMode)
     {
         this._dialog = dialog;
         this._user = user;
@@ -50,7 +54,6 @@ public class CustomerDetailPresenter : IPresenter
     {
         this._customerId = id;
         var customer = this._customerService.GetById(id);
-        this._customerOnInit = customer;
 
         this._dialog.FirstName = customer.FirstName;
         this._dialog.CustomerNumber = customer.CustomerNumber;
@@ -79,6 +82,7 @@ public class CustomerDetailPresenter : IPresenter
         this._dialog.CompanyName = customer.CompanyName;
         this._dialog.CompanyContact = customer.CompanyContact;
         this._dialog.CompanyAddress = customer.CompanyAddress;
+        this._savedCustomer = this.ReadFromDialog();
     }
 
     public void LoadNewCustomer()
@@ -89,18 +93,18 @@ public class CustomerDetailPresenter : IPresenter
 
     public void ChangeStatus()
     {
-        this._dialog.State = this._dialog.State == Models.Data.State.Active
-            ? Models.Data.State.Passive
-            : Models.Data.State.Active;
+        this._dialog.State = this._dialog.State == State.Active
+            ? State.Passive
+            : State.Active;
 
-        Save();
+        this.Save();
     }
 
     public void Save()
     {
-        var customer = MapDialogFieldsToCustomer();
+        var customer = this.ReadFromDialog();
         this._customerService.Save(customer);
-        this._customerOnInit = customer;
+        this._savedCustomer = customer;
     }
 
     public void OpenCustomerNotesDialog(string customerDisplayText)
@@ -115,19 +119,17 @@ public class CustomerDetailPresenter : IPresenter
     public void OpenHistoryDialog()
     {
         var historyDialog = new HistoryDialog();
-        var historyPresenter = new HistoryPresenter(historyDialog, _historyService, _userService);
+        var historyPresenter = new HistoryPresenter(historyDialog, this._historyService, this._userService);
         historyPresenter.LoadPerson(this._customerId, EntityType.Customer);
         historyDialog.ShowDialog();
     }
 
     public bool HasUnsavedChanges()
     {
-        var customerAfter = MapDialogFieldsToCustomer();
-
-        return !this._customerOnInit.IsDeepEqual(customerAfter);
+        return this._savedCustomer != null && !this._savedCustomer.IsStringEqual(this.ReadFromDialog());
     }
 
-    private Customer MapDialogFieldsToCustomer()
+    private Customer ReadFromDialog()
     {
         var customer = new Customer
         {

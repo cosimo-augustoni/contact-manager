@@ -4,11 +4,11 @@ namespace contact_manager.Models.Data;
 
 internal class FileStore<T> : IStore<T> where T : IObjectIdentifier
 {
-    private readonly string dataDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}/Data";
+    private readonly string _dataDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}/Data";
 
-    private readonly string fileName = $"{typeof(T).Name}.json";
+    private readonly string _fileName = $"{typeof(T).Name}.json";
 
-    private string FilePath => Path.Combine(this.dataDirectory, this.fileName);
+    private string FilePath => Path.Combine(this._dataDirectory, this._fileName);
 
     public List<T> GetAll()
     {
@@ -45,7 +45,7 @@ internal class FileStore<T> : IStore<T> where T : IObjectIdentifier
     private void Write(List<T> entities)
     {
         var jsonString = JsonSerializer.Serialize(entities);
-        Directory.CreateDirectory(this.dataDirectory);
+        Directory.CreateDirectory(this._dataDirectory);
         File.WriteAllText(this.FilePath, jsonString);
     }
 }

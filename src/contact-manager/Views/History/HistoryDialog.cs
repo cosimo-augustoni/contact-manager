@@ -9,7 +9,7 @@ namespace contact_manager.Views
         private HistoryPresenter? _presenter;
         public HistoryDialog()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public void SetPresenter(HistoryPresenter historyPresenter)
@@ -25,8 +25,8 @@ namespace contact_manager.Views
 
             foreach (var entry in historyEntries)
             {
-                this.FlowLayoutPnlHistory.Controls.Add(CreateLabel(entry));
-                this.FlowLayoutPnlHistory.Controls.Add(CreateNewListView(entry));
+                this.FlowLayoutPnlHistory.Controls.Add(this.CreateLabel(entry));
+                this.FlowLayoutPnlHistory.Controls.Add(this.CreateNewListView(entry));
             }
         }
 
@@ -50,7 +50,7 @@ namespace contact_manager.Views
 
             foreach (var difference in historyEntry.Diffs)
             {
-                listView.Items.Add(CreateListViewItem(difference));
+                listView.Items.Add(this.CreateListViewItem(difference));
             }
 
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
@@ -68,7 +68,7 @@ namespace contact_manager.Views
                 Text = $"Änderungsdatum: {mutationDate}\r\n" +
                 $"Mutiert durch: {this._presenter?.GetUser(historyEntry.UserId)?.DisplayName}",
                 AutoSize = true,
-                Font = new Font(Label.DefaultFont, FontStyle.Regular),
+                Font = new Font(DefaultFont, FontStyle.Regular),
                 Margin = new Padding() { Bottom = 10 }
             };
             return label;
@@ -80,8 +80,8 @@ namespace contact_manager.Views
             listViewItem.UseItemStyleForSubItems = false;
             listViewItem.SubItems.Add(
                 Convert.ToString(difference.ValueOld),
-                ListView.DefaultForeColor, Color.White,
-                new Font(ListView.DefaultFont, FontStyle.Strikeout)
+                DefaultForeColor, Color.White,
+                new Font(DefaultFont, FontStyle.Strikeout)
                 );
             listViewItem.SubItems.Add("--->");
             listViewItem.SubItems.Add(Convert.ToString(difference.ValueNew));

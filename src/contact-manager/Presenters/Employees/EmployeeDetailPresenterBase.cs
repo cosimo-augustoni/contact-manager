@@ -6,7 +6,6 @@ using contact_manager.Models.Domain.History;
 using contact_manager.Presenters.History;
 using contact_manager.Views;
 using contact_manager.Views.Employees;
-using DeepEqual.Syntax;
 
 namespace contact_manager.Presenters.Employees;
 
@@ -24,7 +23,7 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
     private TEmployee? _savedEmployee;
     protected abstract EntityType PersonType { get; }
 
-    protected EmployeeDetailPresenterBase(TDialog dialog, IEmployeeService<TEmployee> employeeService, User user, bool isNewMode, IHistoryService historyService, IUserService userService)
+    protected EmployeeDetailPresenterBase(TDialog dialog, IEmployeeService<TEmployee> employeeService, IHistoryService historyService, IUserService userService, User user, bool isNewMode)
     {
         this.Dialog = dialog;
         this.EmployeeService = employeeService;
@@ -44,8 +43,8 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
     {
         this._employeeId = id;
         var employee = this.EmployeeService.GetById(id);
-        this._savedEmployee = employee;
         this.WriteToDialog(employee);
+        this._savedEmployee = this.ReadFromDialog();
     }
 
     protected virtual void WriteToDialog(TEmployee employee)
@@ -91,6 +90,7 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
     {
         var employee = this.ReadFromDialog();
         this.EmployeeService.Save(employee);
+        this._savedEmployee = employee;
     }
 
     protected virtual TEmployee ReadFromDialog()
@@ -145,6 +145,6 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
 
     public bool HasUnsavedChanges()
     {
-        return !this._savedEmployee.IsDeepEqual(this.ReadFromDialog());
+        return this._savedEmployee != null && !this._savedEmployee.IsStringEqual(this.ReadFromDialog());
     }
 }

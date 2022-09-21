@@ -195,28 +195,28 @@ namespace contact_manager.Views.Employees
             this.CmbSalutation.SetDataSource<Salutation>();
             this.CmbSex.SetDataSource<Sex>();
             this.CmbState.SetDataSource<State>();
-            this._employeeValidator = new EmployeeValidator(EmployeeErrorProvider, this);
+            this._employeeValidator = new EmployeeValidator(this.EmployeeErrorProvider, this);
         }
 
         public void InitializeMode()
         {
             var isEnabled = !this._presenter?.IsReadOnly ?? false;
             var isNewMode = this._presenter?.IsNewMode ?? false;
-            CmdSave.Enabled = isEnabled;
-            CmdChangeStatus.Enabled = isEnabled && !isNewMode;
-            CmdProtocol.Enabled = !isNewMode;
+            this.CmdSave.Enabled = isEnabled;
+            this.CmdChangeStatus.Enabled = isEnabled && !isNewMode;
+            this.CmdProtocol.Enabled = !isNewMode;
 
             if (isNewMode)
             {
-                State = State.Active;
+                this.State = State.Active;
             }
 
-            GrpAddress.Enabled = isEnabled && State == State.Active;
-            GrpPersonalData.Enabled = isEnabled && State == State.Active;
-            GrpContactData.Enabled = isEnabled && State == State.Active;
-            GrpEmploymentData.Enabled = isEnabled && State == State.Active;
+            this.GrpAddress.Enabled = isEnabled && this.State == State.Active;
+            this.GrpPersonalData.Enabled = isEnabled && this.State == State.Active;
+            this.GrpContactData.Enabled = isEnabled && this.State == State.Active;
+            this.GrpEmploymentData.Enabled = isEnabled && this.State == State.Active;
 
-            CmdChangeStatus.Text = State == State.Active ? "Deaktivieren" : "Aktivieren";
+            this.CmdChangeStatus.Text = this.State == State.Active ? "Deaktivieren" : "Aktivieren";
         }
 
         public void SetPresenter(object detailPresenter)
@@ -226,9 +226,10 @@ namespace contact_manager.Views.Employees
 
         private void CmdSave_Click(object sender, EventArgs e)
         {
-            if (_employeeValidator.Validate())
+            if (this._employeeValidator.Validate())
             {
                 this._presenter?.Save();
+                this.Close();
             }
             else
             {
@@ -245,37 +246,37 @@ namespace contact_manager.Views.Employees
         private void CmdChangeStatus_Click(object sender, EventArgs e)
         {
             this._presenter?.ChangeStatus();
-            InitializeMode();
+            this.InitializeMode();
         }
 
         private void TxtFirstName_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtFirstName, null);
+            this.EmployeeErrorProvider.SetError(this.TxtFirstName, null);
         }
 
         private void TxtLastname_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtLastname, null);
+            this.EmployeeErrorProvider.SetError(this.TxtLastname, null);
         }
 
         private void TxtStreetName_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtStreetName, null);
+            this.EmployeeErrorProvider.SetError(this.TxtStreetName, null);
         }
 
         private void TxtZipCode_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtZipCode, null);
+            this.EmployeeErrorProvider.SetError(this.TxtZipCode, null);
         }
 
         private void TxtCity_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtCity, null);
+            this.EmployeeErrorProvider.SetError(this.TxtCity, null);
         }
 
         private void MTxtAHV13_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(MTxtAHV13, null);
+            this.EmployeeErrorProvider.SetError(this.MTxtAHV13, null);
         }
 
         private void DateTimePickerDateOfBirth_ValueChanged(object sender, EventArgs e)
@@ -283,7 +284,7 @@ namespace contact_manager.Views.Employees
             if (this.DateOfBirth != null)
                 this.DateTimePickerDateOfBirth.Format = DateTimePickerFormat.Short;
 
-            EmployeeErrorProvider.SetError(DateTimePickerDateOfBirth, null);
+            this.EmployeeErrorProvider.SetError(this.DateTimePickerDateOfBirth, null);
         }
 
         private void DatePickerExitDate_ValueChanged(object sender, EventArgs e)
@@ -291,41 +292,41 @@ namespace contact_manager.Views.Employees
             if (this.ExitDate != null)
                 this.DatePickerExitDate.Format = DateTimePickerFormat.Short;
 
-            EmployeeErrorProvider.SetError(DatePickerExitDate, null);
+            this.EmployeeErrorProvider.SetError(this.DatePickerExitDate, null);
         }
 
         private void DatePickerEntranceDate_ValueChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(DatePickerExitDate, null);
+            this.EmployeeErrorProvider.SetError(this.DatePickerExitDate, null);
         }
 
         private void TxtEMailAddress_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
+            this.EmployeeErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberPrivate_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtPhoneNumberPrivate, null);
-            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
+            this.EmployeeErrorProvider.SetError(this.TxtPhoneNumberPrivate, null);
+            this.EmployeeErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberMobile_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtPhoneNumberMobile, null);
-            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
+            this.EmployeeErrorProvider.SetError(this.TxtPhoneNumberMobile, null);
+            this.EmployeeErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberBusiness_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtPhoneNumberBusiness, null);
-            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
+            this.EmployeeErrorProvider.SetError(this.TxtPhoneNumberBusiness, null);
+            this.EmployeeErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void TxtFaxNumber_TextChanged(object sender, EventArgs e)
         {
-            EmployeeErrorProvider.SetError(TxtFaxNumber, null);
-            EmployeeErrorProvider.SetError(TxtEMailAddress, null);
+            this.EmployeeErrorProvider.SetError(this.TxtFaxNumber, null);
+            this.EmployeeErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void TxtZipCode_KeyPress(object sender, KeyPressEventArgs e)

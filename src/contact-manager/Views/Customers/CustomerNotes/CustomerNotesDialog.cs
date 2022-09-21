@@ -5,17 +5,17 @@ namespace contact_manager.Views.Customers.CustomerNotes
 {
     public partial class CustomerNotesDialog : Form, ICustomerNotesView
     {
-        private CustomerNotesPresenter? presenter;
+        private CustomerNotesPresenter? _presenter;
 
-        private readonly Label emptyLabel;
+        private readonly Label _emptyLabel;
 
         public CustomerNotesDialog()
         {
-            InitializeComponent();
-            this.emptyLabel = new Label();
-            emptyLabel.Text = "Keine Notizen vorhanden.";
-            this.emptyLabel.AutoSize = true;
-            this.PnlNotes.Controls.Add(emptyLabel);
+            this.InitializeComponent();
+            this._emptyLabel = new Label();
+            this._emptyLabel.Text = "Keine Notizen vorhanden.";
+            this._emptyLabel.AutoSize = true;
+            this.PnlNotes.Controls.Add(this._emptyLabel);
         }
 
         public void SetTitle(string customerDisplayText)
@@ -25,7 +25,7 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         public void SetPresenter(CustomerNotesPresenter notesPresenter)
         {
-            this.presenter = notesPresenter;
+            this._presenter = notesPresenter;
         }
 
         public string NewNoteText
@@ -36,8 +36,8 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         public void AddNewNoteToHistory(CustomerNote note)
         {
-            if (this.PnlNotes.Controls.Contains(this.emptyLabel))
-                this.PnlNotes.Controls.Remove(this.emptyLabel);
+            if (this.PnlNotes.Controls.Contains(this._emptyLabel))
+                this.PnlNotes.Controls.Remove(this._emptyLabel);
 
             this.PnlNotes.Controls.Add(new CustomerNoteControl(note.Text, note.CreatedBy, note.CreatedAt));
         }
@@ -49,9 +49,9 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         private void CmdAddNote_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
+            if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
-                this.presenter?.AddNewNoteFromText();
+                this._presenter?.AddNewNoteFromText();
             }
             else
             {
@@ -61,15 +61,15 @@ namespace contact_manager.Views.Customers.CustomerNotes
 
         private void TxtNewNote_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NewNoteText))
+            if (string.IsNullOrWhiteSpace(this.NewNoteText))
             {
-                CustomerNoteErrorProvider.SetError(TxtNewNote, "Geben Sie eine Notiz ein.");
-                TxtNewNote.Focus();
+                this.CustomerNoteErrorProvider.SetError(this.TxtNewNote, "Geben Sie eine Notiz ein.");
+                this.TxtNewNote.Focus();
                 e.Cancel = true;
             }
             else
             {
-                CustomerNoteErrorProvider.SetError(TxtNewNote, null);
+                this.CustomerNoteErrorProvider.SetError(this.TxtNewNote, null);
             }
         }
     }

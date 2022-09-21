@@ -6,9 +6,9 @@ namespace contact_manager.Models.Domain.CsvImport
     {
         public CustomerMap()
         {
-            Map(m => (m).CompanyName).Name("Firmenname");
-            Map(m => (m).CompanyAddress).Name("Geschäftsadresse");
-            Map(m => (m).CustomerType).Name("Kundentyp").TypeConverter<CustomEnumConverter<CustomerType>>();
+            this.Map(m => (m).CompanyName).Name("Firmenname");
+            this.Map(m => (m).CompanyAddress).Name("Geschäftsadresse");
+            this.Map(m => (m).CustomerType).Name("Kundentyp").TypeConverter<CustomEnumConverter<CustomerType>>();
         }
     }
 

@@ -5,7 +5,7 @@ namespace contact_manager.Views.Authentication
 {
     public partial class LoginView : Form, ILoginView
     {
-        private LoginPresenter? presenter;
+        private LoginPresenter? _presenter;
 
         public LoginView()
         {
@@ -31,15 +31,14 @@ namespace contact_manager.Views.Authentication
 
         public void SetPresenter(LoginPresenter loginPresenter)
         {
-            this.presenter = loginPresenter;
+            this._presenter = loginPresenter;
         }
 
         private void CmdLogin_Click(object sender, EventArgs e)
         {
-            // Todo valiate überarbeiten
             if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
-                this.presenter?.Authenticate();
+                this._presenter?.Authenticate();
             }
             else
             {
@@ -64,7 +63,7 @@ namespace contact_manager.Views.Authentication
 
         private void TxtPassword_Validating(object sender, CancelEventArgs e)
         {
-            if (String.IsNullOrEmpty(this.TxtPassword.Text))
+            if (string.IsNullOrEmpty(this.TxtPassword.Text))
             {
                 e.Cancel = true;
                 this.TxtPassword.Focus();
