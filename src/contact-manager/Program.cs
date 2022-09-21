@@ -12,14 +12,6 @@ namespace contact_manager
         {
             ApplicationConfiguration.Initialize();
 
-            //TODO Unklarheiten Dokumentieren und Kommentieren in Search-Domäne (Päddy)
-
-            //TODO Code Cleanup (Cosimo)
-            //TODO Ausführliches Testing mit Fixes (Cosimo)
-            //TODO Klassendiagram (Cosimo)
-            //TODO Stundenprotokoll vervollstädigen
-            //TODO Text-Datei mit Applikationsbeschreib (Vorschlag: Cosimo, Review/Ergänzungen: Päddy/Luca)
-
             try
             {
                 var formFactory = new DefaultFormFactory();

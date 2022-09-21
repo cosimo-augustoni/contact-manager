@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="contact_manager.Models.Data.History.Difference">
+    <Position X="7.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAAAA=</HashCode>
+      <FileName>Models\Data\History\Difference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.History.HistoryEntry" BaseTypeListCollapsed="true">
+    <Position X="9" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAAIAAAAAAAAAAAgAQAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\History\HistoryEntry.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Data.Customer">
+    <Position X="3" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAQAAAAAAAAACAAAACAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Models\Data\Customer\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.CustomerNote" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAACAAAAAAAAAAABAAAAAACAAAAAE=</HashCode>
+      <FileName>Models\Data\Customer\CustomerNote.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="contact_manager.Models.Data.Employee">
+    <Position X="0.75" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABABAAAAQAAAAAAAEACAAAAAEAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Models\Data\Employee\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.Trainee">
+    <Position X="1" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\Employee\Trainee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="contact_manager.Models.Data.Person">
+    <Position X="2" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAABECIAAEIAIAEAAAQIGABAAAABQAACAg=</HashCode>
+      <FileName>Models\Data\Person.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="contact_manager.Models.Data.History.EntityType">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAACAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\History\EntityType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="contact_manager.Models.Data.CustomerType">
+    <Position X="5.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApgEAAAA=</HashCode>
+      <FileName>Models\Data\Customer\CustomerType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="contact_manager.Models.Data.Salutation">
+    <Position X="9" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAA=</HashCode>
+      <FileName>Models\Data\Salutation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="contact_manager.Models.Data.Sex">
+    <Position X="5.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAA=</HashCode>
+      <FileName>Models\Data\Sex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="contact_manager.Models.Data.State">
+    <Position X="7.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\State.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
