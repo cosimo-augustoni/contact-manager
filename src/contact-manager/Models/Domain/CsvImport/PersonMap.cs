@@ -1,5 +1,4 @@
 ﻿using contact_manager.Models.Data;
-using contact_manager.Views.Validation;
 using CsvHelper.Configuration;
 
 namespace contact_manager.Models.Domain.CsvImport

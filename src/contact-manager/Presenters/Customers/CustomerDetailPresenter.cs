@@ -7,7 +7,6 @@ using contact_manager.Presenters.History;
 using contact_manager.Views;
 using contact_manager.Views.Customers;
 using contact_manager.Views.Customers.CustomerNotes;
-using DeepEqual.Syntax;
 
 namespace contact_manager.Presenters.Customers;
 
@@ -127,7 +126,7 @@ public class CustomerDetailPresenter : IPresenter
 
     public bool HasUnsavedChanges()
     {
-        return !this._savedCustomer.IsDeepEqual(this.ReadFromDialog());
+        return this._savedCustomer != null && !this._savedCustomer.IsStringEqual(this.ReadFromDialog());
     }
 
     private Customer ReadFromDialog()

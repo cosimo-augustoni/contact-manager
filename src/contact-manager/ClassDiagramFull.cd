@@ -401,6 +401,13 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="contact_manager.Models.Data.PersonEqualExtension">
+    <Position X="13.25" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Models\Data\PersonEqualExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="contact_manager.Models.Data.IRepository&lt;T&gt;">
     <Position X="9.25" Y="10.5" Width="1.75" />
     <TypeIdentifier>

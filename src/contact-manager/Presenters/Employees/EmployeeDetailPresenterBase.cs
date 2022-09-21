@@ -6,7 +6,6 @@ using contact_manager.Models.Domain.History;
 using contact_manager.Presenters.History;
 using contact_manager.Views;
 using contact_manager.Views.Employees;
-using DeepEqual.Syntax;
 
 namespace contact_manager.Presenters.Employees;
 
@@ -146,6 +145,6 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
 
     public bool HasUnsavedChanges()
     {
-        return !this._savedEmployee.IsDeepEqual(this.ReadFromDialog());
+        return this._savedEmployee != null && !this._savedEmployee.IsStringEqual(this.ReadFromDialog());
     }
 }
