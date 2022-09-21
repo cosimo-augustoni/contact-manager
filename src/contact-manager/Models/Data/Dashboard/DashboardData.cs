@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace contact_manager.Models.Data
+﻿namespace contact_manager.Models.Data
 {
     public class DashboardData
     {
