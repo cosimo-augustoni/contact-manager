@@ -5,7 +5,7 @@ namespace contact_manager.Views.Authentication
 {
     public partial class LoginView : Form, ILoginView
     {
-        private LoginPresenter? presenter;
+        private LoginPresenter? _presenter;
 
         public LoginView()
         {
@@ -31,7 +31,7 @@ namespace contact_manager.Views.Authentication
 
         public void SetPresenter(LoginPresenter loginPresenter)
         {
-            this.presenter = loginPresenter;
+            this._presenter = loginPresenter;
         }
 
         private void CmdLogin_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace contact_manager.Views.Authentication
             // Todo valiate überarbeiten
             if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
-                this.presenter?.Authenticate();
+                this._presenter?.Authenticate();
             }
             else
             {

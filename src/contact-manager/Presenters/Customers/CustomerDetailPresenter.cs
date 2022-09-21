@@ -93,7 +93,7 @@ public class CustomerDetailPresenter : IPresenter
             ? State.Passive
             : State.Active;
 
-        Save();
+        this.Save();
     }
 
     public void Save()
@@ -115,7 +115,7 @@ public class CustomerDetailPresenter : IPresenter
     public void OpenHistoryDialog()
     {
         var historyDialog = new HistoryDialog();
-        var historyPresenter = new HistoryPresenter(historyDialog, _historyService, _userService);
+        var historyPresenter = new HistoryPresenter(historyDialog, this._historyService, this._userService);
         historyPresenter.LoadPerson(this._customerId, EntityType.Customer);
         historyDialog.ShowDialog();
     }

@@ -65,7 +65,7 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
             EntityId = entityNew.Id,
             TimeStamp = DateTime.Now,
             EntityType = (entityNew is Customer) ? EntityType.Customer : (entityNew is Trainee) ? EntityType.Trainee : EntityType.Employee,
-            UserId = _currentUser.Id,
+            UserId = this._currentUser.Id,
             Diffs = this.GetDifferences(entityNew, entityOld).ToList(),
         };
     }

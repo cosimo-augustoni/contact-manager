@@ -17,7 +17,7 @@ namespace contact_manager.Views
         public void SetPresenter(OverviewPresenter overviewPresenter)
         {
             this._presenter = overviewPresenter;
-            InitializeMode();
+            this.InitializeMode();
         }
 
         public void SetEmployeeList(List<Employee> employees)
@@ -27,7 +27,7 @@ namespace contact_manager.Views
 
         public void SetCustomerList(List<Customer> customers)
         {
-            dataGridViewCustomer.DataSource = customers;
+            this.dataGridViewCustomer.DataSource = customers;
         }
 
         public void SetTraineeList(List<Trainee> trainees)
@@ -40,22 +40,22 @@ namespace contact_manager.Views
         {
             var isEnabled = !this._presenter?.IsReadOnly ?? false;
 
-            CmdCreateNewCustomer.Enabled = isEnabled;
-            CmdCreateNewEmployee.Enabled = isEnabled;
-            CmdDeleteCustomer.Enabled = isEnabled;
-            CmdDeleteEmployee.Enabled = isEnabled;
-            CmdImportCustomer.Enabled = isEnabled;
-            CmdImportEmployee.Enabled = isEnabled;
+            this.CmdCreateNewCustomer.Enabled = isEnabled;
+            this.CmdCreateNewEmployee.Enabled = isEnabled;
+            this.CmdDeleteCustomer.Enabled = isEnabled;
+            this.CmdDeleteEmployee.Enabled = isEnabled;
+            this.CmdImportCustomer.Enabled = isEnabled;
+            this.CmdImportEmployee.Enabled = isEnabled;
 
             if (isEnabled)
             {
-                CmdEditCustomer.Text = CmdEditEmployee.Text = "Bearbeiten";
-                CmdEditCustomer.Image = CmdEditEmployee.Image = contact_manager.Properties.Resources.Edit;
+                this.CmdEditCustomer.Text = this.CmdEditEmployee.Text = "Bearbeiten";
+                this.CmdEditCustomer.Image = this.CmdEditEmployee.Image = Properties.Resources.Edit;
             }
             else
             {
-                CmdEditCustomer.Text = CmdEditEmployee.Text = "Anzeigen";
-                CmdEditCustomer.Image = CmdEditEmployee.Image = contact_manager.Properties.Resources.ShowDataPreview;
+                this.CmdEditCustomer.Text = this.CmdEditEmployee.Text = "Anzeigen";
+                this.CmdEditCustomer.Image = this.CmdEditEmployee.Image = Properties.Resources.ShowDataPreview;
             }
         }
 
@@ -86,12 +86,12 @@ namespace contact_manager.Views
 
         private void CmdEditCustomer_Click(object sender, EventArgs e)
         {
-            EditCustomer();
+            this.EditCustomer();
         }
 
         private void EditCustomer()
         {
-            var customer = GetCurrentSelectedCustomer();
+            var customer = this.GetCurrentSelectedCustomer();
             if (customer != null)
             {
                 this._presenter?.OpenEditCustomerDialog(customer.Id);
@@ -100,12 +100,12 @@ namespace contact_manager.Views
 
         private void CmdEditEmployee_Click(object sender, EventArgs e)
         {
-            EditEmployee();
+            this.EditEmployee();
         }
 
         private void EditEmployee()
         {
-            var employee = GetCurrentSelectedEmployee();
+            var employee = this.GetCurrentSelectedEmployee();
             if (employee != null)
             {
                 this._presenter?.OpenEditEmployeeDialog(employee.Id);
@@ -149,7 +149,7 @@ namespace contact_manager.Views
 
         private void CmdDeleteCustomer_Click(object sender, EventArgs e)
         {
-            var customer = GetCurrentSelectedCustomer();
+            var customer = this.GetCurrentSelectedCustomer();
             if (customer != null)
             {
                 var dialogResult = MessageBox.Show("Möchten Sie diesen Kunden wirklich löschen", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -162,7 +162,7 @@ namespace contact_manager.Views
 
         private void CmdDeleteEmployee_Click(object sender, EventArgs e)
         {
-            var employee = GetCurrentSelectedEmployee();
+            var employee = this.GetCurrentSelectedEmployee();
             if (employee != null)
             {
                 var dialogResult = MessageBox.Show("Möchten Sie diesen Mitarbeiter wirklich löschen?", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -227,7 +227,7 @@ namespace contact_manager.Views
 
         private void CmdResetSearchCustomer_Click(object sender, EventArgs e)
         {
-            TxtSearchCustomer.Clear();
+            this.TxtSearchCustomer.Clear();
             this._presenter?.LoadAllCustomers();
         }
 
@@ -266,7 +266,7 @@ namespace contact_manager.Views
 
         private void CmdResetSearchEmployee_Click(object sender, EventArgs e)
         {
-            TxtSearchEmployee.Clear();
+            this.TxtSearchEmployee.Clear();
             this._presenter?.LoadAllEmployees();
         }
 
@@ -352,15 +352,15 @@ namespace contact_manager.Views
 
         public void SetDashboardData(DashboardData dashboardData)
         {
-            CreateCustomerCountFormsPlot(dashboardData);
-            CreateCustomerCityFormsPlot(dashboardData);
-            CreateCustomerTypeFormsPlot(dashboardData);
-            CreatePersonsCountFormsPlot(dashboardData);
+            this.CreateCustomerCountFormsPlot(dashboardData);
+            this.CreateCustomerCityFormsPlot(dashboardData);
+            this.CreateCustomerTypeFormsPlot(dashboardData);
+            this.CreatePersonsCountFormsPlot(dashboardData);
         }
 
         private void CreatePersonsCountFormsPlot(DashboardData dashboardData)
         {
-            PersonsCountFormsPlot.Plot.Clear();
+            this.PersonsCountFormsPlot.Plot.Clear();
             var customerCount = dashboardData.ActiveCustomerCount + dashboardData.PassiveCustomerCount;
             var employeeCount = dashboardData.EmployeeCount;
             var traineeCount = dashboardData.TraineeCount;
@@ -398,18 +398,18 @@ namespace contact_manager.Views
             bars.Add(customerBar);
             bars.Add(employeeBar);
             bars.Add(traineeBar);
-            PersonsCountFormsPlot.Plot.XAxis.Ticks(false);
-            PersonsCountFormsPlot.Plot.YAxis.Label("Anzahl");
-            PersonsCountFormsPlot.Plot.XAxis.Label("Personen");
-            PersonsCountFormsPlot.Plot.AddBarSeries(bars);
-            PersonsCountFormsPlot.Plot.SetAxisLimits(yMin: 0, yMax: maxCounts + 10);
-            PersonsCountFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
-            PersonsCountFormsPlot.Refresh();
+            this.PersonsCountFormsPlot.Plot.XAxis.Ticks(false);
+            this.PersonsCountFormsPlot.Plot.YAxis.Label("Anzahl");
+            this.PersonsCountFormsPlot.Plot.XAxis.Label("Personen");
+            this.PersonsCountFormsPlot.Plot.AddBarSeries(bars);
+            this.PersonsCountFormsPlot.Plot.SetAxisLimits(yMin: 0, yMax: maxCounts + 10);
+            this.PersonsCountFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            this.PersonsCountFormsPlot.Refresh();
         }
 
         private void CreateCustomerCountFormsPlot(DashboardData dashboardData)
         {
-            CustomerCountFormsPlot.Plot.Clear();
+            this.CustomerCountFormsPlot.Plot.Clear();
             var activeCustomerCount = dashboardData.ActiveCustomerCount;
             var passiveCustomerCount = dashboardData.PassiveCustomerCount;
 
@@ -433,39 +433,39 @@ namespace contact_manager.Views
             };
             bars.Add(activeBar);
             bars.Add(passiveBar);
-            CustomerCountFormsPlot.Plot.XAxis.Ticks(false);
-            CustomerCountFormsPlot.Plot.YAxis.Label("Anzahl");
-            CustomerCountFormsPlot.Plot.XAxis.Label("Status");
-            CustomerCountFormsPlot.Plot.AddBarSeries(bars);
-            CustomerCountFormsPlot.Plot.SetAxisLimits(yMin: 0, yMax: max + 10);
-            CustomerCountFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
-            CustomerCountFormsPlot.Refresh();
+            this.CustomerCountFormsPlot.Plot.XAxis.Ticks(false);
+            this.CustomerCountFormsPlot.Plot.YAxis.Label("Anzahl");
+            this.CustomerCountFormsPlot.Plot.XAxis.Label("Status");
+            this.CustomerCountFormsPlot.Plot.AddBarSeries(bars);
+            this.CustomerCountFormsPlot.Plot.SetAxisLimits(yMin: 0, yMax: max + 10);
+            this.CustomerCountFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            this.CustomerCountFormsPlot.Refresh();
         }
 
         private void CreateCustomerCityFormsPlot(DashboardData dashboardData)
         {
             if (dashboardData.CityStatistics.Count == 0) return;
 
-            CustomerCityFormsPlot.Plot.Clear();
-            var pie = CustomerCityFormsPlot.Plot.AddPie(dashboardData.CityStatistics.Values.Select(v => (double)v).ToArray());
+            this.CustomerCityFormsPlot.Plot.Clear();
+            var pie = this.CustomerCityFormsPlot.Plot.AddPie(dashboardData.CityStatistics.Values.Select(v => (double)v).ToArray());
 
             pie.SliceLabels = dashboardData.CityStatistics.Keys.ToArray();
             pie.Explode = true;
 
-            CustomerCityFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
-            CustomerCityFormsPlot.Refresh();
+            this.CustomerCityFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            this.CustomerCityFormsPlot.Refresh();
         }
 
         private void CreateCustomerTypeFormsPlot(DashboardData dashboardData)
         {
             if (dashboardData.CustomerTypeStatistics.Count == 0) return;
 
-            CustomerTypeFormsPlot.Plot.Clear();
-            var pie = CustomerTypeFormsPlot.Plot.AddPie(dashboardData.CustomerTypeStatistics.Values.Select(v => (double)v).ToArray());
+            this.CustomerTypeFormsPlot.Plot.Clear();
+            var pie = this.CustomerTypeFormsPlot.Plot.AddPie(dashboardData.CustomerTypeStatistics.Values.Select(v => (double)v).ToArray());
             pie.SliceLabels = dashboardData.CustomerTypeStatistics.Keys.ToArray();
             pie.Explode = true;
-            CustomerTypeFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
-            CustomerTypeFormsPlot.Refresh();
+            this.CustomerTypeFormsPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            this.CustomerTypeFormsPlot.Refresh();
         }
         #endregion // Dashboard
 

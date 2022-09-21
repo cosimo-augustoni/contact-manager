@@ -22,7 +22,7 @@ namespace contact_manager.Presenters.History
 
         public void LoadPerson(long id, EntityType personType)
         {
-            var historyEntries = _historyService.Get(id, personType);
+            var historyEntries = this._historyService.Get(id, personType);
             this._historyDialog.SetHistoryList(historyEntries);
         }
 

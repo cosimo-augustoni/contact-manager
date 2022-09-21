@@ -72,7 +72,7 @@ namespace contact_manager.Presenters
         public void OpenCreateNewEmployeeDialog()
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: true, _historyService, _userService);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: true, this._historyService, this._userService);
             dialogPresenter.Init();
             dialogPresenter.LoadNewEmployee();
             dialog.InitializeMode();
@@ -83,7 +83,7 @@ namespace contact_manager.Presenters
         public void OpenEditEmployeeDialog(long employeeId)
         {
             var dialog = new EmployeeDetailDialog();
-            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: false, _historyService, _userService);
+            var dialogPresenter = new EmployeeDetailPresenter(dialog, this._employeeService, this._user, isNewMode: false, this._historyService, this._userService);
             dialogPresenter.Init();
             dialogPresenter.LoadEmployee(employeeId);
             dialog.InitializeMode();
@@ -112,7 +112,7 @@ namespace contact_manager.Presenters
         public void OpenCreateNewCustomerDialog()
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: true, _historyService, _userService);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: true, this._historyService, this._userService);
             dialogPresenter.Init();
             dialogPresenter.LoadNewCustomer();
             dialog.InitializeMode();
@@ -123,7 +123,7 @@ namespace contact_manager.Presenters
         public void OpenEditCustomerDialog(long customerId)
         {
             var dialog = new CustomerDetailDialog();
-            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: false, _historyService, _userService);
+            var dialogPresenter = new CustomerDetailPresenter(dialog, this._customerService, this._customerNotesService, this._user, isNewMode: false, this._historyService, this._userService);
             dialogPresenter.Init();
             dialogPresenter.LoadCustomer(customerId);
             dialog.InitializeMode();
@@ -153,7 +153,7 @@ namespace contact_manager.Presenters
         public void OpenCreateNewTraineeDialog()
         {
             var dialog = new TraineeDetailDialog();
-            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: true, _historyService, _userService);
+            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: true, this._historyService, this._userService);
             dialogPresenter.Init();
             dialogPresenter.LoadNewEmployee();
             dialog.InitializeMode();
@@ -164,7 +164,7 @@ namespace contact_manager.Presenters
         public void OpenEditTraineeDialog(long traineeId)
         {
             var dialog = new TraineeDetailDialog();
-            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: false, _historyService, _userService);
+            var dialogPresenter = new TraineeDetailPresenter(dialog, this._traineeService, this._user, isNewMode: false, this._historyService, this._userService);
             dialogPresenter.Init();
             dialogPresenter.LoadEmployee(traineeId);
             dialog.InitializeMode();

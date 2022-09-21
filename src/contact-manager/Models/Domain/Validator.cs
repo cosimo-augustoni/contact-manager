@@ -1,7 +1,7 @@
 ﻿using System.Net.Mail;
 using System.Text.RegularExpressions;
 
-namespace contact_manager.Views.Validation
+namespace contact_manager.Models.Domain
 {
     internal class Validator
     {

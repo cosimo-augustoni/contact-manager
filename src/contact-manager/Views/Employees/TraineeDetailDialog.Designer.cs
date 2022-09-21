@@ -839,7 +839,7 @@
         private GroupBox GrpTrainee;
         private Label LblCurrentYearOfApprenticeship;
         private Label LblYearsOfApprenticeship;
-        private NumericUpDown NumYearsOfApprenticeship;
-        private NumericUpDown NumCurrentYearOfApprenticeship;
+        public NumericUpDown NumYearsOfApprenticeship;
+        public NumericUpDown NumCurrentYearOfApprenticeship;
     }
 }

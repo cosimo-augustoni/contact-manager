@@ -28,20 +28,20 @@ namespace contact_manager.Models.Domain.Search
 
       private class ReplaceParameterExpressionVisitor : ExpressionVisitor
       {
-         private readonly Expression oldParameter;
+         private readonly Expression _oldParameter;
 
-         private readonly Expression newParameter;
+         private readonly Expression _newParameter;
 
          public ReplaceParameterExpressionVisitor(Expression oldParameter, Expression newParameter)
          {
-            this.oldParameter = oldParameter;
-            this.newParameter = newParameter;
+            this._oldParameter = oldParameter;
+            this._newParameter = newParameter;
          }
 
          protected override Expression VisitParameter(ParameterExpression node)
          {
-            if (node == this.oldParameter)
-               return this.newParameter;
+            if (node == this._oldParameter)
+               return this._newParameter;
 
             return base.VisitParameter(node);
          }

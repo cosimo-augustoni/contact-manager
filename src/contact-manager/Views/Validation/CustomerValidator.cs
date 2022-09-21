@@ -1,4 +1,5 @@
-﻿using contact_manager.Views.Customers;
+﻿using contact_manager.Models.Domain;
+using contact_manager.Views.Customers;
 
 namespace contact_manager.Views.Validation;
 
@@ -17,24 +18,24 @@ internal class CustomerValidator
 
     public bool Validate()
     {
-        _controlsWithError.Clear();
-        _errorProvider.Clear();
+        this._controlsWithError.Clear();
+        this._errorProvider.Clear();
 
-        ValidateFirstName();
-        ValidateLastName();
-        ValidateDateOfBirth();
-        ValidateStreetName();
-        ValidateZipCode();
-        ValidateCity();
-        ValidateAHV13();
-        ValidateContactInformations();
-        ValidateEMailAddress();
-        ValidatePhoneNumberPrivate();
-        ValidatePhoneNumberBusiness();
-        ValidatePhoneNumberMobile();
-        ValidateFaxNumber();
+        this.ValidateFirstName();
+        this.ValidateLastName();
+        this.ValidateDateOfBirth();
+        this.ValidateStreetName();
+        this.ValidateZipCode();
+        this.ValidateCity();
+        this.ValidateAHV13();
+        this.ValidateContactInformations();
+        this.ValidateEMailAddress();
+        this.ValidatePhoneNumberPrivate();
+        this.ValidatePhoneNumberBusiness();
+        this.ValidatePhoneNumberMobile();
+        this.ValidateFaxNumber();
 
-        var firstControlWithError = _controlsWithError.FirstOrDefault();
+        var firstControlWithError = this._controlsWithError.FirstOrDefault();
         if (firstControlWithError != null)
         {
             firstControlWithError.Focus();
@@ -45,128 +46,125 @@ internal class CustomerValidator
 
     private void ValidateContactInformations()
     {
-        if (!Validator.ExistsAtLeastOneContactInformation(_dialog.EMailAddress, _dialog.PhoneNumberPrivate,
-            _dialog.PhoneNumberMobile, _dialog.PhoneNumberBusiness, _dialog.FaxNumber))
+        if (!Validator.ExistsAtLeastOneContactInformation(this._dialog.EMailAddress, this._dialog.PhoneNumberPrivate, this._dialog.PhoneNumberMobile, this._dialog.PhoneNumberBusiness, this._dialog.FaxNumber))
         {
-            String error = "Geben Sie mindestens eine Kontaktinformation an.";
-            _errorProvider.SetError(_dialog.TxtEMailAddress, error);
-            _controlsWithError.Add(_dialog.TxtEMailAddress);
+            var error = "Geben Sie mindestens eine Kontaktinformation an.";
+            this._errorProvider.SetError(this._dialog.TxtEMailAddress, error);
+            this._controlsWithError.Add(this._dialog.TxtEMailAddress);
         }
     }
 
     private void ValidateFirstName()
     {
-        if (!Validator.IsFirstNameValid(_dialog.FirstName))
+        if (!Validator.IsFirstNameValid(this._dialog.FirstName))
         {
-            _errorProvider.SetError(_dialog.TxtFirstName, "Geben Sie einen Vornamen ein.");
-            _controlsWithError.Add(_dialog.TxtFirstName);
+            this._errorProvider.SetError(this._dialog.TxtFirstName, "Geben Sie einen Vornamen ein.");
+            this._controlsWithError.Add(this._dialog.TxtFirstName);
         }
     }
 
     private void ValidateLastName()
     {
-        if (!Validator.IsLastNameValid(_dialog.LastName))
+        if (!Validator.IsLastNameValid(this._dialog.LastName))
         {
-            _errorProvider.SetError(_dialog.TxtLastname, "Geben Sie einen Nachnamen ein.");
-            _controlsWithError.Add(_dialog.TxtLastname);
+            this._errorProvider.SetError(this._dialog.TxtLastname, "Geben Sie einen Nachnamen ein.");
+            this._controlsWithError.Add(this._dialog.TxtLastname);
         }
     }
     private void ValidateDateOfBirth()
     {
-        if (Validator.ExistsDateOfBirth(_dialog.DateOfBirth))
+        if (Validator.ExistsDateOfBirth(this._dialog.DateOfBirth))
         {
-            if (Validator.IsDateOfBirthIsInFuture(_dialog.DateOfBirth))
+            if (Validator.IsDateOfBirthIsInFuture(this._dialog.DateOfBirth))
             {
-                _errorProvider.SetError(_dialog.DateTimePickerDateOfBirth, "Das Geburtsdatum darf nicht in der Zukunft liegen.");
-                _controlsWithError.Add(_dialog.DateTimePickerDateOfBirth);
+                this._errorProvider.SetError(this._dialog.DateTimePickerDateOfBirth, "Das Geburtsdatum darf nicht in der Zukunft liegen.");
+                this._controlsWithError.Add(this._dialog.DateTimePickerDateOfBirth);
             }
         }
         else
         {
-            _errorProvider.SetError(_dialog.DateTimePickerDateOfBirth, "Geben Sie das Geburtsdatum ein.");
-            _controlsWithError.Add(_dialog.DateTimePickerDateOfBirth);
+            this._errorProvider.SetError(this._dialog.DateTimePickerDateOfBirth, "Geben Sie das Geburtsdatum ein.");
+            this._controlsWithError.Add(this._dialog.DateTimePickerDateOfBirth);
         }
     }
 
     private void ValidateStreetName()
     {
-        if (!Validator.IsStreetNameValid(_dialog.StreetName))
+        if (!Validator.IsStreetNameValid(this._dialog.StreetName))
         {
-            _errorProvider.SetError(_dialog.TxtStreetName, "Geben Sie die Strasse ein.");
-            _controlsWithError.Add(_dialog.TxtStreetName);
+            this._errorProvider.SetError(this._dialog.TxtStreetName, "Geben Sie die Strasse ein.");
+            this._controlsWithError.Add(this._dialog.TxtStreetName);
         }
     }
 
     private void ValidateZipCode()
     {
-        if (!Validator.IsZipCodeValid(_dialog.ZipCode))
+        if (!Validator.IsZipCodeValid(this._dialog.ZipCode))
         {
-            _errorProvider.SetError(_dialog.TxtZipCode, "Geben Sie eine gültige PLZ ein.");
-            _controlsWithError.Add(_dialog.TxtZipCode);
+            this._errorProvider.SetError(this._dialog.TxtZipCode, "Geben Sie eine gültige PLZ ein.");
+            this._controlsWithError.Add(this._dialog.TxtZipCode);
         }
     }
 
     private void ValidateCity()
     {
-        if (!Validator.IsCityValid(_dialog.City))
+        if (!Validator.IsCityValid(this._dialog.City))
         {
-            _errorProvider.SetError(_dialog.TxtCity, "Geben Sie die Ortschaft ein.");
-            _controlsWithError.Add(_dialog.TxtCity);
+            this._errorProvider.SetError(this._dialog.TxtCity, "Geben Sie die Ortschaft ein.");
+            this._controlsWithError.Add(this._dialog.TxtCity);
         }
     }
 
     private void ValidateEMailAddress()
     {
-        if (!Validator.IsMailAddressValid(_dialog.EMailAddress))
+        if (!Validator.IsMailAddressValid(this._dialog.EMailAddress))
         {
-            _errorProvider.SetError(_dialog.TxtEMailAddress, "E-Mail hat ein ungültiges Format.");
-            _controlsWithError.Add(_dialog.TxtEMailAddress);
+            this._errorProvider.SetError(this._dialog.TxtEMailAddress, "E-Mail hat ein ungültiges Format.");
+            this._controlsWithError.Add(this._dialog.TxtEMailAddress);
         }
     }
 
     private void ValidatePhoneNumberPrivate()
     {
-        if (!Validator.IsPhoneNumberValid(_dialog.PhoneNumberPrivate))
+        if (!Validator.IsPhoneNumberValid(this._dialog.PhoneNumberPrivate))
         {
-            _errorProvider.SetError(_dialog.TxtPhoneNumberPrivate, "Format der Telefonnummer ist ungültig.");
-            _controlsWithError.Add(_dialog.TxtPhoneNumberPrivate);
+            this._errorProvider.SetError(this._dialog.TxtPhoneNumberPrivate, "Format der Telefonnummer ist ungültig.");
+            this._controlsWithError.Add(this._dialog.TxtPhoneNumberPrivate);
         }
     }
 
     private void ValidatePhoneNumberMobile()
     {
-        if (!Validator.IsPhoneNumberValid(_dialog.PhoneNumberMobile))
+        if (!Validator.IsPhoneNumberValid(this._dialog.PhoneNumberMobile))
         {
-            _errorProvider.SetError(_dialog.TxtPhoneNumberMobile, "Format der Mobile-Nr. ist ungültig.");
-            _controlsWithError.Add(_dialog.TxtPhoneNumberMobile);
+            this._errorProvider.SetError(this._dialog.TxtPhoneNumberMobile, "Format der Mobile-Nr. ist ungültig.");
+            this._controlsWithError.Add(this._dialog.TxtPhoneNumberMobile);
         }
     }
 
     private void ValidatePhoneNumberBusiness()
     {
-        if (!Validator.IsPhoneNumberValid(_dialog.PhoneNumberBusiness))
+        if (!Validator.IsPhoneNumberValid(this._dialog.PhoneNumberBusiness))
         {
-            _errorProvider.SetError(_dialog.TxtPhoneNumberBusiness, "Format der Telefonnummer ist ungültig.");
-            _controlsWithError.Add(_dialog.TxtPhoneNumberBusiness);
+            this._errorProvider.SetError(this._dialog.TxtPhoneNumberBusiness, "Format der Telefonnummer ist ungültig.");
+            this._controlsWithError.Add(this._dialog.TxtPhoneNumberBusiness);
         }
     }
 
     private void ValidateFaxNumber()
     {
-        if (!Validator.IsPhoneNumberValid(_dialog.FaxNumber))
+        if (!Validator.IsPhoneNumberValid(this._dialog.FaxNumber))
         {
-            _errorProvider.SetError(_dialog.TxtFaxNumber, "Format der Fax-Nummer ist ungültig.");
-            _controlsWithError.Add(_dialog.TxtPhoneNumberBusiness);
+            this._errorProvider.SetError(this._dialog.TxtFaxNumber, "Format der Fax-Nummer ist ungültig.");
+            this._controlsWithError.Add(this._dialog.TxtPhoneNumberBusiness);
         }
     }
 
     private void ValidateAHV13()
     {
-        if (!Validator.IsAHV13Valid(_dialog.AHV13))
+        if (!Validator.IsAHV13Valid(this._dialog.AHV13))
         {
-            _errorProvider.SetError(_dialog.MTxtAHV13, "AHV-Nr. hat ungültiges Format.");
-
+            this._errorProvider.SetError(this._dialog.MTxtAHV13, "AHV-Nr. hat ungültiges Format.");
         }
     }
-
 }

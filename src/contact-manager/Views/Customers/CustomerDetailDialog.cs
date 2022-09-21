@@ -25,7 +25,7 @@ namespace contact_manager.Views.Customers
 
         public string CustomerDisplayText
         {
-            get { return CustomerNumber + " - " + LastName + " " + FirstName; }
+            get { return this.CustomerNumber + " - " + this.LastName + " " + this.FirstName; }
         }
 
         public string? FirstName
@@ -173,7 +173,7 @@ namespace contact_manager.Views.Customers
             this.CmbCustomerType.SetDataSource<CustomerType>();
             this.CmbSex.SetDataSource<Sex>();
             this.CmbState.SetDataSource<State>();
-            this._customerValidator = new CustomerValidator(CustomerErrorProvider, this);
+            this._customerValidator = new CustomerValidator(this.CustomerErrorProvider, this);
         }
 
         public void SetPresenter(CustomerDetailPresenter customerDetailPresenter)
@@ -185,27 +185,27 @@ namespace contact_manager.Views.Customers
         {
             var isEnabled = !this._presenter?.IsReadOnly ?? false;
             var isNewMode = this._presenter?.IsNewMode ?? false;
-            CmdSave.Enabled = isEnabled;
-            CmdChangeStatus.Enabled = isEnabled && !isNewMode;
-            CmdShowCustomerNotes.Enabled = !isNewMode;
-            CmdProtocol.Enabled = !isNewMode;
+            this.CmdSave.Enabled = isEnabled;
+            this.CmdChangeStatus.Enabled = isEnabled && !isNewMode;
+            this.CmdShowCustomerNotes.Enabled = !isNewMode;
+            this.CmdProtocol.Enabled = !isNewMode;
 
             if (isNewMode)
             {
-                State = State.Active;
+                this.State = State.Active;
             }
 
-            GrpAddress.Enabled = isEnabled && State == State.Active;
-            GrpPersonalData.Enabled = isEnabled && State == State.Active;
-            GrpContactData.Enabled = isEnabled && State == State.Active;
-            GrpCustomerData.Enabled = isEnabled && State == State.Active;
+            this.GrpAddress.Enabled = isEnabled && this.State == State.Active;
+            this.GrpPersonalData.Enabled = isEnabled && this.State == State.Active;
+            this.GrpContactData.Enabled = isEnabled && this.State == State.Active;
+            this.GrpCustomerData.Enabled = isEnabled && this.State == State.Active;
 
-            CmdChangeStatus.Text = State == State.Active ? "Deaktivieren" : "Aktivieren";
+            this.CmdChangeStatus.Text = this.State == State.Active ? "Deaktivieren" : "Aktivieren";
         }
 
         private void CmdSave_Click(object sender, EventArgs e)
         {
-            if (_customerValidator.Validate())
+            if (this._customerValidator.Validate())
             {
                 this._presenter?.Save();
                 this.Close();
@@ -251,43 +251,43 @@ namespace contact_manager.Views.Customers
 
         private void CmdProtocol_Click(object sender, EventArgs e)
         {
-            _presenter?.OpenHistoryDialog();
+            this._presenter?.OpenHistoryDialog();
         }
 
         private void CmdShowCustomerNotes_Click(object sender, EventArgs e)
         {
-            this._presenter?.OpenCustomerNotesDialog(CustomerDisplayText);
+            this._presenter?.OpenCustomerNotesDialog(this.CustomerDisplayText);
         }
 
         private void CmdChangeStatus_Click(object sender, EventArgs e)
         {
             this._presenter?.ChangeStatus();
-            InitializeMode();
+            this.InitializeMode();
         }
 
         private void TxtFirstName_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtFirstName, null);
+            this.CustomerErrorProvider.SetError(this.TxtFirstName, null);
         }
 
         private void TxtLastname_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtLastname, null);
+            this.CustomerErrorProvider.SetError(this.TxtLastname, null);
         }
 
         private void TxtStreetName_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtStreetName, null);
+            this.CustomerErrorProvider.SetError(this.TxtStreetName, null);
         }
 
         private void TxtZipCode_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtZipCode, null);
+            this.CustomerErrorProvider.SetError(this.TxtZipCode, null);
         }
 
         private void MTxtAHV13_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(MTxtAHV13, null);
+            this.CustomerErrorProvider.SetError(this.MTxtAHV13, null);
         }
 
         private void DateTimePickerDateOfBirth_ValueChanged(object sender, EventArgs e)
@@ -295,41 +295,41 @@ namespace contact_manager.Views.Customers
             if (this.DateOfBirth != null)
                 this.DateTimePickerDateOfBirth.Format = DateTimePickerFormat.Short;
 
-            CustomerErrorProvider.SetError(DateTimePickerDateOfBirth, null);
+            this.CustomerErrorProvider.SetError(this.DateTimePickerDateOfBirth, null);
         }
 
         private void TxtCity_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtCity, null);
+            this.CustomerErrorProvider.SetError(this.TxtCity, null);
         }
 
         private void TxtEMailAddress_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtEMailAddress, null);
+            this.CustomerErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberPrivate_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtPhoneNumberPrivate, null);
-            CustomerErrorProvider.SetError(TxtEMailAddress, null);
+            this.CustomerErrorProvider.SetError(this.TxtPhoneNumberPrivate, null);
+            this.CustomerErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberMobile_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtPhoneNumberMobile, null);
-            CustomerErrorProvider.SetError(TxtEMailAddress, null);
+            this.CustomerErrorProvider.SetError(this.TxtPhoneNumberMobile, null);
+            this.CustomerErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void TxtPhoneNumberBusiness_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtPhoneNumberBusiness, null);
-            CustomerErrorProvider.SetError(TxtEMailAddress, null);
+            this.CustomerErrorProvider.SetError(this.TxtPhoneNumberBusiness, null);
+            this.CustomerErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void TxtFaxNumber_TextChanged(object sender, EventArgs e)
         {
-            CustomerErrorProvider.SetError(TxtFaxNumber, null);
-            CustomerErrorProvider.SetError(TxtEMailAddress, null);
+            this.CustomerErrorProvider.SetError(this.TxtFaxNumber, null);
+            this.CustomerErrorProvider.SetError(this.TxtEMailAddress, null);
         }
 
         private void DatePickerDateOfBirth_KeyDown(object sender, KeyEventArgs e)
