@@ -45,7 +45,7 @@ namespace contact_manager.Presenters.Customers
             }
         }
 
-        public void SetTitle(String customerDisplayText)
+        public void SetTitle(string customerDisplayText)
         {
             this._dialog.SetTitle(customerDisplayText);
         }

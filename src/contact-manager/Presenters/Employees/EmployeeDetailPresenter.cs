@@ -11,8 +11,8 @@ namespace contact_manager.Presenters.Employees
     {
         protected override EntityType PersonType => EntityType.Employee;
 
-        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService<Employee> employeeService, User user, bool isNewMode, IHistoryService historyService, IUserService userService) 
-            : base(dialog, employeeService, user, isNewMode, historyService, userService)
+        public EmployeeDetailPresenter(IEmployeeDetailDialog dialog, IEmployeeService<Employee> employeeService, IHistoryService historyService, IUserService userService, User user, bool isNewMode) 
+            : base(dialog, employeeService, historyService, userService, user, isNewMode)
         {
         }
 

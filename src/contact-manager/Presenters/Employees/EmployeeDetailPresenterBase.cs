@@ -24,7 +24,7 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
     private TEmployee? _savedEmployee;
     protected abstract EntityType PersonType { get; }
 
-    protected EmployeeDetailPresenterBase(TDialog dialog, IEmployeeService<TEmployee> employeeService, User user, bool isNewMode, IHistoryService historyService, IUserService userService)
+    protected EmployeeDetailPresenterBase(TDialog dialog, IEmployeeService<TEmployee> employeeService, IHistoryService historyService, IUserService userService, User user, bool isNewMode)
     {
         this.Dialog = dialog;
         this.EmployeeService = employeeService;

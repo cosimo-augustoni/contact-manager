@@ -22,8 +22,13 @@ public class CustomerDetailPresenter : IPresenter
     private long _customerId;
     private Customer? _savedCustomer;
 
-    public CustomerDetailPresenter(ICustomerDetailDialog dialog, ICustomerService customerService,
-        ICustomerNoteService customerNotesService, User user, bool isNewMode, IHistoryService historyService, IUserService userService)
+    public CustomerDetailPresenter(ICustomerDetailDialog dialog,
+        ICustomerService customerService,
+        ICustomerNoteService customerNotesService,
+        IHistoryService historyService,
+        IUserService userService,
+        User user,
+        bool isNewMode)
     {
         this._dialog = dialog;
         this._user = user;
