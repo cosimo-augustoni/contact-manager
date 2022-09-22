@@ -61,6 +61,7 @@
             this.ClientSize = new System.Drawing.Size(475, 561);
             this.Controls.Add(this.LblTitel);
             this.Controls.Add(this.FlowLayoutPnlHistory);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "HistoryDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Change-History";
