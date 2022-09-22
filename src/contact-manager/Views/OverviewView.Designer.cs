@@ -67,32 +67,9 @@
             this.CmdEditEmployee = new System.Windows.Forms.Button();
             this.CmdCreateNewEmployee = new System.Windows.Forms.Button();
             this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
-            this.employeeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewTextBoxColumn1 = new contact_manager.Views.DataGridViewEnumColumn();
-            this.CadreLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateOfBirthDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sexDataGridViewTextBoxColumn1 = new contact_manager.Views.DataGridViewEnumColumn();
-            this.streetNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.streetNumberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.zipCodeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TpTrainee = new System.Windows.Forms.TabPage();
             this.dataGridViewTrainee = new System.Windows.Forms.DataGridView();
-            this.traineeEmployeeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeFirstNameDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeLastnameNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeStatusDataGridViewTextBoxColumn = new contact_manager.Views.DataGridViewEnumColumn();
-            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeDateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeSexDataGridViewTextBoxColumn = new contact_manager.Views.DataGridViewEnumColumn();
-            this.traineeStreetNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeStreetNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeZipCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.traineeCityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.traineeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.CmbSearchScopeTrainee = new System.Windows.Forms.ComboBox();
@@ -120,6 +97,29 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YearsOfApprenticeship = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewTextBoxColumn1 = new contact_manager.Views.DataGridViewEnumColumn();
+            this.CadreLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateOfBirthDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sexDataGridViewTextBoxColumn1 = new contact_manager.Views.DataGridViewEnumColumn();
+            this.streetNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.streetNumberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.zipCodeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeEmployeeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeFirstNameDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeLastnameNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeStatusDataGridViewTextBoxColumn = new contact_manager.Views.DataGridViewEnumColumn();
+            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeDateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeSexDataGridViewTextBoxColumn = new contact_manager.Views.DataGridViewEnumColumn();
+            this.traineeStreetNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeStreetNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeZipCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.traineeCityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TcOverview.SuspendLayout();
             this.TpCustomer.SuspendLayout();
             this.PnlSearchCustomer.SuspendLayout();
@@ -294,6 +294,7 @@
             this.dataGridViewCustomer.MultiSelect = false;
             this.dataGridViewCustomer.Name = "dataGridViewCustomer";
             this.dataGridViewCustomer.ReadOnly = true;
+            this.dataGridViewCustomer.RowHeadersVisible = false;
             this.dataGridViewCustomer.RowHeadersWidth = 102;
             this.dataGridViewCustomer.RowTemplate.Height = 25;
             this.dataGridViewCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -308,6 +309,7 @@
             this.customerNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
             this.customerNumberDataGridViewTextBoxColumn.Name = "customerNumberDataGridViewTextBoxColumn";
             this.customerNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.customerNumberDataGridViewTextBoxColumn.Width = 120;
             // 
             // firstNameDataGridViewTextBoxColumn
             // 
@@ -316,6 +318,7 @@
             this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 12;
             this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
             this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.firstNameDataGridViewTextBoxColumn.Width = 140;
             // 
             // lastNameDataGridViewTextBoxColumn
             // 
@@ -324,6 +327,7 @@
             this.lastNameDataGridViewTextBoxColumn.MinimumWidth = 12;
             this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
             this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lastNameDataGridViewTextBoxColumn.Width = 140;
             // 
             // stateDataGridViewTextBoxColumn
             // 
@@ -546,109 +550,13 @@
             this.dataGridViewEmployee.MultiSelect = false;
             this.dataGridViewEmployee.Name = "dataGridViewEmployee";
             this.dataGridViewEmployee.ReadOnly = true;
+            this.dataGridViewEmployee.RowHeadersVisible = false;
             this.dataGridViewEmployee.RowHeadersWidth = 102;
             this.dataGridViewEmployee.RowTemplate.Height = 25;
             this.dataGridViewEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewEmployee.Size = new System.Drawing.Size(1106, 464);
             this.dataGridViewEmployee.TabIndex = 5;
             this.dataGridViewEmployee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellDoubleClick);
-            // 
-            // employeeNumberDataGridViewTextBoxColumn
-            // 
-            this.employeeNumberDataGridViewTextBoxColumn.DataPropertyName = "EmployeeNumber";
-            this.employeeNumberDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter-Nr.";
-            this.employeeNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.employeeNumberDataGridViewTextBoxColumn.Name = "employeeNumberDataGridViewTextBoxColumn";
-            this.employeeNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // firstNameDataGridViewTextBoxColumn1
-            // 
-            this.firstNameDataGridViewTextBoxColumn1.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn1.HeaderText = "Vorname";
-            this.firstNameDataGridViewTextBoxColumn1.MinimumWidth = 12;
-            this.firstNameDataGridViewTextBoxColumn1.Name = "firstNameDataGridViewTextBoxColumn1";
-            this.firstNameDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // lastNameDataGridViewTextBoxColumn1
-            // 
-            this.lastNameDataGridViewTextBoxColumn1.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn1.HeaderText = "Nachname";
-            this.lastNameDataGridViewTextBoxColumn1.MinimumWidth = 12;
-            this.lastNameDataGridViewTextBoxColumn1.Name = "lastNameDataGridViewTextBoxColumn1";
-            this.lastNameDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // stateDataGridViewTextBoxColumn1
-            // 
-            this.stateDataGridViewTextBoxColumn1.DataPropertyName = "State";
-            this.stateDataGridViewTextBoxColumn1.HeaderText = "Status";
-            this.stateDataGridViewTextBoxColumn1.MinimumWidth = 12;
-            this.stateDataGridViewTextBoxColumn1.Name = "stateDataGridViewTextBoxColumn1";
-            this.stateDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.stateDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.stateDataGridViewTextBoxColumn1.Width = 60;
-            // 
-            // CadreLevel
-            // 
-            this.CadreLevel.DataPropertyName = "CadreLevel";
-            this.CadreLevel.HeaderText = "Kaderstufe";
-            this.CadreLevel.Name = "CadreLevel";
-            this.CadreLevel.ReadOnly = true;
-            // 
-            // dateOfBirthDataGridViewTextBoxColumn1
-            // 
-            this.dateOfBirthDataGridViewTextBoxColumn1.DataPropertyName = "DateOfBirth";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dateOfBirthDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dateOfBirthDataGridViewTextBoxColumn1.HeaderText = "Geburtstag";
-            this.dateOfBirthDataGridViewTextBoxColumn1.MinimumWidth = 12;
-            this.dateOfBirthDataGridViewTextBoxColumn1.Name = "dateOfBirthDataGridViewTextBoxColumn1";
-            this.dateOfBirthDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // sexDataGridViewTextBoxColumn1
-            // 
-            this.sexDataGridViewTextBoxColumn1.DataPropertyName = "Sex";
-            this.sexDataGridViewTextBoxColumn1.HeaderText = "Geschlecht";
-            this.sexDataGridViewTextBoxColumn1.MinimumWidth = 12;
-            this.sexDataGridViewTextBoxColumn1.Name = "sexDataGridViewTextBoxColumn1";
-            this.sexDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.sexDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // streetNameDataGridViewTextBoxColumn1
-            // 
-            this.streetNameDataGridViewTextBoxColumn1.DataPropertyName = "StreetName";
-            this.streetNameDataGridViewTextBoxColumn1.HeaderText = "Strasse";
-            this.streetNameDataGridViewTextBoxColumn1.MinimumWidth = 12;
-            this.streetNameDataGridViewTextBoxColumn1.Name = "streetNameDataGridViewTextBoxColumn1";
-            this.streetNameDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.streetNameDataGridViewTextBoxColumn1.Width = 120;
-            // 
-            // streetNumberDataGridViewTextBoxColumn1
-            // 
-            this.streetNumberDataGridViewTextBoxColumn1.DataPropertyName = "StreetNumber";
-            this.streetNumberDataGridViewTextBoxColumn1.HeaderText = "Nr.";
-            this.streetNumberDataGridViewTextBoxColumn1.MinimumWidth = 12;
-            this.streetNumberDataGridViewTextBoxColumn1.Name = "streetNumberDataGridViewTextBoxColumn1";
-            this.streetNumberDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.streetNumberDataGridViewTextBoxColumn1.Width = 40;
-            // 
-            // zipCodeDataGridViewTextBoxColumn1
-            // 
-            this.zipCodeDataGridViewTextBoxColumn1.DataPropertyName = "ZipCode";
-            this.zipCodeDataGridViewTextBoxColumn1.HeaderText = "PLZ";
-            this.zipCodeDataGridViewTextBoxColumn1.MinimumWidth = 12;
-            this.zipCodeDataGridViewTextBoxColumn1.Name = "zipCodeDataGridViewTextBoxColumn1";
-            this.zipCodeDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.zipCodeDataGridViewTextBoxColumn1.Width = 60;
-            // 
-            // cityDataGridViewTextBoxColumn1
-            // 
-            this.cityDataGridViewTextBoxColumn1.DataPropertyName = "City";
-            this.cityDataGridViewTextBoxColumn1.HeaderText = "Ort";
-            this.cityDataGridViewTextBoxColumn1.MinimumWidth = 12;
-            this.cityDataGridViewTextBoxColumn1.Name = "cityDataGridViewTextBoxColumn1";
-            this.cityDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.cityDataGridViewTextBoxColumn1.Width = 120;
             // 
             // employeeBindingSource
             // 
@@ -693,119 +601,13 @@
             this.dataGridViewTrainee.MultiSelect = false;
             this.dataGridViewTrainee.Name = "dataGridViewTrainee";
             this.dataGridViewTrainee.ReadOnly = true;
+            this.dataGridViewTrainee.RowHeadersVisible = false;
             this.dataGridViewTrainee.RowHeadersWidth = 102;
             this.dataGridViewTrainee.RowTemplate.Height = 25;
             this.dataGridViewTrainee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTrainee.Size = new System.Drawing.Size(1106, 464);
             this.dataGridViewTrainee.TabIndex = 19;
             this.dataGridViewTrainee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTrainee_CellDoubleClick);
-            // 
-            // traineeEmployeeNumberDataGridViewTextBoxColumn
-            // 
-            this.traineeEmployeeNumberDataGridViewTextBoxColumn.DataPropertyName = "EmployeeNumber";
-            this.traineeEmployeeNumberDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter-Nr.";
-            this.traineeEmployeeNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.traineeEmployeeNumberDataGridViewTextBoxColumn.Name = "traineeEmployeeNumberDataGridViewTextBoxColumn";
-            this.traineeEmployeeNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // traineeFirstNameDataGridViewTextBoxColumn7
-            // 
-            this.traineeFirstNameDataGridViewTextBoxColumn7.DataPropertyName = "FirstName";
-            this.traineeFirstNameDataGridViewTextBoxColumn7.HeaderText = "Vorname";
-            this.traineeFirstNameDataGridViewTextBoxColumn7.MinimumWidth = 12;
-            this.traineeFirstNameDataGridViewTextBoxColumn7.Name = "traineeFirstNameDataGridViewTextBoxColumn7";
-            this.traineeFirstNameDataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // traineeLastnameNumberDataGridViewTextBoxColumn
-            // 
-            this.traineeLastnameNumberDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            this.traineeLastnameNumberDataGridViewTextBoxColumn.HeaderText = "Nachname";
-            this.traineeLastnameNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.traineeLastnameNumberDataGridViewTextBoxColumn.Name = "traineeLastnameNumberDataGridViewTextBoxColumn";
-            this.traineeLastnameNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // traineeStatusDataGridViewTextBoxColumn
-            // 
-            this.traineeStatusDataGridViewTextBoxColumn.DataPropertyName = "State";
-            this.traineeStatusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.traineeStatusDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.traineeStatusDataGridViewTextBoxColumn.Name = "traineeStatusDataGridViewTextBoxColumn";
-            this.traineeStatusDataGridViewTextBoxColumn.ReadOnly = true;
-            this.traineeStatusDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.traineeStatusDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // traineeYearsOfApprenticeshipDataGridViewTextBoxColumn
-            // 
-            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.DataPropertyName = "YearsOfApprenticeship";
-            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.HeaderText = "Anzahl Lehrjahre";
-            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.Name = "traineeYearsOfApprenticeshipDataGridViewTextBoxColumn";
-            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.ReadOnly = true;
-            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn
-            // 
-            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.DataPropertyName = "CurrentYearOfApprenticeship";
-            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.HeaderText = "Aktuelles Lehrjahr";
-            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.Name = "traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn";
-            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.ReadOnly = true;
-            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // traineeDateOfBirthDataGridViewTextBoxColumn
-            // 
-            this.traineeDateOfBirthDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirth";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.traineeDateOfBirthDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.traineeDateOfBirthDataGridViewTextBoxColumn.HeaderText = "Geburtstag";
-            this.traineeDateOfBirthDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.traineeDateOfBirthDataGridViewTextBoxColumn.Name = "traineeDateOfBirthDataGridViewTextBoxColumn";
-            this.traineeDateOfBirthDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // traineeSexDataGridViewTextBoxColumn
-            // 
-            this.traineeSexDataGridViewTextBoxColumn.DataPropertyName = "Sex";
-            this.traineeSexDataGridViewTextBoxColumn.HeaderText = "Geschlecht";
-            this.traineeSexDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.traineeSexDataGridViewTextBoxColumn.Name = "traineeSexDataGridViewTextBoxColumn";
-            this.traineeSexDataGridViewTextBoxColumn.ReadOnly = true;
-            this.traineeSexDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.traineeSexDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // traineeStreetNameDataGridViewTextBoxColumn
-            // 
-            this.traineeStreetNameDataGridViewTextBoxColumn.DataPropertyName = "StreetName";
-            this.traineeStreetNameDataGridViewTextBoxColumn.HeaderText = "Strasse";
-            this.traineeStreetNameDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.traineeStreetNameDataGridViewTextBoxColumn.Name = "traineeStreetNameDataGridViewTextBoxColumn";
-            this.traineeStreetNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.traineeStreetNameDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // traineeStreetNumberDataGridViewTextBoxColumn
-            // 
-            this.traineeStreetNumberDataGridViewTextBoxColumn.DataPropertyName = "StreetNumber";
-            this.traineeStreetNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
-            this.traineeStreetNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.traineeStreetNumberDataGridViewTextBoxColumn.Name = "traineeStreetNumberDataGridViewTextBoxColumn";
-            this.traineeStreetNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.traineeStreetNumberDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // traineeZipCodeDataGridViewTextBoxColumn
-            // 
-            this.traineeZipCodeDataGridViewTextBoxColumn.DataPropertyName = "ZipCode";
-            this.traineeZipCodeDataGridViewTextBoxColumn.HeaderText = "PLZ";
-            this.traineeZipCodeDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.traineeZipCodeDataGridViewTextBoxColumn.Name = "traineeZipCodeDataGridViewTextBoxColumn";
-            this.traineeZipCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.traineeZipCodeDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // traineeCityDataGridViewTextBoxColumn
-            // 
-            this.traineeCityDataGridViewTextBoxColumn.DataPropertyName = "City";
-            this.traineeCityDataGridViewTextBoxColumn.HeaderText = "Ort";
-            this.traineeCityDataGridViewTextBoxColumn.MinimumWidth = 12;
-            this.traineeCityDataGridViewTextBoxColumn.Name = "traineeCityDataGridViewTextBoxColumn";
-            this.traineeCityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.traineeCityDataGridViewTextBoxColumn.Width = 120;
             // 
             // traineeBindingSource
             // 
@@ -1086,6 +888,216 @@
             this.YearsOfApprenticeship.DataPropertyName = "YearsOfApprenticeship";
             this.YearsOfApprenticeship.HeaderText = "Anzahl Lehrjahre";
             this.YearsOfApprenticeship.Name = "YearsOfApprenticeship";
+            // 
+            // employeeNumberDataGridViewTextBoxColumn
+            // 
+            this.employeeNumberDataGridViewTextBoxColumn.DataPropertyName = "EmployeeNumber";
+            this.employeeNumberDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter-Nr.";
+            this.employeeNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.employeeNumberDataGridViewTextBoxColumn.Name = "employeeNumberDataGridViewTextBoxColumn";
+            this.employeeNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.employeeNumberDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // firstNameDataGridViewTextBoxColumn1
+            // 
+            this.firstNameDataGridViewTextBoxColumn1.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn1.HeaderText = "Vorname";
+            this.firstNameDataGridViewTextBoxColumn1.MinimumWidth = 12;
+            this.firstNameDataGridViewTextBoxColumn1.Name = "firstNameDataGridViewTextBoxColumn1";
+            this.firstNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.firstNameDataGridViewTextBoxColumn1.Width = 140;
+            // 
+            // lastNameDataGridViewTextBoxColumn1
+            // 
+            this.lastNameDataGridViewTextBoxColumn1.DataPropertyName = "LastName";
+            this.lastNameDataGridViewTextBoxColumn1.HeaderText = "Nachname";
+            this.lastNameDataGridViewTextBoxColumn1.MinimumWidth = 12;
+            this.lastNameDataGridViewTextBoxColumn1.Name = "lastNameDataGridViewTextBoxColumn1";
+            this.lastNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.lastNameDataGridViewTextBoxColumn1.Width = 140;
+            // 
+            // stateDataGridViewTextBoxColumn1
+            // 
+            this.stateDataGridViewTextBoxColumn1.DataPropertyName = "State";
+            this.stateDataGridViewTextBoxColumn1.HeaderText = "Status";
+            this.stateDataGridViewTextBoxColumn1.MinimumWidth = 12;
+            this.stateDataGridViewTextBoxColumn1.Name = "stateDataGridViewTextBoxColumn1";
+            this.stateDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.stateDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.stateDataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // CadreLevel
+            // 
+            this.CadreLevel.DataPropertyName = "CadreLevel";
+            this.CadreLevel.HeaderText = "Kaderstufe";
+            this.CadreLevel.Name = "CadreLevel";
+            this.CadreLevel.ReadOnly = true;
+            // 
+            // dateOfBirthDataGridViewTextBoxColumn1
+            // 
+            this.dateOfBirthDataGridViewTextBoxColumn1.DataPropertyName = "DateOfBirth";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dateOfBirthDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dateOfBirthDataGridViewTextBoxColumn1.HeaderText = "Geburtstag";
+            this.dateOfBirthDataGridViewTextBoxColumn1.MinimumWidth = 12;
+            this.dateOfBirthDataGridViewTextBoxColumn1.Name = "dateOfBirthDataGridViewTextBoxColumn1";
+            this.dateOfBirthDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // sexDataGridViewTextBoxColumn1
+            // 
+            this.sexDataGridViewTextBoxColumn1.DataPropertyName = "Sex";
+            this.sexDataGridViewTextBoxColumn1.HeaderText = "Geschlecht";
+            this.sexDataGridViewTextBoxColumn1.MinimumWidth = 12;
+            this.sexDataGridViewTextBoxColumn1.Name = "sexDataGridViewTextBoxColumn1";
+            this.sexDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.sexDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // streetNameDataGridViewTextBoxColumn1
+            // 
+            this.streetNameDataGridViewTextBoxColumn1.DataPropertyName = "StreetName";
+            this.streetNameDataGridViewTextBoxColumn1.HeaderText = "Strasse";
+            this.streetNameDataGridViewTextBoxColumn1.MinimumWidth = 12;
+            this.streetNameDataGridViewTextBoxColumn1.Name = "streetNameDataGridViewTextBoxColumn1";
+            this.streetNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.streetNameDataGridViewTextBoxColumn1.Width = 120;
+            // 
+            // streetNumberDataGridViewTextBoxColumn1
+            // 
+            this.streetNumberDataGridViewTextBoxColumn1.DataPropertyName = "StreetNumber";
+            this.streetNumberDataGridViewTextBoxColumn1.HeaderText = "Nr.";
+            this.streetNumberDataGridViewTextBoxColumn1.MinimumWidth = 12;
+            this.streetNumberDataGridViewTextBoxColumn1.Name = "streetNumberDataGridViewTextBoxColumn1";
+            this.streetNumberDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.streetNumberDataGridViewTextBoxColumn1.Width = 40;
+            // 
+            // zipCodeDataGridViewTextBoxColumn1
+            // 
+            this.zipCodeDataGridViewTextBoxColumn1.DataPropertyName = "ZipCode";
+            this.zipCodeDataGridViewTextBoxColumn1.HeaderText = "PLZ";
+            this.zipCodeDataGridViewTextBoxColumn1.MinimumWidth = 12;
+            this.zipCodeDataGridViewTextBoxColumn1.Name = "zipCodeDataGridViewTextBoxColumn1";
+            this.zipCodeDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.zipCodeDataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // cityDataGridViewTextBoxColumn1
+            // 
+            this.cityDataGridViewTextBoxColumn1.DataPropertyName = "City";
+            this.cityDataGridViewTextBoxColumn1.HeaderText = "Ort";
+            this.cityDataGridViewTextBoxColumn1.MinimumWidth = 12;
+            this.cityDataGridViewTextBoxColumn1.Name = "cityDataGridViewTextBoxColumn1";
+            this.cityDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.cityDataGridViewTextBoxColumn1.Width = 120;
+            // 
+            // traineeEmployeeNumberDataGridViewTextBoxColumn
+            // 
+            this.traineeEmployeeNumberDataGridViewTextBoxColumn.DataPropertyName = "EmployeeNumber";
+            this.traineeEmployeeNumberDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter-Nr.";
+            this.traineeEmployeeNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.traineeEmployeeNumberDataGridViewTextBoxColumn.Name = "traineeEmployeeNumberDataGridViewTextBoxColumn";
+            this.traineeEmployeeNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeEmployeeNumberDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // traineeFirstNameDataGridViewTextBoxColumn7
+            // 
+            this.traineeFirstNameDataGridViewTextBoxColumn7.DataPropertyName = "FirstName";
+            this.traineeFirstNameDataGridViewTextBoxColumn7.HeaderText = "Vorname";
+            this.traineeFirstNameDataGridViewTextBoxColumn7.MinimumWidth = 12;
+            this.traineeFirstNameDataGridViewTextBoxColumn7.Name = "traineeFirstNameDataGridViewTextBoxColumn7";
+            this.traineeFirstNameDataGridViewTextBoxColumn7.ReadOnly = true;
+            this.traineeFirstNameDataGridViewTextBoxColumn7.Width = 140;
+            // 
+            // traineeLastnameNumberDataGridViewTextBoxColumn
+            // 
+            this.traineeLastnameNumberDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            this.traineeLastnameNumberDataGridViewTextBoxColumn.HeaderText = "Nachname";
+            this.traineeLastnameNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.traineeLastnameNumberDataGridViewTextBoxColumn.Name = "traineeLastnameNumberDataGridViewTextBoxColumn";
+            this.traineeLastnameNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeLastnameNumberDataGridViewTextBoxColumn.Width = 140;
+            // 
+            // traineeStatusDataGridViewTextBoxColumn
+            // 
+            this.traineeStatusDataGridViewTextBoxColumn.DataPropertyName = "State";
+            this.traineeStatusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.traineeStatusDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.traineeStatusDataGridViewTextBoxColumn.Name = "traineeStatusDataGridViewTextBoxColumn";
+            this.traineeStatusDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeStatusDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.traineeStatusDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // traineeYearsOfApprenticeshipDataGridViewTextBoxColumn
+            // 
+            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.DataPropertyName = "YearsOfApprenticeship";
+            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.HeaderText = "Anzahl Lehrjahre";
+            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.Name = "traineeYearsOfApprenticeshipDataGridViewTextBoxColumn";
+            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeYearsOfApprenticeshipDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn
+            // 
+            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.DataPropertyName = "CurrentYearOfApprenticeship";
+            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.HeaderText = "Aktuelles Lehrjahr";
+            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.Name = "traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn";
+            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeCurrentYearOfApprenticeshipDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // traineeDateOfBirthDataGridViewTextBoxColumn
+            // 
+            this.traineeDateOfBirthDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirth";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.traineeDateOfBirthDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.traineeDateOfBirthDataGridViewTextBoxColumn.HeaderText = "Geburtstag";
+            this.traineeDateOfBirthDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.traineeDateOfBirthDataGridViewTextBoxColumn.Name = "traineeDateOfBirthDataGridViewTextBoxColumn";
+            this.traineeDateOfBirthDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // traineeSexDataGridViewTextBoxColumn
+            // 
+            this.traineeSexDataGridViewTextBoxColumn.DataPropertyName = "Sex";
+            this.traineeSexDataGridViewTextBoxColumn.HeaderText = "Geschlecht";
+            this.traineeSexDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.traineeSexDataGridViewTextBoxColumn.Name = "traineeSexDataGridViewTextBoxColumn";
+            this.traineeSexDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeSexDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.traineeSexDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // traineeStreetNameDataGridViewTextBoxColumn
+            // 
+            this.traineeStreetNameDataGridViewTextBoxColumn.DataPropertyName = "StreetName";
+            this.traineeStreetNameDataGridViewTextBoxColumn.HeaderText = "Strasse";
+            this.traineeStreetNameDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.traineeStreetNameDataGridViewTextBoxColumn.Name = "traineeStreetNameDataGridViewTextBoxColumn";
+            this.traineeStreetNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeStreetNameDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // traineeStreetNumberDataGridViewTextBoxColumn
+            // 
+            this.traineeStreetNumberDataGridViewTextBoxColumn.DataPropertyName = "StreetNumber";
+            this.traineeStreetNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
+            this.traineeStreetNumberDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.traineeStreetNumberDataGridViewTextBoxColumn.Name = "traineeStreetNumberDataGridViewTextBoxColumn";
+            this.traineeStreetNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeStreetNumberDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // traineeZipCodeDataGridViewTextBoxColumn
+            // 
+            this.traineeZipCodeDataGridViewTextBoxColumn.DataPropertyName = "ZipCode";
+            this.traineeZipCodeDataGridViewTextBoxColumn.HeaderText = "PLZ";
+            this.traineeZipCodeDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.traineeZipCodeDataGridViewTextBoxColumn.Name = "traineeZipCodeDataGridViewTextBoxColumn";
+            this.traineeZipCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeZipCodeDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // traineeCityDataGridViewTextBoxColumn
+            // 
+            this.traineeCityDataGridViewTextBoxColumn.DataPropertyName = "City";
+            this.traineeCityDataGridViewTextBoxColumn.HeaderText = "Ort";
+            this.traineeCityDataGridViewTextBoxColumn.MinimumWidth = 12;
+            this.traineeCityDataGridViewTextBoxColumn.Name = "traineeCityDataGridViewTextBoxColumn";
+            this.traineeCityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.traineeCityDataGridViewTextBoxColumn.Width = 120;
             // 
             // OverviewView
             // 
