@@ -6,6 +6,7 @@ namespace contact_manager.Views.Customers.CustomerNotes;
 public interface ICustomerNotesView
 {
     void SetPresenter(CustomerNotesPresenter notesPresenter);
+    void InitializeMode();
     string NewNoteText { get; set; }
     void AddNewNoteToHistory(CustomerNote note);
     void ClearAllNotes();
