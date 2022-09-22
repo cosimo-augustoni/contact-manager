@@ -73,6 +73,8 @@ Optionale funktionale Anforderungen
     4. Import von Kontakten im CSV-Format oder VCard-Format
         Es können alle Personentypen mithilfe eines CSVs importiert werden.
         VCard wird nicht unterstützt.
+        Für den CSV-Import wurde das Nuget-Package "CsvHelper" verwendet. Dies aus dem Grund, da dieser praktische Features wie Validierungsmöglichkeiten und das Hinterlegen einer Classmap mit sich bringt.
+        Dies selber zu bauen, wäre nicht wirtschaftlich gewesen und in der realen Arbeitswelt würde man das Rad für einen solchen Standard-Use-Case auch nicht neu erfinden.
         Um einen Import zu starten, kann auf der zugehörigen Übersichtsseite über den Button "Import" ein CSV-File selektiert werden.
         Beim Import werden nur die für den jeweiligen Personentyp relevanten Spalten berücksichtigt. Spalten welche keinem Feld zugeordnet werden können, werden ignoriert.
         Die Werte werden beim Import auf Gültigkeit geprüft und bei Fehlern wird angezeigt, wo der Fehler im CSV-File zu finden ist.
