@@ -40,10 +40,8 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
 
     public void Delete(long id)
     {
-
         this._repository.Delete(id);
         this.DeleteHistoryEntries(id);
-
     }
 
     public long GetNewId()
@@ -62,7 +60,6 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
 
     private void DeleteHistoryEntries(long entityId)
     {
-
         EntityType? entityType = null;
 
         switch (typeof(T))
@@ -85,7 +82,6 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
                 this._historizedRepository.Delete(historyEntry.Id);
             }
         }
-
     }
 
     private HistoryEntry CreateHistoryEntry(T entityNew, T? entityOld)
