@@ -4,7 +4,7 @@ namespace contact_manager.Models.Data;
 
 internal class FileStore<T> : IStore<T> where T : IObjectIdentifier
 {
-    private readonly string _dataDirectory = $"{AppDomain.CurrentDomain.BaseDirectory}/Data";
+    private readonly string _dataDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/ContactManager/Data";
 
     private readonly string _fileName = $"{typeof(T).Name}.json";
 
