@@ -10,7 +10,8 @@ namespace contact_manager.Views
 
     public class DataGridViewEnumCell : DataGridViewTextBoxCell
     {
-        protected override object GetFormattedValue(object value, int rowIndex, ref DataGridViewCellStyle cellStyle, TypeConverter valueTypeConverter, TypeConverter formattedValueTypeConverter, DataGridViewDataErrorContexts context)
+        protected override object GetFormattedValue(object value, int rowIndex, ref DataGridViewCellStyle cellStyle,
+            TypeConverter valueTypeConverter, TypeConverter formattedValueTypeConverter, DataGridViewDataErrorContexts context)
         {
             if (value is Enum @enum)
             {

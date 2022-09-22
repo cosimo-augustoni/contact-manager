@@ -9,6 +9,5 @@ public interface ICustomerNotesView
     string NewNoteText { get; set; }
     void AddNewNoteToHistory(CustomerNote note);
     void ClearAllNotes();
-
     void SetTitle(string customerDisplayText);
 }

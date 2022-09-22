@@ -21,7 +21,7 @@ namespace contact_manager.Views
         {
             var historyEntry = historyEntries.FirstOrDefault();
 
-            this.LblTitel.Text = this.GetTitleText(historyEntry);
+            this.LblTitel.Text = GetTitleText(historyEntry);
 
             foreach (var entry in historyEntries)
             {
@@ -50,12 +50,12 @@ namespace contact_manager.Views
 
             foreach (var difference in historyEntry.Diffs)
             {
-                listView.Items.Add(this.CreateListViewItem(difference));
+                listView.Items.Add(CreateListViewItem(difference));
             }
 
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-            this.SetListViewHeight(listView);
+            SetListViewHeight(listView);
 
             return listView;
         }
@@ -74,7 +74,7 @@ namespace contact_manager.Views
             return label;
         }
 
-        private ListViewItem CreateListViewItem(Difference difference)
+        private static ListViewItem CreateListViewItem(Difference difference)
         {
             var listViewItem = new ListViewItem(difference.PropertyName);
             listViewItem.UseItemStyleForSubItems = false;
@@ -88,7 +88,7 @@ namespace contact_manager.Views
             return listViewItem;
         }
 
-        private string GetTitleText(HistoryEntry? historyEntry)
+        private static string GetTitleText(HistoryEntry? historyEntry)
         {
             if (historyEntry != null)
             {
@@ -99,7 +99,7 @@ namespace contact_manager.Views
             return "";
         }
 
-        private void SetListViewHeight(ListView listView)
+        private static void SetListViewHeight(ListView listView)
         {
             var listViewItemsCount = listView.Items.Count;
 

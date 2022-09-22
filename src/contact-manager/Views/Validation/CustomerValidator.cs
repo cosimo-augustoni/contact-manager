@@ -46,7 +46,8 @@ internal class CustomerValidator
 
     private void ValidateContactInformations()
     {
-        if (!Validator.ExistsAtLeastOneContactInformation(this._dialog.EMailAddress, this._dialog.PhoneNumberPrivate, this._dialog.PhoneNumberMobile, this._dialog.PhoneNumberBusiness, this._dialog.FaxNumber))
+        if (!Validator.ExistsAtLeastOneContactInformation(this._dialog.EMailAddress, this._dialog.PhoneNumberPrivate,
+            this._dialog.PhoneNumberMobile, this._dialog.PhoneNumberBusiness, this._dialog.FaxNumber))
         {
             var error = "Geben Sie mindestens eine Kontaktinformation an.";
             this._errorProvider.SetError(this._dialog.TxtEMailAddress, error);

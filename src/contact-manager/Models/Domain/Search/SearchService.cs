@@ -28,7 +28,7 @@ namespace contact_manager.Models.Domain.Search
             Expression<Func<T, bool>> searchPredicate;
             if (searchScope.ScopeType == ScopeType.Property && searchScope.Property != null)
             {
-                searchPredicate = this.GetSearchPredicateByProperty(searchScope.Property, searchTerm);
+                searchPredicate = SearchService<T>.GetSearchPredicateByProperty(searchScope.Property, searchTerm);
             }
             else
             {
@@ -42,11 +42,11 @@ namespace contact_manager.Models.Domain.Search
         {
             Expression<Func<T, bool>> searchExpression = p => string.IsNullOrWhiteSpace(searchTerm);
             // Expressions für alle einzelnen Properties mit "oder" verknüpfen
-            return GetAllProperties().Select(property => this.GetSearchPredicateByProperty(property, searchTerm))
+            return GetAllProperties().Select(property => SearchService<T>.GetSearchPredicateByProperty(property, searchTerm))
                 .Aggregate(searchExpression, ExpressionHelper.Or);
         }
 
-        private Expression<Func<T, bool>> GetSearchPredicateByProperty(PropertyInfo propertyInfo, string searchTerm)
+        private static Expression<Func<T, bool>> GetSearchPredicateByProperty(PropertyInfo propertyInfo, string searchTerm)
         {
             //Expression um auf den Property Wert auf der Person zuzugreifen
             Expression<Func<T, object?>> accessFieldExpression = p => propertyInfo.GetValue(p);
@@ -104,7 +104,9 @@ namespace contact_manager.Models.Domain.Search
             if (Enum.TryParse(propertyInfo.PropertyType, searchTerm, out var searchTermEnum))
                 return f => f == searchTermEnum;
 
-            var enumMember = propertyInfo.PropertyType.GetFields().FirstOrDefault(m => m.GetCustomAttribute<DisplayAttribute>()?.Name?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false);
+            var enumMember = propertyInfo.PropertyType
+                .GetFields()
+                .FirstOrDefault(m => m.GetCustomAttribute<DisplayAttribute>()?.Name?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false);
             if (enumMember != null)
                 return f => enumMember.GetValue(null)!.Equals(f);
 

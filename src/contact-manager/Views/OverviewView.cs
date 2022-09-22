@@ -35,7 +35,6 @@ namespace contact_manager.Views
             this.dataGridViewTrainee.DataSource = trainees;
         }
         
-
         private void InitializeMode()
         {
             var isEnabled = !this._presenter?.IsReadOnly ?? false;
