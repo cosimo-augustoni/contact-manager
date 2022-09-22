@@ -5,7 +5,7 @@ Das beiliegende "Setup.msi" kann verwendet werden um die Applikation zu installi
 
 
 ## Login
-Für das login gibt es zwei vordefinierte Benutzer:
+Für das Login gibt es zwei vordefinierte Benutzer:
 - Administrator: 
     - Benutzername: admin
     - Passwort: 1234
@@ -27,4 +27,4 @@ Hier sind folgende Informationen zu finden:
 Im Ordner "src" ist die Solution mit der Applikation zu finden
 
 ## CSV Import
-Im Ordner "CsvImport_Testfiles" sind Beispiel CSV-File vorhanden um 4 Personen von jedem Personentyp erstellen zu können.
+Im Ordner "CsvImport_Testfiles" sind Beispiel CSV-Files vorhanden, um 4 Personen von jedem Personentyp erstellen zu können.
