@@ -26,9 +26,9 @@ namespace contact_manager.Presenters.Authentication
         {
             if (this._userService.TryAuthenticate(this._dialog.Username, this._dialog.Password, out var user))
             {
-                var dashboardView = this._formFactory.CreateOverview(user);
-                dashboardView.Show();
-                dashboardView.FormClosed += (_, _) => this._dialog.Close();
+                var overviewView = this._formFactory.CreateOverview(user);
+                overviewView.Show();
+                overviewView.FormClosed += (_, _) => this._dialog.Close();
                 this._dialog.Hide();
             }
             else

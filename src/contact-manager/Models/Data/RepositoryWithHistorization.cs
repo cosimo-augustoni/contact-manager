@@ -64,20 +64,24 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
             Id = this._historizedRepository.GetNewId(),
             EntityId = entityNew.Id,
             TimeStamp = DateTime.Now,
-            EntityType = (entityNew is Customer) ? EntityType.Customer : (entityNew is Trainee) ? EntityType.Trainee : EntityType.Employee,
+            EntityType = (entityNew is Customer)
+                ? EntityType.Customer
+                : (entityNew is Trainee)
+                    ? EntityType.Trainee
+                    : EntityType.Employee,
             UserId = this._currentUser.Id,
-            Diffs = this.GetDifferences(entityNew, entityOld).ToList(),
+            Diffs = RepositoryWithHistorization<T>.GetDifferences(entityNew, entityOld).ToList(),
         };
     }
 
-    private IEnumerable<Difference> GetDifferences(T entityNew, T? entityOld)
+    private static IEnumerable<Difference> GetDifferences(T entityNew, T? entityOld)
     {
         var properties = entityNew.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
         foreach (var property in properties)
         {
-            var newValue = this.GetFormattedPropertyValue(property, entityNew);
-            var oldValue = this.GetFormattedPropertyValue(property, entityOld);
+            var newValue = RepositoryWithHistorization<T>.GetFormattedPropertyValue(property, entityNew);
+            var oldValue = RepositoryWithHistorization<T>.GetFormattedPropertyValue(property, entityOld);
             if (!Equals(newValue, oldValue))
             {
                 var displayName = property.GetCustomAttribute<DisplayAttribute>()?.Name ?? property.Name;
@@ -92,7 +96,7 @@ internal class RepositoryWithHistorization<T> : IRepository<T> where T : IObject
         }
     }
 
-    private object? GetFormattedPropertyValue(PropertyInfo property, T? entity)
+    private static object? GetFormattedPropertyValue(PropertyInfo property, T? entity)
     {
         if (entity == null)
             return null;

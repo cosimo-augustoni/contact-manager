@@ -36,6 +36,11 @@ namespace contact_manager.Views.Authentication
 
         private void CmdLogin_Click(object sender, EventArgs e)
         {
+            this.Authenticate();
+        }
+
+        private void Authenticate()
+        {
             if (this.ValidateChildren(ValidationConstraints.Enabled))
             {
                 this._presenter?.Authenticate();
@@ -78,6 +83,14 @@ namespace contact_manager.Views.Authentication
         private void LoginView_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = false;
+        }
+
+        private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.Authenticate();
+            }
         }
     }
 }

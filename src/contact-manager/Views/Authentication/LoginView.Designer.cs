@@ -71,6 +71,7 @@
       this.TxtPassword.PasswordChar = '*';
       this.TxtPassword.Size = new System.Drawing.Size(248, 23);
       this.TxtPassword.TabIndex = 2;
+      this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassword_KeyDown);
       this.TxtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.TxtPassword_Validating);
       // 
       // CmdLogin
@@ -85,6 +86,7 @@
       // 
       // LoginErrorProvider
       // 
+      this.LoginErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
       this.LoginErrorProvider.ContainerControl = this;
       // 
       // LoginView

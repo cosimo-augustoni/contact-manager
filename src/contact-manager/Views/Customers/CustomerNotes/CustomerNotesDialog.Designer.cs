@@ -70,6 +70,7 @@
       // 
       // CustomerNoteErrorProvider
       // 
+      this.CustomerNoteErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
       this.CustomerNoteErrorProvider.ContainerControl = this;
       // 
       // CustomerNotesDialog

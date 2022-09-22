@@ -9,8 +9,6 @@
         public bool CanWrite { get; init; }
         public string DisplayName { get; init; }
 
-
-
         public User(int id, string userName, string password, bool canWrite, string displayName)
         {
             this.Id = id;

@@ -145,6 +145,6 @@ public abstract class EmployeeDetailPresenterBase<TEmployee, TDialog> : IPresent
 
     public bool HasUnsavedChanges()
     {
-        return this._savedEmployee != null && !this._savedEmployee.IsStringEqual(this.ReadFromDialog());
+        return this._savedEmployee == null || !this._savedEmployee.IsStringEqual(this.ReadFromDialog());
     }
 }

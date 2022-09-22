@@ -149,7 +149,6 @@ namespace contact_manager.Presenters
             dialogPresenter.Init();
             dialogPresenter.LoadCustomer(customerId);
             dialog.InitializeMode();
-            // ToDo: nach dem laden der daten noch die Controls aktualisieren
             dialog.Closed += (_, _) => this.LoadAllCustomers();
             dialog.ShowDialog();
         }

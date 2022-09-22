@@ -386,5 +386,17 @@ namespace contact_manager.Views.Employees
                 }
             }
         }
+
+        private void NumYearsOfApprenticeship_ValueChanged(object sender, EventArgs e)
+        {
+            this.EmployeeErrorProvider.SetError(this.NumCurrentYearOfApprenticeship, null);
+            this.EmployeeErrorProvider.SetError(this.NumYearsOfApprenticeship, null);
+        }
+
+        private void NumCurrentYearOfApprenticeship_ValueChanged(object sender, EventArgs e)
+        {
+            this.EmployeeErrorProvider.SetError(this.NumCurrentYearOfApprenticeship, null);
+            this.EmployeeErrorProvider.SetError(this.NumYearsOfApprenticeship, null);
+        }
     }
 }
