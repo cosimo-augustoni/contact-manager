@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HistoryDialog));
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.FlowLayoutPnlHistory = new System.Windows.Forms.FlowLayoutPanel();
             this.LblTitel = new System.Windows.Forms.Label();
@@ -62,6 +63,7 @@
             this.Controls.Add(this.LblTitel);
             this.Controls.Add(this.FlowLayoutPnlHistory);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HistoryDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Change-History";

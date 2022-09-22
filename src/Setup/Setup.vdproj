@@ -4,9 +4,9 @@
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
 "ProjectName" = "8:Setup"
-"LanguageId" = "3:1033"
+"LanguageId" = "3:1031"
 "CodePage" = "3:1252"
-"UILanguageId" = "3:1033"
+"UILanguageId" = "3:1031"
 "SccProjectName" = "8:"
 "SccLocalPath" = "8:"
 "SccAuxPath" = "8:"
@@ -16,6 +16,12 @@
         "Entry"
         {
         "MsmKey" = "8:_A1D667C5F2A64371A3C34193DC58E6AE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C24F51B3751C4AB298484CFA56B241B3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -37,6 +43,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -53,6 +67,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -84,6 +114,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C24F51B3751C4AB298484CFA56B241B3"
+            {
+            "SourcePath" = "8:contact.ico"
+            "TargetName" = "8:contact.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_62EB5C726D374A28A6B7FE68E356185F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -92,7 +142,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_62EB5C726D374A28A6B7FE68E356185F"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -133,15 +183,15 @@
         }
         "MsiBootstrapper"
         {
-        "LangId" = "3:1033"
+        "LangId" = "3:1031"
         "RequiresElevation" = "11:FALSE"
         }
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup"
+        "ProductName" = "8:ContactManager"
         "ProductCode" = "8:{BFBB3F5C-44DB-4F98-BC05-B136C8C8655A}"
-        "PackageCode" = "8:{4DC3368B-B18D-461F-B319-16461005A784}"
+        "PackageCode" = "8:{8E0639DF-1030-4ED2-AD35-D96B82F5D037}"
         "UpgradeCode" = "8:{C393D7AD-D581-4A41-85A6-32408F1A77CA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -149,20 +199,20 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:ContactManager Inc"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Setup"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
-        "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCONTACT" = "8:ContactManager"
+        "Keywords" = "8:contact manager"
+        "ARPCOMMENTS" = "8:contact manager"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
@@ -261,6 +311,34 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_240A48C4675B439ABAA8031C4470492C"
+            {
+            "Name" = "8:ContactManager"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_A1D667C5F2A64371A3C34193DC58E6AE"
+            "Folder" = "8:_A353A6B76B6D4DB2AAC334F38C503B85"
+            "WorkingFolder" = "8:_62EB5C726D374A28A6B7FE68E356185F"
+            "Icon" = "8:_C24F51B3751C4AB298484CFA56B241B3"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E491CC05104F463D9ACD94A499DB87A6"
+            {
+            "Name" = "8:ContactManager"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_A1D667C5F2A64371A3C34193DC58E6AE"
+            "Folder" = "8:_EEBC2A1465D746FBA00A1FF0EF0C6851"
+            "WorkingFolder" = "8:_62EB5C726D374A28A6B7FE68E356185F"
+            "Icon" = "8:_C24F51B3751C4AB298484CFA56B241B3"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -662,7 +740,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A1D667C5F2A64371A3C34193DC58E6AE"
             {
-            "SourcePath" = "8:..\\contact-manager\\obj\\Debug\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\contact-manager\\obj\\Release\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_62EB5C726D374A28A6B7FE68E356185F"
