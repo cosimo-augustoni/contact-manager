@@ -1,0 +1,99 @@
+Funktionale Anforderungen
+    1. Erfassung von Mitarbeitern und Kunden
+        Es können neue Mitarbeiter, Kunden und Lernende in der Applikations erfasst werden.
+        Dafür kann der Knopf "Neu" auf der zugehörigen Übersichtsseite verwendet werden.
+
+    2. Mutieren von Mitarbeitern und Kunden
+        Es können bestehende Mitarbeiter, Kunden und Lernende in der Applikations bearbeitet werden.
+        Dafür kann der Knopf "Bearbeiten" oder ein Doppelklick auf dem Listeneintrag auf der zugehörigen Übersichtsseite verwendet werden.
+
+    3. Aktivieren und deaktivieren von Mitarbeitern und Kunden
+        Alle Personen können in der Bearbeitungsansicht mithilfe des Knopfs "Aktiviere"/"Deaktivieren" aktiviert bzw. deaktiviert werden
+
+    4. Löschen von Mitarbeitern und Kunden
+        Alle Personen können auf der zugehörigen Übersichtsseite mit dem Knopf "Löschen", endgültig gelöscht werden.
+        Vor dem Löschen wird eine Rückfrage gestellt ob die Person wirklich gelöscht werden soll.
+
+    5. Automatische Vergabe von Mitarbeiternummern
+        Alle Personen erhalten eine aufsteigende Nummer bei der Erstellung
+
+    6. Protokollieren von Notizen in Kundenkontakten inkl. Historie
+        Auf der Bearbeitungsübersicht eines Kunden kann über den Knopf "Notizen" ein Dialog geöffnet werden in dem Notizen erfasst werden können. Ausserdem sind dort alle bereits erfassten Notizen einsehbar. 
+        Die Notizen sind absteigend nach Erstellungsdatum sortiert. Wird eine Notiz hinzugefügt wird diese sofort gespeichert.
+
+    7. Suchmöglichkeiten über alle gespeicherten Informationen
+        Auf allen Übersichtsseiten kann über da Suchfeld an der rechten oberen Ecke die Liste durchsucht werden.
+        Es kann generell über alle Felder gesucht werden. Ausserdem ist es möglich über die Feldauswahl in der zugehörigen Combobox nur in einem spezifischem Feld zu suchen.
+        Mit dem "X" kann der Suchbegriff zurückgesetzt werden.
+
+    8. Automatisches Speichern des Datenstamms auf Festplatte
+        Alle Daten werden immer sofort in einem Json-File gespeichert.
+        Es gibt pro Personentyp, sowie für die Historisierung und die Notizen jeweils ein Json-File
+        Alle Json-Files sind im installationsverzeichniss im Ordner Data abgelegt.
+        Folgene File können erstellt werden:
+            - Employee.json
+            - Trainee.json
+            - Customer.json
+            - CustomerNote.json
+            - HistoryEntry.json
+
+Optionale funktionale Anforderungen
+    1. Mutationshistorie von Kontaktdaten
+        Alle Änderungen an einer Person werden historisiert und sind auf dem Bearbeitungsdialog über den Button "Protokoll" einsehbar.
+        Dort werden alle Änderungen mit folgenden Informationen aufgelistet:
+            - Zeitpunkt der Änderungen
+            - Nutzer welcher die Änderung durchgeführt hat
+            - Für jedes Feld, welches geändert hat, wird der Wert vor und nach der Änderung ausgewiesen
+
+    2. Login
+        Um die Applikation benutzen zu können ist ein Login notwendig.
+        Es besteht keine möglichkeit neue Nutzer zu erfassen.
+        Es gibt zwei vordefinierte Benutzer:
+            - Administrator: 
+                Benutzername: admin
+                Passwort: 1234
+                Rechte: Bearbeiten, Lesen
+            - Lese-Benutzer: 
+                Benutzername: readonly
+                Passwort: 1234
+                Rechte: Lesen
+
+    3. Dashboard-View
+    //TODO beschrieben 
+
+    4. Import von Kontakten im CSV-Format oder VCard-Format
+        Es können alle Personentypen mithilfe eines CSVs importiert werden.
+        VCard wird nicht unterstützt
+        Um eine Import zu starten kann auf der zugehörigen Übersichtsseite über den Button "Import" ein CSV-File selektiert werden.
+        Beim Import werden nur die für den jeweiligen Personentyp relevanten Spalten berücksichtigt. Spalten welche keinem Feld zugeordnet werden können, werden ignoriert.
+        Die Werte werden beim Import auf Gültigkeit geprüft und bei Fehlern wird angezeigt wo der Fehler im CSV-File zu finden ist.
+
+        Im Ordner "CsvImport_Testfiles" sind Beispiel Files für alle Personentypen zu finden, mit welchen der Import ausprobiert werden kann.
+
+Nicht funktionale Anforderungen
+
+    1. Umsetzung in C# .Net und Windows-Forms Framework
+        Die Applikation wurde mit Windows Forms und .NET 6.0 umgesetzt
+
+    2. Durchdachte Applikationsarchitektur (Vererbungshierarchie der Daten ist Pflicht, siehe Abschnitt 10 - Anhang)
+        Die Applikation wurde mit dem MVP (Model View Presenter) Desing Pattern entwickelt. Da es sich gut für Windows Forms Applikationen eigenet und einige Vorteile gegenüber dem auch verbreiteten MVC Pattern besitzt.
+        Die Personen wurden in einer Vererbungshirarchie abgebildet wie im Anhang des Projektauftrags aufgezeigt
+        
+    3. Gute Benutzbarkeit (Usability)
+        Es wurde darauf geachtet immer gutes Feedback an den Nutzer zu geben. 
+        Speziell erwähnenswert sind hier die Validierungen welche beim betroffenen Feld angezeigt werden, sowie diverse Rückfragen bei Aktionen welche zu Datenverlust führen können.
+
+    4. Hohe Stabilität (Fehleingaben abfangen, Abstürze verhindern)
+        Auf hier ist auf die Validierungen in den Dialogen zu verweisen.
+        Ausserdem werden Kritische Fehler dem Nutzer angezeigt und das Programm stürtzt nicht ohne Nutzerfeedback ab.
+
+    5. Ausreichende In-Line Dokumentation des Quellcodes
+        Es wurde sich hier vorallem auf Clean-Code Prinzipen verlassen und darauf gesetzt mit klarer Benennung von Klassen und Methoden dafür zu sorgen das der Code sich selbst genug ausführlich beschreibt.
+        Rund um den SearchService wurde teilweise mit Kommentaren nachgeholfen den Code zu beschreiben, da ExpressionTrees nicht immer klar verständlich sind.
+
+    6. Ausser einem ausführlichen Klassendiagramm ist keine Dokumentation abzugeben
+        Neben diesem File sind zwei Klassendiagramme zu finden. Ebenso können die interaktiven Klassendiagramme in der Solution genauer inspziert werden.
+        Es gibt ein Klassendiagramm "ClassDiagramData" welches nur die persistierten Klassen zeigt und es gibt ein Klassendiagramm "ClassDiagramFull" in welchem alle Klassen des Projekt nach Domänenzugehörigkeit gruppiert aufgeführt sind.
+
+
+        
