@@ -126,7 +126,7 @@ public class CustomerDetailPresenter : IPresenter
 
     public bool HasUnsavedChanges()
     {
-        return this._savedCustomer != null && !this._savedCustomer.IsStringEqual(this.ReadFromDialog());
+        return this._savedCustomer == null || !this._savedCustomer.IsStringEqual(this.ReadFromDialog());
     }
 
     private Customer ReadFromDialog()
