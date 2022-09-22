@@ -31,7 +31,7 @@ internal class Repository<T> : IRepository<T> where T : IObjectIdentifier
 
     public long GetNewId()
     {
-        var persons = this._store.GetAll();
-        return persons.Count > 0 ? persons.Max(p => p.Id) + 1 : 1;
+        var entities = this._store.GetAll();
+        return entities.Count > 0 ? entities.Max(p => p.Id) + 1 : 1;
     }
 }
