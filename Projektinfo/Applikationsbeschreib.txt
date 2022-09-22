@@ -22,13 +22,13 @@ Funktionale Anforderungen
         Die Notizen sind absteigend nach Erstellungsdatum sortiert. Wird eine Notiz hinzugefügt, wird diese sofort gespeichert.
 
     7. Suchmöglichkeiten über alle gespeicherten Informationen
-        Auf allen Übersichtsseiten kann über da Suchfeld an der rechten oberen Ecke die Liste durchsucht werden.
+        Auf allen Übersichtsseiten kann über das Suchfeld an der rechten oberen Ecke die Liste durchsucht werden.
         Es kann generell über alle Felder gesucht werden. Ausserdem ist es möglich, über die Feldauswahl in der zugehörigen Combobox nur in einem spezifischem Feld zu suchen.
         Mit dem "X" kann der Suchbegriff zurückgesetzt werden.
 
     8. Automatisches Speichern des Datenstamms auf Festplatte
         Alle Daten werden immer sofort in einem Json-File gespeichert.
-        Es gibt pro Personentyp, sowie für die Historisierung und die Notizen jeweils ein Json-File
+        Es gibt pro Personentyp, sowie für die Historisierung und die Notizen jeweils ein Json-File.
         Alle Json-Files sind im Installationsverzeichnis im Ordner Data abgelegt.
         Folgende Files werden erstellt:
             - Employee.json
@@ -47,7 +47,7 @@ Optionale funktionale Anforderungen
 
     2. Login
         Um die Applikation benutzen zu können ist ein Login notwendig.
-        Es besteht keine möglichkeit neue Nutzer zu erfassen.
+        Es besteht keine Möglichkeit neue Nutzer zu erfassen.
         Es gibt zwei vordefinierte Benutzer:
             - Administrator: 
                 Benutzername: admin
@@ -59,12 +59,21 @@ Optionale funktionale Anforderungen
                 Rechte: Lesen
 
     3. Dashboard-View
-    //TODO beschrieben 
+	      Ist im Register "Dashboard" auf der Übersicht zu finden. Die Daten, die angezeigt werden, sind immer auf dem aktuellen Stand.
+	      Für den Einbau der Diagramme wurde das Nuget-Package "ScottPlot.WinForms" verwendet.
+	      Dies aus dem Grund, dass ab einer höheren .NET Version von 4.8 das eigene Chart-Control von WinForms nicht mehr zur Verfügung steht.
+	      Siehe hier: https://github.com/dotnet/winforms/discussions/6163 und https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.datavisualization.charting.chart?view=netframework-4.8#applies-to
+
+	      Im Ganzen haben wir vier Diagramme erstellt.
+	        1. Anzahl Kunden: zeigt an wie viele aktive und passive Kunden vorhanden sind.
+	        2. Anzahl Kunden pro Wohnort: zeigt an, wie viele Kunden mit demselben Wohnort erfasst sind. Wenn es mehr wie drei sind, werden die drei Wohnorte mit den meisten Kunden angezeigt und die anderen mit "Andere" zusammengefasst.
+	        3: Anzahl Kunden pro Typ: zeigt an, wie viele Kunden es pro Kundentyp gibt.
+	        4: Anzahl Personen pro Typ: zeigt an, wie viele Kunden, Mitarbeiter und Lernende erfasst sind.
 
     4. Import von Kontakten im CSV-Format oder VCard-Format
         Es können alle Personentypen mithilfe eines CSVs importiert werden.
-        VCard wird nicht unterstützt
-        Um eine Import zu starten, kann auf der zugehörigen Übersichtsseite über den Button "Import" ein CSV-File selektiert werden.
+        VCard wird nicht unterstützt.
+        Um einen Import zu starten, kann auf der zugehörigen Übersichtsseite über den Button "Import" ein CSV-File selektiert werden.
         Beim Import werden nur die für den jeweiligen Personentyp relevanten Spalten berücksichtigt. Spalten welche keinem Feld zugeordnet werden können, werden ignoriert.
         Die Werte werden beim Import auf Gültigkeit geprüft und bei Fehlern wird angezeigt, wo der Fehler im CSV-File zu finden ist.
 
