@@ -42,6 +42,13 @@ namespace contact_manager.Views.Customers.CustomerNotes
             this.PnlNotes.Controls.Add(new CustomerNoteControl(note.Text, note.CreatedBy, note.CreatedAt));
         }
 
+        public void InitializeMode()
+        {
+            var isEnabled = !this._presenter?.IsReadOnly ?? false;
+            this.TxtNewNote.Enabled = isEnabled;
+            this.CmdAddNote.Enabled = isEnabled;
+        }
+
         public void ClearAllNotes()
         {
             this.PnlNotes.Controls.Clear();

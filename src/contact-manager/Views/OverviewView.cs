@@ -41,20 +41,23 @@ namespace contact_manager.Views
 
             this.CmdCreateNewCustomer.Enabled = isEnabled;
             this.CmdCreateNewEmployee.Enabled = isEnabled;
+            this.CmdCreateNewTrainee.Enabled = isEnabled;
             this.CmdDeleteCustomer.Enabled = isEnabled;
             this.CmdDeleteEmployee.Enabled = isEnabled;
+            this.CmdDeleteTrainee.Enabled = isEnabled;
             this.CmdImportCustomer.Enabled = isEnabled;
             this.CmdImportEmployee.Enabled = isEnabled;
+            this.CmdImportTrainee.Enabled = isEnabled;
 
             if (isEnabled)
             {
-                this.CmdEditCustomer.Text = this.CmdEditEmployee.Text = "Bearbeiten";
-                this.CmdEditCustomer.Image = this.CmdEditEmployee.Image = Properties.Resources.Edit;
+                this.CmdEditCustomer.Text = this.CmdEditEmployee.Text = this.CmdEditTrainee.Text = "Bearbeiten";
+                this.CmdEditCustomer.Image = this.CmdEditEmployee.Image = this.CmdEditTrainee.Image = Properties.Resources.Edit;
             }
             else
             {
-                this.CmdEditCustomer.Text = this.CmdEditEmployee.Text = "Anzeigen";
-                this.CmdEditCustomer.Image = this.CmdEditEmployee.Image = Properties.Resources.ShowDataPreview;
+                this.CmdEditCustomer.Text = this.CmdEditEmployee.Text = this.CmdEditTrainee.Text = "Anzeigen";
+                this.CmdEditCustomer.Image = this.CmdEditEmployee.Image = this.CmdEditTrainee.Image = Properties.Resources.ShowDataPreview;
             }
         }
 

@@ -19,10 +19,16 @@ namespace contact_manager.Presenters.Customers
             this._user = user;
         }
 
+        public bool IsReadOnly
+        {
+            get { return !this._user.CanWrite; }
+        }
+
         public void Init()
         {
             this._dialog.SetPresenter(this);
             this.LoadAllCustomerNotes();
+            this._dialog.InitializeMode();
         }
 
         public void AddNewNoteFromText()
