@@ -7,4 +7,5 @@ public interface ICustomerNoteService
 {
     List<CustomerNote> LoadAllNotesByCustomerId(long customerId);
     void CreateNewNote(long customerId, string text, string createdBy);
+    void DeleteNotes(long customerId);
 }

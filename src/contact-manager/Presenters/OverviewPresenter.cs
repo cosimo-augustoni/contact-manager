@@ -1,4 +1,5 @@
 ﻿using contact_manager.Models.Data;
+using contact_manager.Models.Data.History;
 using contact_manager.Models.Domain;
 using contact_manager.Models.Domain.Authentication;
 using contact_manager.Models.Domain.CsvImport;
@@ -156,6 +157,7 @@ namespace contact_manager.Presenters
         public void DeleteCustomer(long customerId)
         {
             this._customerService.Delete(customerId);
+            this._customerNotesService.DeleteNotes(customerId);
             this.LoadAllCustomers();
         }
 

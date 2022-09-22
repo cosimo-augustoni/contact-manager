@@ -29,5 +29,14 @@ namespace contact_manager.Models.Domain
             };
             this._customerNoteRepository.Save(note);
         }
+
+        public void DeleteNotes(long customerId)
+        {
+            var notesByCustomer = this._customerNoteRepository.GetAll().FindAll(n => n.CustomerId == customerId);
+            foreach (var note in notesByCustomer)
+            {
+                this._customerNoteRepository.Delete(note.Id);
+            }
+        }
     }
 }
